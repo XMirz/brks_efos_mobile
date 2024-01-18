@@ -1,0 +1,38 @@
+import 'package:efosm/app/presentation/providers/router_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lottie/lottie.dart';
+
+class SplashScreen extends HookConsumerWidget {
+  const SplashScreen({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final animationController = useAnimationController();
+    return Scaffold(
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Lottie.asset(
+            'assets/lottie/logo_brks.json',
+            controller: animationController,
+            onLoaded: (LottieComposition composition) {
+              // TODO REMOVE
+              animationController
+                ..duration = const Duration(milliseconds: 50)
+                ..forward()
+                ..addStatusListener((status) {
+                  if (status == AnimationStatus.completed) {
+                    context.goNamed(AppRoutes.landingPage);
+                  }
+                });
+            },
+            repeat: false,
+          ),
+        ),
+      ),
+    );
+  }
+}
