@@ -15,6 +15,7 @@ class PrimaryButton extends StatelessWidget {
     this.size,
     this.radius,
     this.disabled,
+    this.padding,
   });
 
   final String text;
@@ -26,12 +27,15 @@ class PrimaryButton extends StatelessWidget {
   final TextStyle? textStyle;
   final Size? size;
   final double? radius;
+  final EdgeInsetsGeometry? padding;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       // statesController: MaterialStatesController(MaterialState.),
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
+        padding:
+            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
         minimumSize: size ?? const Size(double.minPositive, 48),
         // maximumSize: size ?? const Size(double.minPositive, 48),
         backgroundColor: getBackgkroundColor(),
@@ -69,5 +73,42 @@ class PrimaryButton extends StatelessWidget {
       return AppColor.textDisabled;
     }
     return color ?? AppColor.textPrimaryInverse;
+  }
+}
+
+class SmallButton extends StatelessWidget {
+  const SmallButton({
+    required this.text,
+    required this.onPressed,
+    super.key,
+    this.backgroundColor,
+    this.color,
+    this.borderColor,
+    this.textStyle,
+    this.size,
+    this.radius,
+    this.disabled,
+  });
+
+  final String text;
+  final bool? disabled;
+  final VoidCallback onPressed;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? color;
+  final TextStyle? textStyle;
+  final Size? size;
+  final double? radius;
+
+  @override
+  Widget build(BuildContext context) {
+    return PrimaryButton(
+      size: const Size(double.minPositive, 32),
+      text: text,
+      onPressed: onPressed,
+      radius: 8,
+      backgroundColor: Colors.transparent,
+      textStyle: AppTextStyle.titleExtraSmall,
+    );
   }
 }

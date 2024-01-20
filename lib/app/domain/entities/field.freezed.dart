@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Field {
   String get value => throw _privateConstructorUsedError;
+  String get showValue => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
 
@@ -29,7 +30,8 @@ abstract class $FieldCopyWith<$Res> {
   factory $FieldCopyWith(Field value, $Res Function(Field) then) =
       _$FieldCopyWithImpl<$Res, Field>;
   @useResult
-  $Res call({String value, String errorMessage, bool isValid});
+  $Res call(
+      {String value, String showValue, String errorMessage, bool isValid});
 }
 
 /// @nodoc
@@ -46,6 +48,7 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
   @override
   $Res call({
     Object? value = null,
+    Object? showValue = null,
     Object? errorMessage = null,
     Object? isValid = null,
   }) {
@@ -53,6 +56,10 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      showValue: null == showValue
+          ? _value.showValue
+          : showValue // ignore: cast_nullable_to_non_nullable
               as String,
       errorMessage: null == errorMessage
           ? _value.errorMessage
@@ -73,7 +80,8 @@ abstract class _$$$_FieldImplCopyWith<$Res> implements $FieldCopyWith<$Res> {
       __$$$_FieldImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String errorMessage, bool isValid});
+  $Res call(
+      {String value, String showValue, String errorMessage, bool isValid});
 }
 
 /// @nodoc
@@ -88,6 +96,7 @@ class __$$$_FieldImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? value = null,
+    Object? showValue = null,
     Object? errorMessage = null,
     Object? isValid = null,
   }) {
@@ -95,6 +104,10 @@ class __$$$_FieldImplCopyWithImpl<$Res>
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
+              as String,
+      showValue: null == showValue
+          ? _value.showValue
+          : showValue // ignore: cast_nullable_to_non_nullable
               as String,
       errorMessage: null == errorMessage
           ? _value.errorMessage
@@ -112,10 +125,15 @@ class __$$$_FieldImplCopyWithImpl<$Res>
 
 class _$$_FieldImpl implements $_Field {
   const _$$_FieldImpl(
-      {required this.value, this.errorMessage = '', this.isValid = false});
+      {required this.value,
+      required this.showValue,
+      this.errorMessage = '',
+      this.isValid = false});
 
   @override
   final String value;
+  @override
+  final String showValue;
   @override
   @JsonKey()
   final String errorMessage;
@@ -125,7 +143,7 @@ class _$$_FieldImpl implements $_Field {
 
   @override
   String toString() {
-    return 'Field(value: $value, errorMessage: $errorMessage, isValid: $isValid)';
+    return 'Field(value: $value, showValue: $showValue, errorMessage: $errorMessage, isValid: $isValid)';
   }
 
   @override
@@ -134,13 +152,16 @@ class _$$_FieldImpl implements $_Field {
         (other.runtimeType == runtimeType &&
             other is _$$_FieldImpl &&
             (identical(other.value, value) || other.value == value) &&
+            (identical(other.showValue, showValue) ||
+                other.showValue == showValue) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.isValid, isValid) || other.isValid == isValid));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, errorMessage, isValid);
+  int get hashCode =>
+      Object.hash(runtimeType, value, showValue, errorMessage, isValid);
 
   @JsonKey(ignore: true)
   @override
@@ -152,11 +173,14 @@ class _$$_FieldImpl implements $_Field {
 abstract class $_Field implements Field {
   const factory $_Field(
       {required final String value,
+      required final String showValue,
       final String errorMessage,
       final bool isValid}) = _$$_FieldImpl;
 
   @override
   String get value;
+  @override
+  String get showValue;
   @override
   String get errorMessage;
   @override

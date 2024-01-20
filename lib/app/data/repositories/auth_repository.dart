@@ -7,6 +7,7 @@ import 'package:efosm/app/domain/repositories/auth_repository_interface.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/app/domain/entities/user_entity.dart';
 import 'package:efosm/core/error/failures.dart';
+import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
@@ -14,24 +15,27 @@ class AuthRepository implements AuthRepositoryInterface {
   final DioClient _dioClient = GetIt.I.get();
   @override
   Future<Either<Failure, UserEntity>> login(UserLoginDto user) async {
-    final response = await _dioClient.post<String>(
+    final response = await _dioClient.post(
       '/efos/mobile/login',
       data: user.toJson(),
     );
 
-    return response.map((r) {
-      UserEntity user;
+    return response.fold(left, (r) {
       try {
-        final userRaw = jsonDecode(r) as Map<String, dynamic>;
-        return UserEntity.fromJson(userRaw);
+        return right(UserEntity.fromJson(r));
       } catch (e) {
-        return UserEntity.empty();
+        return left(
+          Failure.unprocessableEntity(message: l10n.somethingWrong, code: '05'),
+        );
       }
     });
   }
 
   @override
-  Future<Either<Failure, void>> logout() {
-    throw UnimplementedError();
+  Future<Either<Failure, dynamic>> logout() {
+    return Future.delayed(Duration.zero, () {
+      return left(
+          const Failure.authentication(message: 'message', code: 'code'));
+    });
   }
 }

@@ -4,10 +4,10 @@ import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class OurTextField extends StatelessWidget {
-  const OurTextField({
+  OurTextField({
     required this.label,
     required this.hint,
-    required this.controller,
+    this.controller,
     super.key,
     this.onChanged,
     this.obsecureText,
@@ -18,13 +18,17 @@ class OurTextField extends StatelessWidget {
     this.error,
     this.readOnly,
     this.height,
+    this.maxLength,
+    this.keyboardType,
   });
 
   final String label;
   final String hint;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? error;
+  final TextInputType? keyboardType;
   final bool? readOnly;
+  final int? maxLength;
   final bool? obsecureText;
   final double? height;
   final Color? labelColor;
@@ -43,46 +47,27 @@ class OurTextField extends StatelessWidget {
           style: labelStyle ?? AppTextStyle.subtitleLarge,
         ),
         spaceY(8),
-        TextField(
+        TextFormField(
+          keyboardType: keyboardType ?? TextInputType.text,
+          maxLength: maxLength,
           readOnly: readOnly ?? false,
           onChanged: onChanged,
-          controller: controller,
+          controller: controller ?? TextEditingController(),
           obscureText: obsecureText ?? false,
-          style:
-              AppTextStyle.bodyMedium.copyWith(color: AppColor.textSecondary),
+          style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
           cursorColor: cursorColor ?? AppColor.textPrimary,
           cursorWidth: 1,
-          decoration: InputDecoration(
-            constraints: BoxConstraints(
-              minHeight: height ?? 56,
-              maxHeight: height ?? 56,
-            ),
-            hintText: hint,
-            hintStyle: hintStyle ??
-                AppTextStyle.bodySmall
-                    .copyWith(color: AppColor.textPlaceholder),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-            fillColor:
-                readOnly ?? true ? AppColor.highlight : Colors.transparent,
-            disabledBorder: OutlineInputBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              borderSide: BorderSide(color: AppColor.highlightSecondary),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              borderSide: BorderSide(color: AppColor.highlightSecondary),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(8)),
-              borderSide: BorderSide(color: AppColor.highlightSecondary),
-            ),
+          decoration: buildOurInputDecoration(
+              hint: hint,
+              height: height,
+              hintStyle: hintStyle,
+              readOnly: readOnly),
+        ),
+        if (error != '')
+          Text(
+            error ?? '',
+            style: labelStyle ?? AppTextStyle.errorText,
           ),
-        ),
-        spaceY(4),
-        Text(
-          error ?? '',
-          style: labelStyle ?? AppTextStyle.errorText,
-        ),
       ],
     );
   }

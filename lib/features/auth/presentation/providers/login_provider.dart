@@ -5,7 +5,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class UserLoginFormProvider extends StateNotifier<UserLoginFormState> {
   UserLoginFormProvider() : super(UserLoginFormState(UserLoginEntity.empty()));
   void setUsername(String username) {
-    final form = state.form.copyWith(username: Field(value: username));
+    final form = state.form
+        .copyWith(username: Field(value: username, showValue: username));
     final isValid = username.length >= 9;
     late Field usernameField;
 
@@ -21,7 +22,8 @@ class UserLoginFormProvider extends StateNotifier<UserLoginFormState> {
   }
 
   void setPassword(String password) {
-    final form = state.form.copyWith(password: Field(value: password));
+    final form = state.form
+        .copyWith(password: Field(value: password, showValue: password));
     late Field passwordField;
 
     if (password.length > 3) {

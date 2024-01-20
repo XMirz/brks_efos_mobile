@@ -19,7 +19,7 @@ class UserEntity with _$UserEntity {
 
   const UserEntity._();
 
-  factory UserEntity.empty() => UserEntity(
+  factory UserEntity.empty() => const UserEntity(
         username: '',
         name: '',
         nik: '',

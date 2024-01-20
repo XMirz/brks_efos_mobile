@@ -30,6 +30,10 @@ class Failure implements Exception {
     required String message,
     required String code,
   }) = UnprocessableEntityFailure;
+  const factory Failure.unknown({
+    required String message,
+    required String code,
+  }) = UnknownFailre;
 
   final String message;
   final String code;
@@ -75,6 +79,13 @@ class NotFoundFailure extends Failure {
 
 class UnprocessableEntityFailure extends Failure {
   const UnprocessableEntityFailure({
+    required String message,
+    required String code,
+  }) : super(message, code);
+}
+
+class UnknownFailre extends Failure {
+  const UnknownFailre({
     required String message,
     required String code,
   }) : super(message, code);

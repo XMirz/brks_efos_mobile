@@ -19,13 +19,12 @@ class LoadingDialog extends HookConsumerWidget {
     final animationController = useAnimationController();
     return AlertDialog(
       content: Container(
-        color: AppColor.accent,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: 96,
-              width: 96,
+              height: 48,
+              width: 48,
               child: Lottie.asset(
                 'assets/lottie/loading_brks.json',
                 controller: animationController,

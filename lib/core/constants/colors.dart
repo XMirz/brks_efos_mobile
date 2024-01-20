@@ -13,7 +13,7 @@ class AppColor {
 
   // Text Colors
   static const Color textPrimary = Color(0xFF34495e); // Dark Gray
-  static const Color textSecondary = Color(0xFF95a5a6); // Light Gray
+  static const Color textSecondary = Color(0xFF54697e); // Light Gray
   static const Color textDisabled = Color(0xFFbdc3c7);
   static const Color textPlaceholder = Color(0xFFbdc3c7);
   static const Color textLink = Color(0xFF3498db);

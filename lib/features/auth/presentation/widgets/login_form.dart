@@ -41,6 +41,7 @@ class LoginForm extends ConsumerWidget {
         password: formState.form.password.value,
       );
       final userResult = await authRepository.login(user);
+      onSuccess.call();
       await userResult.fold((l) async {
         await showDialog(
           context: context,
