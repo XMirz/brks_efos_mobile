@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -24,7 +25,9 @@ class DioClient {
       contentType: Headers.jsonContentType,
       connectTimeout: const Duration(seconds: 60),
       receiveTimeout: const Duration(seconds: 60),
-      headers: {'Authorization': 'Bearer $bearerToken'},
+      headers: {
+        HttpHeaders.authorizationHeader: 'Bearer $bearerToken',
+      },
     );
     dio = Dio(baseOption);
     dio.interceptors.add(LoggingInterceptor());
@@ -45,7 +48,6 @@ class DioClient {
   }) async {
     final requestOptions = options ?? Options();
     requestOptions.headers = requestOptions.headers ?? {};
-
     try {
       final response = await dio.post<Map<String, dynamic>>(
         path,
@@ -53,7 +55,19 @@ class DioClient {
         queryParameters: queryParameters,
         options: requestOptions,
       );
-      return right(response.data?['data'] as Map<String, dynamic>);
+      // Callback jika respon bukan 00
+      if (response.data!['kode'] != '00') {
+        return left(
+          Failure(
+            response.data!['pesan'] as String,
+            response.data!['kode'] as String,
+          ),
+        );
+      }
+      final innerData = response.data!.containsKey('data')
+          ? response.data!['data'] as Map<String, dynamic>
+          : <String, dynamic>{};
+      return right(innerData);
     } on DioException catch (e) {
       debugPrint(e.toString());
       if (e.response?.statusCode == 401) {
@@ -99,9 +113,19 @@ class DioClient {
         queryParameters: queryParameters,
         options: requestOptions,
       );
+      // Callback jika respon bukan 00
+      if (response.data!['kode'] != '00') {
+        return left(
+          Failure(
+            response.data!['pesan'] as String,
+            response.data!['kode'] as String,
+          ),
+        );
+      }
       return right(response.data?['data'] as Map<String, dynamic>);
     } on DioException catch (e) {
-      debugPrint(e.toString());
+      debugPrint('Status : ${e.response?.statusCode}');
+      debugPrint('Response : ${jsonEncode(e.response?.data)}');
       if (e.response?.statusCode == 401) {
         return left(
           Failure.authentication(message: l10n.failureAuth, code: '04'),
@@ -133,6 +157,7 @@ class DioClient {
 enum RequestType {
   // ignore: constant_identifier_names
   GET,
+  // ignore: constant_identifier_names
   POST
 }
 
@@ -143,7 +168,7 @@ class LoggingInterceptor extends Interceptor {
     debugPrint('\n\n');
     debugPrint('<--- RESPONSE --->');
     debugPrint('Status : ${response.statusCode}');
-    printWrapped('Response : ${response.data}');
+    debugPrint('Response : ${jsonEncode(response.data)}');
     debugPrint('<--- RESPONSE --->');
     debugPrint('\n\n');
   }
@@ -153,17 +178,18 @@ class LoggingInterceptor extends Interceptor {
     super.onRequest(request, handler);
     debugPrint('\n\n');
     debugPrint('<--- REQUEST --->');
-    debugPrint('Path   : ${request.baseUrl}${request.path}');
-    debugPrint('Headers: ${request.headers}');
-    printWrapped('Request: ${request.data}');
+    debugPrint(
+        'Path   : [${request.method}] ${request.baseUrl}${request.path}');
+    debugPrint('Headers: ${jsonEncode(request.headers)}');
+    debugPrint('Request: ${jsonEncode(request.data)}');
     debugPrint('<--- REQUEST --->');
     debugPrint('\n\n');
   }
 
-  void printWrapped(String text) {
-    final pattern = RegExp('.{1,800}');
-    pattern
-        .allMatches(text)
-        .forEach((RegExpMatch match) => debugPrint(match.group(0)));
-  }
+  // void printWrapped(String text) {
+  //   final pattern = RegExp('.{1,800}');
+  //   pattern
+  //       .allMatches(text)
+  //       .forEach((RegExpMatch match) => debugPrint(match.group(0)));
+  // }
 }

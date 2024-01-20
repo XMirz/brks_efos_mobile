@@ -34,8 +34,7 @@ class PrimaryButton extends StatelessWidget {
       // statesController: MaterialStatesController(MaterialState.),
       onPressed: onPressed,
       style: OutlinedButton.styleFrom(
-        padding:
-            padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        padding: padding,
         minimumSize: size ?? const Size(double.minPositive, 48),
         // maximumSize: size ?? const Size(double.minPositive, 48),
         backgroundColor: getBackgkroundColor(),
@@ -88,6 +87,7 @@ class SmallButton extends StatelessWidget {
     this.size,
     this.radius,
     this.disabled,
+    this.padding,
   });
 
   final String text;
@@ -98,6 +98,7 @@ class SmallButton extends StatelessWidget {
   final Color? color;
   final TextStyle? textStyle;
   final Size? size;
+  final EdgeInsetsGeometry? padding;
   final double? radius;
 
   @override
@@ -105,6 +106,8 @@ class SmallButton extends StatelessWidget {
     return PrimaryButton(
       size: const Size(double.minPositive, 32),
       text: text,
+      padding:
+          padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       onPressed: onPressed,
       radius: 8,
       backgroundColor: Colors.transparent,

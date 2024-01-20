@@ -23,10 +23,15 @@ mixin _$UserEntity {
   String get username => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get nik => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_role')
+  String get idRole => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
-  String get roleName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_cabang')
+  String get idCabang => throw _privateConstructorUsedError;
   String get cabang => throw _privateConstructorUsedError;
-  String get token => throw _privateConstructorUsedError;
+  String get token =>
+      throw _privateConstructorUsedError; // required List<String> permissions,
+  List<String> get authorities => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -44,10 +49,12 @@ abstract class $UserEntityCopyWith<$Res> {
       {String username,
       String name,
       String nik,
+      @JsonKey(name: 'id_role') String idRole,
       String role,
-      String roleName,
+      @JsonKey(name: 'id_cabang') String idCabang,
       String cabang,
-      String token});
+      String token,
+      List<String> authorities});
 }
 
 /// @nodoc
@@ -66,10 +73,12 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? username = null,
     Object? name = null,
     Object? nik = null,
+    Object? idRole = null,
     Object? role = null,
-    Object? roleName = null,
+    Object? idCabang = null,
     Object? cabang = null,
     Object? token = null,
+    Object? authorities = null,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -84,13 +93,17 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
               as String,
+      idRole: null == idRole
+          ? _value.idRole
+          : idRole // ignore: cast_nullable_to_non_nullable
+              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      roleName: null == roleName
-          ? _value.roleName
-          : roleName // ignore: cast_nullable_to_non_nullable
+      idCabang: null == idCabang
+          ? _value.idCabang
+          : idCabang // ignore: cast_nullable_to_non_nullable
               as String,
       cabang: null == cabang
           ? _value.cabang
@@ -100,6 +113,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      authorities: null == authorities
+          ? _value.authorities
+          : authorities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -116,10 +133,12 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       {String username,
       String name,
       String nik,
+      @JsonKey(name: 'id_role') String idRole,
       String role,
-      String roleName,
+      @JsonKey(name: 'id_cabang') String idCabang,
       String cabang,
-      String token});
+      String token,
+      List<String> authorities});
 }
 
 /// @nodoc
@@ -136,10 +155,12 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? username = null,
     Object? name = null,
     Object? nik = null,
+    Object? idRole = null,
     Object? role = null,
-    Object? roleName = null,
+    Object? idCabang = null,
     Object? cabang = null,
     Object? token = null,
+    Object? authorities = null,
   }) {
     return _then(_$UserEntityImpl(
       username: null == username
@@ -154,13 +175,17 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
               as String,
+      idRole: null == idRole
+          ? _value.idRole
+          : idRole // ignore: cast_nullable_to_non_nullable
+              as String,
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
-      roleName: null == roleName
-          ? _value.roleName
-          : roleName // ignore: cast_nullable_to_non_nullable
+      idCabang: null == idCabang
+          ? _value.idCabang
+          : idCabang // ignore: cast_nullable_to_non_nullable
               as String,
       cabang: null == cabang
           ? _value.cabang
@@ -170,6 +195,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      authorities: null == authorities
+          ? _value._authorities
+          : authorities // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -181,11 +210,14 @@ class _$UserEntityImpl extends _UserEntity {
       {required this.username,
       required this.name,
       required this.nik,
+      @JsonKey(name: 'id_role') required this.idRole,
       required this.role,
-      required this.roleName,
+      @JsonKey(name: 'id_cabang') required this.idCabang,
       required this.cabang,
-      required this.token})
-      : super._();
+      required this.token,
+      required final List<String> authorities})
+      : _authorities = authorities,
+        super._();
 
   factory _$UserEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserEntityImplFromJson(json);
@@ -197,17 +229,30 @@ class _$UserEntityImpl extends _UserEntity {
   @override
   final String nik;
   @override
+  @JsonKey(name: 'id_role')
+  final String idRole;
+  @override
   final String role;
   @override
-  final String roleName;
+  @JsonKey(name: 'id_cabang')
+  final String idCabang;
   @override
   final String cabang;
   @override
   final String token;
+// required List<String> permissions,
+  final List<String> _authorities;
+// required List<String> permissions,
+  @override
+  List<String> get authorities {
+    if (_authorities is EqualUnmodifiableListView) return _authorities;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_authorities);
+  }
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, name: $name, nik: $nik, role: $role, roleName: $roleName, cabang: $cabang, token: $token)';
+    return 'UserEntity(username: $username, name: $name, nik: $nik, idRole: $idRole, role: $role, idCabang: $idCabang, cabang: $cabang, token: $token, authorities: $authorities)';
   }
 
   @override
@@ -219,17 +264,29 @@ class _$UserEntityImpl extends _UserEntity {
                 other.username == username) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.nik, nik) || other.nik == nik) &&
+            (identical(other.idRole, idRole) || other.idRole == idRole) &&
             (identical(other.role, role) || other.role == role) &&
-            (identical(other.roleName, roleName) ||
-                other.roleName == roleName) &&
+            (identical(other.idCabang, idCabang) ||
+                other.idCabang == idCabang) &&
             (identical(other.cabang, cabang) || other.cabang == cabang) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            const DeepCollectionEquality()
+                .equals(other._authorities, _authorities));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, username, name, nik, role, roleName, cabang, token);
+      runtimeType,
+      username,
+      name,
+      nik,
+      idRole,
+      role,
+      idCabang,
+      cabang,
+      token,
+      const DeepCollectionEquality().hash(_authorities));
 
   @JsonKey(ignore: true)
   @override
@@ -250,10 +307,12 @@ abstract class _UserEntity extends UserEntity {
       {required final String username,
       required final String name,
       required final String nik,
+      @JsonKey(name: 'id_role') required final String idRole,
       required final String role,
-      required final String roleName,
+      @JsonKey(name: 'id_cabang') required final String idCabang,
       required final String cabang,
-      required final String token}) = _$UserEntityImpl;
+      required final String token,
+      required final List<String> authorities}) = _$UserEntityImpl;
   const _UserEntity._() : super._();
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
@@ -266,13 +325,19 @@ abstract class _UserEntity extends UserEntity {
   @override
   String get nik;
   @override
+  @JsonKey(name: 'id_role')
+  String get idRole;
+  @override
   String get role;
   @override
-  String get roleName;
+  @JsonKey(name: 'id_cabang')
+  String get idCabang;
   @override
   String get cabang;
   @override
   String get token;
+  @override // required List<String> permissions,
+  List<String> get authorities;
   @override
   @JsonKey(ignore: true)
   _$$UserEntityImplCopyWith<_$UserEntityImpl> get copyWith =>

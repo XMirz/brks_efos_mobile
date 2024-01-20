@@ -6,9 +6,9 @@ part 'user_state.freezed.dart';
 @freezed
 class UserState with _$UserState {
   factory UserState({
-    required String token,
-    required UserEntity user,
+    String? token,
+    UserEntity? user,
   }) = _UserState;
   const UserState._();
-  factory UserState.empty() => UserState(user: UserEntity.empty(), token: '');
+  factory UserState.empty() => UserState();
 }

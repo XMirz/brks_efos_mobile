@@ -18,26 +18,29 @@ class SliderContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
-    return Column(
-      children: [
-        Text(title,
-            style: AppTextStyle.titleLarge
-                .copyWith(color: AppColor.textPrimaryInverse)),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Text(subtitle,
-              style: AppTextStyle.subtitleLarge
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(title,
+              style: AppTextStyle.titleLarge
                   .copyWith(color: AppColor.textPrimaryInverse)),
-        ),
-        spaceY(48),
-        SizedBox(
-          height: screenHeight * 0.4,
-          child: SvgPicture.asset(
-            imageSrc,
-            color: Colors.white,
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 4),
+            child: Text(subtitle,
+                style: AppTextStyle.subtitleLarge
+                    .copyWith(color: AppColor.textPrimaryInverse)),
           ),
-        ),
-      ],
+          SizedBox(
+            height: screenHeight * 0.4,
+            child: SvgPicture.asset(
+              imageSrc,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

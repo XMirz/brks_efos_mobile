@@ -18,26 +18,28 @@ class LandingScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    // if(ref.watch(showLoginFormProvider))
     final pageController = usePageController();
     final pageIndex = ref.watch(onboardIndexProvider);
     final showLoginForm = ref.watch(showLoginFormProvider);
     final formHeight = ref.watch(formHeightProvider(screenHeight));
     log(formHeight);
     return Scaffold(
-      backgroundColor: AppColor.backgroundPrimary,
+      backgroundColor: AppColor.primary,
       body: Stack(
         fit: StackFit.expand,
         children: [
+          const IgnorePointer(
+            child: AppBarLeft(
+              tint: Colors.white,
+            ),
+          ),
           IgnorePointer(
             ignoring: showLoginForm,
             child: Container(
               alignment: Alignment.bottomCenter,
-              color: AppColor.primary,
               height: screenHeight,
               width: double.infinity,
-              child: Expanded(
-                child: PageView(
+              child: PageView(
                   controller: pageController,
                   physics: const ClampingScrollPhysics(),
                   onPageChanged: (index) {
@@ -45,99 +47,74 @@ class LandingScreen extends HookConsumerWidget {
                         .read(onboardIndexProvider.notifier)
                         .update((state) => index);
                   },
-                  children: const [
-                    SliderContent(
-                      imageSrc: 'assets/svg/landing_1.svg',
-                      title: 'Landing One',
-                      subtitle: 'Write something here awkokawo.',
-                    ),
-                    SliderContent(
-                      imageSrc: 'assets/svg/landing_2.svg',
-                      title: 'Landing Two',
-                      subtitle: 'Write something here awkokawo.',
-                    ),
-                    SliderContent(
-                      imageSrc: 'assets/svg/landing_3.svg',
-                      title: 'Landing Three',
-                      subtitle: 'Write something here awkokawo.',
-                    ),
-                    SliderContent(
-                      imageSrc: 'assets/svg/landing_4.svg',
-                      title: 'Landing Four',
-                      subtitle: 'Write something here awkokawo.',
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          const IgnorePointer(
-            child: AppBarLeft(
-              tint: Colors.white,
+                  children: sliderContent),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: AnimatedContainer(
-              height: formHeight,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              alignment: Alignment.topCenter,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.elliptical(screenWidth / 2, screenWidth / 4),
-                  topRight: Radius.elliptical(screenWidth / 2, screenWidth / 4),
+            child: IntrinsicHeight(
+              child: AnimatedContainer(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                alignment: Alignment.topCenter,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft:
+                        Radius.elliptical(screenWidth / 2, screenWidth / 4),
+                    topRight:
+                        Radius.elliptical(screenWidth / 2, screenWidth / 4),
+                  ),
+                  color: AppColor.backgroundPrimary,
                 ),
-                color: AppColor.backgroundPrimary,
-              ),
-              width: double.maxFinite,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInCubic,
-              child: Column(
-                children: [
-                  Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColor.primary,
-                    ),
-                    child: IconButton(
-                      color: Colors.white,
-                      iconSize: 32,
-                      onPressed: () => ref
-                          .read(showLoginFormProvider.notifier)
-                          .update((state) => !state),
-                      icon: HeroIcon(
-                        showLoginForm
-                            ? HeroIcons.chevronDown
-                            : HeroIcons.chevronUp,
+                width: double.maxFinite,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeInCubic,
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColor.primary,
+                      ),
+                      child: IconButton(
+                        color: Colors.white,
+                        iconSize: 32,
+                        onPressed: () => ref
+                            .read(showLoginFormProvider.notifier)
+                            .update((state) => !state),
+                        icon: HeroIcon(
+                          showLoginForm
+                              ? HeroIcons.chevronDown
+                              : HeroIcons.chevronUp,
+                        ),
                       ),
                     ),
-                  ),
-                  spaceY(16),
-                  AnimatedOpacity(
-                    opacity: showLoginForm ? 0 : 1,
-                    duration: const Duration(milliseconds: 200),
-                    child: AnimatedSmoothIndicator(
-                      activeIndex: pageIndex,
-                      count: 4,
-                      effect: ExpandingDotsEffect(
-                        dotColor: AppColor.highlightSecondary,
-                        activeDotColor: AppColor.primary,
-                        dotHeight: 8,
-                        dotWidth: 8,
+                    spaceY(16),
+                    AnimatedOpacity(
+                      opacity: showLoginForm ? 0 : 1,
+                      duration: const Duration(milliseconds: 200),
+                      child: AnimatedSmoothIndicator(
+                        activeIndex: pageIndex,
+                        count: sliderContent.length,
+                        effect: ExpandingDotsEffect(
+                          dotColor: AppColor.highlightSecondary,
+                          activeDotColor: AppColor.primary,
+                          dotHeight: 8,
+                          dotWidth: 8,
+                        ),
                       ),
                     ),
-                  ),
-                  AnimatedOpacity(
-                    opacity: showLoginForm ? 1 : 0,
-                    duration: const Duration(milliseconds: 200),
-                    child: showLoginForm
-                        ? Padding(
-                            padding: const EdgeInsets.all(32),
-                            child: LoginForm(),
-                          )
-                        : null,
-                  ),
-                ],
+                    AnimatedOpacity(
+                      opacity: showLoginForm ? 1 : 0,
+                      duration: const Duration(milliseconds: 200),
+                      child: showLoginForm
+                          ? const Padding(
+                              padding: EdgeInsets.all(32),
+                              child: LoginForm(),
+                            )
+                          : null,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -146,3 +123,21 @@ class LandingScreen extends HookConsumerWidget {
     );
   }
 }
+
+List<Widget> sliderContent = const [
+  SliderContent(
+    imageSrc: 'assets/svg/landing_1.svg',
+    title: 'Landing One',
+    subtitle: 'Pengajuan pembiayaan lebih mudah',
+  ),
+  SliderContent(
+    imageSrc: 'assets/svg/landing_2.svg',
+    title: 'Landing Two',
+    subtitle: 'Pengajuan pembiayaan lebih mudah',
+  ),
+  SliderContent(
+    imageSrc: 'assets/svg/landing_3.svg',
+    title: 'Landing Three',
+    subtitle: 'Pengajuan pembiayaan lebih mudah',
+  ),
+];

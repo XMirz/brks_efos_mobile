@@ -25,7 +25,7 @@ class SplashScreen extends HookConsumerWidget {
                 ..forward()
                 ..addStatusListener((status) {
                   if (status == AnimationStatus.completed) {
-                    context.goNamed(AppRoutes.landingPage);
+                    context.pushReplacementNamed(AppRoutes.landingPage);
                   }
                 });
             },

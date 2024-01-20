@@ -1,9 +1,10 @@
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/features/auth/domain/entities/user_login_entity.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class UserLoginFormProvider extends StateNotifier<UserLoginFormState> {
-  UserLoginFormProvider() : super(UserLoginFormState(UserLoginEntity.empty()));
+class LoginFormProvider extends StateNotifier<UserLoginFormState> {
+  LoginFormProvider() : super(UserLoginFormState(UserLoginEntity.empty()));
   void setUsername(String username) {
     final form = state.form
         .copyWith(username: Field(value: username, showValue: username));
@@ -38,9 +39,14 @@ class UserLoginFormProvider extends StateNotifier<UserLoginFormState> {
   }
 }
 
-final userLoginFormProvider =
-    StateNotifierProvider<UserLoginFormProvider, UserLoginFormState>(
-  (ref) => UserLoginFormProvider(),
+final loginFormProvider =
+    StateNotifierProvider<LoginFormProvider, UserLoginFormState>(
+  (ref) => LoginFormProvider(),
 );
 
-final showErrorTextProvider = StateProvider<bool>((ref) => false);
+final showErrorProvider = StateProvider<bool>((ref) => false);
+
+final usernameControllerProvider =
+    Provider((ref) => TextEditingController(text: ''));
+final passwordControllerProvider =
+    Provider((ref) => TextEditingController(text: ''));
