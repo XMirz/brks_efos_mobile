@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 
@@ -81,7 +84,10 @@ class OurDropDownField extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text(value ?? label,
+                    child: Text(
+                        value != null && value!.isNotEmpty
+                            ? value!
+                            : '${l10n.select} $label',
                         style: AppTextStyle.bodyMedium
                             .copyWith(color: AppColor.textPrimary)),
                   ),

@@ -1,3 +1,5 @@
+import 'package:efosm/app/domain/entities/dropdown_item.dart';
+import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,12 @@ Widget spaceY(double height) {
   return SizedBox(
     height: height,
   );
+}
+
+List<DropDownItem> buildDropDownItem(List<Parameter> items) {
+  return items.map((e) {
+    return DropDownItem(value: e.id.toString(), label: e.label.toString());
+  }).toList();
 }
 
 InputDecoration buildOurInputDecoration({

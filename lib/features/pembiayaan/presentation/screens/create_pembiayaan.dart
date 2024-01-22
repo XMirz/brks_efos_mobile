@@ -3,12 +3,17 @@ import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pekerjaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/agunan_form.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/data_diri_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/pasangan_form.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/pekerjaan_form.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/pembiayaan_form.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -30,18 +35,10 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     final stepValid = [
       ref.watch(dataDiriFormProvider).isValid,
       ref.watch(pekerjaanFormProvider).isValid,
-      ref.watch(pekerjaanFormProvider).isValid,
+      ref.watch(listPasanganProvider.notifier).isValid,
       ref.watch(pekerjaanFormProvider).isValid,
       ref.watch(pembiayaanFormProvider).isValid,
     ];
-
-    // void onStepChange(int index) {
-    //   pageController.jumpTo(stepIndex + 1);
-    //   ref.read(stepIndexProvider.notifier).update((state) => index);
-    //   if (index > completeIndex) {
-    //     ref.read(completeIndexProvider.notifier).update((state) => index);
-    //   }
-    // }
 
     void handleNextButton() {
       final isValid = stepValid[stepIndex];
@@ -61,6 +58,8 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     void handleFinishButton() {
       final dataDiriFormState = ref.read(dataDiriFormProvider);
       final pekerjaanFormState = ref.read(pekerjaanFormProvider);
+      final pembiayaanFormState = ref.read(pembiayaanFormProvider);
+      final listPasanganState = ref.read(listPasanganProvider);
 
       final dataDiri = DataDiriEntity(
         nik: dataDiriFormState.nik.value,
@@ -91,6 +90,41 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         tunjangan: pekerjaanFormState.tunjangan.value,
         potongan: pekerjaanFormState.potongan.value,
         gajiBersih: pekerjaanFormState.gajiBersih.value,
+      );
+
+      final pembiayaan = PembiayaanEntity(
+        idKategoriProduk: pembiayaanFormState.idKategoriProduk.value,
+        idProduk: pembiayaanFormState.idProduk.value,
+        idJenisPengajuan: pembiayaanFormState.idJenisPengajuan.value,
+        idSubProduk: pembiayaanFormState.idSubProduk.value,
+        idPlan: pembiayaanFormState.idPlan.value,
+        tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value,
+        gracePeriod: pembiayaanFormState.gracePeriod.value,
+        barang: pembiayaanFormState.barang.value,
+        hargaPerolehan: pembiayaanFormState.hargaPerolehan.value,
+        pajak: pembiayaanFormState.pajak.value,
+        diskon: pembiayaanFormState.diskon.value,
+        uangMuka: pembiayaanFormState.uangMuka.value,
+        plafonPengajuan: pembiayaanFormState.plafonPengajuan.value,
+        tenorPengajuan: pembiayaanFormState.tenorPengajuan.value,
+        kodeMargin: pembiayaanFormState.kodeMargin.value,
+        basiPointMargin: pembiayaanFormState.basiPointMargin.value,
+        basiPointMarginMark:
+            pembiayaanFormState.basiPointMargin.value.contains('-') ? '-' : '+',
+        marginPengajuan: pembiayaanFormState.marginPengajuan.value,
+        totalMargin: pembiayaanFormState.totalMargin.value,
+        angsuranPengajuan: pembiayaanFormState.angsuranPengajuan.value,
+      );
+
+      final listPasangan = listPasanganState.map(
+        (pasangan) => PasanganEntity(
+            nik: pasangan.nik.value,
+            nama: pasangan.nama.value,
+            penghasilan: pasangan.penghasilan.value,
+            gajiAmprah: pasangan.gajiAmprah.value,
+            tunjangan: pasangan.tunjangan.value,
+            potongan: pasangan.potongan.value,
+            gajiBersih: pasangan.gajiBersih.value),
       );
     }
 
@@ -263,7 +297,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                 ),
                 isActive: stepIndex == 2,
                 state: stepIndex > 2 ? StepState.complete : StepState.indexed,
-                content: const DataDiriForm(),
+                content: const PasanganForm(),
               ),
               Step(
                 title: const Text(''),
@@ -283,7 +317,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                 ),
                 isActive: stepIndex == 4,
                 state: stepIndex > 4 ? StepState.complete : StepState.indexed,
-                content: const DataDiriForm(),
+                content: const AgunanForm(),
               ),
             ],
           ),

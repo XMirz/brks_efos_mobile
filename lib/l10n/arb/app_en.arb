@@ -17,6 +17,15 @@
     "send": "Kirim",
     "add": "Tambah",
     "delete": "Hapus",
+    "deleted": "{str} berhasil dihapus.",
+    "@deleted": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
+    "save": "save",
     "edit": "Ubah",
     "name": "Nama",
     "username": "Nama pengguna",
