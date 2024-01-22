@@ -8,19 +8,19 @@ part of 'data_diri_entity.dart';
 
 _$DataDiriEntityImpl _$$DataDiriEntityImplFromJson(Map<String, dynamic> json) =>
     _$DataDiriEntityImpl(
-      nik: json['ktp'] as String? ?? '',
-      nama: json['nama'] as String? ?? '',
-      alamat: json['alamat'] as String? ?? '',
-      tempatLahir: json['tmp_lahir'] as String? ?? '',
-      tanggalLahir: json['tgl_lahir'] as String? ?? '',
-      jenisKelamin: json['kelamin'] as String? ?? '',
-      statusPernikahan: json['status_pernikahan'] as String? ?? '',
-      jumlahTanggungan: json['tanggungan'] as String? ?? '',
-      kewajiban: json['biaya_tanggungan'] as String? ?? '',
-      biayaOperasional: json['b_operasional'] as String? ?? '',
-      biayaRumahTangga: json['b_gaji'] as String? ?? '',
-      statusTempatTinggal: json['status_tempat_tinggal'] as String? ?? '',
-      hubunganPerbankan: json['hubungan_bank'] as String? ?? '',
+      nik: json['ktp'] as String,
+      nama: json['nama'] as String,
+      alamat: json['alamat'] as String,
+      tempatLahir: json['tmp_lahir'] as String,
+      tanggalLahir: json['tgl_lahir'] as String,
+      jenisKelamin: json['kelamin'] as String,
+      statusPernikahan: json['status_pernikahan'] as String,
+      jumlahTanggungan: json['tanggungan'] as String,
+      kewajiban: json['biaya_tanggungan'] as String,
+      biayaOperasional: json['b_operasional'] as String,
+      biayaRumahTangga: json['b_gaji'] as String,
+      statusTempatTinggal: json['status_tempat_tinggal'] as String,
+      hubunganPerbankan: json['hubungan_bank'] as String,
     );
 
 Map<String, dynamic> _$$DataDiriEntityImplToJson(

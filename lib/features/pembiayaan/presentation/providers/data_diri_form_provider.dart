@@ -25,8 +25,22 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       nama: Field(
+        isValid: isValid,
         value: nama,
         showValue: nama,
+        errorMessage: message,
+      ),
+    );
+  }
+
+  void setJenisKelamin(String jenisKelamin, String shownValue) {
+    final isValid = jenisKelamin.isNotEmpty;
+    final message = isValid ? '' : l10n.invalidInput;
+    state = state.copyWith(
+      jenisKelamin: Field(
+        isValid: isValid,
+        value: jenisKelamin,
+        showValue: shownValue,
         errorMessage: message,
       ),
     );
@@ -37,6 +51,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       alamat: Field(
+        isValid: isValid,
         value: alamat,
         showValue: alamat,
         errorMessage: message,
@@ -49,6 +64,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       tempatLahir: Field(
+        isValid: isValid,
         value: tempatLahir,
         showValue: tempatLahir,
         errorMessage: message,
@@ -62,6 +78,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     print(state.tanggalLahir);
     state = state.copyWith(
       tanggalLahir: Field(
+        isValid: isValid,
         value: tanggalLahir,
         showValue: tanggalLahir,
         errorMessage: message,
@@ -69,13 +86,14 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     );
   }
 
-  void setStatusPernikahan(String statusPernikahan) {
+  void setStatusPernikahan(String statusPernikahan, String shownValue) {
     final isValid = statusPernikahan.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       statusPernikahan: Field(
+        isValid: isValid,
         value: statusPernikahan,
-        showValue: statusPernikahan,
+        showValue: shownValue,
         errorMessage: message,
       ),
     );
@@ -86,6 +104,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       jumlahTanggungan: Field(
+        isValid: isValid,
         value: jumlahTanggungan,
         showValue: jumlahTanggungan,
         errorMessage: message,
@@ -98,6 +117,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       kewajiban: Field(
+        isValid: isValid,
         value: kewajiban,
         showValue: kewajiban,
         errorMessage: message,
@@ -111,6 +131,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       biayaOperasional: Field(
+        isValid: isValid,
         value: biayaOperasional,
         showValue: biayaOperasional,
         errorMessage: message,
@@ -124,6 +145,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       biayaRumahTangga: Field(
+        isValid: isValid,
         value: biayaRumahTangga,
         showValue: biayaRumahTangga,
         errorMessage: message,
@@ -131,25 +153,27 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     );
   }
 
-  void setStatusTempatTinggal(String statusTempatTinggal) {
+  void setStatusTempatTinggal(String statusTempatTinggal, String shownValue) {
     final isValid = statusTempatTinggal.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       statusTempatTinggal: Field(
+        isValid: isValid,
         value: statusTempatTinggal,
-        showValue: statusTempatTinggal,
+        showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setHubunganPerbankan(String hubunganPerbankan) {
+  void setHubunganPerbankan(String hubunganPerbankan, String shownValue) {
     final isValid = hubunganPerbankan.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       hubunganPerbankan: Field(
+        isValid: isValid,
         value: hubunganPerbankan,
-        showValue: hubunganPerbankan,
+        showValue: shownValue,
         errorMessage: message,
       ),
     );

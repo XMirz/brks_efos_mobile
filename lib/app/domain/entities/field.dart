@@ -11,3 +11,14 @@ class Field with _$Field {
     @Default(false) bool isValid,
   }) = $_Field;
 }
+
+@freezed
+class DropDownField with _$DropDownField {
+  const factory DropDownField({
+    required String value,
+    required String showValue,
+    required String actualValue,
+    @Default('') String errorMessage,
+    @Default(false) bool isValid,
+  }) = $_DropDownField;
+}

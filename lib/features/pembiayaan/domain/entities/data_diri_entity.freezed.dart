@@ -269,20 +269,19 @@ class __$$DataDiriEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DataDiriEntityImpl extends _DataDiriEntity {
   const _$DataDiriEntityImpl(
-      {@JsonKey(name: 'ktp') required this.nik = '',
-      @JsonKey(name: 'nama') required this.nama = '',
-      @JsonKey(name: 'alamat') required this.alamat = '',
-      @JsonKey(name: 'tmp_lahir') required this.tempatLahir = '',
-      @JsonKey(name: 'tgl_lahir') required this.tanggalLahir = '',
-      @JsonKey(name: 'kelamin') required this.jenisKelamin = '',
-      @JsonKey(name: 'status_pernikahan') required this.statusPernikahan = '',
-      @JsonKey(name: 'tanggungan') required this.jumlahTanggungan = '',
-      @JsonKey(name: 'biaya_tanggungan') required this.kewajiban = '',
-      @JsonKey(name: 'b_operasional') required this.biayaOperasional = '',
-      @JsonKey(name: 'b_gaji') required this.biayaRumahTangga = '',
-      @JsonKey(name: 'status_tempat_tinggal')
-      required this.statusTempatTinggal = '',
-      @JsonKey(name: 'hubungan_bank') required this.hubunganPerbankan = ''})
+      {@JsonKey(name: 'ktp') required this.nik,
+      @JsonKey(name: 'nama') required this.nama,
+      @JsonKey(name: 'alamat') required this.alamat,
+      @JsonKey(name: 'tmp_lahir') required this.tempatLahir,
+      @JsonKey(name: 'tgl_lahir') required this.tanggalLahir,
+      @JsonKey(name: 'kelamin') required this.jenisKelamin,
+      @JsonKey(name: 'status_pernikahan') required this.statusPernikahan,
+      @JsonKey(name: 'tanggungan') required this.jumlahTanggungan,
+      @JsonKey(name: 'biaya_tanggungan') required this.kewajiban,
+      @JsonKey(name: 'b_operasional') required this.biayaOperasional,
+      @JsonKey(name: 'b_gaji') required this.biayaRumahTangga,
+      @JsonKey(name: 'status_tempat_tinggal') required this.statusTempatTinggal,
+      @JsonKey(name: 'hubungan_bank') required this.hubunganPerbankan})
       : super._();
 
   factory _$DataDiriEntityImpl.fromJson(Map<String, dynamic> json) =>

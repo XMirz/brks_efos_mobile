@@ -8,47 +8,65 @@ part of 'parameters.dart';
 
 _$ParameterImpl _$$ParameterImplFromJson(Map<String, dynamic> json) =>
     _$ParameterImpl(
-      id: json['id'] as String,
-      label: json['label'] as String,
+      id: json['id'],
+      label: json['name'] as String?,
+      value: json['nilai'],
     );
 
 Map<String, dynamic> _$$ParameterImplToJson(_$ParameterImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'label': instance.label,
+      'name': instance.label,
+      'nilai': instance.value,
     };
 
 _$AppParameterImpl _$$AppParameterImplFromJson(Map<String, dynamic> json) =>
     _$AppParameterImpl(
-      parKodeMargin:
-          Parameter.fromJson(json['par_kode_margin'] as Map<String, dynamic>),
-      parStatusPekerjaan: Parameter.fromJson(
-          json['par_status_pekerjaan'] as Map<String, dynamic>),
-      parStatusPernikahan:
-          Parameter.fromJson(json['par_status'] as Map<String, dynamic>),
-      parStatusPerusahaan: Parameter.fromJson(
-          json['par_status_perusahaan'] as Map<String, dynamic>),
-      parPendidikan:
-          Parameter.fromJson(json['par_pendidikan'] as Map<String, dynamic>),
-      parKategoriProduk: Parameter.fromJson(
-          json['par_kategori_produk'] as Map<String, dynamic>),
-      parJenisAgunan:
-          Parameter.fromJson(json['par_jns_agunan'] as Map<String, dynamic>),
-      parBidangUsaha:
-          Parameter.fromJson(json['par_bidang_usaha'] as Map<String, dynamic>),
-      parKolektif:
-          Parameter.fromJson(json['par_kolektif'] as Map<String, dynamic>),
-      parKelamin:
-          Parameter.fromJson(json['par_kelamin'] as Map<String, dynamic>),
-      parAgama: Parameter.fromJson(json['par_agama'] as Map<String, dynamic>),
-      parProfesi:
-          Parameter.fromJson(json['par_profesi'] as Map<String, dynamic>),
-      parTempatTinggal: Parameter.fromJson(
-          json['par_tempat_tinggal'] as Map<String, dynamic>),
-      parProvinsi:
-          Parameter.fromJson(json['par_provinsi'] as Map<String, dynamic>),
-      parHubunganPerbankan: Parameter.fromJson(
-          json['par_hubungan_perbankan'] as Map<String, dynamic>),
+      parKodeMargin: (json['par_kode_margin'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parStatusPekerjaan: (json['par_status_pekerjaan'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parStatusPernikahan: (json['par_status'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parStatusPerusahaan: (json['par_status_perusahaan'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parPendidikan: (json['par_pendidikan'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parKategoriProduk: (json['par_kategori_produk'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parJenisAgunan: (json['par_jns_agunan'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parBidangUsaha: (json['par_bidang_usaha'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parKolektif: (json['par_kolektif'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parKelamin: (json['par_kelamin'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parAgama: (json['par_agama'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parProfesi: (json['par_profesi'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parTempatTinggal: (json['par_tempat_tinggal'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parProvinsi: (json['par_provinsi'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      parHubunganPerbankan: (json['par_hubungan_perbankan'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$AppParameterImplToJson(_$AppParameterImpl instance) =>

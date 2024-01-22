@@ -171,3 +171,140 @@ abstract class _UserLoginDto extends UserLoginDto {
   _$$UserLoginDtoImplCopyWith<_$UserLoginDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ParameterDto _$ParameterDtoFromJson(Map<String, dynamic> json) {
+  return _ParameterDto.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ParameterDto {
+  String get id => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ParameterDtoCopyWith<ParameterDto> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ParameterDtoCopyWith<$Res> {
+  factory $ParameterDtoCopyWith(
+          ParameterDto value, $Res Function(ParameterDto) then) =
+      _$ParameterDtoCopyWithImpl<$Res, ParameterDto>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$ParameterDtoCopyWithImpl<$Res, $Val extends ParameterDto>
+    implements $ParameterDtoCopyWith<$Res> {
+  _$ParameterDtoCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ParameterDtoImplCopyWith<$Res>
+    implements $ParameterDtoCopyWith<$Res> {
+  factory _$$ParameterDtoImplCopyWith(
+          _$ParameterDtoImpl value, $Res Function(_$ParameterDtoImpl) then) =
+      __$$ParameterDtoImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$ParameterDtoImplCopyWithImpl<$Res>
+    extends _$ParameterDtoCopyWithImpl<$Res, _$ParameterDtoImpl>
+    implements _$$ParameterDtoImplCopyWith<$Res> {
+  __$$ParameterDtoImplCopyWithImpl(
+      _$ParameterDtoImpl _value, $Res Function(_$ParameterDtoImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$ParameterDtoImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ParameterDtoImpl extends _ParameterDto {
+  const _$ParameterDtoImpl({required this.id}) : super._();
+
+  factory _$ParameterDtoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ParameterDtoImplFromJson(json);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'ParameterDto(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ParameterDtoImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ParameterDtoImplCopyWith<_$ParameterDtoImpl> get copyWith =>
+      __$$ParameterDtoImplCopyWithImpl<_$ParameterDtoImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ParameterDtoImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ParameterDto extends ParameterDto {
+  const factory _ParameterDto({required final String id}) = _$ParameterDtoImpl;
+  const _ParameterDto._() : super._();
+
+  factory _ParameterDto.fromJson(Map<String, dynamic> json) =
+      _$ParameterDtoImpl.fromJson;
+
+  @override
+  String get id;
+  @override
+  @JsonKey(ignore: true)
+  _$$ParameterDtoImplCopyWith<_$ParameterDtoImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

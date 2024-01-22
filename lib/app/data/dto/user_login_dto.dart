@@ -15,3 +15,15 @@ class UserLoginDto with _$UserLoginDto {
   factory UserLoginDto.fromJson(Map<String, dynamic> json) =>
       _$UserLoginDtoFromJson(json);
 }
+
+@freezed
+class ParameterDto with _$ParameterDto {
+  const factory ParameterDto({
+    required String id,
+  }) = _ParameterDto;
+
+  const ParameterDto._();
+
+  factory ParameterDto.fromJson(Map<String, dynamic> json) =>
+      _$ParameterDtoFromJson(json);
+}

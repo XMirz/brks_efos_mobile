@@ -39,7 +39,7 @@ class DioClient {
 
   late Dio dio;
 
-  Future<Either<Failure, Map<String, dynamic>>> post(
+  Future<Either<Failure, T>> post<T>(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -65,8 +65,8 @@ class DioClient {
         );
       }
       final innerData = response.data!.containsKey('data')
-          ? response.data!['data'] as Map<String, dynamic>
-          : <String, dynamic>{};
+          ? response.data!['data'] as T
+          : <String, dynamic>{} as T;
       return right(innerData);
     } on DioException catch (e) {
       debugPrint(e.toString());
@@ -97,7 +97,7 @@ class DioClient {
     }
   }
 
-  Future<Either<Failure, Map<String, dynamic>>> get(
+  Future<Either<Failure, T>> get<T>(
     String path, {
     dynamic data,
     Map<String, dynamic>? queryParameters,
@@ -122,7 +122,7 @@ class DioClient {
           ),
         );
       }
-      return right(response.data?['data'] as Map<String, dynamic>);
+      return right(response.data?['data'] as T);
     } on DioException catch (e) {
       debugPrint('Status : ${e.response?.statusCode}');
       debugPrint('Response : ${jsonEncode(e.response?.data)}');
@@ -168,7 +168,7 @@ class LoggingInterceptor extends Interceptor {
     debugPrint('\n\n');
     debugPrint('<--- RESPONSE --->');
     debugPrint('Status : ${response.statusCode}');
-    debugPrint('Response : ${jsonEncode(response.data)}');
+    printWrapped('Response : ${jsonEncode(response.data)}');
     debugPrint('<--- RESPONSE --->');
     debugPrint('\n\n');
   }
@@ -181,15 +181,15 @@ class LoggingInterceptor extends Interceptor {
     debugPrint(
         'Path   : [${request.method}] ${request.baseUrl}${request.path}');
     debugPrint('Headers: ${jsonEncode(request.headers)}');
-    debugPrint('Request: ${jsonEncode(request.data)}');
+    printWrapped('Request: ${jsonEncode(request.data)}');
     debugPrint('<--- REQUEST --->');
     debugPrint('\n\n');
   }
 
-  // void printWrapped(String text) {
-  //   final pattern = RegExp('.{1,800}');
-  //   pattern
-  //       .allMatches(text)
-  //       .forEach((RegExpMatch match) => debugPrint(match.group(0)));
-  // }
+  void printWrapped(String text) {
+    final pattern = RegExp('.{1,800}');
+    pattern
+        .allMatches(text)
+        .forEach((RegExpMatch match) => debugPrint(match.group(0)));
+  }
 }

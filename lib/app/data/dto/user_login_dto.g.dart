@@ -17,3 +17,13 @@ Map<String, dynamic> _$$UserLoginDtoImplToJson(_$UserLoginDtoImpl instance) =>
       'username': instance.username,
       'password': instance.password,
     };
+
+_$ParameterDtoImpl _$$ParameterDtoImplFromJson(Map<String, dynamic> json) =>
+    _$ParameterDtoImpl(
+      id: json['id'] as String,
+    );
+
+Map<String, dynamic> _$$ParameterDtoImplToJson(_$ParameterDtoImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+    };

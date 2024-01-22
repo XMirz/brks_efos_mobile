@@ -1,5 +1,4 @@
 import 'package:efosm/features/auth/presentation/screens/landing_screen.dart';
-import 'package:efosm/features/auth/presentation/screens/login_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:efosm/features/home/presentations/screen/home_screen.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/create_pembiayaan.dart';
@@ -13,7 +12,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     navigatorKey: _key,
     debugLogDiagnostics: true,
-    initialLocation: AppRoutes.splashScreen,
+    initialLocation: AppRoutes.homePage,
     routes: [
       GoRoute(
         path: AppRoutes.splashScreen,
@@ -26,12 +25,6 @@ final routerProvider = Provider<GoRouter>((ref) {
             name: AppRoutes.landingPage,
             builder: (BuildContext context, GoRouterState state) =>
                 const LandingScreen(),
-          ),
-          GoRoute(
-            path: AppRoutes.loginPage,
-            name: AppRoutes.loginPage,
-            builder: (BuildContext context, GoRouterState state) =>
-                LoginScreen(),
           ),
         ],
       ),
@@ -59,7 +52,6 @@ final routerProvider = Provider<GoRouter>((ref) {
 class AppRoutes {
   static const splashScreen = '/auth';
   static const landingPage = 'landing';
-  static const loginPage = 'login';
   static const homePage = '/home';
   static const createPembiayaanPage = 'create-pembiayaan';
 }

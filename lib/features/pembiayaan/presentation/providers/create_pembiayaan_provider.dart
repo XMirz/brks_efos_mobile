@@ -15,6 +15,41 @@ PembiayaanRepository pembiayaanRepository(PembiayaanRepositoryRef ref) =>
     PembiayaanRepository();
 
 @Riverpod(keepAlive: true)
-Future<Either<Failure, AppParameter>> fetchPembiayaan(FetchPembiayaanRef ref) {
-  return ref.watch(pembiayaanRepositoryProvider).fetchParameter();
+Future<Either<Failure, AppParameter>> fetchInitialParameter(
+    FetchInitialParameterRef ref) {
+  return ref.watch(pembiayaanRepositoryProvider).fetchInitialParameter();
+}
+
+@riverpod
+Future<List<Parameter>> fetchProduk(
+  FetchProdukRef ref,
+  String id,
+) async {
+  return ref.read(pembiayaanRepositoryProvider).fetchProduk(id);
+}
+
+@riverpod
+Future<List<Parameter>> fetchJenisPengajuan(
+  FetchJenisPengajuanRef ref,
+  String id,
+) async {
+  return ref.read(pembiayaanRepositoryProvider).fetchJenisPengajuan(id);
+}
+
+@riverpod
+Future<List<Parameter>> fetchSubProduk(
+  FetchSubProdukRef ref,
+  String id,
+  String idTemplate,
+) async {
+  return ref.read(pembiayaanRepositoryProvider).fetchSubProduk(id, idTemplate);
+}
+
+@riverpod
+Future<List<Parameter>> fetchPlan(
+  FetchPlanRef ref,
+  String id,
+  String idTemplate,
+) async {
+  return ref.read(pembiayaanRepositoryProvider).fetchPlan(id, idTemplate);
 }

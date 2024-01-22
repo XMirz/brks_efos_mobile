@@ -6,13 +6,15 @@ import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 
+typedef ValueChanged<S, T> = void Function(S value, T shownValue);
+
 class OurDropDownField extends StatelessWidget {
   const OurDropDownField({
     required this.label,
     required this.hint,
     required this.items,
-    super.key,
     required this.onChanged,
+    super.key,
     this.labelStyle,
     this.hintStyle,
     this.error,
@@ -29,7 +31,7 @@ class OurDropDownField extends StatelessWidget {
   final double? height;
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String, String> onChanged;
   final List<DropDownItem> items;
   @override
   Widget build(BuildContext context) {
@@ -52,62 +54,66 @@ class OurDropDownField extends StatelessWidget {
           ),
           child: SizedBox(
             width: double.infinity,
-            child: PopupMenuButton<String>(
-              color: AppColor.backgroundPrimary,
-              tooltip: label,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-                side: BorderSide(color: AppColor.highlightSecondary),
-              ),
-              position: PopupMenuPosition.under,
-              // constraints: BoxConstraints(maxHeight: height ?? 56),
-              onSelected: (selected) {
-                final item = items
-                    .firstWhere((element) => element.value == selected)
-                    .value;
-                onChanged(item);
-              },
-              child: Container(
-                alignment: Alignment.centerLeft,
-                height: height ?? 56,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: AppColor.highlight,
+            child: Stack(
+              children: [
+                PopupMenuButton<String>(
+                  color: AppColor.backgroundPrimary,
+                  tooltip: label,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    side: BorderSide(color: AppColor.highlightSecondary),
                   ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(value ?? label,
-                    style: AppTextStyle.bodyMedium
-                        .copyWith(color: AppColor.textPrimary)),
-              ),
-              itemBuilder: (context) => [
-                ...items.map(
-                  (item) => PopupMenuItem<String>(
-                    value: item.value,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item.label,
-                            style: AppTextStyle.bodyMedium
-                                .copyWith(color: AppColor.textPrimary),
-                          ),
-                        ),
-                      ],
+                  position: PopupMenuPosition.under,
+                  // constraints: BoxConstraints(maxHeight: height ?? 56),
+                  onSelected: (selected) {
+                    final item = items
+                        .firstWhere((element) => element.value == selected);
+                    onChanged(item.value, item.label);
+                  },
+                  child: Container(
+                    alignment: Alignment.centerLeft,
+                    height: height ?? 48,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(
+                        color: AppColor.highlight,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
                     ),
+                    child: Text(value ?? label,
+                        style: AppTextStyle.bodyMedium
+                            .copyWith(color: AppColor.textPrimary)),
                   ),
+                  itemBuilder: (context) => [
+                    ...items.map(
+                      (item) => PopupMenuItem<String>(
+                        value: item.value,
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                item.label,
+                                style: AppTextStyle.bodyMedium
+                                    .copyWith(color: AppColor.textPrimary),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
           ),
         ),
         spaceY(8),
-        Text(
-          error ?? '',
-          style: labelStyle ?? AppTextStyle.errorText,
-        ),
+        if (error != null && error != '')
+          Text(
+            error ?? '',
+            style: labelStyle ?? AppTextStyle.errorText,
+          ),
       ],
     );
   }

@@ -106,11 +106,13 @@ class SmallButton extends StatelessWidget {
     return PrimaryButton(
       size: const Size(double.minPositive, 32),
       text: text,
+      disabled: disabled,
+      color: color,
       padding:
           padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       onPressed: onPressed,
       radius: 8,
-      backgroundColor: Colors.transparent,
+      backgroundColor: backgroundColor ?? Colors.transparent,
       textStyle: AppTextStyle.titleExtraSmall,
     );
   }

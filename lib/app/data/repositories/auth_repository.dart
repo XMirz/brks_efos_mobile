@@ -17,7 +17,7 @@ class AuthRepository implements AuthRepositoryInterface {
     UserLoginDto user,
   ) async {
     // Todo Handle error by code
-    final response = await _dioClient.post(
+    final response = await _dioClient.post<Map<String, dynamic>>(
       '/mobile/efos/login',
       data: user.toJson(),
     );

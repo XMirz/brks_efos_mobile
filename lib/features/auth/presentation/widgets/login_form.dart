@@ -8,7 +8,7 @@ import 'package:efosm/app/presentation/states/user_state.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/info_dialog.dart';
-import 'package:efosm/app/presentation/widgets/loading_dialog.dart';
+import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/strings.dart';
@@ -36,6 +36,7 @@ class LoginForm extends ConsumerWidget {
             behavior: SnackBarBehavior.floating,
           ),
         );
+        if (context.mounted) context.pop('dialog'); // TODO REMOVE
         return;
       }
       unawaited(
@@ -51,8 +52,8 @@ class LoginForm extends ConsumerWidget {
         password: formState.form.password.value,
       );
       final userResult =
-          await ref.read(CreateAuthenticationProvider(user).future);
-      if (context.mounted) Navigator.of(context).pop('dialog');
+          await ref.read(createAuthenticationProvider(user).future);
+      if (context.mounted) context.pop('dialog');
       userResult.fold((l) {
         showDialog(
           context: context,
@@ -74,7 +75,7 @@ class LoginForm extends ConsumerWidget {
             UserState(token: r.token, user: r);
         // Injector.registerAuthenticatedClient(AppString.token); // TODO REMOVE
         Injector.registerAuthenticatedClient(r.token);
-        context.pushReplacementNamed(AppRoutes.loginPage);
+        context.pushReplacementNamed(AppRoutes.homePage);
       });
     }
 

@@ -6,8 +6,9 @@ part 'parameters.g.dart';
 @freezed
 class Parameter with _$Parameter {
   const factory Parameter({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'label') required String label,
+    @JsonKey(name: 'id') required dynamic id,
+    @JsonKey(name: 'name') String? label,
+    @JsonKey(name: 'nilai') dynamic? value,
   }) = _Parameter;
   const Parameter._();
 
@@ -18,24 +19,26 @@ class Parameter with _$Parameter {
 @freezed
 class AppParameter with _$AppParameter {
   const factory AppParameter({
-    @JsonKey(name: 'par_kode_margin') required Parameter parKodeMargin,
+    @JsonKey(name: 'par_kode_margin') required List<Parameter> parKodeMargin,
     @JsonKey(name: 'par_status_pekerjaan')
-    required Parameter parStatusPekerjaan,
-    @JsonKey(name: 'par_status') required Parameter parStatusPernikahan,
+    required List<Parameter> parStatusPekerjaan,
+    @JsonKey(name: 'par_status') required List<Parameter> parStatusPernikahan,
     @JsonKey(name: 'par_status_perusahaan')
-    required Parameter parStatusPerusahaan,
-    @JsonKey(name: 'par_pendidikan') required Parameter parPendidikan,
-    @JsonKey(name: 'par_kategori_produk') required Parameter parKategoriProduk,
-    @JsonKey(name: 'par_jns_agunan') required Parameter parJenisAgunan,
-    @JsonKey(name: 'par_bidang_usaha') required Parameter parBidangUsaha,
-    @JsonKey(name: 'par_kolektif') required Parameter parKolektif,
-    @JsonKey(name: 'par_kelamin') required Parameter parKelamin,
-    @JsonKey(name: 'par_agama') required Parameter parAgama,
-    @JsonKey(name: 'par_profesi') required Parameter parProfesi,
-    @JsonKey(name: 'par_tempat_tinggal') required Parameter parTempatTinggal,
-    @JsonKey(name: 'par_provinsi') required Parameter parProvinsi,
+    required List<Parameter> parStatusPerusahaan,
+    @JsonKey(name: 'par_pendidikan') required List<Parameter> parPendidikan,
+    @JsonKey(name: 'par_kategori_produk')
+    required List<Parameter> parKategoriProduk,
+    @JsonKey(name: 'par_jns_agunan') required List<Parameter> parJenisAgunan,
+    @JsonKey(name: 'par_bidang_usaha') required List<Parameter> parBidangUsaha,
+    @JsonKey(name: 'par_kolektif') required List<Parameter> parKolektif,
+    @JsonKey(name: 'par_kelamin') required List<Parameter> parKelamin,
+    @JsonKey(name: 'par_agama') required List<Parameter> parAgama,
+    @JsonKey(name: 'par_profesi') required List<Parameter> parProfesi,
+    @JsonKey(name: 'par_tempat_tinggal')
+    required List<Parameter> parTempatTinggal,
+    @JsonKey(name: 'par_provinsi') required List<Parameter> parProvinsi,
     @JsonKey(name: 'par_hubungan_perbankan')
-    required Parameter parHubunganPerbankan,
+    required List<Parameter> parHubunganPerbankan,
   }) = _AppParameter;
 
   const AppParameter._();

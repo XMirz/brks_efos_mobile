@@ -1,15 +1,11 @@
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
-import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
-import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/widgets/app_bar.dart';
+import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/info_dialog.dart';
-import 'package:efosm/app/presentation/widgets/loading_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/home/presentations/screen/dashboard.dart';
 import 'package:efosm/features/home/presentations/widgets/nav_bar.dart';
@@ -22,9 +18,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
-
-  static const routePath = 'home';
-  static const routeName = 'home';
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageIndex = ref.watch(pageIndexProvider);
@@ -41,12 +34,12 @@ class HomeScreen extends HookConsumerWidget {
                   },
                 ));
                 final parameter =
-                    await ref.read(fetchPembiayaanProvider.future);
+                    await ref.read(fetchInitialParameterProvider.future);
                 debugPrint(parameter.toString());
                 if (context.mounted) context.pop('dialog'); // Close loading
                 parameter.fold((l) {
                   // Clear the state if failure occurs
-                  ref.invalidate(fetchPembiayaanProvider);
+                  ref.invalidate(fetchInitialParameterProvider);
                   showDialog<void>(
                     context: context,
                     builder: (context) {

@@ -21,9 +21,11 @@ Parameter _$ParameterFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Parameter {
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'label')
-  String get label => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get label => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nilai')
+  dynamic? get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +39,9 @@ abstract class $ParameterCopyWith<$Res> {
       _$ParameterCopyWithImpl<$Res, Parameter>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id, @JsonKey(name: 'label') String label});
+      {@JsonKey(name: 'id') dynamic id,
+      @JsonKey(name: 'name') String? label,
+      @JsonKey(name: 'nilai') dynamic? value});
 }
 
 /// @nodoc
@@ -53,18 +57,23 @@ class _$ParameterCopyWithImpl<$Res, $Val extends Parameter>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? label = null,
+    Object? id = freezed,
+    Object? label = freezed,
+    Object? value = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as dynamic,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as dynamic?,
     ) as $Val);
   }
 }
@@ -78,7 +87,9 @@ abstract class _$$ParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id, @JsonKey(name: 'label') String label});
+      {@JsonKey(name: 'id') dynamic id,
+      @JsonKey(name: 'name') String? label,
+      @JsonKey(name: 'nilai') dynamic? value});
 }
 
 /// @nodoc
@@ -92,18 +103,23 @@ class __$$ParameterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? label = null,
+    Object? id = freezed,
+    Object? label = freezed,
+    Object? value = freezed,
   }) {
     return _then(_$ParameterImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      label: null == label
+              as dynamic,
+      label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      value: freezed == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as dynamic?,
     ));
   }
 }
@@ -113,7 +129,8 @@ class __$$ParameterImplCopyWithImpl<$Res>
 class _$ParameterImpl extends _Parameter {
   const _$ParameterImpl(
       {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'label') required this.label})
+      @JsonKey(name: 'name') this.label,
+      @JsonKey(name: 'nilai') this.value})
       : super._();
 
   factory _$ParameterImpl.fromJson(Map<String, dynamic> json) =>
@@ -121,14 +138,17 @@ class _$ParameterImpl extends _Parameter {
 
   @override
   @JsonKey(name: 'id')
-  final String id;
+  final dynamic id;
   @override
-  @JsonKey(name: 'label')
-  final String label;
+  @JsonKey(name: 'name')
+  final String? label;
+  @override
+  @JsonKey(name: 'nilai')
+  final dynamic? value;
 
   @override
   String toString() {
-    return 'Parameter(id: $id, label: $label)';
+    return 'Parameter(id: $id, label: $label, value: $value)';
   }
 
   @override
@@ -136,13 +156,18 @@ class _$ParameterImpl extends _Parameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ParameterImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.label, label) || other.label == label));
+            const DeepCollectionEquality().equals(other.id, id) &&
+            (identical(other.label, label) || other.label == label) &&
+            const DeepCollectionEquality().equals(other.value, value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, label);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      label,
+      const DeepCollectionEquality().hash(value));
 
   @JsonKey(ignore: true)
   @override
@@ -160,8 +185,9 @@ class _$ParameterImpl extends _Parameter {
 
 abstract class _Parameter extends Parameter {
   const factory _Parameter(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'label') required final String label}) = _$ParameterImpl;
+      {@JsonKey(name: 'id') required final dynamic id,
+      @JsonKey(name: 'name') final String? label,
+      @JsonKey(name: 'nilai') final dynamic? value}) = _$ParameterImpl;
   const _Parameter._() : super._();
 
   factory _Parameter.fromJson(Map<String, dynamic> json) =
@@ -169,10 +195,13 @@ abstract class _Parameter extends Parameter {
 
   @override
   @JsonKey(name: 'id')
-  String get id;
+  dynamic get id;
   @override
-  @JsonKey(name: 'label')
-  String get label;
+  @JsonKey(name: 'name')
+  String? get label;
+  @override
+  @JsonKey(name: 'nilai')
+  dynamic? get value;
   @override
   @JsonKey(ignore: true)
   _$$ParameterImplCopyWith<_$ParameterImpl> get copyWith =>
@@ -186,35 +215,36 @@ AppParameter _$AppParameterFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppParameter {
   @JsonKey(name: 'par_kode_margin')
-  Parameter get parKodeMargin => throw _privateConstructorUsedError;
+  List<Parameter> get parKodeMargin => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_status_pekerjaan')
-  Parameter get parStatusPekerjaan => throw _privateConstructorUsedError;
+  List<Parameter> get parStatusPekerjaan => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_status')
-  Parameter get parStatusPernikahan => throw _privateConstructorUsedError;
+  List<Parameter> get parStatusPernikahan => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_status_perusahaan')
-  Parameter get parStatusPerusahaan => throw _privateConstructorUsedError;
+  List<Parameter> get parStatusPerusahaan => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_pendidikan')
-  Parameter get parPendidikan => throw _privateConstructorUsedError;
+  List<Parameter> get parPendidikan => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_kategori_produk')
-  Parameter get parKategoriProduk => throw _privateConstructorUsedError;
+  List<Parameter> get parKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_jns_agunan')
-  Parameter get parJenisAgunan => throw _privateConstructorUsedError;
+  List<Parameter> get parJenisAgunan => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_bidang_usaha')
-  Parameter get parBidangUsaha => throw _privateConstructorUsedError;
+  List<Parameter> get parBidangUsaha => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_kolektif')
-  Parameter get parKolektif => throw _privateConstructorUsedError;
+  List<Parameter> get parKolektif => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_kelamin')
-  Parameter get parKelamin => throw _privateConstructorUsedError;
+  List<Parameter> get parKelamin => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_agama')
-  Parameter get parAgama => throw _privateConstructorUsedError;
+  List<Parameter> get parAgama => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_profesi')
-  Parameter get parProfesi => throw _privateConstructorUsedError;
+  List<Parameter> get parProfesi => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_tempat_tinggal')
-  Parameter get parTempatTinggal => throw _privateConstructorUsedError;
+  List<Parameter> get parTempatTinggal => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_provinsi')
-  Parameter get parProvinsi => throw _privateConstructorUsedError;
+  List<Parameter> get parProvinsi => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_hubungan_perbankan')
-  Parameter get parHubunganPerbankan => throw _privateConstructorUsedError;
+  List<Parameter> get parHubunganPerbankan =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -229,37 +259,23 @@ abstract class $AppParameterCopyWith<$Res> {
       _$AppParameterCopyWithImpl<$Res, AppParameter>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'par_kode_margin') Parameter parKodeMargin,
-      @JsonKey(name: 'par_status_pekerjaan') Parameter parStatusPekerjaan,
-      @JsonKey(name: 'par_status') Parameter parStatusPernikahan,
-      @JsonKey(name: 'par_status_perusahaan') Parameter parStatusPerusahaan,
-      @JsonKey(name: 'par_pendidikan') Parameter parPendidikan,
-      @JsonKey(name: 'par_kategori_produk') Parameter parKategoriProduk,
-      @JsonKey(name: 'par_jns_agunan') Parameter parJenisAgunan,
-      @JsonKey(name: 'par_bidang_usaha') Parameter parBidangUsaha,
-      @JsonKey(name: 'par_kolektif') Parameter parKolektif,
-      @JsonKey(name: 'par_kelamin') Parameter parKelamin,
-      @JsonKey(name: 'par_agama') Parameter parAgama,
-      @JsonKey(name: 'par_profesi') Parameter parProfesi,
-      @JsonKey(name: 'par_tempat_tinggal') Parameter parTempatTinggal,
-      @JsonKey(name: 'par_provinsi') Parameter parProvinsi,
-      @JsonKey(name: 'par_hubungan_perbankan') Parameter parHubunganPerbankan});
-
-  $ParameterCopyWith<$Res> get parKodeMargin;
-  $ParameterCopyWith<$Res> get parStatusPekerjaan;
-  $ParameterCopyWith<$Res> get parStatusPernikahan;
-  $ParameterCopyWith<$Res> get parStatusPerusahaan;
-  $ParameterCopyWith<$Res> get parPendidikan;
-  $ParameterCopyWith<$Res> get parKategoriProduk;
-  $ParameterCopyWith<$Res> get parJenisAgunan;
-  $ParameterCopyWith<$Res> get parBidangUsaha;
-  $ParameterCopyWith<$Res> get parKolektif;
-  $ParameterCopyWith<$Res> get parKelamin;
-  $ParameterCopyWith<$Res> get parAgama;
-  $ParameterCopyWith<$Res> get parProfesi;
-  $ParameterCopyWith<$Res> get parTempatTinggal;
-  $ParameterCopyWith<$Res> get parProvinsi;
-  $ParameterCopyWith<$Res> get parHubunganPerbankan;
+      {@JsonKey(name: 'par_kode_margin') List<Parameter> parKodeMargin,
+      @JsonKey(name: 'par_status_pekerjaan') List<Parameter> parStatusPekerjaan,
+      @JsonKey(name: 'par_status') List<Parameter> parStatusPernikahan,
+      @JsonKey(name: 'par_status_perusahaan')
+      List<Parameter> parStatusPerusahaan,
+      @JsonKey(name: 'par_pendidikan') List<Parameter> parPendidikan,
+      @JsonKey(name: 'par_kategori_produk') List<Parameter> parKategoriProduk,
+      @JsonKey(name: 'par_jns_agunan') List<Parameter> parJenisAgunan,
+      @JsonKey(name: 'par_bidang_usaha') List<Parameter> parBidangUsaha,
+      @JsonKey(name: 'par_kolektif') List<Parameter> parKolektif,
+      @JsonKey(name: 'par_kelamin') List<Parameter> parKelamin,
+      @JsonKey(name: 'par_agama') List<Parameter> parAgama,
+      @JsonKey(name: 'par_profesi') List<Parameter> parProfesi,
+      @JsonKey(name: 'par_tempat_tinggal') List<Parameter> parTempatTinggal,
+      @JsonKey(name: 'par_provinsi') List<Parameter> parProvinsi,
+      @JsonKey(name: 'par_hubungan_perbankan')
+      List<Parameter> parHubunganPerbankan});
 }
 
 /// @nodoc
@@ -295,184 +311,64 @@ class _$AppParameterCopyWithImpl<$Res, $Val extends AppParameter>
       parKodeMargin: null == parKodeMargin
           ? _value.parKodeMargin
           : parKodeMargin // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPekerjaan: null == parStatusPekerjaan
           ? _value.parStatusPekerjaan
           : parStatusPekerjaan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPernikahan: null == parStatusPernikahan
           ? _value.parStatusPernikahan
           : parStatusPernikahan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPerusahaan: null == parStatusPerusahaan
           ? _value.parStatusPerusahaan
           : parStatusPerusahaan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parPendidikan: null == parPendidikan
           ? _value.parPendidikan
           : parPendidikan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKategoriProduk: null == parKategoriProduk
           ? _value.parKategoriProduk
           : parKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parJenisAgunan: null == parJenisAgunan
           ? _value.parJenisAgunan
           : parJenisAgunan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parBidangUsaha: null == parBidangUsaha
           ? _value.parBidangUsaha
           : parBidangUsaha // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKolektif: null == parKolektif
           ? _value.parKolektif
           : parKolektif // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKelamin: null == parKelamin
           ? _value.parKelamin
           : parKelamin // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parAgama: null == parAgama
           ? _value.parAgama
           : parAgama // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parProfesi: null == parProfesi
           ? _value.parProfesi
           : parProfesi // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parTempatTinggal: null == parTempatTinggal
           ? _value.parTempatTinggal
           : parTempatTinggal // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parProvinsi: null == parProvinsi
           ? _value.parProvinsi
           : parProvinsi // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parHubunganPerbankan: null == parHubunganPerbankan
           ? _value.parHubunganPerbankan
           : parHubunganPerbankan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parKodeMargin {
-    return $ParameterCopyWith<$Res>(_value.parKodeMargin, (value) {
-      return _then(_value.copyWith(parKodeMargin: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parStatusPekerjaan {
-    return $ParameterCopyWith<$Res>(_value.parStatusPekerjaan, (value) {
-      return _then(_value.copyWith(parStatusPekerjaan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parStatusPernikahan {
-    return $ParameterCopyWith<$Res>(_value.parStatusPernikahan, (value) {
-      return _then(_value.copyWith(parStatusPernikahan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parStatusPerusahaan {
-    return $ParameterCopyWith<$Res>(_value.parStatusPerusahaan, (value) {
-      return _then(_value.copyWith(parStatusPerusahaan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parPendidikan {
-    return $ParameterCopyWith<$Res>(_value.parPendidikan, (value) {
-      return _then(_value.copyWith(parPendidikan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parKategoriProduk {
-    return $ParameterCopyWith<$Res>(_value.parKategoriProduk, (value) {
-      return _then(_value.copyWith(parKategoriProduk: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parJenisAgunan {
-    return $ParameterCopyWith<$Res>(_value.parJenisAgunan, (value) {
-      return _then(_value.copyWith(parJenisAgunan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parBidangUsaha {
-    return $ParameterCopyWith<$Res>(_value.parBidangUsaha, (value) {
-      return _then(_value.copyWith(parBidangUsaha: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parKolektif {
-    return $ParameterCopyWith<$Res>(_value.parKolektif, (value) {
-      return _then(_value.copyWith(parKolektif: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parKelamin {
-    return $ParameterCopyWith<$Res>(_value.parKelamin, (value) {
-      return _then(_value.copyWith(parKelamin: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parAgama {
-    return $ParameterCopyWith<$Res>(_value.parAgama, (value) {
-      return _then(_value.copyWith(parAgama: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parProfesi {
-    return $ParameterCopyWith<$Res>(_value.parProfesi, (value) {
-      return _then(_value.copyWith(parProfesi: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parTempatTinggal {
-    return $ParameterCopyWith<$Res>(_value.parTempatTinggal, (value) {
-      return _then(_value.copyWith(parTempatTinggal: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parProvinsi {
-    return $ParameterCopyWith<$Res>(_value.parProvinsi, (value) {
-      return _then(_value.copyWith(parProvinsi: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ParameterCopyWith<$Res> get parHubunganPerbankan {
-    return $ParameterCopyWith<$Res>(_value.parHubunganPerbankan, (value) {
-      return _then(_value.copyWith(parHubunganPerbankan: value) as $Val);
-    });
   }
 }
 
@@ -485,52 +381,23 @@ abstract class _$$AppParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'par_kode_margin') Parameter parKodeMargin,
-      @JsonKey(name: 'par_status_pekerjaan') Parameter parStatusPekerjaan,
-      @JsonKey(name: 'par_status') Parameter parStatusPernikahan,
-      @JsonKey(name: 'par_status_perusahaan') Parameter parStatusPerusahaan,
-      @JsonKey(name: 'par_pendidikan') Parameter parPendidikan,
-      @JsonKey(name: 'par_kategori_produk') Parameter parKategoriProduk,
-      @JsonKey(name: 'par_jns_agunan') Parameter parJenisAgunan,
-      @JsonKey(name: 'par_bidang_usaha') Parameter parBidangUsaha,
-      @JsonKey(name: 'par_kolektif') Parameter parKolektif,
-      @JsonKey(name: 'par_kelamin') Parameter parKelamin,
-      @JsonKey(name: 'par_agama') Parameter parAgama,
-      @JsonKey(name: 'par_profesi') Parameter parProfesi,
-      @JsonKey(name: 'par_tempat_tinggal') Parameter parTempatTinggal,
-      @JsonKey(name: 'par_provinsi') Parameter parProvinsi,
-      @JsonKey(name: 'par_hubungan_perbankan') Parameter parHubunganPerbankan});
-
-  @override
-  $ParameterCopyWith<$Res> get parKodeMargin;
-  @override
-  $ParameterCopyWith<$Res> get parStatusPekerjaan;
-  @override
-  $ParameterCopyWith<$Res> get parStatusPernikahan;
-  @override
-  $ParameterCopyWith<$Res> get parStatusPerusahaan;
-  @override
-  $ParameterCopyWith<$Res> get parPendidikan;
-  @override
-  $ParameterCopyWith<$Res> get parKategoriProduk;
-  @override
-  $ParameterCopyWith<$Res> get parJenisAgunan;
-  @override
-  $ParameterCopyWith<$Res> get parBidangUsaha;
-  @override
-  $ParameterCopyWith<$Res> get parKolektif;
-  @override
-  $ParameterCopyWith<$Res> get parKelamin;
-  @override
-  $ParameterCopyWith<$Res> get parAgama;
-  @override
-  $ParameterCopyWith<$Res> get parProfesi;
-  @override
-  $ParameterCopyWith<$Res> get parTempatTinggal;
-  @override
-  $ParameterCopyWith<$Res> get parProvinsi;
-  @override
-  $ParameterCopyWith<$Res> get parHubunganPerbankan;
+      {@JsonKey(name: 'par_kode_margin') List<Parameter> parKodeMargin,
+      @JsonKey(name: 'par_status_pekerjaan') List<Parameter> parStatusPekerjaan,
+      @JsonKey(name: 'par_status') List<Parameter> parStatusPernikahan,
+      @JsonKey(name: 'par_status_perusahaan')
+      List<Parameter> parStatusPerusahaan,
+      @JsonKey(name: 'par_pendidikan') List<Parameter> parPendidikan,
+      @JsonKey(name: 'par_kategori_produk') List<Parameter> parKategoriProduk,
+      @JsonKey(name: 'par_jns_agunan') List<Parameter> parJenisAgunan,
+      @JsonKey(name: 'par_bidang_usaha') List<Parameter> parBidangUsaha,
+      @JsonKey(name: 'par_kolektif') List<Parameter> parKolektif,
+      @JsonKey(name: 'par_kelamin') List<Parameter> parKelamin,
+      @JsonKey(name: 'par_agama') List<Parameter> parAgama,
+      @JsonKey(name: 'par_profesi') List<Parameter> parProfesi,
+      @JsonKey(name: 'par_tempat_tinggal') List<Parameter> parTempatTinggal,
+      @JsonKey(name: 'par_provinsi') List<Parameter> parProvinsi,
+      @JsonKey(name: 'par_hubungan_perbankan')
+      List<Parameter> parHubunganPerbankan});
 }
 
 /// @nodoc
@@ -562,65 +429,65 @@ class __$$AppParameterImplCopyWithImpl<$Res>
   }) {
     return _then(_$AppParameterImpl(
       parKodeMargin: null == parKodeMargin
-          ? _value.parKodeMargin
+          ? _value._parKodeMargin
           : parKodeMargin // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPekerjaan: null == parStatusPekerjaan
-          ? _value.parStatusPekerjaan
+          ? _value._parStatusPekerjaan
           : parStatusPekerjaan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPernikahan: null == parStatusPernikahan
-          ? _value.parStatusPernikahan
+          ? _value._parStatusPernikahan
           : parStatusPernikahan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parStatusPerusahaan: null == parStatusPerusahaan
-          ? _value.parStatusPerusahaan
+          ? _value._parStatusPerusahaan
           : parStatusPerusahaan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parPendidikan: null == parPendidikan
-          ? _value.parPendidikan
+          ? _value._parPendidikan
           : parPendidikan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKategoriProduk: null == parKategoriProduk
-          ? _value.parKategoriProduk
+          ? _value._parKategoriProduk
           : parKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parJenisAgunan: null == parJenisAgunan
-          ? _value.parJenisAgunan
+          ? _value._parJenisAgunan
           : parJenisAgunan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parBidangUsaha: null == parBidangUsaha
-          ? _value.parBidangUsaha
+          ? _value._parBidangUsaha
           : parBidangUsaha // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKolektif: null == parKolektif
-          ? _value.parKolektif
+          ? _value._parKolektif
           : parKolektif // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parKelamin: null == parKelamin
-          ? _value.parKelamin
+          ? _value._parKelamin
           : parKelamin // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parAgama: null == parAgama
-          ? _value.parAgama
+          ? _value._parAgama
           : parAgama // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parProfesi: null == parProfesi
-          ? _value.parProfesi
+          ? _value._parProfesi
           : parProfesi // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parTempatTinggal: null == parTempatTinggal
-          ? _value.parTempatTinggal
+          ? _value._parTempatTinggal
           : parTempatTinggal // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parProvinsi: null == parProvinsi
-          ? _value.parProvinsi
+          ? _value._parProvinsi
           : parProvinsi // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
       parHubunganPerbankan: null == parHubunganPerbankan
-          ? _value.parHubunganPerbankan
+          ? _value._parHubunganPerbankan
           : parHubunganPerbankan // ignore: cast_nullable_to_non_nullable
-              as Parameter,
+              as List<Parameter>,
     ));
   }
 }
@@ -629,72 +496,191 @@ class __$$AppParameterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AppParameterImpl extends _AppParameter {
   const _$AppParameterImpl(
-      {@JsonKey(name: 'par_kode_margin') required this.parKodeMargin,
-      @JsonKey(name: 'par_status_pekerjaan') required this.parStatusPekerjaan,
-      @JsonKey(name: 'par_status') required this.parStatusPernikahan,
-      @JsonKey(name: 'par_status_perusahaan') required this.parStatusPerusahaan,
-      @JsonKey(name: 'par_pendidikan') required this.parPendidikan,
-      @JsonKey(name: 'par_kategori_produk') required this.parKategoriProduk,
-      @JsonKey(name: 'par_jns_agunan') required this.parJenisAgunan,
-      @JsonKey(name: 'par_bidang_usaha') required this.parBidangUsaha,
-      @JsonKey(name: 'par_kolektif') required this.parKolektif,
-      @JsonKey(name: 'par_kelamin') required this.parKelamin,
-      @JsonKey(name: 'par_agama') required this.parAgama,
-      @JsonKey(name: 'par_profesi') required this.parProfesi,
-      @JsonKey(name: 'par_tempat_tinggal') required this.parTempatTinggal,
-      @JsonKey(name: 'par_provinsi') required this.parProvinsi,
+      {@JsonKey(name: 'par_kode_margin')
+      required final List<Parameter> parKodeMargin,
+      @JsonKey(name: 'par_status_pekerjaan')
+      required final List<Parameter> parStatusPekerjaan,
+      @JsonKey(name: 'par_status')
+      required final List<Parameter> parStatusPernikahan,
+      @JsonKey(name: 'par_status_perusahaan')
+      required final List<Parameter> parStatusPerusahaan,
+      @JsonKey(name: 'par_pendidikan')
+      required final List<Parameter> parPendidikan,
+      @JsonKey(name: 'par_kategori_produk')
+      required final List<Parameter> parKategoriProduk,
+      @JsonKey(name: 'par_jns_agunan')
+      required final List<Parameter> parJenisAgunan,
+      @JsonKey(name: 'par_bidang_usaha')
+      required final List<Parameter> parBidangUsaha,
+      @JsonKey(name: 'par_kolektif') required final List<Parameter> parKolektif,
+      @JsonKey(name: 'par_kelamin') required final List<Parameter> parKelamin,
+      @JsonKey(name: 'par_agama') required final List<Parameter> parAgama,
+      @JsonKey(name: 'par_profesi') required final List<Parameter> parProfesi,
+      @JsonKey(name: 'par_tempat_tinggal')
+      required final List<Parameter> parTempatTinggal,
+      @JsonKey(name: 'par_provinsi') required final List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      required this.parHubunganPerbankan})
-      : super._();
+      required final List<Parameter> parHubunganPerbankan})
+      : _parKodeMargin = parKodeMargin,
+        _parStatusPekerjaan = parStatusPekerjaan,
+        _parStatusPernikahan = parStatusPernikahan,
+        _parStatusPerusahaan = parStatusPerusahaan,
+        _parPendidikan = parPendidikan,
+        _parKategoriProduk = parKategoriProduk,
+        _parJenisAgunan = parJenisAgunan,
+        _parBidangUsaha = parBidangUsaha,
+        _parKolektif = parKolektif,
+        _parKelamin = parKelamin,
+        _parAgama = parAgama,
+        _parProfesi = parProfesi,
+        _parTempatTinggal = parTempatTinggal,
+        _parProvinsi = parProvinsi,
+        _parHubunganPerbankan = parHubunganPerbankan,
+        super._();
 
   factory _$AppParameterImpl.fromJson(Map<String, dynamic> json) =>
       _$$AppParameterImplFromJson(json);
 
+  final List<Parameter> _parKodeMargin;
   @override
   @JsonKey(name: 'par_kode_margin')
-  final Parameter parKodeMargin;
+  List<Parameter> get parKodeMargin {
+    if (_parKodeMargin is EqualUnmodifiableListView) return _parKodeMargin;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parKodeMargin);
+  }
+
+  final List<Parameter> _parStatusPekerjaan;
   @override
   @JsonKey(name: 'par_status_pekerjaan')
-  final Parameter parStatusPekerjaan;
+  List<Parameter> get parStatusPekerjaan {
+    if (_parStatusPekerjaan is EqualUnmodifiableListView)
+      return _parStatusPekerjaan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parStatusPekerjaan);
+  }
+
+  final List<Parameter> _parStatusPernikahan;
   @override
   @JsonKey(name: 'par_status')
-  final Parameter parStatusPernikahan;
+  List<Parameter> get parStatusPernikahan {
+    if (_parStatusPernikahan is EqualUnmodifiableListView)
+      return _parStatusPernikahan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parStatusPernikahan);
+  }
+
+  final List<Parameter> _parStatusPerusahaan;
   @override
   @JsonKey(name: 'par_status_perusahaan')
-  final Parameter parStatusPerusahaan;
+  List<Parameter> get parStatusPerusahaan {
+    if (_parStatusPerusahaan is EqualUnmodifiableListView)
+      return _parStatusPerusahaan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parStatusPerusahaan);
+  }
+
+  final List<Parameter> _parPendidikan;
   @override
   @JsonKey(name: 'par_pendidikan')
-  final Parameter parPendidikan;
+  List<Parameter> get parPendidikan {
+    if (_parPendidikan is EqualUnmodifiableListView) return _parPendidikan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parPendidikan);
+  }
+
+  final List<Parameter> _parKategoriProduk;
   @override
   @JsonKey(name: 'par_kategori_produk')
-  final Parameter parKategoriProduk;
+  List<Parameter> get parKategoriProduk {
+    if (_parKategoriProduk is EqualUnmodifiableListView)
+      return _parKategoriProduk;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parKategoriProduk);
+  }
+
+  final List<Parameter> _parJenisAgunan;
   @override
   @JsonKey(name: 'par_jns_agunan')
-  final Parameter parJenisAgunan;
+  List<Parameter> get parJenisAgunan {
+    if (_parJenisAgunan is EqualUnmodifiableListView) return _parJenisAgunan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parJenisAgunan);
+  }
+
+  final List<Parameter> _parBidangUsaha;
   @override
   @JsonKey(name: 'par_bidang_usaha')
-  final Parameter parBidangUsaha;
+  List<Parameter> get parBidangUsaha {
+    if (_parBidangUsaha is EqualUnmodifiableListView) return _parBidangUsaha;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parBidangUsaha);
+  }
+
+  final List<Parameter> _parKolektif;
   @override
   @JsonKey(name: 'par_kolektif')
-  final Parameter parKolektif;
+  List<Parameter> get parKolektif {
+    if (_parKolektif is EqualUnmodifiableListView) return _parKolektif;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parKolektif);
+  }
+
+  final List<Parameter> _parKelamin;
   @override
   @JsonKey(name: 'par_kelamin')
-  final Parameter parKelamin;
+  List<Parameter> get parKelamin {
+    if (_parKelamin is EqualUnmodifiableListView) return _parKelamin;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parKelamin);
+  }
+
+  final List<Parameter> _parAgama;
   @override
   @JsonKey(name: 'par_agama')
-  final Parameter parAgama;
+  List<Parameter> get parAgama {
+    if (_parAgama is EqualUnmodifiableListView) return _parAgama;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parAgama);
+  }
+
+  final List<Parameter> _parProfesi;
   @override
   @JsonKey(name: 'par_profesi')
-  final Parameter parProfesi;
+  List<Parameter> get parProfesi {
+    if (_parProfesi is EqualUnmodifiableListView) return _parProfesi;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parProfesi);
+  }
+
+  final List<Parameter> _parTempatTinggal;
   @override
   @JsonKey(name: 'par_tempat_tinggal')
-  final Parameter parTempatTinggal;
+  List<Parameter> get parTempatTinggal {
+    if (_parTempatTinggal is EqualUnmodifiableListView)
+      return _parTempatTinggal;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parTempatTinggal);
+  }
+
+  final List<Parameter> _parProvinsi;
   @override
   @JsonKey(name: 'par_provinsi')
-  final Parameter parProvinsi;
+  List<Parameter> get parProvinsi {
+    if (_parProvinsi is EqualUnmodifiableListView) return _parProvinsi;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parProvinsi);
+  }
+
+  final List<Parameter> _parHubunganPerbankan;
   @override
   @JsonKey(name: 'par_hubungan_perbankan')
-  final Parameter parHubunganPerbankan;
+  List<Parameter> get parHubunganPerbankan {
+    if (_parHubunganPerbankan is EqualUnmodifiableListView)
+      return _parHubunganPerbankan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parHubunganPerbankan);
+  }
 
   @override
   String toString() {
@@ -706,57 +692,56 @@ class _$AppParameterImpl extends _AppParameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppParameterImpl &&
-            (identical(other.parKodeMargin, parKodeMargin) ||
-                other.parKodeMargin == parKodeMargin) &&
-            (identical(other.parStatusPekerjaan, parStatusPekerjaan) ||
-                other.parStatusPekerjaan == parStatusPekerjaan) &&
-            (identical(other.parStatusPernikahan, parStatusPernikahan) ||
-                other.parStatusPernikahan == parStatusPernikahan) &&
-            (identical(other.parStatusPerusahaan, parStatusPerusahaan) ||
-                other.parStatusPerusahaan == parStatusPerusahaan) &&
-            (identical(other.parPendidikan, parPendidikan) ||
-                other.parPendidikan == parPendidikan) &&
-            (identical(other.parKategoriProduk, parKategoriProduk) ||
-                other.parKategoriProduk == parKategoriProduk) &&
-            (identical(other.parJenisAgunan, parJenisAgunan) ||
-                other.parJenisAgunan == parJenisAgunan) &&
-            (identical(other.parBidangUsaha, parBidangUsaha) ||
-                other.parBidangUsaha == parBidangUsaha) &&
-            (identical(other.parKolektif, parKolektif) ||
-                other.parKolektif == parKolektif) &&
-            (identical(other.parKelamin, parKelamin) ||
-                other.parKelamin == parKelamin) &&
-            (identical(other.parAgama, parAgama) ||
-                other.parAgama == parAgama) &&
-            (identical(other.parProfesi, parProfesi) ||
-                other.parProfesi == parProfesi) &&
-            (identical(other.parTempatTinggal, parTempatTinggal) ||
-                other.parTempatTinggal == parTempatTinggal) &&
-            (identical(other.parProvinsi, parProvinsi) ||
-                other.parProvinsi == parProvinsi) &&
-            (identical(other.parHubunganPerbankan, parHubunganPerbankan) ||
-                other.parHubunganPerbankan == parHubunganPerbankan));
+            const DeepCollectionEquality()
+                .equals(other._parKodeMargin, _parKodeMargin) &&
+            const DeepCollectionEquality()
+                .equals(other._parStatusPekerjaan, _parStatusPekerjaan) &&
+            const DeepCollectionEquality()
+                .equals(other._parStatusPernikahan, _parStatusPernikahan) &&
+            const DeepCollectionEquality()
+                .equals(other._parStatusPerusahaan, _parStatusPerusahaan) &&
+            const DeepCollectionEquality()
+                .equals(other._parPendidikan, _parPendidikan) &&
+            const DeepCollectionEquality()
+                .equals(other._parKategoriProduk, _parKategoriProduk) &&
+            const DeepCollectionEquality()
+                .equals(other._parJenisAgunan, _parJenisAgunan) &&
+            const DeepCollectionEquality()
+                .equals(other._parBidangUsaha, _parBidangUsaha) &&
+            const DeepCollectionEquality()
+                .equals(other._parKolektif, _parKolektif) &&
+            const DeepCollectionEquality()
+                .equals(other._parKelamin, _parKelamin) &&
+            const DeepCollectionEquality().equals(other._parAgama, _parAgama) &&
+            const DeepCollectionEquality()
+                .equals(other._parProfesi, _parProfesi) &&
+            const DeepCollectionEquality()
+                .equals(other._parTempatTinggal, _parTempatTinggal) &&
+            const DeepCollectionEquality()
+                .equals(other._parProvinsi, _parProvinsi) &&
+            const DeepCollectionEquality()
+                .equals(other._parHubunganPerbankan, _parHubunganPerbankan));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      parKodeMargin,
-      parStatusPekerjaan,
-      parStatusPernikahan,
-      parStatusPerusahaan,
-      parPendidikan,
-      parKategoriProduk,
-      parJenisAgunan,
-      parBidangUsaha,
-      parKolektif,
-      parKelamin,
-      parAgama,
-      parProfesi,
-      parTempatTinggal,
-      parProvinsi,
-      parHubunganPerbankan);
+      const DeepCollectionEquality().hash(_parKodeMargin),
+      const DeepCollectionEquality().hash(_parStatusPekerjaan),
+      const DeepCollectionEquality().hash(_parStatusPernikahan),
+      const DeepCollectionEquality().hash(_parStatusPerusahaan),
+      const DeepCollectionEquality().hash(_parPendidikan),
+      const DeepCollectionEquality().hash(_parKategoriProduk),
+      const DeepCollectionEquality().hash(_parJenisAgunan),
+      const DeepCollectionEquality().hash(_parBidangUsaha),
+      const DeepCollectionEquality().hash(_parKolektif),
+      const DeepCollectionEquality().hash(_parKelamin),
+      const DeepCollectionEquality().hash(_parAgama),
+      const DeepCollectionEquality().hash(_parProfesi),
+      const DeepCollectionEquality().hash(_parTempatTinggal),
+      const DeepCollectionEquality().hash(_parProvinsi),
+      const DeepCollectionEquality().hash(_parHubunganPerbankan));
 
   @JsonKey(ignore: true)
   @override
@@ -774,27 +759,32 @@ class _$AppParameterImpl extends _AppParameter {
 
 abstract class _AppParameter extends AppParameter {
   const factory _AppParameter(
-      {@JsonKey(name: 'par_kode_margin') required final Parameter parKodeMargin,
+      {@JsonKey(name: 'par_kode_margin')
+      required final List<Parameter> parKodeMargin,
       @JsonKey(name: 'par_status_pekerjaan')
-      required final Parameter parStatusPekerjaan,
-      @JsonKey(name: 'par_status') required final Parameter parStatusPernikahan,
+      required final List<Parameter> parStatusPekerjaan,
+      @JsonKey(name: 'par_status')
+      required final List<Parameter> parStatusPernikahan,
       @JsonKey(name: 'par_status_perusahaan')
-      required final Parameter parStatusPerusahaan,
-      @JsonKey(name: 'par_pendidikan') required final Parameter parPendidikan,
+      required final List<Parameter> parStatusPerusahaan,
+      @JsonKey(name: 'par_pendidikan')
+      required final List<Parameter> parPendidikan,
       @JsonKey(name: 'par_kategori_produk')
-      required final Parameter parKategoriProduk,
-      @JsonKey(name: 'par_jns_agunan') required final Parameter parJenisAgunan,
+      required final List<Parameter> parKategoriProduk,
+      @JsonKey(name: 'par_jns_agunan')
+      required final List<Parameter> parJenisAgunan,
       @JsonKey(name: 'par_bidang_usaha')
-      required final Parameter parBidangUsaha,
-      @JsonKey(name: 'par_kolektif') required final Parameter parKolektif,
-      @JsonKey(name: 'par_kelamin') required final Parameter parKelamin,
-      @JsonKey(name: 'par_agama') required final Parameter parAgama,
-      @JsonKey(name: 'par_profesi') required final Parameter parProfesi,
+      required final List<Parameter> parBidangUsaha,
+      @JsonKey(name: 'par_kolektif') required final List<Parameter> parKolektif,
+      @JsonKey(name: 'par_kelamin') required final List<Parameter> parKelamin,
+      @JsonKey(name: 'par_agama') required final List<Parameter> parAgama,
+      @JsonKey(name: 'par_profesi') required final List<Parameter> parProfesi,
       @JsonKey(name: 'par_tempat_tinggal')
-      required final Parameter parTempatTinggal,
-      @JsonKey(name: 'par_provinsi') required final Parameter parProvinsi,
+      required final List<Parameter> parTempatTinggal,
+      @JsonKey(name: 'par_provinsi') required final List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      required final Parameter parHubunganPerbankan}) = _$AppParameterImpl;
+      required final List<Parameter>
+          parHubunganPerbankan}) = _$AppParameterImpl;
   const _AppParameter._() : super._();
 
   factory _AppParameter.fromJson(Map<String, dynamic> json) =
@@ -802,49 +792,49 @@ abstract class _AppParameter extends AppParameter {
 
   @override
   @JsonKey(name: 'par_kode_margin')
-  Parameter get parKodeMargin;
+  List<Parameter> get parKodeMargin;
   @override
   @JsonKey(name: 'par_status_pekerjaan')
-  Parameter get parStatusPekerjaan;
+  List<Parameter> get parStatusPekerjaan;
   @override
   @JsonKey(name: 'par_status')
-  Parameter get parStatusPernikahan;
+  List<Parameter> get parStatusPernikahan;
   @override
   @JsonKey(name: 'par_status_perusahaan')
-  Parameter get parStatusPerusahaan;
+  List<Parameter> get parStatusPerusahaan;
   @override
   @JsonKey(name: 'par_pendidikan')
-  Parameter get parPendidikan;
+  List<Parameter> get parPendidikan;
   @override
   @JsonKey(name: 'par_kategori_produk')
-  Parameter get parKategoriProduk;
+  List<Parameter> get parKategoriProduk;
   @override
   @JsonKey(name: 'par_jns_agunan')
-  Parameter get parJenisAgunan;
+  List<Parameter> get parJenisAgunan;
   @override
   @JsonKey(name: 'par_bidang_usaha')
-  Parameter get parBidangUsaha;
+  List<Parameter> get parBidangUsaha;
   @override
   @JsonKey(name: 'par_kolektif')
-  Parameter get parKolektif;
+  List<Parameter> get parKolektif;
   @override
   @JsonKey(name: 'par_kelamin')
-  Parameter get parKelamin;
+  List<Parameter> get parKelamin;
   @override
   @JsonKey(name: 'par_agama')
-  Parameter get parAgama;
+  List<Parameter> get parAgama;
   @override
   @JsonKey(name: 'par_profesi')
-  Parameter get parProfesi;
+  List<Parameter> get parProfesi;
   @override
   @JsonKey(name: 'par_tempat_tinggal')
-  Parameter get parTempatTinggal;
+  List<Parameter> get parTempatTinggal;
   @override
   @JsonKey(name: 'par_provinsi')
-  Parameter get parProvinsi;
+  List<Parameter> get parProvinsi;
   @override
   @JsonKey(name: 'par_hubungan_perbankan')
-  Parameter get parHubunganPerbankan;
+  List<Parameter> get parHubunganPerbankan;
   @override
   @JsonKey(ignore: true)
   _$$AppParameterImplCopyWith<_$AppParameterImpl> get copyWith =>

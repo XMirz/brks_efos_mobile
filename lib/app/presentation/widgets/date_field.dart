@@ -71,10 +71,11 @@ class OurDateField extends StatelessWidget {
           ),
         ),
         spaceY(4),
-        Text(
-          error ?? '',
-          style: labelStyle ?? AppTextStyle.errorText,
-        ),
+        if (error != null && error != '')
+          Text(
+            error ?? '',
+            style: labelStyle ?? AppTextStyle.errorText,
+          ),
       ],
     );
   }

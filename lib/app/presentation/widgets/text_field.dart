@@ -2,14 +2,16 @@ import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 
 class OurTextField extends StatelessWidget {
-  OurTextField({
+  const OurTextField({
     required this.label,
     required this.hint,
+    required this.onChanged,
     this.controller,
     super.key,
-    this.onChanged,
     this.obsecureText,
     this.labelColor,
     this.cursorColor,
@@ -20,6 +22,7 @@ class OurTextField extends StatelessWidget {
     this.height,
     this.maxLength,
     this.keyboardType,
+    this.currencyFormat,
   });
 
   final String label;
@@ -35,7 +38,8 @@ class OurTextField extends StatelessWidget {
   final Color? cursorColor;
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
-  final ValueChanged<String>? onChanged;
+  final ValueChanged<String> onChanged;
+  final bool? currencyFormat;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -48,22 +52,33 @@ class OurTextField extends StatelessWidget {
         ),
         spaceY(8),
         TextFormField(
+          inputFormatters: [
+            if (currencyFormat ?? false)
+              CurrencyInputFormatter(
+                leadingSymbol: 'Rp ',
+                mantissaLength: 0,
+              ),
+          ],
           keyboardType: keyboardType ?? TextInputType.text,
           maxLength: maxLength,
           readOnly: readOnly ?? false,
-          onChanged: onChanged,
+          onChanged: (value) {
+            if (currencyFormat ?? false) value = toNumericString(value);
+            onChanged(value);
+          },
           controller: controller ?? TextEditingController(),
           obscureText: obsecureText ?? false,
           style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
           cursorColor: cursorColor ?? AppColor.textPrimary,
           cursorWidth: 1,
           decoration: buildOurInputDecoration(
-              hint: hint,
-              height: height,
-              hintStyle: hintStyle,
-              readOnly: readOnly),
+            hint: hint,
+            height: height,
+            hintStyle: hintStyle,
+            readOnly: readOnly,
+          ),
         ),
-        if (error != '')
+        if (error != null && error != '')
           Text(
             error ?? '',
             style: labelStyle ?? AppTextStyle.errorText,
