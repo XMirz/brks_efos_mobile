@@ -10,9 +10,10 @@ class App extends ConsumerWidget {
   const App({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Injector.registerAuthenticatedClient(AppString.token);
+    // Injector.registerAuthenticatedClient(AppString.token);
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: AppColor.primary,
         scaffoldBackgroundColor: AppColor.backgroundPrimary,

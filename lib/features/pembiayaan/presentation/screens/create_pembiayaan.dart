@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:efosm/app/presentation/utils/text_styles.dart';
+import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/produk_pembiayaan_entity.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/agunan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
@@ -20,6 +26,7 @@ import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
+import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CreatePembiayaanScreen extends HookConsumerWidget {
@@ -36,11 +43,19 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       ref.watch(dataDiriFormProvider).isValid,
       ref.watch(pekerjaanFormProvider).isValid,
       ref.watch(listPasanganProvider.notifier).isValid,
-      ref.watch(pekerjaanFormProvider).isValid,
       ref.watch(pembiayaanFormProvider).isValid,
+      ref.watch(listAgunanProvider.notifier).isValid,
+    ];
+    final formStates = [
+      ref.watch(dataDiriFormProvider),
+      ref.watch(pekerjaanFormProvider),
+      ref.watch(listPasanganProvider),
+      ref.watch(pembiayaanFormProvider),
+      ref.watch(listAgunanProvider),
     ];
 
     void handleNextButton() {
+      print(formStates[stepIndex]);
       final isValid = stepValid[stepIndex];
       if (!isValid) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -55,11 +70,12 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
           ref.read(stepIndexProvider) + 1;
     }
 
-    void handleFinishButton() {
+    void handleFinishButton() async {
       final dataDiriFormState = ref.read(dataDiriFormProvider);
       final pekerjaanFormState = ref.read(pekerjaanFormProvider);
       final pembiayaanFormState = ref.read(pembiayaanFormProvider);
       final listPasanganState = ref.read(listPasanganProvider);
+      final listAgunanState = ref.read(listAgunanProvider);
 
       final dataDiri = DataDiriEntity(
         nik: dataDiriFormState.nik.value,
@@ -92,7 +108,20 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         gajiBersih: pekerjaanFormState.gajiBersih.value,
       );
 
-      final pembiayaan = PembiayaanEntity(
+      final listPasangan = listPasanganState
+          .map(
+            (pasangan) => PasanganEntity(
+                nik: pasangan.nik.value,
+                nama: pasangan.nama.value,
+                penghasilan: pasangan.penghasilan.value,
+                gajiAmprah: pasangan.gajiAmprah.value,
+                tunjangan: pasangan.tunjangan.value,
+                potongan: pasangan.potongan.value,
+                gajiBersih: pasangan.gajiBersih.value),
+          )
+          .toList();
+
+      final produkPembiayaan = ProdukPembiayaanEntity(
         idKategoriProduk: pembiayaanFormState.idKategoriProduk.value,
         idProduk: pembiayaanFormState.idProduk.value,
         idJenisPengajuan: pembiayaanFormState.idJenisPengajuan.value,
@@ -116,16 +145,83 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         angsuranPengajuan: pembiayaanFormState.angsuranPengajuan.value,
       );
 
-      final listPasangan = listPasanganState.map(
-        (pasangan) => PasanganEntity(
-            nik: pasangan.nik.value,
-            nama: pasangan.nama.value,
-            penghasilan: pasangan.penghasilan.value,
-            gajiAmprah: pasangan.gajiAmprah.value,
-            tunjangan: pasangan.tunjangan.value,
-            potongan: pasangan.potongan.value,
-            gajiBersih: pasangan.gajiBersih.value),
-      );
+      final listAgunan = listAgunanState.map((agunan) {
+        // ignore: omit_local_variable_types
+        final List<int> imageBytes = agunan.image.value != null
+            ? agunan.image.value!.readAsBytesSync()
+            : [];
+        final base64Image = base64Encode(imageBytes);
+        return AgunanEntity(
+            jenis: agunan.jenis.value,
+            deskripsi: agunan.deskripsi.value,
+            alamat: agunan.alamat.value,
+            image: base64Image,
+            latitude: agunan.latitude.value,
+            longitude: agunan.longitude.value,
+            captureLoc: agunan.captureLoc.value,
+            provinsi: agunan.provinsi.value,
+            kabupaten: agunan.kabupaten.value,
+            kecamatan: agunan.kecamatan.value,
+            kelurahan: agunan.kelurahan.value,
+            nilaiTaksasi: agunan.nilaiTaksasi.value);
+      }).toList();
+
+      // Pembiayaan
+      final pembiayaan = {
+        'data_diri': dataDiri,
+        'pekerjaan': pekerjaan,
+        'pasangan': listPasangan,
+        'produk_pembiayaan': produkPembiayaan,
+        'agunan': listAgunan,
+      };
+
+      final saveReponse = await ref.read(saveLoanProvider(pembiayaan).future);
+      saveReponse.fold((l) {
+        showDialog<void>(
+          context: context,
+          builder: (context) {
+            return OurAlertDialog(
+              title: l10n.failed,
+              description: l10n.saveLoanSuccess,
+              actions: [
+                SmallButton(
+                  text: l10n.back,
+                  onPressed: () {
+                    context.pop('dialog');
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      }, (r) {
+        showDialog<void>(
+          context: context,
+          builder: (context) {
+            return OurAlertDialog(
+              title: l10n.failed,
+              icon: const HeroIcon(HeroIcons.check),
+              description: l10n.saveLoanSuccess,
+              actions: [
+                SmallButton(
+                  text: l10n.ok,
+                  onPressed: () {
+                    ref
+                      ..invalidate(dataDiriFormProvider)
+                      ..invalidate(pekerjaanFormProvider)
+                      ..invalidate(pembiayaanFormProvider)
+                      ..invalidate(listPasanganProvider)
+                      ..invalidate(listAgunanProvider);
+                    context
+                      ..pop('dialog')
+                      ..pop();
+                  },
+                ),
+              ],
+            );
+          },
+        );
+      });
     }
 
     return Scaffold(

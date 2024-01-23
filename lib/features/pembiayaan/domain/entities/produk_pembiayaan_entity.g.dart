@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pembiayaan_entity.dart';
+part of 'produk_pembiayaan_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PembiayaanEntityImpl _$$PembiayaanEntityImplFromJson(
+_$ProdukPembiayaanEntityImpl _$$ProdukPembiayaanEntityImplFromJson(
         Map<String, dynamic> json) =>
-    _$PembiayaanEntityImpl(
+    _$ProdukPembiayaanEntityImpl(
       idKategoriProduk: json['id_kategori_produk'] as String,
       idProduk: json['id_produk'] as String,
       idJenisPengajuan: json['id_template_dokumen'] as String,
@@ -32,8 +32,8 @@ _$PembiayaanEntityImpl _$$PembiayaanEntityImplFromJson(
       id: json['id'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$PembiayaanEntityImplToJson(
-        _$PembiayaanEntityImpl instance) =>
+Map<String, dynamic> _$$ProdukPembiayaanEntityImplToJson(
+        _$ProdukPembiayaanEntityImpl instance) =>
     <String, dynamic>{
       'id_kategori_produk': instance.idKategoriProduk,
       'id_produk': instance.idProduk,

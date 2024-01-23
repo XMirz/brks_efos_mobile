@@ -6,12 +6,13 @@ part 'agunan_entity.g.dart';
 @freezed
 class AgunanEntity with _$AgunanEntity {
   const factory AgunanEntity({
-    @Default('') @JsonKey(name: 'jenis') required String jenis,
+    @JsonKey(name: 'jenis') required String jenis,
     @JsonKey(name: 'deskripsi_agunan') required String deskripsi,
     @JsonKey(name: 'alamat1') required String alamat,
     @JsonKey(name: 'image') required String image,
     @JsonKey(name: 'latitude') required String latitude,
     @JsonKey(name: 'longitude') required String longitude,
+    @JsonKey(name: 'capture_loc') required String captureLoc,
     @JsonKey(name: 'provinsi') required String provinsi,
     @JsonKey(name: 'dati2') required String kabupaten,
     @JsonKey(name: 'kec') required String kecamatan,

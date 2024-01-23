@@ -130,7 +130,7 @@ class PembiayaanFormProvider extends StateNotifier<PembiayaanFormState> {
 
   void setGracePeriod(String value, String shownValue) {
     final isValid =
-        value.length > 2 && value.length < 3 && int.tryParse(value) != null;
+        value.isNotEmpty && value.length < 3 && int.tryParse(value) != null;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       gracePeriod: Field(
@@ -252,7 +252,7 @@ class PembiayaanFormProvider extends StateNotifier<PembiayaanFormState> {
   }
 
   void setBasisPointMargin(String value, String shownValue) {
-    final isValid = value.isNotEmpty && int.tryParse(value) != null;
+    final isValid = value.isNotEmpty && double.tryParse(value) != null;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       basiPointMargin: Field(
@@ -304,6 +304,8 @@ final pembiayaanFormProvider =
 );
 
 final gracePeriodController =
+    Provider((ref) => TextEditingController(text: ''));
+final tujuanPembiayaanController =
     Provider((ref) => TextEditingController(text: ''));
 final barangController = Provider((ref) => TextEditingController(text: ''));
 final hargaPerolehanController =

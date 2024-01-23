@@ -40,7 +40,7 @@ final fetchInitialParameterProvider =
 
 typedef FetchInitialParameterRef
     = FutureProviderRef<Either<Failure, AppParameter>>;
-String _$fetchProdukHash() => r'7b1da161ac2c1102b5f88cac4cdfcae9c51a4645';
+String _$fetchProdukHash() => r'2d1450a2660f32b5765630f60df9bd2cad325c3f';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -191,7 +191,7 @@ class _FetchProdukProviderElement
 }
 
 String _$fetchJenisPengajuanHash() =>
-    r'a82fc642572ff507dab98bcd10c8e9f00f2bab34';
+    r'b15bd8396d709520ea56bc7ffa7470bdbae3ea28';
 
 /// See also [fetchJenisPengajuan].
 @ProviderFor(fetchJenisPengajuan)
@@ -321,7 +321,7 @@ class _FetchJenisPengajuanProviderElement
   String get id => (origin as FetchJenisPengajuanProvider).id;
 }
 
-String _$fetchSubProdukHash() => r'77d754e84107cccf555fcc59e2770405f1b9bc43';
+String _$fetchSubProdukHash() => r'1a442469644ab13044470771c50a37b58b31aa89';
 
 /// See also [fetchSubProduk].
 @ProviderFor(fetchSubProduk)
@@ -468,7 +468,7 @@ class _FetchSubProdukProviderElement
   String get idTemplate => (origin as FetchSubProdukProvider).idTemplate;
 }
 
-String _$fetchPlanHash() => r'8db4af689b65883db8832ee9c7711ee75d0b4eb9';
+String _$fetchPlanHash() => r'2d14d830e809dffde86b84cf7a8dfc4213b467d6';
 
 /// See also [fetchPlan].
 @ProviderFor(fetchPlan)
@@ -611,6 +611,526 @@ class _FetchPlanProviderElement
   String get id => (origin as FetchPlanProvider).id;
   @override
   String get idTemplate => (origin as FetchPlanProvider).idTemplate;
+}
+
+String _$fetchKabupatenHash() => r'18bbdf2fd01e5d98a484b0178c0a7749df4f60ec';
+
+/// See also [fetchKabupaten].
+@ProviderFor(fetchKabupaten)
+const fetchKabupatenProvider = FetchKabupatenFamily();
+
+/// See also [fetchKabupaten].
+class FetchKabupatenFamily extends Family<AsyncValue<List<Parameter>>> {
+  /// See also [fetchKabupaten].
+  const FetchKabupatenFamily();
+
+  /// See also [fetchKabupaten].
+  FetchKabupatenProvider call(
+    String id,
+  ) {
+    return FetchKabupatenProvider(
+      id,
+    );
+  }
+
+  @override
+  FetchKabupatenProvider getProviderOverride(
+    covariant FetchKabupatenProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchKabupatenProvider';
+}
+
+/// See also [fetchKabupaten].
+class FetchKabupatenProvider
+    extends AutoDisposeFutureProvider<List<Parameter>> {
+  /// See also [fetchKabupaten].
+  FetchKabupatenProvider(
+    String id,
+  ) : this._internal(
+          (ref) => fetchKabupaten(
+            ref as FetchKabupatenRef,
+            id,
+          ),
+          from: fetchKabupatenProvider,
+          name: r'fetchKabupatenProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchKabupatenHash,
+          dependencies: FetchKabupatenFamily._dependencies,
+          allTransitiveDependencies:
+              FetchKabupatenFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  FetchKabupatenProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Parameter>> Function(FetchKabupatenRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchKabupatenProvider._internal(
+        (ref) => create(ref as FetchKabupatenRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Parameter>> createElement() {
+    return _FetchKabupatenProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchKabupatenProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin FetchKabupatenRef on AutoDisposeFutureProviderRef<List<Parameter>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchKabupatenProviderElement
+    extends AutoDisposeFutureProviderElement<List<Parameter>>
+    with FetchKabupatenRef {
+  _FetchKabupatenProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchKabupatenProvider).id;
+}
+
+String _$fetchKecamatanHash() => r'b0f214d1f68457acc37baa9fee742f28e262e271';
+
+/// See also [fetchKecamatan].
+@ProviderFor(fetchKecamatan)
+const fetchKecamatanProvider = FetchKecamatanFamily();
+
+/// See also [fetchKecamatan].
+class FetchKecamatanFamily extends Family<AsyncValue<List<Parameter>>> {
+  /// See also [fetchKecamatan].
+  const FetchKecamatanFamily();
+
+  /// See also [fetchKecamatan].
+  FetchKecamatanProvider call(
+    String id,
+  ) {
+    return FetchKecamatanProvider(
+      id,
+    );
+  }
+
+  @override
+  FetchKecamatanProvider getProviderOverride(
+    covariant FetchKecamatanProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchKecamatanProvider';
+}
+
+/// See also [fetchKecamatan].
+class FetchKecamatanProvider
+    extends AutoDisposeFutureProvider<List<Parameter>> {
+  /// See also [fetchKecamatan].
+  FetchKecamatanProvider(
+    String id,
+  ) : this._internal(
+          (ref) => fetchKecamatan(
+            ref as FetchKecamatanRef,
+            id,
+          ),
+          from: fetchKecamatanProvider,
+          name: r'fetchKecamatanProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchKecamatanHash,
+          dependencies: FetchKecamatanFamily._dependencies,
+          allTransitiveDependencies:
+              FetchKecamatanFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  FetchKecamatanProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Parameter>> Function(FetchKecamatanRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchKecamatanProvider._internal(
+        (ref) => create(ref as FetchKecamatanRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Parameter>> createElement() {
+    return _FetchKecamatanProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchKecamatanProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin FetchKecamatanRef on AutoDisposeFutureProviderRef<List<Parameter>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchKecamatanProviderElement
+    extends AutoDisposeFutureProviderElement<List<Parameter>>
+    with FetchKecamatanRef {
+  _FetchKecamatanProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchKecamatanProvider).id;
+}
+
+String _$fetchKelurahanHash() => r'59f00051f88b8671093fd99ac59776d515df64b2';
+
+/// See also [fetchKelurahan].
+@ProviderFor(fetchKelurahan)
+const fetchKelurahanProvider = FetchKelurahanFamily();
+
+/// See also [fetchKelurahan].
+class FetchKelurahanFamily extends Family<AsyncValue<List<Parameter>>> {
+  /// See also [fetchKelurahan].
+  const FetchKelurahanFamily();
+
+  /// See also [fetchKelurahan].
+  FetchKelurahanProvider call(
+    String id,
+  ) {
+    return FetchKelurahanProvider(
+      id,
+    );
+  }
+
+  @override
+  FetchKelurahanProvider getProviderOverride(
+    covariant FetchKelurahanProvider provider,
+  ) {
+    return call(
+      provider.id,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchKelurahanProvider';
+}
+
+/// See also [fetchKelurahan].
+class FetchKelurahanProvider
+    extends AutoDisposeFutureProvider<List<Parameter>> {
+  /// See also [fetchKelurahan].
+  FetchKelurahanProvider(
+    String id,
+  ) : this._internal(
+          (ref) => fetchKelurahan(
+            ref as FetchKelurahanRef,
+            id,
+          ),
+          from: fetchKelurahanProvider,
+          name: r'fetchKelurahanProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchKelurahanHash,
+          dependencies: FetchKelurahanFamily._dependencies,
+          allTransitiveDependencies:
+              FetchKelurahanFamily._allTransitiveDependencies,
+          id: id,
+        );
+
+  FetchKelurahanProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.id,
+  }) : super.internal();
+
+  final String id;
+
+  @override
+  Override overrideWith(
+    FutureOr<List<Parameter>> Function(FetchKelurahanRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchKelurahanProvider._internal(
+        (ref) => create(ref as FetchKelurahanRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<List<Parameter>> createElement() {
+    return _FetchKelurahanProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchKelurahanProvider && other.id == id;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin FetchKelurahanRef on AutoDisposeFutureProviderRef<List<Parameter>> {
+  /// The parameter `id` of this provider.
+  String get id;
+}
+
+class _FetchKelurahanProviderElement
+    extends AutoDisposeFutureProviderElement<List<Parameter>>
+    with FetchKelurahanRef {
+  _FetchKelurahanProviderElement(super.provider);
+
+  @override
+  String get id => (origin as FetchKelurahanProvider).id;
+}
+
+String _$saveLoanHash() => r'4465e3b10f8207979f94d3bb5b845e34f996ba4e';
+
+/// See also [saveLoan].
+@ProviderFor(saveLoan)
+const saveLoanProvider = SaveLoanFamily();
+
+/// See also [saveLoan].
+class SaveLoanFamily extends Family<AsyncValue<Either<Failure, bool>>> {
+  /// See also [saveLoan].
+  const SaveLoanFamily();
+
+  /// See also [saveLoan].
+  SaveLoanProvider call(
+    Map<String, Object> dataPembiayaan,
+  ) {
+    return SaveLoanProvider(
+      dataPembiayaan,
+    );
+  }
+
+  @override
+  SaveLoanProvider getProviderOverride(
+    covariant SaveLoanProvider provider,
+  ) {
+    return call(
+      provider.dataPembiayaan,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'saveLoanProvider';
+}
+
+/// See also [saveLoan].
+class SaveLoanProvider
+    extends AutoDisposeFutureProvider<Either<Failure, bool>> {
+  /// See also [saveLoan].
+  SaveLoanProvider(
+    Map<String, Object> dataPembiayaan,
+  ) : this._internal(
+          (ref) => saveLoan(
+            ref as SaveLoanRef,
+            dataPembiayaan,
+          ),
+          from: saveLoanProvider,
+          name: r'saveLoanProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$saveLoanHash,
+          dependencies: SaveLoanFamily._dependencies,
+          allTransitiveDependencies: SaveLoanFamily._allTransitiveDependencies,
+          dataPembiayaan: dataPembiayaan,
+        );
+
+  SaveLoanProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.dataPembiayaan,
+  }) : super.internal();
+
+  final Map<String, Object> dataPembiayaan;
+
+  @override
+  Override overrideWith(
+    FutureOr<Either<Failure, bool>> Function(SaveLoanRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: SaveLoanProvider._internal(
+        (ref) => create(ref as SaveLoanRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        dataPembiayaan: dataPembiayaan,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Either<Failure, bool>> createElement() {
+    return _SaveLoanProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is SaveLoanProvider && other.dataPembiayaan == dataPembiayaan;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, dataPembiayaan.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin SaveLoanRef on AutoDisposeFutureProviderRef<Either<Failure, bool>> {
+  /// The parameter `dataPembiayaan` of this provider.
+  Map<String, Object> get dataPembiayaan;
+}
+
+class _SaveLoanProviderElement
+    extends AutoDisposeFutureProviderElement<Either<Failure, bool>>
+    with SaveLoanRef {
+  _SaveLoanProviderElement(super.provider);
+
+  @override
+  Map<String, Object> get dataPembiayaan =>
+      (origin as SaveLoanProvider).dataPembiayaan;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

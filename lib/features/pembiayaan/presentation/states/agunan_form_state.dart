@@ -21,6 +21,7 @@ class AgunanFormState with _$AgunanFormState {
     required Field kecamatan,
     required Field kelurahan,
     required Field nilaiTaksasi,
+    @Default(Field(value: '', showValue: '')) Field captureLoc,
   }) = _AgunanFormState;
 
   const AgunanFormState._();
@@ -48,8 +49,9 @@ class AgunanFormState with _$AgunanFormState {
       provinsi.isValid &&
       kabupaten.isValid &&
       kecamatan.isValid &&
-      kelurahan.isValid &&
-      nilaiTaksasi.isValid;
+      kelurahan.isValid;
+  // captureLoc.isValid &&
+  // nilaiTaksasi.isValid;
 }
 
 @freezed

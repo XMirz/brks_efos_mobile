@@ -5,6 +5,7 @@
         "description": "Aplikasi Pengajuan EFOS Mobile"
     },
     "login": "Masuk",
+    "profile": "Profil",
     "select": "Pilih",
     "ok": "Okay",
     "failed": "Gagal!",
@@ -12,6 +13,8 @@
     "success": "Berhasil",
     "cancel": "Batal",
     "back": "Kembali",
+    "see": "Lihat",
+    "exit": "Keluar",
     "next": "Selanjutnya",
     "prev": "Sebelumnya",
     "send": "Kirim",
@@ -26,6 +29,7 @@
         }
     },
     "save": "save",
+    "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
     "edit": "Ubah",
     "name": "Nama",
     "username": "Nama pengguna",
@@ -104,5 +108,10 @@
     "kabupaten": "Kabupaten",
     "kecamatan": "Kecamatan",
     "kelurahan": "Kelurahan/Desa",
-    "pleaseFullfillInputs": "Lengkapi masukan terlebih dahulu!."
+    "pleaseFullfillInputs": "Lengkapi masukan terlebih dahulu!.",
+    "agunanImage": "Bukti agunan.",
+    "pickAgunan": "Lampirkan bukti agunan.",
+    "permissionFailure": "Aplikasi ini  tidak memiliki akses.",
+    "noLocationAccess": "Aplikasi ini membutuhkan akses lokasi. Silahkan hidupkan akses lokasi dan beri izin lokasi kepada aplikasi ini.",
+    "failedFetchLocation": "Gagal mendapatkan lokasi. Mohon perikasi akses lokasi dan jaringan anda!."
 }

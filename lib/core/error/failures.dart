@@ -34,6 +34,10 @@ class Failure implements Exception {
     required String message,
     required String code,
   }) = UnknownFailre;
+  const factory Failure.timedOut({
+    required String message,
+    required String code,
+  }) = TimedOutFailure;
 
   final String message;
   final String code;
@@ -86,6 +90,13 @@ class UnprocessableEntityFailure extends Failure {
 
 class UnknownFailre extends Failure {
   const UnknownFailre({
+    required String message,
+    required String code,
+  }) : super(message, code);
+}
+
+class TimedOutFailure extends Failure {
+  const TimedOutFailure({
     required String message,
     required String code,
   }) : super(message, code);

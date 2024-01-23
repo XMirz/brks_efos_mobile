@@ -1,34 +1,38 @@
-import 'package:efosm/app/domain/entities/dropdown_item.dart';
+import 'dart:async';
+
 import 'package:efosm/app/domain/entities/parameters.dart';
-import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
-import 'package:efosm/app/presentation/widgets/date_field.dart';
+import 'package:efosm/app/presentation/widgets/dialogs.dart';
+import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
+import 'package:efosm/app/presentation/widgets/info_dialog.dart';
+import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
-import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
-import 'package:efosm/app/presentation/widgets/text_value.dart';
 import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/agunan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/agunan_item.dart';
+import 'package:efosm/features/pembiayaan/services/location_service.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AgunanForm extends ConsumerWidget {
   const AgunanForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formState = ref.watch(pasanganFormProvider);
-    final listPasangan = ref.watch(listPasanganProvider);
+    final formState = ref.watch(agunanFormProvider);
+    final listAgunan = ref.watch(listAgunanProvider);
     final initialParametersAsyncData = ref.read(fetchInitialParameterProvider);
 
-    void handleAddPasangan() {
+    void handleAddAgunan() async {
       if (!formState.isValid) {
+        print(formState);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(l10n.pleaseFullfillInputs),
@@ -37,103 +41,41 @@ class AgunanForm extends ConsumerWidget {
         );
         return;
       }
-      ref.read(listPasanganProvider.notifier).add(formState);
-      ref.read(nikController).text = '';
-      ref.read(namaController).text = '';
-      ref.read(gajiAmprahController).text = '';
-      ref.read(tunjanganController).text = '';
-      ref.read(potonganController).text = '';
-      ref.read(gajiBersihController).text = '';
-      ref.invalidate(pasanganFormProvider);
+
+      ref.read(listAgunanProvider.notifier).add(formState);
+      ref.read(deskripsiController).text = '';
+      ref.read(alamatController).text = '';
+      ref.invalidate(agunanFormProvider);
     }
 
     return initialParametersAsyncData.when(
       data: (data) => Builder(
         builder: (context) {
           final initialParameters = data.getOrElse(
-              () => AppParameter.fromJson({})); // I Dont Know Anymore
-          print(initialParameters.parStatusPernikahan);
+            () => AppParameter.fromJson({}),
+          ); // I Dont Know Anymore
           return Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                l10n.pasangan,
+                l10n.agunan,
                 style: AppTextStyle.titleMedium,
                 textAlign: TextAlign.left,
               ),
               spaceY(14),
-              ...listPasangan.map(
-                (pasangan) => Dismissible(
-                  key: Key(pasangan.hashCode.toString()),
-                  background: Container(
-                    alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: const HeroIcon(
-                      HeroIcons.trash,
-                      color: AppColor.error,
-                    ),
-                  ),
-                  secondaryBackground: Container(
-                    alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: const HeroIcon(
-                      HeroIcons.trash,
-                      color: AppColor.error,
-                    ),
-                  ),
-                  onDismissed: (direction) {
-                    ref.read(listPasanganProvider.notifier).delete(pasangan);
+              ...listAgunan.map(
+                (agunan) => AgunanItem(
+                  agunan: agunan,
+                  onDissmissed: () {
+                    ref.read(listAgunanProvider.notifier).delete(agunan);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text(l10n.deleted(pasangan.nama.value)),
+                        content: Text(l10n.deleted(l10n.agunan)),
                         behavior: SnackBarBehavior.floating,
                       ),
                     );
                   },
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: AppColor.highlight,
-                      ),
-                      // border:
-                    ),
-                    child: Column(children: [
-                      TextValue(title: l10n.nik, value: pasangan.nik.value),
-                      TextValue(title: l10n.nama, value: pasangan.nama.value),
-                      TextValue(
-                        title: l10n.statusPekerjaan,
-                        value: pasangan.penghasilan.showValue,
-                      ),
-                      TextValue(
-                        title: l10n.gajiAmprah,
-                        value: toRupiahString(
-                          pasangan.gajiAmprah.value,
-                        ),
-                      ),
-                      TextValue(
-                        title: l10n.tunjangan,
-                        value: toRupiahString(
-                          pasangan.tunjangan.value,
-                        ),
-                      ),
-                      TextValue(
-                        title: l10n.potongan,
-                        value: toRupiahString(
-                          pasangan.potongan.value,
-                        ),
-                      ),
-                      TextValue(
-                        title: l10n.gajiBersih,
-                        value: toRupiahString(
-                          pasangan.gajiBersih.value,
-                        ),
-                      ),
-                    ]),
-                  ),
                 ),
               ),
               spaceY(14),
@@ -147,84 +89,202 @@ class AgunanForm extends ConsumerWidget {
                   backgroundColor: AppColor.primary,
                   textStyle: AppTextStyle.bodyMedium
                       .copyWith(color: AppColor.textPrimaryInverse),
-                  onPressed: handleAddPasangan,
+                  onPressed: handleAddAgunan,
                 ),
-              ),
-              OurTextField(
-                keyboardType: TextInputType.number,
-                maxLength: 16,
-                label: context.l10n.nik,
-                controller: ref.read(nikController),
-                hint: context.l10n.nik,
-                error: formState.nik.errorMessage,
-                onChanged: (value) =>
-                    ref.read(pasanganFormProvider.notifier).setNik(value),
-              ),
-              spaceY(4),
-              OurTextField(
-                label: context.l10n.nama,
-                controller: ref.read(namaController),
-                hint: context.l10n.nama,
-                error: formState.nama.errorMessage,
-                onChanged: (value) =>
-                    ref.read(pasanganFormProvider.notifier).setNama(value),
               ),
               spaceY(4),
               OurDropDownField(
-                items: buildDropDownItem(initialParameters.parStatusPekerjaan),
-                label: context.l10n.statusPekerjaan,
-                hint: context.l10n.statusPekerjaan,
-                value: formState.penghasilan.showValue,
-                onChanged: (value, label) => ref
-                    .read(pasanganFormProvider.notifier)
-                    .setPenghasilan(value, label),
+                items: buildDropDownItem(initialParameters.parJenisAgunan),
+                label: context.l10n.jenisAgunan,
+                hint: context.l10n.jenisAgunan,
+                value: formState.jenis.showValue,
+                onChanged: (value, label) {
+                  ref.read(agunanFormProvider.notifier).setJenis(value, label);
+                },
               ),
               OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.gajiAmprah,
-                hint: context.l10n.gajiAmprah,
-                controller: ref.read(gajiAmprahController),
+                label: context.l10n.deskripsiAgunan,
+                controller: ref.read(deskripsiController),
+                hint: context.l10n.deskripsiAgunan,
+                error: formState.deskripsi.errorMessage,
                 onChanged: (value) => ref
-                    .read(pasanganFormProvider.notifier)
-                    .setGajiAmprah(value, value),
+                    .read(agunanFormProvider.notifier)
+                    .setDeskripsi(value, value),
               ),
               spaceY(4),
               OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.tunjangan,
-                hint: context.l10n.tunjangan,
-                controller: ref.read(tunjanganController),
+                label: context.l10n.alamat,
+                controller: ref.read(alamatController),
+                hint: context.l10n.alamat,
+                error: formState.alamat.errorMessage,
                 onChanged: (value) => ref
-                    .read(pasanganFormProvider.notifier)
-                    .setTunjangan(value, value),
+                    .read(agunanFormProvider.notifier)
+                    .setAlamat(value, value),
               ),
               spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.potongan,
-                hint: context.l10n.potongan,
-                controller: ref.read(potonganController),
-                onChanged: (value) => ref
-                    .read(pasanganFormProvider.notifier)
-                    .setPotongan(value, value),
+              OurDropDownField(
+                items: buildDropDownItem(initialParameters.parProvinsi),
+                label: context.l10n.provinsi,
+                hint: context.l10n.provinsi,
+                value: formState.provinsi.showValue,
+                onChanged: (value, label) {
+                  ref
+                      .read(agunanFormProvider.notifier)
+                      .setProvinsi(value, label);
+                },
               ),
               spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.gajiBersih,
-                hint: context.l10n.gajiBersih,
-                controller: ref.read(gajiBersihController),
-                onChanged: (value) => ref
-                    .read(pasanganFormProvider.notifier)
-                    .setGajiBersih(value, value),
+              ref
+                  .watch(
+                    fetchKabupatenProvider(ref.read(agunanFormProvider
+                        .select((value) => value.provinsi.value))),
+                  )
+                  .when(
+                    data: (data) {
+                      return OurDropDownField(
+                        items: buildDropDownItem(data),
+                        label: context.l10n.kabupaten,
+                        hint: context.l10n.kabupaten,
+                        value: formState.kabupaten.showValue,
+                        onChanged: (value, label) => ref
+                            .read(agunanFormProvider.notifier)
+                            .setKabupaten(value, label),
+                      );
+                    },
+                    error: (error, stackTrace) => Container(),
+                    loading: () => const OurLoading(),
+                  ),
+              spaceY(4),
+              ref
+                  .watch(
+                    fetchKecamatanProvider(ref.read(agunanFormProvider
+                        .select((value) => value.kabupaten.value))),
+                  )
+                  .when(
+                    data: (data) {
+                      return OurDropDownField(
+                        items: buildDropDownItem(data),
+                        label: context.l10n.kecamatan,
+                        hint: context.l10n.kecamatan,
+                        value: formState.kecamatan.showValue,
+                        onChanged: (value, label) => ref
+                            .read(agunanFormProvider.notifier)
+                            .setKecamatan(value, label),
+                      );
+                    },
+                    error: (error, stackTrace) => Container(),
+                    loading: () => const OurLoading(),
+                  ),
+              spaceY(4),
+              ref
+                  .watch(
+                    fetchKelurahanProvider(ref.read(agunanFormProvider
+                        .select((value) => value.kecamatan.value))),
+                  )
+                  .when(
+                    data: (data) {
+                      return OurDropDownField(
+                        items: buildDropDownItem(data),
+                        label: context.l10n.kelurahan,
+                        hint: context.l10n.kelurahan,
+                        value: formState.kelurahan.showValue,
+                        onChanged: (value, label) => ref
+                            .read(agunanFormProvider.notifier)
+                            .setKelurahan(value, label),
+                      );
+                    },
+                    error: (error, stackTrace) => Container(),
+                    loading: () => const OurLoading(),
+                  ),
+              spaceY(4),
+              Text(
+                l10n.agunanImage,
+                textAlign: TextAlign.left,
+                style: AppTextStyle.subtitleLarge,
+              ),
+              spaceY(8),
+              InkWell(
+                onTap: () async {
+                  unawaited(showDialog<void>(
+                    context: context,
+                    builder: (context) {
+                      return const LoadingDialog();
+                    },
+                  ));
+                  final locationAccess = await LocationService.getLocation();
+                  if (context.mounted) context.pop('dialog');
+                  print(locationAccess);
+                  await locationAccess.fold((l) async {
+                    if (context.mounted) {
+                      await showDialog<void>(
+                        barrierDismissible: false,
+                        context: context,
+                        builder: (context) {
+                          return OurAlertDialog(
+                            title: l10n.failed,
+                            description: l.message,
+                            actions: [
+                              SmallButton(
+                                text: l10n.ok,
+                                onPressed: () {
+                                  if (context.mounted) context.pop('dialog');
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  }, (r) async {
+                    final picker = ImagePicker();
+                    final photo =
+                        await picker.pickImage(source: ImageSource.camera);
+                    if (photo == null) {
+                      return;
+                    }
+                    ref
+                        .read(agunanFormProvider.notifier)
+                        .setFile(photo, photo.name, r);
+                  });
+                },
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  alignment: Alignment.center,
+                  height: 300,
+                  // padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    color: AppColor.backgroundSecondary,
+                    border: Border.all(
+                      color: AppColor.highlight,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: ref.watch(agunanFormProvider).image.value == null
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconTheme(
+                              data: const IconThemeData(weight: 600, size: 96),
+                              child: HeroIcon(
+                                HeroIcons.photo,
+                                color: AppColor.backgroundSecondary,
+                              ),
+                            ),
+                            spaceY(8),
+                            Text(
+                              l10n.pickAgunan,
+                              style: AppTextStyle.bodyMedium,
+                            ),
+                          ],
+                        )
+                      : SizedBox(
+                          width: double.infinity,
+                          child: Image.file(
+                            ref.read(agunanFormProvider).image.value!,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                ),
               ),
               spaceY(12),
             ],

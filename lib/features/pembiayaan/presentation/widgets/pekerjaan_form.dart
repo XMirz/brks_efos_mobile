@@ -63,6 +63,16 @@ class PekerjaanForm extends ConsumerWidget {
               ),
               spaceY(4),
               OurDropDownField(
+                items: buildDropDownItem(initialParameters.parBidangUsaha),
+                label: context.l10n.bidangUsaha,
+                hint: context.l10n.bidangUsaha,
+                value: formState.bidangUsaha.showValue,
+                onChanged: (value, label) => ref
+                    .read(pekerjaanFormProvider.notifier)
+                    .setBidangUsaha(value, label),
+              ),
+              spaceY(4),
+              OurDropDownField(
                 items: buildDropDownItem(initialParameters.parStatusPerusahaan),
                 label: context.l10n.statusPerusahaan,
                 hint: context.l10n.statusPerusahaan,

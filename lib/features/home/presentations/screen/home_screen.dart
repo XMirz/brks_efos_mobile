@@ -8,6 +8,7 @@ import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/home/presentations/screen/dashboard.dart';
+import 'package:efosm/features/home/presentations/screen/profile.dart';
 import 'package:efosm/features/home/presentations/widgets/nav_bar.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -75,9 +76,7 @@ class HomeScreen extends HookConsumerWidget {
           Dashboard(),
           Scaffold(),
           Scaffold(),
-          Scaffold(
-            appBar: AppBarLeft(),
-          ),
+          Profile(),
         ],
       ),
     );

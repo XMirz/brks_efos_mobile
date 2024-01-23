@@ -1,38 +1,37 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+// import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
+// import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
+// import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
+// import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
+// import 'package:efosm/features/pembiayaan/domain/entities/produk_pembiayaan_entity.dart';
+// import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'pembiayaan_entity.freezed.dart';
-part 'pembiayaan_entity.g.dart';
+// part 'pembiayaan_entity.freezed.dart';
+// part 'pembiayaan_entity.g.dart';
 
-@freezed
-class PembiayaanEntity with _$PembiayaanEntity {
-  const factory PembiayaanEntity({
-    @JsonKey(name: 'id_kategori_produk') required String idKategoriProduk,
-    @JsonKey(name: 'id_produk') required String idProduk,
-    @JsonKey(name: 'id_template_dokumen') required String idJenisPengajuan,
-    @JsonKey(name: 'id_subproduk') required String idSubProduk,
-    @JsonKey(name: 'id_plan') required String idPlan,
-    @JsonKey(name: 'tujuan_pembiayaan') required String tujuanPembiayaan,
-    @JsonKey(name: 'grace_period') required String gracePeriod,
-    @JsonKey(name: 'barang') required String barang,
-    @JsonKey(name: 'harga_perolehan') required String hargaPerolehan,
-    @JsonKey(name: 'pajak') required String pajak,
-    @JsonKey(name: 'diskon') required String diskon,
-    @JsonKey(name: 'uang_muka') required String uangMuka,
-    @JsonKey(name: 'plafon_pengajuan') required String plafonPengajuan,
-    @JsonKey(name: 'tenor_pengajuan') required String tenorPengajuan,
-    @JsonKey(name: 'kode_margin') required String kodeMargin,
-    @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
-    @Default('+')
-    @JsonKey(name: 'basis_point_margin_mark')
-    String basiPointMarginMark,
-    @JsonKey(name: 'margin_pengajuan') required String marginPengajuan,
-    @JsonKey(name: 'total_margin') required String totalMargin,
-    @JsonKey(name: 'angsuran_pengajuan') required String angsuranPengajuan,
-    @Default('') @JsonKey(name: 'id') String id,
-  }) = _PembiayaanEntity;
+// @freezed
+// @JsonSerializable(explicitToJson: true)
+// class PembiayaanEntity with _$PembiayaanEntity {
+//   const factory PembiayaanEntity({
+//     @JsonSerializable(explicitToJson: true)
+//     @JsonKey(name: 'debitur')
+//     required DataDiriEntity dataDiri,
+//     @JsonSerializable(explicitToJson: true)
+//     @JsonKey(name: 'pekerjaan')
+//     required PekerjaanEntity pekerjaan,
+//     @JsonSerializable(explicitToJson: true)
+//     @JsonKey(name: 'pasangan')
+//     required List<PasanganEntity> pasangan,
+//     @JsonSerializable(explicitToJson: true)
+//     @JsonKey(name: 'produk_pembiayaan')
+//     required ProdukPembiayaanEntity produkPembiayaan,
+//     @JsonSerializable(explicitToJson: true)
+//     @JsonKey(name: 'agunan')
+//     required List<AgunanEntity> agunan,
+//     @Default('') @JsonKey(name: 'id') String id,
+//   }) = _PembiayaanEntity;
 
-  const PembiayaanEntity._();
+//   const PembiayaanEntity._();
 
-  factory PembiayaanEntity.fromJson(Map<String, dynamic> json) =>
-      _$PembiayaanEntityFromJson(json);
-}
+//   factory PembiayaanEntity.fromJson(Map<String, dynamic> json) =>
+//       _$PembiayaanEntityFromJson(json);
+// }

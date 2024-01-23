@@ -23,6 +23,8 @@ class OurTextField extends StatelessWidget {
     this.maxLength,
     this.keyboardType,
     this.currencyFormat,
+    // this.minLines,
+    // this.maxLines,
   });
 
   final String label;
@@ -32,6 +34,8 @@ class OurTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? readOnly;
   final int? maxLength;
+  // final int? minLines;
+  // final int? maxLines;
   final bool? obsecureText;
   final double? height;
   final Color? labelColor;
@@ -52,6 +56,8 @@ class OurTextField extends StatelessWidget {
         ),
         spaceY(8),
         TextFormField(
+          // minLines: minLines,
+          // maxLines: minLines,
           inputFormatters: [
             if (currencyFormat ?? false)
               CurrencyInputFormatter(

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'pembiayaan_entity.dart';
+part of 'produk_pembiayaan_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PembiayaanEntity _$PembiayaanEntityFromJson(Map<String, dynamic> json) {
-  return _PembiayaanEntity.fromJson(json);
+ProdukPembiayaanEntity _$ProdukPembiayaanEntityFromJson(
+    Map<String, dynamic> json) {
+  return _ProdukPembiayaanEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PembiayaanEntity {
+mixin _$ProdukPembiayaanEntity {
   @JsonKey(name: 'id_kategori_produk')
   String get idKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_produk')
@@ -65,15 +66,15 @@ mixin _$PembiayaanEntity {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PembiayaanEntityCopyWith<PembiayaanEntity> get copyWith =>
+  $ProdukPembiayaanEntityCopyWith<ProdukPembiayaanEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PembiayaanEntityCopyWith<$Res> {
-  factory $PembiayaanEntityCopyWith(
-          PembiayaanEntity value, $Res Function(PembiayaanEntity) then) =
-      _$PembiayaanEntityCopyWithImpl<$Res, PembiayaanEntity>;
+abstract class $ProdukPembiayaanEntityCopyWith<$Res> {
+  factory $ProdukPembiayaanEntityCopyWith(ProdukPembiayaanEntity value,
+          $Res Function(ProdukPembiayaanEntity) then) =
+      _$ProdukPembiayaanEntityCopyWithImpl<$Res, ProdukPembiayaanEntity>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id_kategori_produk') String idKategoriProduk,
@@ -100,9 +101,10 @@ abstract class $PembiayaanEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PembiayaanEntityCopyWithImpl<$Res, $Val extends PembiayaanEntity>
-    implements $PembiayaanEntityCopyWith<$Res> {
-  _$PembiayaanEntityCopyWithImpl(this._value, this._then);
+class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
+        $Val extends ProdukPembiayaanEntity>
+    implements $ProdukPembiayaanEntityCopyWith<$Res> {
+  _$ProdukPembiayaanEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -224,11 +226,12 @@ class _$PembiayaanEntityCopyWithImpl<$Res, $Val extends PembiayaanEntity>
 }
 
 /// @nodoc
-abstract class _$$PembiayaanEntityImplCopyWith<$Res>
-    implements $PembiayaanEntityCopyWith<$Res> {
-  factory _$$PembiayaanEntityImplCopyWith(_$PembiayaanEntityImpl value,
-          $Res Function(_$PembiayaanEntityImpl) then) =
-      __$$PembiayaanEntityImplCopyWithImpl<$Res>;
+abstract class _$$ProdukPembiayaanEntityImplCopyWith<$Res>
+    implements $ProdukPembiayaanEntityCopyWith<$Res> {
+  factory _$$ProdukPembiayaanEntityImplCopyWith(
+          _$ProdukPembiayaanEntityImpl value,
+          $Res Function(_$ProdukPembiayaanEntityImpl) then) =
+      __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -256,11 +259,13 @@ abstract class _$$PembiayaanEntityImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PembiayaanEntityImplCopyWithImpl<$Res>
-    extends _$PembiayaanEntityCopyWithImpl<$Res, _$PembiayaanEntityImpl>
-    implements _$$PembiayaanEntityImplCopyWith<$Res> {
-  __$$PembiayaanEntityImplCopyWithImpl(_$PembiayaanEntityImpl _value,
-      $Res Function(_$PembiayaanEntityImpl) _then)
+class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
+    extends _$ProdukPembiayaanEntityCopyWithImpl<$Res,
+        _$ProdukPembiayaanEntityImpl>
+    implements _$$ProdukPembiayaanEntityImplCopyWith<$Res> {
+  __$$ProdukPembiayaanEntityImplCopyWithImpl(
+      _$ProdukPembiayaanEntityImpl _value,
+      $Res Function(_$ProdukPembiayaanEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -288,7 +293,7 @@ class __$$PembiayaanEntityImplCopyWithImpl<$Res>
     Object? angsuranPengajuan = null,
     Object? id = null,
   }) {
-    return _then(_$PembiayaanEntityImpl(
+    return _then(_$ProdukPembiayaanEntityImpl(
       idKategoriProduk: null == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
@@ -379,8 +384,8 @@ class __$$PembiayaanEntityImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PembiayaanEntityImpl extends _PembiayaanEntity {
-  const _$PembiayaanEntityImpl(
+class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
+  const _$ProdukPembiayaanEntityImpl(
       {@JsonKey(name: 'id_kategori_produk') required this.idKategoriProduk,
       @JsonKey(name: 'id_produk') required this.idProduk,
       @JsonKey(name: 'id_template_dokumen') required this.idJenisPengajuan,
@@ -404,8 +409,8 @@ class _$PembiayaanEntityImpl extends _PembiayaanEntity {
       @JsonKey(name: 'id') this.id = ''})
       : super._();
 
-  factory _$PembiayaanEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PembiayaanEntityImplFromJson(json);
+  factory _$ProdukPembiayaanEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProdukPembiayaanEntityImplFromJson(json);
 
   @override
   @JsonKey(name: 'id_kategori_produk')
@@ -473,14 +478,14 @@ class _$PembiayaanEntityImpl extends _PembiayaanEntity {
 
   @override
   String toString() {
-    return 'PembiayaanEntity(idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, kodeMargin: $kodeMargin, basiPointMargin: $basiPointMargin, basiPointMarginMark: $basiPointMarginMark, marginPengajuan: $marginPengajuan, totalMargin: $totalMargin, angsuranPengajuan: $angsuranPengajuan, id: $id)';
+    return 'ProdukPembiayaanEntity(idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, kodeMargin: $kodeMargin, basiPointMargin: $basiPointMargin, basiPointMarginMark: $basiPointMarginMark, marginPengajuan: $marginPengajuan, totalMargin: $totalMargin, angsuranPengajuan: $angsuranPengajuan, id: $id)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PembiayaanEntityImpl &&
+            other is _$ProdukPembiayaanEntityImpl &&
             (identical(other.idKategoriProduk, idKategoriProduk) ||
                 other.idKategoriProduk == idKategoriProduk) &&
             (identical(other.idProduk, idProduk) ||
@@ -550,20 +555,20 @@ class _$PembiayaanEntityImpl extends _PembiayaanEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PembiayaanEntityImplCopyWith<_$PembiayaanEntityImpl> get copyWith =>
-      __$$PembiayaanEntityImplCopyWithImpl<_$PembiayaanEntityImpl>(
-          this, _$identity);
+  _$$ProdukPembiayaanEntityImplCopyWith<_$ProdukPembiayaanEntityImpl>
+      get copyWith => __$$ProdukPembiayaanEntityImplCopyWithImpl<
+          _$ProdukPembiayaanEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PembiayaanEntityImplToJson(
+    return _$$ProdukPembiayaanEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _PembiayaanEntity extends PembiayaanEntity {
-  const factory _PembiayaanEntity(
+abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
+  const factory _ProdukPembiayaanEntity(
       {@JsonKey(name: 'id_kategori_produk')
       required final String idKategoriProduk,
       @JsonKey(name: 'id_produk') required final String idProduk,
@@ -590,11 +595,11 @@ abstract class _PembiayaanEntity extends PembiayaanEntity {
       @JsonKey(name: 'total_margin') required final String totalMargin,
       @JsonKey(name: 'angsuran_pengajuan')
       required final String angsuranPengajuan,
-      @JsonKey(name: 'id') final String id}) = _$PembiayaanEntityImpl;
-  const _PembiayaanEntity._() : super._();
+      @JsonKey(name: 'id') final String id}) = _$ProdukPembiayaanEntityImpl;
+  const _ProdukPembiayaanEntity._() : super._();
 
-  factory _PembiayaanEntity.fromJson(Map<String, dynamic> json) =
-      _$PembiayaanEntityImpl.fromJson;
+  factory _ProdukPembiayaanEntity.fromJson(Map<String, dynamic> json) =
+      _$ProdukPembiayaanEntityImpl.fromJson;
 
   @override
   @JsonKey(name: 'id_kategori_produk')
@@ -661,6 +666,6 @@ abstract class _PembiayaanEntity extends PembiayaanEntity {
   String get id;
   @override
   @JsonKey(ignore: true)
-  _$$PembiayaanEntityImplCopyWith<_$PembiayaanEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ProdukPembiayaanEntityImplCopyWith<_$ProdukPembiayaanEntityImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

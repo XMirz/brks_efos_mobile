@@ -110,4 +110,63 @@ class PembiayaanRepository implements PembiayaanRepositoryInterface {
           .toList(),
     );
   }
+
+  Future<List<Parameter>> fetchKabupaten(String idProvinsi) async {
+    final data = ParameterDto(id: idProvinsi);
+    final response = await _dioClient.post<List<dynamic>>(
+      '/mobile/parameter/dati',
+      data: data.toJson(),
+    );
+    return response.fold(
+      (l) => throw l,
+      (r) => r
+          .map(
+            (e) => Parameter.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    );
+  }
+
+  Future<List<Parameter>> fetchKecamatan(String idKabupaten) async {
+    final data = ParameterDto(id: idKabupaten);
+    final response = await _dioClient.post<List<dynamic>>(
+      '/mobile/parameter/kec',
+      data: data.toJson(),
+    );
+    return response.fold(
+      (l) => throw l,
+      (r) => r
+          .map(
+            (e) => Parameter.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    );
+  }
+
+  Future<List<Parameter>> fetchKelurahan(String idKecamatan) async {
+    final data = ParameterDto(id: idKecamatan);
+    final response = await _dioClient.post<List<dynamic>>(
+      '/mobile/parameter/kel',
+      data: data.toJson(),
+    );
+    return response.fold(
+      (l) => throw l,
+      (r) => r
+          .map(
+            (e) => Parameter.fromJson(e as Map<String, dynamic>),
+          )
+          .toList(),
+    );
+  }
+
+  Future<Either<Failure, bool>> saveLoan(Map<String, Object> data) async {
+    final response = await _dioClient.post<List<dynamic>>(
+      '/mobile/loan/save',
+      data: data,
+    );
+    return response.fold(
+      left,
+      (r) => right(true),
+    );
+  }
 }

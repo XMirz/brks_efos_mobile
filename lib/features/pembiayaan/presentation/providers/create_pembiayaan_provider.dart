@@ -25,6 +25,7 @@ Future<List<Parameter>> fetchProduk(
   FetchProdukRef ref,
   String id,
 ) async {
+  if (id == '') return [];
   return ref.read(pembiayaanRepositoryProvider).fetchProduk(id);
 }
 
@@ -33,6 +34,7 @@ Future<List<Parameter>> fetchJenisPengajuan(
   FetchJenisPengajuanRef ref,
   String id,
 ) async {
+  if (id == '') return [];
   return ref.read(pembiayaanRepositoryProvider).fetchJenisPengajuan(id);
 }
 
@@ -42,6 +44,7 @@ Future<List<Parameter>> fetchSubProduk(
   String id,
   String idTemplate,
 ) async {
+  if (id == '' || idTemplate == '') return [];
   return ref.read(pembiayaanRepositoryProvider).fetchSubProduk(id, idTemplate);
 }
 
@@ -51,5 +54,41 @@ Future<List<Parameter>> fetchPlan(
   String id,
   String idTemplate,
 ) async {
+  if (id == '' || idTemplate == '') return [];
   return ref.read(pembiayaanRepositoryProvider).fetchPlan(id, idTemplate);
+}
+
+@riverpod
+Future<List<Parameter>> fetchKabupaten(
+  FetchKabupatenRef ref,
+  String id,
+) async {
+  if (id == '') return [];
+  return ref.read(pembiayaanRepositoryProvider).fetchKabupaten(id);
+}
+
+@riverpod
+Future<List<Parameter>> fetchKecamatan(
+  FetchKecamatanRef ref,
+  String id,
+) async {
+  if (id == '') return [];
+  return ref.read(pembiayaanRepositoryProvider).fetchKecamatan(id);
+}
+
+@riverpod
+Future<List<Parameter>> fetchKelurahan(
+  FetchKelurahanRef ref,
+  String id,
+) async {
+  if (id == '') return [];
+  return ref.read(pembiayaanRepositoryProvider).fetchKelurahan(id);
+}
+
+@riverpod
+Future<Either<Failure, bool>> saveLoan(
+  SaveLoanRef ref,
+  Map<String, Object> dataPembiayaan,
+) async {
+  return ref.read(pembiayaanRepositoryProvider).saveLoan(dataPembiayaan);
 }

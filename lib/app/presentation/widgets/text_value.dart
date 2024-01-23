@@ -18,6 +18,7 @@ class TextValue extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           flex: titleFlex ?? 4,

@@ -168,6 +168,16 @@ class PembiayaanForm extends ConsumerWidget {
               const FormHeader(title: "Aspek Pengajuan"),
               spaceY(12),
               OurTextField(
+                label: context.l10n.tujuanPembiayaan,
+                controller: ref.read(tujuanPembiayaanController),
+                hint: context.l10n.tujuanPembiayaan,
+                error: formState.tujuanPembiayaan.errorMessage,
+                onChanged: (value) => ref
+                    .read(pembiayaanFormProvider.notifier)
+                    .setTujuanPembiayaan(value, value),
+              ),
+              spaceY(4),
+              OurTextField(
                 label: context.l10n.barang,
                 controller: ref.read(barangController),
                 hint: context.l10n.barang,

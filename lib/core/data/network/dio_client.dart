@@ -80,12 +80,11 @@ class DioClient {
           e.type == DioExceptionType.badResponse) {
         return left(Failure.network(message: l10n.failureServer, code: '04'));
       }
-      if (e.type == DioExceptionType.sendTimeout ||
-          e.type == DioExceptionType.connectionError ||
-          e.type == DioExceptionType.unknown) {
-        return left(Failure.network(message: l10n.failureNetwork, code: '04'));
-      }
-      rethrow;
+      // if (e.type == DioExceptionType.sendTimeout ||
+      // e.type == DioExceptionType.connectionError ||
+      // e.type == DioExceptionType.unknown) {
+      return left(Failure.network(message: l10n.failureNetwork, code: '04'));
+      // }
     } catch (e) {
       debugPrint(e.toString());
       return left(
@@ -136,12 +135,12 @@ class DioClient {
           e.type == DioExceptionType.badResponse) {
         return left(Failure.network(message: l10n.failureServer, code: '04'));
       }
-      if (e.type == DioExceptionType.sendTimeout ||
-          e.type == DioExceptionType.connectionError ||
-          e.type == DioExceptionType.unknown) {
-        return left(Failure.network(message: l10n.failureNetwork, code: '04'));
-      }
-      rethrow;
+      // if (e.type == DioExceptionType.sendTimeout ||
+      //     e.type == DioExceptionType.connectionError ||
+      //     e.type == DioExceptionType.unknown) {
+      return left(Failure.network(message: l10n.failureNetwork, code: '04'));
+      // }
+      // rethrow;
     } catch (e) {
       debugPrint(e.toString());
       return left(

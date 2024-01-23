@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:efosm/app/domain/entities/field.dart';
+import 'package:efosm/app/domain/entities/file_field.dart';
+import 'package:efosm/app/domain/entities/location.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   AgunanFormProvider() : super(AgunanFormState.empty());
@@ -122,6 +127,33 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
     );
   }
 
+  void setFile(XFile value, String shownValue, OurLocation loc) {
+    final file = File(value.path);
+    print(file.absolute);
+    final isValid = file.existsSync();
+    final message = isValid ? '' : l10n.pickAgunan;
+    state = state.copyWith(
+      image: FileField(
+        value: file,
+        isValid: isValid,
+        showValue: value.name,
+        errorMessage: message,
+      ),
+      latitude: Field(
+        value: loc.latitude,
+        showValue: loc.latitude,
+        isValid: isValid,
+        errorMessage: message,
+      ),
+      longitude: Field(
+        value: loc.longitude,
+        showValue: loc.longitude,
+        isValid: isValid,
+        errorMessage: message,
+      ),
+    );
+  }
+
   // void imageAgunan(File) {
   //   state = state.copyWith(
   //       FileField(showValue: file.)
@@ -129,10 +161,37 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   // }
 }
 
+class ListAgunanProvider extends StateNotifier<List<AgunanFormState>> {
+  ListAgunanProvider() : super([]);
+
+  void add(AgunanFormState agunanFormState) {
+    state = [...state, agunanFormState];
+  }
+
+  void delete(AgunanFormState agunanFormState) {
+    state.remove(agunanFormState);
+  }
+
+  bool get isValid {
+    var isValid = true;
+    for (final element in state) {
+      isValid = element.isValid && isValid;
+    }
+    return isValid;
+  }
+}
+
 final agunanFormProvider =
     StateNotifierProvider<AgunanFormProvider, AgunanFormState>(
   (ref) => AgunanFormProvider(),
 );
+
+final listAgunanProvider =
+    StateNotifierProvider<ListAgunanProvider, List<AgunanFormState>>(
+  (ref) => ListAgunanProvider(),
+);
+
+final agunanIndexProvider = StateProvider((ref) => 0);
 
 final deskripsiController = Provider((ref) => TextEditingController(text: ''));
 final alamatController = Provider((ref) => TextEditingController(text: ''));
