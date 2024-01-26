@@ -39,7 +39,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setAlamat(String value, String shownValue) {
-    final isValid = value.length > 16;
+    final isValid = value.length > 8;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       alamat: Field(
@@ -181,6 +181,8 @@ class ListAgunanProvider extends StateNotifier<List<AgunanFormState>> {
   }
 }
 
+final showAgunanFormProvider = StateProvider<bool>((ref) => false);
+
 final agunanFormProvider =
     StateNotifierProvider<AgunanFormProvider, AgunanFormState>(
   (ref) => AgunanFormProvider(),
@@ -194,4 +196,5 @@ final listAgunanProvider =
 final agunanIndexProvider = StateProvider((ref) => 0);
 
 final deskripsiController = Provider((ref) => TextEditingController(text: ''));
-final alamatController = Provider((ref) => TextEditingController(text: ''));
+final alamatAgunanController =
+    Provider((ref) => TextEditingController(text: ''));

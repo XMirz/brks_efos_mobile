@@ -10,7 +10,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
 
   void setProfesi(String profesi, String shownValue) {
     print(state);
-    final isValid = profesi.isNotEmpty;
+    const isValid = true;
+    // final isValid = profesi.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       profesi: Field(
@@ -23,7 +24,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   }
 
   void setNamaInstansi(String namaInstansi) {
-    final isValid = namaInstansi.length > 7;
+    const isValid = true;
+    // final isValid = namaInstansi.length > 7;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       namaInstansi: Field(
@@ -49,7 +51,7 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   }
 
   void setJabatan(String jabatan, String shownValue) {
-    final isValid = jabatan.length > 7;
+    final isValid = jabatan.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       jabatan: Field(
@@ -62,7 +64,7 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   }
 
   void setBidangUsaha(String bidangUsaha, String shownValue) {
-    final isValid = bidangUsaha.isNotEmpty;
+    const isValid = true;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       bidangUsaha: Field(
@@ -75,7 +77,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   }
 
   void setTahunBekerja(String tahunBekerja, String shownValue) {
-    final isValid = tahunBekerja.length == 4;
+    // final isValid = tahunBekerja.length == 4;
+    const isValid = true;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       tahunBekerja: Field(

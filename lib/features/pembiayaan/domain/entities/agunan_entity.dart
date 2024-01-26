@@ -8,7 +8,7 @@ class AgunanEntity with _$AgunanEntity {
   const factory AgunanEntity({
     @JsonKey(name: 'jenis') required String jenis,
     @JsonKey(name: 'deskripsi_agunan') required String deskripsi,
-    @JsonKey(name: 'alamat1') required String alamat,
+    @JsonKey(name: 'alamat') required String alamat,
     @JsonKey(name: 'image') required String image,
     @JsonKey(name: 'latitude') required String latitude,
     @JsonKey(name: 'longitude') required String longitude,
@@ -17,7 +17,7 @@ class AgunanEntity with _$AgunanEntity {
     @JsonKey(name: 'dati2') required String kabupaten,
     @JsonKey(name: 'kec') required String kecamatan,
     @JsonKey(name: 'kel') required String kelurahan,
-    @JsonKey(name: 'nilai_taksasi') required String nilaiTaksasi,
+    @Default('0') @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
     @Default('') @JsonKey(name: 'id') String id,
     @Default('') @JsonKey(name: 'id_loan') String idLoan,
     // @JsonKey(name: 'file') required String file,

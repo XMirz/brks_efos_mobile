@@ -8,9 +8,11 @@ class Dashboard extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBarLeft(),
+      appBar: const AppBarLeft(),
       body: ListView(
-        children: [Container()],
+        children: [
+          Container(),
+        ],
       ),
     );
   }

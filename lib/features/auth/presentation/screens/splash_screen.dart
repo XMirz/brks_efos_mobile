@@ -21,7 +21,7 @@ class SplashScreen extends HookConsumerWidget {
             onLoaded: (LottieComposition composition) {
               // TODO REMOVE
               animationController
-                ..duration = const Duration(milliseconds: 50)
+                ..duration = composition.duration
                 ..forward()
                 ..addStatusListener((status) {
                   if (status == AnimationStatus.completed) {

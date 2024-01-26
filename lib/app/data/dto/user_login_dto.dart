@@ -4,16 +4,16 @@ part 'user_login_dto.freezed.dart';
 part 'user_login_dto.g.dart';
 
 @freezed
-class UserLoginDto with _$UserLoginDto {
-  const factory UserLoginDto({
+class UserAuthenticationDto with _$UserAuthenticationDto {
+  const factory UserAuthenticationDto({
     required String username,
-    required String password,
-  }) = _UserLoginDto;
+    @Default('') String? password,
+  }) = _UserAuthenticationDto;
 
-  const UserLoginDto._();
+  const UserAuthenticationDto._();
 
-  factory UserLoginDto.fromJson(Map<String, dynamic> json) =>
-      _$UserLoginDtoFromJson(json);
+  factory UserAuthenticationDto.fromJson(Map<String, dynamic> json) =>
+      _$UserAuthenticationDtoFromJson(json);
 }
 
 @freezed

@@ -8,7 +8,7 @@ class PembiayaanFormState with _$PembiayaanFormState {
   const factory PembiayaanFormState({
     required Field idPlan,
     required Field tujuanPembiayaan,
-    required Field gracePeriod,
+    // required Field gracePeriod,
     required Field barang,
     required Field hargaPerolehan,
     required Field pajak,
@@ -16,11 +16,11 @@ class PembiayaanFormState with _$PembiayaanFormState {
     required Field uangMuka,
     required Field plafonPengajuan,
     required Field tenorPengajuan,
-    required DropDownField kodeMargin,
-    required Field basiPointMargin,
-    required Field marginPengajuan,
-    required Field totalMargin,
-    required Field angsuranPengajuan,
+    // required DropDownField kodeMargin,
+    // required Field basiPointMargin,
+    // required Field marginPengajuan,
+    // required Field totalMargin,
+    // required Field angsuranPengajuan,
     required Field idKategoriProduk,
     required Field idJenisPengajuan,
     required Field idProduk,
@@ -32,7 +32,7 @@ class PembiayaanFormState with _$PembiayaanFormState {
   factory PembiayaanFormState.empty() => const PembiayaanFormState(
         idPlan: Field(value: '', showValue: ''),
         tujuanPembiayaan: Field(value: '', showValue: ''),
-        gracePeriod: Field(value: '', showValue: ''),
+        // gracePeriod: Field(value: '', showValue: ''),
         barang: Field(value: '', showValue: ''),
         hargaPerolehan: Field(value: '', showValue: ''),
         pajak: Field(value: '', showValue: ''),
@@ -40,11 +40,11 @@ class PembiayaanFormState with _$PembiayaanFormState {
         uangMuka: Field(value: '', showValue: ''),
         plafonPengajuan: Field(value: '', showValue: ''),
         tenorPengajuan: Field(value: '', showValue: ''),
-        kodeMargin: DropDownField(value: '', showValue: '', actualValue: ''),
-        basiPointMargin: Field(value: '', showValue: ''),
-        marginPengajuan: Field(value: '', showValue: ''),
-        totalMargin: Field(value: '', showValue: ''),
-        angsuranPengajuan: Field(value: '', showValue: ''),
+        // kodeMargin: DropDownField(value: '', showValue: '', actualValue: ''),
+        // basiPointMargin: Field(value: '', showValue: ''),
+        // marginPengajuan: Field(value: '', showValue: ''),
+        // totalMargin: Field(value: '', showValue: ''),
+        // angsuranPengajuan: Field(value: '', showValue: ''),
         idKategoriProduk: Field(value: '', showValue: ''),
         idJenisPengajuan: Field(value: '', showValue: ''),
         idSubProduk: Field(value: '', showValue: ''),
@@ -54,19 +54,19 @@ class PembiayaanFormState with _$PembiayaanFormState {
   bool get isValid =>
       idPlan.isValid &&
       tujuanPembiayaan.isValid &&
-      gracePeriod.isValid &&
+      // gracePeriod.isValid &&
       barang.isValid &&
       hargaPerolehan.isValid &&
       pajak.isValid &&
       diskon.isValid &&
       uangMuka.isValid &&
-      plafonPengajuan.isValid &&
-      tenorPengajuan.isValid &&
-      kodeMargin.isValid &&
-      basiPointMargin.isValid &&
-      marginPengajuan.isValid &&
-      totalMargin.isValid &&
-      angsuranPengajuan.isValid &&
+      // plafonPengajuan.isValid &&
+      // tenorPengajuan.isValid &&
+      // kodeMargin.isValid &&
+      // basiPointMargin.isValid &&
+      // marginPengajuan.isValid &&
+      // totalMargin.isValid &&
+      // angsuranPengajuan.isValid &&
       idKategoriProduk.isValid &&
       idJenisPengajuan.isValid &&
       idProduk.isValid &&

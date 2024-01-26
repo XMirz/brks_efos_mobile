@@ -33,8 +33,6 @@ mixin _$ProdukPembiayaanEntity {
   String get idPlan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'grace_period')
-  String get gracePeriod => throw _privateConstructorUsedError;
   @JsonKey(name: 'barang')
   String get barang => throw _privateConstructorUsedError;
   @JsonKey(name: 'harga_perolehan')
@@ -48,19 +46,16 @@ mixin _$ProdukPembiayaanEntity {
   @JsonKey(name: 'plafon_pengajuan')
   String get plafonPengajuan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tenor_pengajuan')
-  String get tenorPengajuan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'kode_margin')
-  String get kodeMargin => throw _privateConstructorUsedError;
-  @JsonKey(name: 'basis_point_margin')
-  String get basiPointMargin => throw _privateConstructorUsedError;
-  @JsonKey(name: 'basis_point_margin_mark')
-  String get basiPointMarginMark => throw _privateConstructorUsedError;
-  @JsonKey(name: 'margin_pengajuan')
-  String get marginPengajuan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'total_margin')
-  String get totalMargin => throw _privateConstructorUsedError;
-  @JsonKey(name: 'angsuran_pengajuan')
-  String get angsuranPengajuan => throw _privateConstructorUsedError;
+  String get tenorPengajuan =>
+      throw _privateConstructorUsedError; // @JsonKey(name: 'grace_period') required String gracePeriod,
+// @JsonKey(name: 'kode_margin') required String kodeMargin,
+// @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
+// @Default('+')
+// @JsonKey(name: 'basis_point_margin_mark')
+// String basiPointMarginMark,
+// @JsonKey(name: 'margin_pengajuan') required String marginPengajuan,
+// @JsonKey(name: 'total_margin') required String totalMargin,
+// @JsonKey(name: 'angsuran_pengajuan') required String angsuranPengajuan,
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
@@ -83,7 +78,6 @@ abstract class $ProdukPembiayaanEntityCopyWith<$Res> {
       @JsonKey(name: 'id_subproduk') String idSubProduk,
       @JsonKey(name: 'id_plan') String idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') String gracePeriod,
       @JsonKey(name: 'barang') String barang,
       @JsonKey(name: 'harga_perolehan') String hargaPerolehan,
       @JsonKey(name: 'pajak') String pajak,
@@ -91,12 +85,6 @@ abstract class $ProdukPembiayaanEntityCopyWith<$Res> {
       @JsonKey(name: 'uang_muka') String uangMuka,
       @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
       @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
-      @JsonKey(name: 'kode_margin') String kodeMargin,
-      @JsonKey(name: 'basis_point_margin') String basiPointMargin,
-      @JsonKey(name: 'basis_point_margin_mark') String basiPointMarginMark,
-      @JsonKey(name: 'margin_pengajuan') String marginPengajuan,
-      @JsonKey(name: 'total_margin') String totalMargin,
-      @JsonKey(name: 'angsuran_pengajuan') String angsuranPengajuan,
       @JsonKey(name: 'id') String id});
 }
 
@@ -120,7 +108,6 @@ class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
     Object? idSubProduk = null,
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? gracePeriod = null,
     Object? barang = null,
     Object? hargaPerolehan = null,
     Object? pajak = null,
@@ -128,12 +115,6 @@ class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
     Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
-    Object? kodeMargin = null,
-    Object? basiPointMargin = null,
-    Object? basiPointMarginMark = null,
-    Object? marginPengajuan = null,
-    Object? totalMargin = null,
-    Object? angsuranPengajuan = null,
     Object? id = null,
   }) {
     return _then(_value.copyWith(
@@ -161,10 +142,6 @@ class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
               as String,
-      gracePeriod: null == gracePeriod
-          ? _value.gracePeriod
-          : gracePeriod // ignore: cast_nullable_to_non_nullable
-              as String,
       barang: null == barang
           ? _value.barang
           : barang // ignore: cast_nullable_to_non_nullable
@@ -193,30 +170,6 @@ class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
               as String,
-      kodeMargin: null == kodeMargin
-          ? _value.kodeMargin
-          : kodeMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      basiPointMargin: null == basiPointMargin
-          ? _value.basiPointMargin
-          : basiPointMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      basiPointMarginMark: null == basiPointMarginMark
-          ? _value.basiPointMarginMark
-          : basiPointMarginMark // ignore: cast_nullable_to_non_nullable
-              as String,
-      marginPengajuan: null == marginPengajuan
-          ? _value.marginPengajuan
-          : marginPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalMargin: null == totalMargin
-          ? _value.totalMargin
-          : totalMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      angsuranPengajuan: null == angsuranPengajuan
-          ? _value.angsuranPengajuan
-          : angsuranPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -241,7 +194,6 @@ abstract class _$$ProdukPembiayaanEntityImplCopyWith<$Res>
       @JsonKey(name: 'id_subproduk') String idSubProduk,
       @JsonKey(name: 'id_plan') String idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') String gracePeriod,
       @JsonKey(name: 'barang') String barang,
       @JsonKey(name: 'harga_perolehan') String hargaPerolehan,
       @JsonKey(name: 'pajak') String pajak,
@@ -249,12 +201,6 @@ abstract class _$$ProdukPembiayaanEntityImplCopyWith<$Res>
       @JsonKey(name: 'uang_muka') String uangMuka,
       @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
       @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
-      @JsonKey(name: 'kode_margin') String kodeMargin,
-      @JsonKey(name: 'basis_point_margin') String basiPointMargin,
-      @JsonKey(name: 'basis_point_margin_mark') String basiPointMarginMark,
-      @JsonKey(name: 'margin_pengajuan') String marginPengajuan,
-      @JsonKey(name: 'total_margin') String totalMargin,
-      @JsonKey(name: 'angsuran_pengajuan') String angsuranPengajuan,
       @JsonKey(name: 'id') String id});
 }
 
@@ -277,7 +223,6 @@ class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
     Object? idSubProduk = null,
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? gracePeriod = null,
     Object? barang = null,
     Object? hargaPerolehan = null,
     Object? pajak = null,
@@ -285,12 +230,6 @@ class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
     Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
-    Object? kodeMargin = null,
-    Object? basiPointMargin = null,
-    Object? basiPointMarginMark = null,
-    Object? marginPengajuan = null,
-    Object? totalMargin = null,
-    Object? angsuranPengajuan = null,
     Object? id = null,
   }) {
     return _then(_$ProdukPembiayaanEntityImpl(
@@ -318,10 +257,6 @@ class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
               as String,
-      gracePeriod: null == gracePeriod
-          ? _value.gracePeriod
-          : gracePeriod // ignore: cast_nullable_to_non_nullable
-              as String,
       barang: null == barang
           ? _value.barang
           : barang // ignore: cast_nullable_to_non_nullable
@@ -350,30 +285,6 @@ class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
               as String,
-      kodeMargin: null == kodeMargin
-          ? _value.kodeMargin
-          : kodeMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      basiPointMargin: null == basiPointMargin
-          ? _value.basiPointMargin
-          : basiPointMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      basiPointMarginMark: null == basiPointMarginMark
-          ? _value.basiPointMarginMark
-          : basiPointMarginMark // ignore: cast_nullable_to_non_nullable
-              as String,
-      marginPengajuan: null == marginPengajuan
-          ? _value.marginPengajuan
-          : marginPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      totalMargin: null == totalMargin
-          ? _value.totalMargin
-          : totalMargin // ignore: cast_nullable_to_non_nullable
-              as String,
-      angsuranPengajuan: null == angsuranPengajuan
-          ? _value.angsuranPengajuan
-          : angsuranPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -392,7 +303,6 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
       @JsonKey(name: 'id_subproduk') required this.idSubProduk,
       @JsonKey(name: 'id_plan') required this.idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') required this.tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') required this.gracePeriod,
       @JsonKey(name: 'barang') required this.barang,
       @JsonKey(name: 'harga_perolehan') required this.hargaPerolehan,
       @JsonKey(name: 'pajak') required this.pajak,
@@ -400,12 +310,6 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
       @JsonKey(name: 'uang_muka') required this.uangMuka,
       @JsonKey(name: 'plafon_pengajuan') required this.plafonPengajuan,
       @JsonKey(name: 'tenor_pengajuan') required this.tenorPengajuan,
-      @JsonKey(name: 'kode_margin') required this.kodeMargin,
-      @JsonKey(name: 'basis_point_margin') required this.basiPointMargin,
-      @JsonKey(name: 'basis_point_margin_mark') this.basiPointMarginMark = '+',
-      @JsonKey(name: 'margin_pengajuan') required this.marginPengajuan,
-      @JsonKey(name: 'total_margin') required this.totalMargin,
-      @JsonKey(name: 'angsuran_pengajuan') required this.angsuranPengajuan,
       @JsonKey(name: 'id') this.id = ''})
       : super._();
 
@@ -431,9 +335,6 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
   @JsonKey(name: 'tujuan_pembiayaan')
   final String tujuanPembiayaan;
   @override
-  @JsonKey(name: 'grace_period')
-  final String gracePeriod;
-  @override
   @JsonKey(name: 'barang')
   final String barang;
   @override
@@ -454,31 +355,22 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
   @override
   @JsonKey(name: 'tenor_pengajuan')
   final String tenorPengajuan;
-  @override
-  @JsonKey(name: 'kode_margin')
-  final String kodeMargin;
-  @override
-  @JsonKey(name: 'basis_point_margin')
-  final String basiPointMargin;
-  @override
-  @JsonKey(name: 'basis_point_margin_mark')
-  final String basiPointMarginMark;
-  @override
-  @JsonKey(name: 'margin_pengajuan')
-  final String marginPengajuan;
-  @override
-  @JsonKey(name: 'total_margin')
-  final String totalMargin;
-  @override
-  @JsonKey(name: 'angsuran_pengajuan')
-  final String angsuranPengajuan;
+// @JsonKey(name: 'grace_period') required String gracePeriod,
+// @JsonKey(name: 'kode_margin') required String kodeMargin,
+// @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
+// @Default('+')
+// @JsonKey(name: 'basis_point_margin_mark')
+// String basiPointMarginMark,
+// @JsonKey(name: 'margin_pengajuan') required String marginPengajuan,
+// @JsonKey(name: 'total_margin') required String totalMargin,
+// @JsonKey(name: 'angsuran_pengajuan') required String angsuranPengajuan,
   @override
   @JsonKey(name: 'id')
   final String id;
 
   @override
   String toString() {
-    return 'ProdukPembiayaanEntity(idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, kodeMargin: $kodeMargin, basiPointMargin: $basiPointMargin, basiPointMarginMark: $basiPointMarginMark, marginPengajuan: $marginPengajuan, totalMargin: $totalMargin, angsuranPengajuan: $angsuranPengajuan, id: $id)';
+    return 'ProdukPembiayaanEntity(idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, id: $id)';
   }
 
   @override
@@ -497,8 +389,6 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
             (identical(other.idPlan, idPlan) || other.idPlan == idPlan) &&
             (identical(other.tujuanPembiayaan, tujuanPembiayaan) ||
                 other.tujuanPembiayaan == tujuanPembiayaan) &&
-            (identical(other.gracePeriod, gracePeriod) ||
-                other.gracePeriod == gracePeriod) &&
             (identical(other.barang, barang) || other.barang == barang) &&
             (identical(other.hargaPerolehan, hargaPerolehan) ||
                 other.hargaPerolehan == hargaPerolehan) &&
@@ -510,47 +400,27 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
                 other.plafonPengajuan == plafonPengajuan) &&
             (identical(other.tenorPengajuan, tenorPengajuan) ||
                 other.tenorPengajuan == tenorPengajuan) &&
-            (identical(other.kodeMargin, kodeMargin) ||
-                other.kodeMargin == kodeMargin) &&
-            (identical(other.basiPointMargin, basiPointMargin) ||
-                other.basiPointMargin == basiPointMargin) &&
-            (identical(other.basiPointMarginMark, basiPointMarginMark) ||
-                other.basiPointMarginMark == basiPointMarginMark) &&
-            (identical(other.marginPengajuan, marginPengajuan) ||
-                other.marginPengajuan == marginPengajuan) &&
-            (identical(other.totalMargin, totalMargin) ||
-                other.totalMargin == totalMargin) &&
-            (identical(other.angsuranPengajuan, angsuranPengajuan) ||
-                other.angsuranPengajuan == angsuranPengajuan) &&
             (identical(other.id, id) || other.id == id));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        idKategoriProduk,
-        idProduk,
-        idJenisPengajuan,
-        idSubProduk,
-        idPlan,
-        tujuanPembiayaan,
-        gracePeriod,
-        barang,
-        hargaPerolehan,
-        pajak,
-        diskon,
-        uangMuka,
-        plafonPengajuan,
-        tenorPengajuan,
-        kodeMargin,
-        basiPointMargin,
-        basiPointMarginMark,
-        marginPengajuan,
-        totalMargin,
-        angsuranPengajuan,
-        id
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      idKategoriProduk,
+      idProduk,
+      idJenisPengajuan,
+      idSubProduk,
+      idPlan,
+      tujuanPembiayaan,
+      barang,
+      hargaPerolehan,
+      pajak,
+      diskon,
+      uangMuka,
+      plafonPengajuan,
+      tenorPengajuan,
+      id);
 
   @JsonKey(ignore: true)
   @override
@@ -578,7 +448,6 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
       @JsonKey(name: 'id_plan') required final String idPlan,
       @JsonKey(name: 'tujuan_pembiayaan')
       required final String tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') required final String gracePeriod,
       @JsonKey(name: 'barang') required final String barang,
       @JsonKey(name: 'harga_perolehan') required final String hargaPerolehan,
       @JsonKey(name: 'pajak') required final String pajak,
@@ -586,15 +455,6 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
       @JsonKey(name: 'uang_muka') required final String uangMuka,
       @JsonKey(name: 'plafon_pengajuan') required final String plafonPengajuan,
       @JsonKey(name: 'tenor_pengajuan') required final String tenorPengajuan,
-      @JsonKey(name: 'kode_margin') required final String kodeMargin,
-      @JsonKey(name: 'basis_point_margin')
-      required final String basiPointMargin,
-      @JsonKey(name: 'basis_point_margin_mark')
-      final String basiPointMarginMark,
-      @JsonKey(name: 'margin_pengajuan') required final String marginPengajuan,
-      @JsonKey(name: 'total_margin') required final String totalMargin,
-      @JsonKey(name: 'angsuran_pengajuan')
-      required final String angsuranPengajuan,
       @JsonKey(name: 'id') final String id}) = _$ProdukPembiayaanEntityImpl;
   const _ProdukPembiayaanEntity._() : super._();
 
@@ -620,9 +480,6 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan;
   @override
-  @JsonKey(name: 'grace_period')
-  String get gracePeriod;
-  @override
   @JsonKey(name: 'barang')
   String get barang;
   @override
@@ -643,25 +500,15 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
   @override
   @JsonKey(name: 'tenor_pengajuan')
   String get tenorPengajuan;
-  @override
-  @JsonKey(name: 'kode_margin')
-  String get kodeMargin;
-  @override
-  @JsonKey(name: 'basis_point_margin')
-  String get basiPointMargin;
-  @override
-  @JsonKey(name: 'basis_point_margin_mark')
-  String get basiPointMarginMark;
-  @override
-  @JsonKey(name: 'margin_pengajuan')
-  String get marginPengajuan;
-  @override
-  @JsonKey(name: 'total_margin')
-  String get totalMargin;
-  @override
-  @JsonKey(name: 'angsuran_pengajuan')
-  String get angsuranPengajuan;
-  @override
+  @override // @JsonKey(name: 'grace_period') required String gracePeriod,
+// @JsonKey(name: 'kode_margin') required String kodeMargin,
+// @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
+// @Default('+')
+// @JsonKey(name: 'basis_point_margin_mark')
+// String basiPointMarginMark,
+// @JsonKey(name: 'margin_pengajuan') required String marginPengajuan,
+// @JsonKey(name: 'total_margin') required String totalMargin,
+// @JsonKey(name: 'angsuran_pengajuan') required String angsuranPengajuan,
   @JsonKey(name: 'id')
   String get id;
   @override

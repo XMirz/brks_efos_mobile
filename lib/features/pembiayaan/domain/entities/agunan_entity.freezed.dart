@@ -24,7 +24,7 @@ mixin _$AgunanEntity {
   String get jenis => throw _privateConstructorUsedError;
   @JsonKey(name: 'deskripsi_agunan')
   String get deskripsi => throw _privateConstructorUsedError;
-  @JsonKey(name: 'alamat1')
+  @JsonKey(name: 'alamat')
   String get alamat => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String get image => throw _privateConstructorUsedError;
@@ -64,7 +64,7 @@ abstract class $AgunanEntityCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'jenis') String jenis,
       @JsonKey(name: 'deskripsi_agunan') String deskripsi,
-      @JsonKey(name: 'alamat1') String alamat,
+      @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'image') String image,
       @JsonKey(name: 'latitude') String latitude,
       @JsonKey(name: 'longitude') String longitude,
@@ -178,7 +178,7 @@ abstract class _$$AgunanEntityImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'jenis') String jenis,
       @JsonKey(name: 'deskripsi_agunan') String deskripsi,
-      @JsonKey(name: 'alamat1') String alamat,
+      @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'image') String image,
       @JsonKey(name: 'latitude') String latitude,
       @JsonKey(name: 'longitude') String longitude,
@@ -285,7 +285,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
   const _$AgunanEntityImpl(
       {@JsonKey(name: 'jenis') required this.jenis,
       @JsonKey(name: 'deskripsi_agunan') required this.deskripsi,
-      @JsonKey(name: 'alamat1') required this.alamat,
+      @JsonKey(name: 'alamat') required this.alamat,
       @JsonKey(name: 'image') required this.image,
       @JsonKey(name: 'latitude') required this.latitude,
       @JsonKey(name: 'longitude') required this.longitude,
@@ -294,7 +294,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
       @JsonKey(name: 'dati2') required this.kabupaten,
       @JsonKey(name: 'kec') required this.kecamatan,
       @JsonKey(name: 'kel') required this.kelurahan,
-      @JsonKey(name: 'nilai_taksasi') required this.nilaiTaksasi,
+      @JsonKey(name: 'nilai_taksasi') this.nilaiTaksasi = '0',
       @JsonKey(name: 'id') this.id = '',
       @JsonKey(name: 'id_loan') this.idLoan = ''})
       : super._();
@@ -309,7 +309,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
   @JsonKey(name: 'deskripsi_agunan')
   final String deskripsi;
   @override
-  @JsonKey(name: 'alamat1')
+  @JsonKey(name: 'alamat')
   final String alamat;
   @override
   @JsonKey(name: 'image')
@@ -417,7 +417,7 @@ abstract class _AgunanEntity extends AgunanEntity {
   const factory _AgunanEntity(
       {@JsonKey(name: 'jenis') required final String jenis,
       @JsonKey(name: 'deskripsi_agunan') required final String deskripsi,
-      @JsonKey(name: 'alamat1') required final String alamat,
+      @JsonKey(name: 'alamat') required final String alamat,
       @JsonKey(name: 'image') required final String image,
       @JsonKey(name: 'latitude') required final String latitude,
       @JsonKey(name: 'longitude') required final String longitude,
@@ -426,7 +426,7 @@ abstract class _AgunanEntity extends AgunanEntity {
       @JsonKey(name: 'dati2') required final String kabupaten,
       @JsonKey(name: 'kec') required final String kecamatan,
       @JsonKey(name: 'kel') required final String kelurahan,
-      @JsonKey(name: 'nilai_taksasi') required final String nilaiTaksasi,
+      @JsonKey(name: 'nilai_taksasi') final String nilaiTaksasi,
       @JsonKey(name: 'id') final String id,
       @JsonKey(name: 'id_loan') final String idLoan}) = _$AgunanEntityImpl;
   const _AgunanEntity._() : super._();
@@ -441,7 +441,7 @@ abstract class _AgunanEntity extends AgunanEntity {
   @JsonKey(name: 'deskripsi_agunan')
   String get deskripsi;
   @override
-  @JsonKey(name: 'alamat1')
+  @JsonKey(name: 'alamat')
   String get alamat;
   @override
   @JsonKey(name: 'image')

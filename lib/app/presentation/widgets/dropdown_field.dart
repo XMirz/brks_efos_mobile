@@ -57,60 +57,76 @@ class OurDropDownField extends StatelessWidget {
           ),
           child: SizedBox(
             width: double.infinity,
-            child: Stack(
-              children: [
-                PopupMenuButton<String>(
-                  color: AppColor.backgroundPrimary,
-                  tooltip: label,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                    side: BorderSide(color: AppColor.highlightSecondary),
-                  ),
-                  position: PopupMenuPosition.under,
-                  // constraints: BoxConstraints(maxHeight: height ?? 56),
-                  onSelected: (selected) {
-                    final item = items
-                        .firstWhere((element) => element.value == selected);
-                    onChanged(item.value, item.label);
-                  },
-                  child: Container(
-                    alignment: Alignment.centerLeft,
-                    height: height ?? 48,
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        color: AppColor.highlight,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
+            child: InkWell(
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () {
+                if (items.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(l10n.dataXNotFound(label)),
+                      behavior: SnackBarBehavior.floating,
                     ),
-                    child: Text(
-                        value != null && value!.isNotEmpty
-                            ? value!
-                            : '${l10n.select} $label',
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimary)),
-                  ),
-                  itemBuilder: (context) => [
-                    ...items.map(
-                      (item) => PopupMenuItem<String>(
-                        value: item.value,
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                item.label,
-                                style: AppTextStyle.bodyMedium
-                                    .copyWith(color: AppColor.textPrimary),
+                  );
+                }
+              },
+              child: Stack(
+                children: [
+                  PopupMenuButton<String>(
+                    color: AppColor.backgroundPrimary,
+                    tooltip: label,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      side: BorderSide(color: AppColor.highlightSecondary),
+                    ),
+                    position: PopupMenuPosition.under,
+                    // constraints: BoxConstraints(maxHeight: height ?? 56),
+                    onSelected: (selected) {
+                      final item = items
+                          .firstWhere((element) => element.value == selected);
+                      onChanged(item.value, item.label);
+                    },
+                    child: Container(
+                      alignment: Alignment.centerLeft,
+                      height: height ?? 48,
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(
+                          color: AppColor.highlight,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                          value != null && value!.isNotEmpty
+                              ? value!
+                              : '${l10n.select} $label',
+                          style: AppTextStyle.bodyMedium
+                              .copyWith(color: AppColor.textPrimary)),
+                    ),
+                    itemBuilder: (context) => [
+                      ...items.map(
+                        (item) => PopupMenuItem<String>(
+                          value: item.value,
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  item.label,
+                                  style: AppTextStyle.bodyMedium
+                                      .copyWith(color: AppColor.textPrimary),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

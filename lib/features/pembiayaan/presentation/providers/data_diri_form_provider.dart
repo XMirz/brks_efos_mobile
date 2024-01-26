@@ -1,6 +1,7 @@
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/data_diri_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
@@ -184,3 +185,18 @@ final dataDiriFormProvider =
     StateNotifierProvider<DataDiriFormProvider, DataDiriFormState>(
   (ref) => DataDiriFormProvider(),
 );
+
+final nikController = Provider((ref) => TextEditingController(text: ''));
+final namaController = Provider((ref) => TextEditingController(text: ''));
+final alamatController = Provider((ref) => TextEditingController(text: ''));
+final tempatLahirController =
+    Provider((ref) => TextEditingController(text: ''));
+final tanggalLahirController =
+    Provider((ref) => TextEditingController(text: ''));
+final jumlahTanggunganController =
+    Provider((ref) => TextEditingController(text: ''));
+final kewajibanController = Provider((ref) => TextEditingController(text: ''));
+final biayaOperasionalController =
+    Provider((ref) => TextEditingController(text: ''));
+final biayaRumahTanggaController =
+    Provider((ref) => TextEditingController(text: ''));

@@ -1,18 +1,14 @@
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
-import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pekerjaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PembiayaanForm extends ConsumerWidget {
@@ -23,14 +19,14 @@ class PembiayaanForm extends ConsumerWidget {
     final formState = ref.watch(pembiayaanFormProvider);
     final initialParametersAsyncData = ref.read(fetchInitialParameterProvider);
 
-    void handleMarginUpdate() {
-      ref.read(marginController).text =
-          ref.read(pembiayaanFormProvider).marginPengajuan.value;
-      ref.read(totalMarginController).text =
-          toRupiahString(ref.read(pembiayaanFormProvider).totalMargin.value);
-      ref.read(angsuranPengajuanController).text = toRupiahString(
-          ref.read(pembiayaanFormProvider).angsuranPengajuan.value);
-    }
+    // void handleMarginUpdate() {
+    //   ref.read(marginController).text =
+    //       ref.read(pembiayaanFormProvider).marginPengajuan.value;
+    //   ref.read(totalMarginController).text =
+    //       toRupiahString(ref.read(pembiayaanFormProvider).totalMargin.value);
+    //   ref.read(angsuranPengajuanController).text = toRupiahString(
+    //       ref.read(pembiayaanFormProvider).angsuranPengajuan.value);
+    // }
 
     return initialParametersAsyncData.when(
       data: (data) => Builder(
@@ -153,18 +149,6 @@ class PembiayaanForm extends ConsumerWidget {
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),
-              OurTextField(
-                maxLength: 2,
-                keyboardType: TextInputType.number,
-                label: context.l10n.gracePeriod,
-                controller: ref.read(gracePeriodController),
-                hint: context.l10n.gracePeriod,
-                error: formState.gracePeriod.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setGracePeriod(value, value),
-              ),
-              spaceY(12),
               const FormHeader(title: "Aspek Pengajuan"),
               spaceY(12),
               OurTextField(
@@ -251,11 +235,11 @@ class PembiayaanForm extends ConsumerWidget {
                     ref
                         .read(pembiayaanFormProvider.notifier)
                         .setPlafonPengajuan(value, value);
-                    handleMarginUpdate();
+                    // handleMarginUpdate();
                   }),
               spaceY(4),
               OurTextField(
-                  maxLength: 2,
+                  maxLength: 3,
                   keyboardType: TextInputType.number,
                   label: context.l10n.tenor,
                   controller: ref.read(tenorController),
@@ -265,74 +249,74 @@ class PembiayaanForm extends ConsumerWidget {
                     ref
                         .read(pembiayaanFormProvider.notifier)
                         .setTenor(value, value);
-                    handleMarginUpdate();
+                    // handleMarginUpdate();
                   }),
               spaceY(4),
-              OurDropDownField(
-                items: buildDropDownItem(initialParameters.parKodeMargin),
-                label: context.l10n.kodeMargin,
-                hint: context.l10n.kodeMargin,
-                value: formState.kodeMargin.showValue,
-                onChanged: (value, label) {
-                  final percentage = initialParameters.parKodeMargin
-                      .firstWhere((element) => element.id == value)
-                      .value;
-                  var strPercentage = percentage.toString();
-                  if (percentage == null) {
-                    strPercentage = toNumericString(value);
-                  }
-                  ref
-                      .read(pembiayaanFormProvider.notifier)
-                      .setKodeMargin(value, label, percentage.toString());
-                  handleMarginUpdate();
-                },
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 5,
-                keyboardType: TextInputType.number,
-                label: context.l10n.basisPoint,
-                controller: ref.read(basisPointMarginController),
-                hint: context.l10n.basisPoint,
-                error: formState.basiPointMargin.errorMessage,
-                onChanged: (value) {
-                  ref
-                      .read(pembiayaanFormProvider.notifier)
-                      .setBasisPointMargin(value, value);
-                  handleMarginUpdate();
-                },
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 2,
-                readOnly: true,
-                label: context.l10n.margin,
-                controller: ref.read(marginController),
-                hint: context.l10n.margin,
-                error: formState.marginPengajuan.errorMessage,
-                onChanged: (value) {},
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 2,
-                readOnly: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.totalMargin,
-                controller: ref.read(totalMarginController),
-                hint: context.l10n.totalMargin,
-                error: formState.totalMargin.errorMessage,
-                onChanged: (value) {},
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 2,
-                readOnly: true,
-                label: context.l10n.angsuranPengajuan,
-                controller: ref.read(angsuranPengajuanController),
-                hint: context.l10n.angsuranPengajuan,
-                error: formState.angsuranPengajuan.errorMessage,
-                onChanged: (value) {},
-              ),
+              // OurDropDownField(
+              //   items: buildDropDownItem(initialParameters.parKodeMargin),
+              //   label: context.l10n.kodeMargin,
+              //   hint: context.l10n.kodeMargin,
+              //   value: formState.kodeMargin.showValue,
+              //   onChanged: (value, label) {
+              //     final percentage = initialParameters.parKodeMargin
+              //         .firstWhere((element) => element.id == value)
+              //         .value;
+              //     var strPercentage = percentage.toString();
+              //     if (percentage == null) {
+              //       strPercentage = toNumericString(value);
+              //     }
+              //     ref
+              //         .read(pembiayaanFormProvider.notifier)
+              //         .setKodeMargin(value, label, percentage.toString());
+              //     handleMarginUpdate();
+              //   },
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 5,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.basisPoint,
+              //   controller: ref.read(basisPointMarginController),
+              //   hint: context.l10n.basisPoint,
+              //   error: formState.basiPointMargin.errorMessage,
+              //   onChanged: (value) {
+              //     ref
+              //         .read(pembiayaanFormProvider.notifier)
+              //         .setBasisPointMargin(value, value);
+              //     handleMarginUpdate();
+              //   },
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 2,
+              //   readOnly: true,
+              //   label: context.l10n.margin,
+              //   controller: ref.read(marginController),
+              //   hint: context.l10n.margin,
+              //   error: formState.marginPengajuan.errorMessage,
+              //   onChanged: (value) {},
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 2,
+              //   readOnly: true,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.totalMargin,
+              //   controller: ref.read(totalMarginController),
+              //   hint: context.l10n.totalMargin,
+              //   error: formState.totalMargin.errorMessage,
+              //   onChanged: (value) {},
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 2,
+              //   readOnly: true,
+              //   label: context.l10n.angsuranPengajuan,
+              //   controller: ref.read(angsuranPengajuanController),
+              //   hint: context.l10n.angsuranPengajuan,
+              //   error: formState.angsuranPengajuan.errorMessage,
+              //   onChanged: (value) {},
+              // ),
               spaceY(12),
             ],
           );

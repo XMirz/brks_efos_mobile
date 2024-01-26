@@ -3,26 +3,13 @@ import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/date_field.dart';
-import 'package:efosm/app/presentation/widgets/primary_button.dart';
-import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
-import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
+import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-final TextEditingController _nik = TextEditingController(text: '');
-final TextEditingController _nama = TextEditingController(text: '');
-final TextEditingController _alamat = TextEditingController(text: '');
-final TextEditingController _tempatLahir = TextEditingController(text: '');
-final TextEditingController _tanggalLahir = TextEditingController(text: '');
-final TextEditingController _jumlahTanggungan = TextEditingController(text: '');
-final TextEditingController _kewajiban = TextEditingController(text: '');
-final TextEditingController _biayaOperasional = TextEditingController(text: '');
-final TextEditingController _biayaRumahTangga = TextEditingController(text: '');
 
 class DataDiriForm extends ConsumerWidget {
   const DataDiriForm({super.key});
@@ -52,7 +39,7 @@ class DataDiriForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 maxLength: 16,
                 label: context.l10n.nik,
-                controller: _nik,
+                controller: ref.read(nikController),
                 hint: context.l10n.nik,
                 error: formState.nik.errorMessage,
                 onChanged: (value) =>
@@ -62,7 +49,7 @@ class DataDiriForm extends ConsumerWidget {
               spaceY(4),
               OurTextField(
                 label: context.l10n.nama,
-                controller: _nama,
+                controller: ref.read(namaController),
                 hint: context.l10n.nama,
                 error: formState.nama.errorMessage,
                 onChanged: (value) =>
@@ -89,7 +76,7 @@ class DataDiriForm extends ConsumerWidget {
                     child: OurTextField(
                       label: context.l10n.tempatLahir,
                       hint: context.l10n.tempatLahir,
-                      controller: _tempatLahir,
+                      controller: ref.read(tempatLahirController),
                       error: formState.tempatLahir.errorMessage,
                       onChanged: (value) => ref
                           .read(dataDiriFormProvider.notifier)
@@ -100,7 +87,7 @@ class DataDiriForm extends ConsumerWidget {
                   Expanded(
                     flex: 4,
                     child: OurDateField(
-                      controller: _tanggalLahir,
+                      controller: ref.read(tanggalLahirController),
                       label: context.l10n.tanggalLahir,
                       hint: context.l10n.tanggalLahir,
                       error: formState.tanggalLahir.errorMessage,
@@ -114,7 +101,7 @@ class DataDiriForm extends ConsumerWidget {
               spaceY(4),
               OurTextField(
                 label: context.l10n.alamat,
-                controller: _alamat,
+                controller: ref.read(alamatController),
                 hint: context.l10n.alamat,
                 error: formState.alamat.errorMessage,
                 onChanged: (value) =>
@@ -140,7 +127,7 @@ class DataDiriForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 label: context.l10n.jumlahTanggungan,
                 hint: context.l10n.jumlahTanggungan,
-                controller: _jumlahTanggungan,
+                controller: ref.read(jumlahTanggunganController),
                 onChanged: (value) => ref
                     .read(dataDiriFormProvider.notifier)
                     .setJumlahTanggungan(value),
@@ -152,7 +139,7 @@ class DataDiriForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 label: context.l10n.kewajiban,
                 hint: context.l10n.kewajiban,
-                controller: _kewajiban,
+                controller: ref.read(kewajibanController),
                 onChanged: (value) =>
                     ref.read(dataDiriFormProvider.notifier).setKewajiban(value),
               ),
@@ -164,7 +151,7 @@ class DataDiriForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 label: context.l10n.biayaOperasional,
                 hint: context.l10n.biayaOperasional,
-                controller: _biayaOperasional,
+                controller: ref.read(biayaOperasionalController),
                 onChanged: (value) => ref
                     .read(dataDiriFormProvider.notifier)
                     .setBiayaOperasional(value),
@@ -177,7 +164,7 @@ class DataDiriForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 label: context.l10n.biayaRumahTangga,
                 hint: context.l10n.biayaRumahTangga,
-                controller: _biayaRumahTangga,
+                controller: ref.read(biayaRumahTanggaController),
                 onChanged: (value) => ref
                     .read(dataDiriFormProvider.notifier)
                     .setBiayaRumahTangga(value),

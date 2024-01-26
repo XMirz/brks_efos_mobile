@@ -1,5 +1,5 @@
 {
-    "@@locale": "en",
+    "@@locale": "id",
     "appTitle": "EFOS Mobile",
     "@appTitle": {
         "description": "Aplikasi Pengajuan EFOS Mobile"
@@ -34,14 +34,6 @@
     },
     "save": "Simpan",
     "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
-    "dataXNotFound": "Data {str} tidak ditemukan!",
-    "@dataXNotFound": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
     "saveAgunanSuccess": "Agunan ditambahkan.",
     "edit": "Ubah",
     "name": "Nama",
@@ -69,7 +61,9 @@
     "dataDiri": "Data diri",
     "nik": "Nomor KTP/NIK",
     "nama": "Nama",
-    "alamat": "Alamat (domisili)",
+    "alamatDomisili": "Alamat (domisili)",
+    "alamat": "Alamat",
+    "aspekPengajuan": "Aspek pengajuan",
     "jenisKelamin": "Jenis kelamin",
     "tempatLahir": "Tempat lahir",
     "tanggalLahir": "Tanggal lahir",

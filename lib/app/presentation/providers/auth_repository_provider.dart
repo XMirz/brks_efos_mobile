@@ -9,13 +9,20 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'auth_repository_provider.g.dart';
 
 @riverpod
-AuthRepositoryInterface authRepository(AuthRepositoryRef ref) =>
-    AuthRepository();
+AuthRepository authRepository(AuthRepositoryRef ref) => AuthRepository();
 
 @Riverpod()
 Future<Either<Failure, UserEntity>> createAuthentication(
   CreateAuthenticationRef ref,
-  UserLoginDto loginDto,
+  UserAuthenticationDto loginDto,
 ) {
   return ref.watch(authRepositoryProvider).createAuthentication(loginDto);
+}
+
+@Riverpod()
+Future<Either<Failure, bool>> deleteAuthentication(
+  DeleteAuthenticationRef ref,
+  UserAuthenticationDto loginDto,
+) {
+  return ref.watch(authRepositoryProvider).deleteAuthentication(loginDto);
 }

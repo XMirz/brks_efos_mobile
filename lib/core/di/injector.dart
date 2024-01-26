@@ -5,7 +5,6 @@ class Injector {
   static void registerInitializationDependency() {
     GetIt.I.registerSingleton<DioClient>(
       DioClient(),
-      // instanceName: '_dio',
     );
   }
 
@@ -13,7 +12,13 @@ class Injector {
     GetIt.I.unregister<DioClient>();
     GetIt.I.registerFactory<DioClient>(
       () => DioClient.authenticated(bearerToken),
-      // instanceName: 'dio',
+    );
+  }
+
+  static void unregisterAuthenticatedClient(String bearerToken) {
+    GetIt.I.unregister<DioClient>();
+    GetIt.I.registerSingleton<DioClient>(
+      DioClient(),
     );
   }
 }

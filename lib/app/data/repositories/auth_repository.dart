@@ -9,18 +9,18 @@ import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:get_it/get_it.dart';
 
-class AuthRepository implements AuthRepositoryInterface {
+class AuthRepository {
   final DioClient _dioClient = GetIt.I.get();
 
-  @override
   Future<Either<Failure, UserEntity>> createAuthentication(
-    UserLoginDto user,
+    UserAuthenticationDto user,
   ) async {
     // Todo Handle error by code
     final response = await _dioClient.post<Map<String, dynamic>>(
       '/mobile/efos/login',
       data: user.toJson(),
     );
+    print(response);
     return response.fold(
       left,
       (r) {
@@ -38,11 +38,27 @@ class AuthRepository implements AuthRepositoryInterface {
     );
   }
 
-  @override
-  Future<Either<Failure, dynamic>> logout() {
-    return Future.delayed(Duration.zero, () {
-      return left(
-          const Failure.authentication(message: 'message', code: 'code'));
-    });
+  // @override
+  Future<Either<Failure, bool>> deleteAuthentication(
+      UserAuthenticationDto user) async {
+    final response = await _dioClient.post<Map<String, dynamic>>(
+      '/mobile/efos/logout',
+      data: user.toJson(),
+    );
+    return response.fold(
+      left,
+      (r) {
+        try {
+          return right(true);
+        } catch (e) {
+          return left(
+            Failure.unprocessableEntity(
+              message: l10n.somethingWrong,
+              code: '05',
+            ),
+          );
+        }
+      },
+    );
   }
 }

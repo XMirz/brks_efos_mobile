@@ -6,12 +6,11 @@ part of 'auth_repository_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authRepositoryHash() => r'53cc338f6241f579159d6ba84d2d550111f3e24d';
+String _$authRepositoryHash() => r'827d48289fca9ff7300a551270d89129c3b7693f';
 
 /// See also [authRepository].
 @ProviderFor(authRepository)
-final authRepositoryProvider =
-    AutoDisposeProvider<AuthRepositoryInterface>.internal(
+final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
   authRepository,
   name: r'authRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,9 +20,9 @@ final authRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepositoryInterface>;
+typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
 String _$createAuthenticationHash() =>
-    r'3668113b31dc0ad1a416e56f981c75b6624a9249';
+    r'2833a25d45a3390db951d5ea09205ea9e753a403';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -58,7 +57,7 @@ class CreateAuthenticationFamily
 
   /// See also [createAuthentication].
   CreateAuthenticationProvider call(
-    UserLoginDto loginDto,
+    UserAuthenticationDto loginDto,
   ) {
     return CreateAuthenticationProvider(
       loginDto,
@@ -94,7 +93,7 @@ class CreateAuthenticationProvider
     extends AutoDisposeFutureProvider<Either<Failure, UserEntity>> {
   /// See also [createAuthentication].
   CreateAuthenticationProvider(
-    UserLoginDto loginDto,
+    UserAuthenticationDto loginDto,
   ) : this._internal(
           (ref) => createAuthentication(
             ref as CreateAuthenticationRef,
@@ -122,7 +121,7 @@ class CreateAuthenticationProvider
     required this.loginDto,
   }) : super.internal();
 
-  final UserLoginDto loginDto;
+  final UserAuthenticationDto loginDto;
 
   @override
   Override overrideWith(
@@ -167,7 +166,7 @@ class CreateAuthenticationProvider
 mixin CreateAuthenticationRef
     on AutoDisposeFutureProviderRef<Either<Failure, UserEntity>> {
   /// The parameter `loginDto` of this provider.
-  UserLoginDto get loginDto;
+  UserAuthenticationDto get loginDto;
 }
 
 class _CreateAuthenticationProviderElement
@@ -176,8 +175,143 @@ class _CreateAuthenticationProviderElement
   _CreateAuthenticationProviderElement(super.provider);
 
   @override
-  UserLoginDto get loginDto =>
+  UserAuthenticationDto get loginDto =>
       (origin as CreateAuthenticationProvider).loginDto;
+}
+
+String _$deleteAuthenticationHash() =>
+    r'b83829e6eefca709131b90bd5039b7603da90d6c';
+
+/// See also [deleteAuthentication].
+@ProviderFor(deleteAuthentication)
+const deleteAuthenticationProvider = DeleteAuthenticationFamily();
+
+/// See also [deleteAuthentication].
+class DeleteAuthenticationFamily
+    extends Family<AsyncValue<Either<Failure, bool>>> {
+  /// See also [deleteAuthentication].
+  const DeleteAuthenticationFamily();
+
+  /// See also [deleteAuthentication].
+  DeleteAuthenticationProvider call(
+    UserAuthenticationDto loginDto,
+  ) {
+    return DeleteAuthenticationProvider(
+      loginDto,
+    );
+  }
+
+  @override
+  DeleteAuthenticationProvider getProviderOverride(
+    covariant DeleteAuthenticationProvider provider,
+  ) {
+    return call(
+      provider.loginDto,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'deleteAuthenticationProvider';
+}
+
+/// See also [deleteAuthentication].
+class DeleteAuthenticationProvider
+    extends AutoDisposeFutureProvider<Either<Failure, bool>> {
+  /// See also [deleteAuthentication].
+  DeleteAuthenticationProvider(
+    UserAuthenticationDto loginDto,
+  ) : this._internal(
+          (ref) => deleteAuthentication(
+            ref as DeleteAuthenticationRef,
+            loginDto,
+          ),
+          from: deleteAuthenticationProvider,
+          name: r'deleteAuthenticationProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$deleteAuthenticationHash,
+          dependencies: DeleteAuthenticationFamily._dependencies,
+          allTransitiveDependencies:
+              DeleteAuthenticationFamily._allTransitiveDependencies,
+          loginDto: loginDto,
+        );
+
+  DeleteAuthenticationProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.loginDto,
+  }) : super.internal();
+
+  final UserAuthenticationDto loginDto;
+
+  @override
+  Override overrideWith(
+    FutureOr<Either<Failure, bool>> Function(DeleteAuthenticationRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: DeleteAuthenticationProvider._internal(
+        (ref) => create(ref as DeleteAuthenticationRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        loginDto: loginDto,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Either<Failure, bool>> createElement() {
+    return _DeleteAuthenticationProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is DeleteAuthenticationProvider && other.loginDto == loginDto;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, loginDto.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin DeleteAuthenticationRef
+    on AutoDisposeFutureProviderRef<Either<Failure, bool>> {
+  /// The parameter `loginDto` of this provider.
+  UserAuthenticationDto get loginDto;
+}
+
+class _DeleteAuthenticationProviderElement
+    extends AutoDisposeFutureProviderElement<Either<Failure, bool>>
+    with DeleteAuthenticationRef {
+  _DeleteAuthenticationProviderElement(super.provider);
+
+  @override
+  UserAuthenticationDto get loginDto =>
+      (origin as DeleteAuthenticationProvider).loginDto;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

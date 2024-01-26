@@ -126,16 +126,22 @@ final pasanganFormProvider =
   (ref) => PasanganFormProvider(),
 );
 
-final listPasanganProvider =
-    StateNotifierProvider<ListPasanganProvider, List<PasanganFormState>>(
-  (ref) => ListPasanganProvider(),
-);
+// final listPasanganProvider =
+//     StateNotifierProvider<ListPasanganProvider, List<PasanganFormState>>(
+//   (ref) => ListPasanganProvider(),
+// );
 
 final pasanganIndexProvider = StateProvider((ref) => 0);
 
-final nikController = Provider((ref) => TextEditingController(text: ''));
-final namaController = Provider((ref) => TextEditingController(text: ''));
-final gajiAmprahController = Provider((ref) => TextEditingController(text: ''));
-final tunjanganController = Provider((ref) => TextEditingController(text: ''));
-final potonganController = Provider((ref) => TextEditingController(text: ''));
-final gajiBersihController = Provider((ref) => TextEditingController(text: ''));
+final nikPasanganController =
+    Provider((ref) => TextEditingController(text: ''));
+final namaPasanganController =
+    Provider((ref) => TextEditingController(text: ''));
+final gajiAmprahPasanganController =
+    Provider((ref) => TextEditingController(text: ''));
+final tunjanganPasanganController =
+    Provider((ref) => TextEditingController(text: ''));
+final potonganPasanganController =
+    Provider((ref) => TextEditingController(text: ''));
+final gajiBersihPasanganController =
+    Provider((ref) => TextEditingController(text: ''));

@@ -6,13 +6,15 @@ part of 'user_login_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserLoginDtoImpl _$$UserLoginDtoImplFromJson(Map<String, dynamic> json) =>
-    _$UserLoginDtoImpl(
+_$UserAuthenticationDtoImpl _$$UserAuthenticationDtoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UserAuthenticationDtoImpl(
       username: json['username'] as String,
-      password: json['password'] as String,
+      password: json['password'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$UserLoginDtoImplToJson(_$UserLoginDtoImpl instance) =>
+Map<String, dynamic> _$$UserAuthenticationDtoImplToJson(
+        _$UserAuthenticationDtoImpl instance) =>
     <String, dynamic>{
       'username': instance.username,
       'password': instance.password,

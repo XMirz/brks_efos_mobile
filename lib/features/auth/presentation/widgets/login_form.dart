@@ -47,7 +47,7 @@ class LoginForm extends ConsumerWidget {
           },
         ),
       );
-      final user = UserLoginDto(
+      final user = UserAuthenticationDto(
         username: formState.form.username.value,
         password: formState.form.password.value,
       );
@@ -55,7 +55,7 @@ class LoginForm extends ConsumerWidget {
           await ref.read(createAuthenticationProvider(user).future);
       if (context.mounted) context.pop('dialog');
       userResult.fold((l) {
-        showDialog(
+        showDialog<void>(
           context: context,
           builder: (context) {
             return OurAlertDialog(
@@ -71,11 +71,15 @@ class LoginForm extends ConsumerWidget {
           },
         );
       }, (r) {
+        Injector.registerAuthenticatedClient(r.token);
         ref.read(authenticatedUserProvider.notifier).state =
             UserState(token: r.token, user: r);
-        // Injector.registerAuthenticatedClient(AppString.token); // TODO REMOVE
-        Injector.registerAuthenticatedClient(r.token);
-        context.pushReplacementNamed(AppRoutes.homePage);
+        ref
+          ..invalidate(loginFormProvider)
+          ..invalidate(usernameControllerProvider)
+          ..invalidate(passwordControllerProvider);
+
+        context.go(AppRoutes.homePage);
       });
     }
 

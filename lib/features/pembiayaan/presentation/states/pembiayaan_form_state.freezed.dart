@@ -17,20 +17,20 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$PembiayaanFormState {
   Field get idPlan => throw _privateConstructorUsedError;
-  Field get tujuanPembiayaan => throw _privateConstructorUsedError;
-  Field get gracePeriod => throw _privateConstructorUsedError;
+  Field get tujuanPembiayaan =>
+      throw _privateConstructorUsedError; // required Field gracePeriod,
   Field get barang => throw _privateConstructorUsedError;
   Field get hargaPerolehan => throw _privateConstructorUsedError;
   Field get pajak => throw _privateConstructorUsedError;
   Field get diskon => throw _privateConstructorUsedError;
   Field get uangMuka => throw _privateConstructorUsedError;
   Field get plafonPengajuan => throw _privateConstructorUsedError;
-  Field get tenorPengajuan => throw _privateConstructorUsedError;
-  DropDownField get kodeMargin => throw _privateConstructorUsedError;
-  Field get basiPointMargin => throw _privateConstructorUsedError;
-  Field get marginPengajuan => throw _privateConstructorUsedError;
-  Field get totalMargin => throw _privateConstructorUsedError;
-  Field get angsuranPengajuan => throw _privateConstructorUsedError;
+  Field get tenorPengajuan =>
+      throw _privateConstructorUsedError; // required DropDownField kodeMargin,
+// required Field basiPointMargin,
+// required Field marginPengajuan,
+// required Field totalMargin,
+// required Field angsuranPengajuan,
   Field get idKategoriProduk => throw _privateConstructorUsedError;
   Field get idJenisPengajuan => throw _privateConstructorUsedError;
   Field get idProduk => throw _privateConstructorUsedError;
@@ -50,7 +50,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
   $Res call(
       {Field idPlan,
       Field tujuanPembiayaan,
-      Field gracePeriod,
       Field barang,
       Field hargaPerolehan,
       Field pajak,
@@ -58,11 +57,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
       Field uangMuka,
       Field plafonPengajuan,
       Field tenorPengajuan,
-      DropDownField kodeMargin,
-      Field basiPointMargin,
-      Field marginPengajuan,
-      Field totalMargin,
-      Field angsuranPengajuan,
       Field idKategoriProduk,
       Field idJenisPengajuan,
       Field idProduk,
@@ -70,7 +64,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
 
   $FieldCopyWith<$Res> get idPlan;
   $FieldCopyWith<$Res> get tujuanPembiayaan;
-  $FieldCopyWith<$Res> get gracePeriod;
   $FieldCopyWith<$Res> get barang;
   $FieldCopyWith<$Res> get hargaPerolehan;
   $FieldCopyWith<$Res> get pajak;
@@ -78,11 +71,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
   $FieldCopyWith<$Res> get uangMuka;
   $FieldCopyWith<$Res> get plafonPengajuan;
   $FieldCopyWith<$Res> get tenorPengajuan;
-  $DropDownFieldCopyWith<$Res> get kodeMargin;
-  $FieldCopyWith<$Res> get basiPointMargin;
-  $FieldCopyWith<$Res> get marginPengajuan;
-  $FieldCopyWith<$Res> get totalMargin;
-  $FieldCopyWith<$Res> get angsuranPengajuan;
   $FieldCopyWith<$Res> get idKategoriProduk;
   $FieldCopyWith<$Res> get idJenisPengajuan;
   $FieldCopyWith<$Res> get idProduk;
@@ -104,7 +92,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
   $Res call({
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? gracePeriod = null,
     Object? barang = null,
     Object? hargaPerolehan = null,
     Object? pajak = null,
@@ -112,11 +99,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
     Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
-    Object? kodeMargin = null,
-    Object? basiPointMargin = null,
-    Object? marginPengajuan = null,
-    Object? totalMargin = null,
-    Object? angsuranPengajuan = null,
     Object? idKategoriProduk = null,
     Object? idJenisPengajuan = null,
     Object? idProduk = null,
@@ -130,10 +112,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      gracePeriod: null == gracePeriod
-          ? _value.gracePeriod
-          : gracePeriod // ignore: cast_nullable_to_non_nullable
               as Field,
       barang: null == barang
           ? _value.barang
@@ -162,26 +140,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
       tenorPengajuan: null == tenorPengajuan
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      kodeMargin: null == kodeMargin
-          ? _value.kodeMargin
-          : kodeMargin // ignore: cast_nullable_to_non_nullable
-              as DropDownField,
-      basiPointMargin: null == basiPointMargin
-          ? _value.basiPointMargin
-          : basiPointMargin // ignore: cast_nullable_to_non_nullable
-              as Field,
-      marginPengajuan: null == marginPengajuan
-          ? _value.marginPengajuan
-          : marginPengajuan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      totalMargin: null == totalMargin
-          ? _value.totalMargin
-          : totalMargin // ignore: cast_nullable_to_non_nullable
-              as Field,
-      angsuranPengajuan: null == angsuranPengajuan
-          ? _value.angsuranPengajuan
-          : angsuranPengajuan // ignore: cast_nullable_to_non_nullable
               as Field,
       idKategoriProduk: null == idKategoriProduk
           ? _value.idKategoriProduk
@@ -215,14 +173,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
   $FieldCopyWith<$Res> get tujuanPembiayaan {
     return $FieldCopyWith<$Res>(_value.tujuanPembiayaan, (value) {
       return _then(_value.copyWith(tujuanPembiayaan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get gracePeriod {
-    return $FieldCopyWith<$Res>(_value.gracePeriod, (value) {
-      return _then(_value.copyWith(gracePeriod: value) as $Val);
     });
   }
 
@@ -284,46 +234,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
 
   @override
   @pragma('vm:prefer-inline')
-  $DropDownFieldCopyWith<$Res> get kodeMargin {
-    return $DropDownFieldCopyWith<$Res>(_value.kodeMargin, (value) {
-      return _then(_value.copyWith(kodeMargin: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get basiPointMargin {
-    return $FieldCopyWith<$Res>(_value.basiPointMargin, (value) {
-      return _then(_value.copyWith(basiPointMargin: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get marginPengajuan {
-    return $FieldCopyWith<$Res>(_value.marginPengajuan, (value) {
-      return _then(_value.copyWith(marginPengajuan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get totalMargin {
-    return $FieldCopyWith<$Res>(_value.totalMargin, (value) {
-      return _then(_value.copyWith(totalMargin: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get angsuranPengajuan {
-    return $FieldCopyWith<$Res>(_value.angsuranPengajuan, (value) {
-      return _then(_value.copyWith(angsuranPengajuan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $FieldCopyWith<$Res> get idKategoriProduk {
     return $FieldCopyWith<$Res>(_value.idKategoriProduk, (value) {
       return _then(_value.copyWith(idKategoriProduk: value) as $Val);
@@ -366,7 +276,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
   $Res call(
       {Field idPlan,
       Field tujuanPembiayaan,
-      Field gracePeriod,
       Field barang,
       Field hargaPerolehan,
       Field pajak,
@@ -374,11 +283,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
       Field uangMuka,
       Field plafonPengajuan,
       Field tenorPengajuan,
-      DropDownField kodeMargin,
-      Field basiPointMargin,
-      Field marginPengajuan,
-      Field totalMargin,
-      Field angsuranPengajuan,
       Field idKategoriProduk,
       Field idJenisPengajuan,
       Field idProduk,
@@ -388,8 +292,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
   $FieldCopyWith<$Res> get idPlan;
   @override
   $FieldCopyWith<$Res> get tujuanPembiayaan;
-  @override
-  $FieldCopyWith<$Res> get gracePeriod;
   @override
   $FieldCopyWith<$Res> get barang;
   @override
@@ -404,16 +306,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
   $FieldCopyWith<$Res> get plafonPengajuan;
   @override
   $FieldCopyWith<$Res> get tenorPengajuan;
-  @override
-  $DropDownFieldCopyWith<$Res> get kodeMargin;
-  @override
-  $FieldCopyWith<$Res> get basiPointMargin;
-  @override
-  $FieldCopyWith<$Res> get marginPengajuan;
-  @override
-  $FieldCopyWith<$Res> get totalMargin;
-  @override
-  $FieldCopyWith<$Res> get angsuranPengajuan;
   @override
   $FieldCopyWith<$Res> get idKategoriProduk;
   @override
@@ -437,7 +329,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
   $Res call({
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? gracePeriod = null,
     Object? barang = null,
     Object? hargaPerolehan = null,
     Object? pajak = null,
@@ -445,11 +336,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
     Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
-    Object? kodeMargin = null,
-    Object? basiPointMargin = null,
-    Object? marginPengajuan = null,
-    Object? totalMargin = null,
-    Object? angsuranPengajuan = null,
     Object? idKategoriProduk = null,
     Object? idJenisPengajuan = null,
     Object? idProduk = null,
@@ -463,10 +349,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      gracePeriod: null == gracePeriod
-          ? _value.gracePeriod
-          : gracePeriod // ignore: cast_nullable_to_non_nullable
               as Field,
       barang: null == barang
           ? _value.barang
@@ -496,26 +378,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
               as Field,
-      kodeMargin: null == kodeMargin
-          ? _value.kodeMargin
-          : kodeMargin // ignore: cast_nullable_to_non_nullable
-              as DropDownField,
-      basiPointMargin: null == basiPointMargin
-          ? _value.basiPointMargin
-          : basiPointMargin // ignore: cast_nullable_to_non_nullable
-              as Field,
-      marginPengajuan: null == marginPengajuan
-          ? _value.marginPengajuan
-          : marginPengajuan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      totalMargin: null == totalMargin
-          ? _value.totalMargin
-          : totalMargin // ignore: cast_nullable_to_non_nullable
-              as Field,
-      angsuranPengajuan: null == angsuranPengajuan
-          ? _value.angsuranPengajuan
-          : angsuranPengajuan // ignore: cast_nullable_to_non_nullable
-              as Field,
       idKategoriProduk: null == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
@@ -542,7 +404,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   const _$PembiayaanFormStateImpl(
       {required this.idPlan,
       required this.tujuanPembiayaan,
-      required this.gracePeriod,
       required this.barang,
       required this.hargaPerolehan,
       required this.pajak,
@@ -550,11 +411,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
       required this.uangMuka,
       required this.plafonPengajuan,
       required this.tenorPengajuan,
-      required this.kodeMargin,
-      required this.basiPointMargin,
-      required this.marginPengajuan,
-      required this.totalMargin,
-      required this.angsuranPengajuan,
       required this.idKategoriProduk,
       required this.idJenisPengajuan,
       required this.idProduk,
@@ -565,8 +421,7 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   final Field idPlan;
   @override
   final Field tujuanPembiayaan;
-  @override
-  final Field gracePeriod;
+// required Field gracePeriod,
   @override
   final Field barang;
   @override
@@ -581,16 +436,11 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   final Field plafonPengajuan;
   @override
   final Field tenorPengajuan;
-  @override
-  final DropDownField kodeMargin;
-  @override
-  final Field basiPointMargin;
-  @override
-  final Field marginPengajuan;
-  @override
-  final Field totalMargin;
-  @override
-  final Field angsuranPengajuan;
+// required DropDownField kodeMargin,
+// required Field basiPointMargin,
+// required Field marginPengajuan,
+// required Field totalMargin,
+// required Field angsuranPengajuan,
   @override
   final Field idKategoriProduk;
   @override
@@ -602,7 +452,7 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
 
   @override
   String toString() {
-    return 'PembiayaanFormState(idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, kodeMargin: $kodeMargin, basiPointMargin: $basiPointMargin, marginPengajuan: $marginPengajuan, totalMargin: $totalMargin, angsuranPengajuan: $angsuranPengajuan, idKategoriProduk: $idKategoriProduk, idJenisPengajuan: $idJenisPengajuan, idProduk: $idProduk, idSubProduk: $idSubProduk)';
+    return 'PembiayaanFormState(idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, idKategoriProduk: $idKategoriProduk, idJenisPengajuan: $idJenisPengajuan, idProduk: $idProduk, idSubProduk: $idSubProduk)';
   }
 
   @override
@@ -613,8 +463,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
             (identical(other.idPlan, idPlan) || other.idPlan == idPlan) &&
             (identical(other.tujuanPembiayaan, tujuanPembiayaan) ||
                 other.tujuanPembiayaan == tujuanPembiayaan) &&
-            (identical(other.gracePeriod, gracePeriod) ||
-                other.gracePeriod == gracePeriod) &&
             (identical(other.barang, barang) || other.barang == barang) &&
             (identical(other.hargaPerolehan, hargaPerolehan) ||
                 other.hargaPerolehan == hargaPerolehan) &&
@@ -626,16 +474,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
                 other.plafonPengajuan == plafonPengajuan) &&
             (identical(other.tenorPengajuan, tenorPengajuan) ||
                 other.tenorPengajuan == tenorPengajuan) &&
-            (identical(other.kodeMargin, kodeMargin) ||
-                other.kodeMargin == kodeMargin) &&
-            (identical(other.basiPointMargin, basiPointMargin) ||
-                other.basiPointMargin == basiPointMargin) &&
-            (identical(other.marginPengajuan, marginPengajuan) ||
-                other.marginPengajuan == marginPengajuan) &&
-            (identical(other.totalMargin, totalMargin) ||
-                other.totalMargin == totalMargin) &&
-            (identical(other.angsuranPengajuan, angsuranPengajuan) ||
-                other.angsuranPengajuan == angsuranPengajuan) &&
             (identical(other.idKategoriProduk, idKategoriProduk) ||
                 other.idKategoriProduk == idKategoriProduk) &&
             (identical(other.idJenisPengajuan, idJenisPengajuan) ||
@@ -647,28 +485,21 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        idPlan,
-        tujuanPembiayaan,
-        gracePeriod,
-        barang,
-        hargaPerolehan,
-        pajak,
-        diskon,
-        uangMuka,
-        plafonPengajuan,
-        tenorPengajuan,
-        kodeMargin,
-        basiPointMargin,
-        marginPengajuan,
-        totalMargin,
-        angsuranPengajuan,
-        idKategoriProduk,
-        idJenisPengajuan,
-        idProduk,
-        idSubProduk
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      idPlan,
+      tujuanPembiayaan,
+      barang,
+      hargaPerolehan,
+      pajak,
+      diskon,
+      uangMuka,
+      plafonPengajuan,
+      tenorPengajuan,
+      idKategoriProduk,
+      idJenisPengajuan,
+      idProduk,
+      idSubProduk);
 
   @JsonKey(ignore: true)
   @override
@@ -682,7 +513,6 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
   const factory _PembiayaanFormState(
       {required final Field idPlan,
       required final Field tujuanPembiayaan,
-      required final Field gracePeriod,
       required final Field barang,
       required final Field hargaPerolehan,
       required final Field pajak,
@@ -690,11 +520,6 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
       required final Field uangMuka,
       required final Field plafonPengajuan,
       required final Field tenorPengajuan,
-      required final DropDownField kodeMargin,
-      required final Field basiPointMargin,
-      required final Field marginPengajuan,
-      required final Field totalMargin,
-      required final Field angsuranPengajuan,
       required final Field idKategoriProduk,
       required final Field idJenisPengajuan,
       required final Field idProduk,
@@ -705,9 +530,7 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
   Field get idPlan;
   @override
   Field get tujuanPembiayaan;
-  @override
-  Field get gracePeriod;
-  @override
+  @override // required Field gracePeriod,
   Field get barang;
   @override
   Field get hargaPerolehan;
@@ -721,17 +544,11 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
   Field get plafonPengajuan;
   @override
   Field get tenorPengajuan;
-  @override
-  DropDownField get kodeMargin;
-  @override
-  Field get basiPointMargin;
-  @override
-  Field get marginPengajuan;
-  @override
-  Field get totalMargin;
-  @override
-  Field get angsuranPengajuan;
-  @override
+  @override // required DropDownField kodeMargin,
+// required Field basiPointMargin,
+// required Field marginPengajuan,
+// required Field totalMargin,
+// required Field angsuranPengajuan,
   Field get idKategoriProduk;
   @override
   Field get idJenisPengajuan;

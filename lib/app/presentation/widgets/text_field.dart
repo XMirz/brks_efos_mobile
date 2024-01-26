@@ -55,33 +55,36 @@ class OurTextField extends StatelessWidget {
           style: labelStyle ?? AppTextStyle.subtitleLarge,
         ),
         spaceY(8),
-        TextFormField(
-          // minLines: minLines,
-          // maxLines: minLines,
-          inputFormatters: [
-            if (currencyFormat ?? false)
-              CurrencyInputFormatter(
-                leadingSymbol: 'Rp ',
-                mantissaLength: 0,
-              ),
-          ],
-          keyboardType: keyboardType ?? TextInputType.text,
-          maxLength: maxLength,
-          readOnly: readOnly ?? false,
-          onChanged: (value) {
-            if (currencyFormat ?? false) value = toNumericString(value);
-            onChanged(value);
-          },
-          controller: controller ?? TextEditingController(),
-          obscureText: obsecureText ?? false,
-          style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
-          cursorColor: cursorColor ?? AppColor.textPrimary,
-          cursorWidth: 1,
-          decoration: buildOurInputDecoration(
-            hint: hint,
-            height: height,
-            hintStyle: hintStyle,
-            readOnly: readOnly,
+        Unfocuser(
+          child: TextFormField(
+            // minLines: minLines,
+            // maxLines: minLines,
+            inputFormatters: [
+              if (currencyFormat ?? false)
+                CurrencyInputFormatter(
+                  leadingSymbol: 'Rp ',
+                  mantissaLength: 0,
+                ),
+            ],
+            keyboardType: keyboardType ?? TextInputType.text,
+            maxLength: maxLength,
+            readOnly: readOnly ?? false,
+            onChanged: (value) {
+              if (currencyFormat ?? false) value = toNumericString(value);
+              onChanged(value);
+            },
+            controller: controller ?? TextEditingController(),
+            obscureText: obsecureText ?? false,
+            style:
+                AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
+            cursorColor: cursorColor ?? AppColor.textPrimary,
+            cursorWidth: 1,
+            decoration: buildOurInputDecoration(
+              hint: hint,
+              height: height,
+              hintStyle: hintStyle,
+              readOnly: readOnly,
+            ),
           ),
         ),
         if (error != null && error != '')

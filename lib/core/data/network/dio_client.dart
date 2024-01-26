@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 class DioClient {
   DioClient() {
     final baseOption = BaseOptions(
-      baseUrl: AppString.baseUrl,
+      baseUrl: AppString.baseUrlLogin,
       contentType: Headers.jsonContentType,
       connectTimeout: const Duration(seconds: 60),
       receiveTimeout: const Duration(seconds: 60),
@@ -55,7 +55,6 @@ class DioClient {
         queryParameters: queryParameters,
         options: requestOptions,
       );
-      // Callback jika respon bukan 00
       if (response.data!['kode'] != '00') {
         return left(
           Failure(
@@ -141,6 +140,59 @@ class DioClient {
       return left(Failure.network(message: l10n.failureNetwork, code: '04'));
       // }
       // rethrow;
+    } catch (e) {
+      debugPrint(e.toString());
+      return left(
+        Failure.unknown(
+          message: l10n.somethingWrong,
+          code: '05',
+        ),
+      );
+    }
+  }
+
+  Future<Either<Failure, T>> rawPost<T>(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    RequestType? requestType,
+  }) async {
+    final requestOptions = options ?? Options();
+    requestOptions.headers = requestOptions.headers ?? {};
+    try {
+      final response = await dio.post<Map<String, dynamic>>(
+        path,
+        data: data,
+        queryParameters: queryParameters,
+        options: requestOptions,
+      );
+      if (response.data!['kode'] != '00') {
+        return left(
+          Failure(
+            response.data!['pesan'] as String,
+            response.data!['kode'] as String,
+          ),
+        );
+      }
+      return right(response.data as T);
+    } on DioException catch (e) {
+      debugPrint(e.toString());
+      if (e.response?.statusCode == 401) {
+        return left(
+          Failure.authentication(message: l10n.failureAuth, code: '04'),
+        );
+      }
+      if (e.type == DioExceptionType.receiveTimeout ||
+          e.type == DioExceptionType.badCertificate ||
+          e.type == DioExceptionType.badResponse) {
+        return left(Failure.network(message: l10n.failureServer, code: '04'));
+      }
+      // if (e.type == DioExceptionType.sendTimeout ||
+      // e.type == DioExceptionType.connectionError ||
+      // e.type == DioExceptionType.unknown) {
+      return left(Failure.network(message: l10n.failureNetwork, code: '04'));
+      // }
     } catch (e) {
       debugPrint(e.toString());
       return left(

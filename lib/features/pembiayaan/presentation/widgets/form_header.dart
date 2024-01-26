@@ -8,6 +8,7 @@ class FormHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: Text(
         title,
         style: AppTextStyle.titleMedium,
