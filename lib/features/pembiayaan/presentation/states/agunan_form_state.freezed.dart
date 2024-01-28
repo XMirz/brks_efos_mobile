@@ -16,8 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AgunanFormState {
+  Field get isJaminan => throw _privateConstructorUsedError;
   Field get jenis => throw _privateConstructorUsedError;
   Field get deskripsi => throw _privateConstructorUsedError;
+  Field get deskripsi2 => throw _privateConstructorUsedError;
+  Field get deskripsi3 => throw _privateConstructorUsedError;
+  Field get deskripsi4 => throw _privateConstructorUsedError;
+  Field get deskripsi5 => throw _privateConstructorUsedError;
   Field get alamat => throw _privateConstructorUsedError;
   FileField get image => throw _privateConstructorUsedError;
   Field get latitude => throw _privateConstructorUsedError;
@@ -25,8 +30,8 @@ mixin _$AgunanFormState {
   Field get provinsi => throw _privateConstructorUsedError;
   Field get kabupaten => throw _privateConstructorUsedError;
   Field get kecamatan => throw _privateConstructorUsedError;
-  Field get kelurahan => throw _privateConstructorUsedError;
-  Field get nilaiTaksasi => throw _privateConstructorUsedError;
+  Field get kelurahan =>
+      throw _privateConstructorUsedError; //  Field nilaiTaksasi,
   Field get captureLoc => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,8 +46,13 @@ abstract class $AgunanFormStateCopyWith<$Res> {
       _$AgunanFormStateCopyWithImpl<$Res, AgunanFormState>;
   @useResult
   $Res call(
-      {Field jenis,
+      {Field isJaminan,
+      Field jenis,
       Field deskripsi,
+      Field deskripsi2,
+      Field deskripsi3,
+      Field deskripsi4,
+      Field deskripsi5,
       Field alamat,
       FileField image,
       Field latitude,
@@ -51,11 +61,15 @@ abstract class $AgunanFormStateCopyWith<$Res> {
       Field kabupaten,
       Field kecamatan,
       Field kelurahan,
-      Field nilaiTaksasi,
       Field captureLoc});
 
+  $FieldCopyWith<$Res> get isJaminan;
   $FieldCopyWith<$Res> get jenis;
   $FieldCopyWith<$Res> get deskripsi;
+  $FieldCopyWith<$Res> get deskripsi2;
+  $FieldCopyWith<$Res> get deskripsi3;
+  $FieldCopyWith<$Res> get deskripsi4;
+  $FieldCopyWith<$Res> get deskripsi5;
   $FieldCopyWith<$Res> get alamat;
   $FileFieldCopyWith<$Res> get image;
   $FieldCopyWith<$Res> get latitude;
@@ -64,7 +78,6 @@ abstract class $AgunanFormStateCopyWith<$Res> {
   $FieldCopyWith<$Res> get kabupaten;
   $FieldCopyWith<$Res> get kecamatan;
   $FieldCopyWith<$Res> get kelurahan;
-  $FieldCopyWith<$Res> get nilaiTaksasi;
   $FieldCopyWith<$Res> get captureLoc;
 }
 
@@ -81,8 +94,13 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
+    Object? deskripsi2 = null,
+    Object? deskripsi3 = null,
+    Object? deskripsi4 = null,
+    Object? deskripsi5 = null,
     Object? alamat = null,
     Object? image = null,
     Object? latitude = null,
@@ -91,10 +109,13 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
     Object? kabupaten = null,
     Object? kecamatan = null,
     Object? kelurahan = null,
-    Object? nilaiTaksasi = null,
     Object? captureLoc = null,
   }) {
     return _then(_value.copyWith(
+      isJaminan: null == isJaminan
+          ? _value.isJaminan
+          : isJaminan // ignore: cast_nullable_to_non_nullable
+              as Field,
       jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
@@ -102,6 +123,22 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
       deskripsi: null == deskripsi
           ? _value.deskripsi
           : deskripsi // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi2: null == deskripsi2
+          ? _value.deskripsi2
+          : deskripsi2 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi3: null == deskripsi3
+          ? _value.deskripsi3
+          : deskripsi3 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi4: null == deskripsi4
+          ? _value.deskripsi4
+          : deskripsi4 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi5: null == deskripsi5
+          ? _value.deskripsi5
+          : deskripsi5 // ignore: cast_nullable_to_non_nullable
               as Field,
       alamat: null == alamat
           ? _value.alamat
@@ -135,15 +172,19 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
           ? _value.kelurahan
           : kelurahan // ignore: cast_nullable_to_non_nullable
               as Field,
-      nilaiTaksasi: null == nilaiTaksasi
-          ? _value.nilaiTaksasi
-          : nilaiTaksasi // ignore: cast_nullable_to_non_nullable
-              as Field,
       captureLoc: null == captureLoc
           ? _value.captureLoc
           : captureLoc // ignore: cast_nullable_to_non_nullable
               as Field,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get isJaminan {
+    return $FieldCopyWith<$Res>(_value.isJaminan, (value) {
+      return _then(_value.copyWith(isJaminan: value) as $Val);
+    });
   }
 
   @override
@@ -159,6 +200,38 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
   $FieldCopyWith<$Res> get deskripsi {
     return $FieldCopyWith<$Res>(_value.deskripsi, (value) {
       return _then(_value.copyWith(deskripsi: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get deskripsi2 {
+    return $FieldCopyWith<$Res>(_value.deskripsi2, (value) {
+      return _then(_value.copyWith(deskripsi2: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get deskripsi3 {
+    return $FieldCopyWith<$Res>(_value.deskripsi3, (value) {
+      return _then(_value.copyWith(deskripsi3: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get deskripsi4 {
+    return $FieldCopyWith<$Res>(_value.deskripsi4, (value) {
+      return _then(_value.copyWith(deskripsi4: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get deskripsi5 {
+    return $FieldCopyWith<$Res>(_value.deskripsi5, (value) {
+      return _then(_value.copyWith(deskripsi5: value) as $Val);
     });
   }
 
@@ -228,14 +301,6 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
 
   @override
   @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get nilaiTaksasi {
-    return $FieldCopyWith<$Res>(_value.nilaiTaksasi, (value) {
-      return _then(_value.copyWith(nilaiTaksasi: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $FieldCopyWith<$Res> get captureLoc {
     return $FieldCopyWith<$Res>(_value.captureLoc, (value) {
       return _then(_value.copyWith(captureLoc: value) as $Val);
@@ -252,8 +317,13 @@ abstract class _$$AgunanFormStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Field jenis,
+      {Field isJaminan,
+      Field jenis,
       Field deskripsi,
+      Field deskripsi2,
+      Field deskripsi3,
+      Field deskripsi4,
+      Field deskripsi5,
       Field alamat,
       FileField image,
       Field latitude,
@@ -262,13 +332,22 @@ abstract class _$$AgunanFormStateImplCopyWith<$Res>
       Field kabupaten,
       Field kecamatan,
       Field kelurahan,
-      Field nilaiTaksasi,
       Field captureLoc});
 
+  @override
+  $FieldCopyWith<$Res> get isJaminan;
   @override
   $FieldCopyWith<$Res> get jenis;
   @override
   $FieldCopyWith<$Res> get deskripsi;
+  @override
+  $FieldCopyWith<$Res> get deskripsi2;
+  @override
+  $FieldCopyWith<$Res> get deskripsi3;
+  @override
+  $FieldCopyWith<$Res> get deskripsi4;
+  @override
+  $FieldCopyWith<$Res> get deskripsi5;
   @override
   $FieldCopyWith<$Res> get alamat;
   @override
@@ -286,8 +365,6 @@ abstract class _$$AgunanFormStateImplCopyWith<$Res>
   @override
   $FieldCopyWith<$Res> get kelurahan;
   @override
-  $FieldCopyWith<$Res> get nilaiTaksasi;
-  @override
   $FieldCopyWith<$Res> get captureLoc;
 }
 
@@ -302,8 +379,13 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
+    Object? deskripsi2 = null,
+    Object? deskripsi3 = null,
+    Object? deskripsi4 = null,
+    Object? deskripsi5 = null,
     Object? alamat = null,
     Object? image = null,
     Object? latitude = null,
@@ -312,10 +394,13 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
     Object? kabupaten = null,
     Object? kecamatan = null,
     Object? kelurahan = null,
-    Object? nilaiTaksasi = null,
     Object? captureLoc = null,
   }) {
     return _then(_$AgunanFormStateImpl(
+      isJaminan: null == isJaminan
+          ? _value.isJaminan
+          : isJaminan // ignore: cast_nullable_to_non_nullable
+              as Field,
       jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
@@ -323,6 +408,22 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
       deskripsi: null == deskripsi
           ? _value.deskripsi
           : deskripsi // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi2: null == deskripsi2
+          ? _value.deskripsi2
+          : deskripsi2 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi3: null == deskripsi3
+          ? _value.deskripsi3
+          : deskripsi3 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi4: null == deskripsi4
+          ? _value.deskripsi4
+          : deskripsi4 // ignore: cast_nullable_to_non_nullable
+              as Field,
+      deskripsi5: null == deskripsi5
+          ? _value.deskripsi5
+          : deskripsi5 // ignore: cast_nullable_to_non_nullable
               as Field,
       alamat: null == alamat
           ? _value.alamat
@@ -356,10 +457,6 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
           ? _value.kelurahan
           : kelurahan // ignore: cast_nullable_to_non_nullable
               as Field,
-      nilaiTaksasi: null == nilaiTaksasi
-          ? _value.nilaiTaksasi
-          : nilaiTaksasi // ignore: cast_nullable_to_non_nullable
-              as Field,
       captureLoc: null == captureLoc
           ? _value.captureLoc
           : captureLoc // ignore: cast_nullable_to_non_nullable
@@ -371,50 +468,75 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AgunanFormStateImpl extends _AgunanFormState {
-  const _$AgunanFormStateImpl(
-      {required this.jenis,
+  _$AgunanFormStateImpl(
+      {required this.isJaminan,
+      required this.jenis,
       required this.deskripsi,
-      required this.alamat,
-      required this.image,
-      required this.latitude,
-      required this.longitude,
-      required this.provinsi,
-      required this.kabupaten,
-      required this.kecamatan,
-      required this.kelurahan,
-      required this.nilaiTaksasi,
-      this.captureLoc = const Field(value: '', showValue: '')})
+      this.deskripsi2 = const Field(value: ''),
+      this.deskripsi3 = const Field(value: ''),
+      this.deskripsi4 = const Field(value: ''),
+      this.deskripsi5 = const Field(value: ''),
+      this.alamat = const Field(value: ''),
+      this.image = const FileField(showValue: ''),
+      this.latitude = const Field(value: ''),
+      this.longitude = const Field(value: ''),
+      this.provinsi = const Field(value: ''),
+      this.kabupaten = const Field(value: ''),
+      this.kecamatan = const Field(value: ''),
+      this.kelurahan = const Field(value: ''),
+      this.captureLoc = const Field(value: '')})
       : super._();
 
+  @override
+  final Field isJaminan;
   @override
   final Field jenis;
   @override
   final Field deskripsi;
   @override
+  @JsonKey()
+  final Field deskripsi2;
+  @override
+  @JsonKey()
+  final Field deskripsi3;
+  @override
+  @JsonKey()
+  final Field deskripsi4;
+  @override
+  @JsonKey()
+  final Field deskripsi5;
+  @override
+  @JsonKey()
   final Field alamat;
   @override
+  @JsonKey()
   final FileField image;
   @override
+  @JsonKey()
   final Field latitude;
   @override
+  @JsonKey()
   final Field longitude;
   @override
+  @JsonKey()
   final Field provinsi;
   @override
+  @JsonKey()
   final Field kabupaten;
   @override
+  @JsonKey()
   final Field kecamatan;
   @override
+  @JsonKey()
   final Field kelurahan;
-  @override
-  final Field nilaiTaksasi;
+//  Field nilaiTaksasi,
   @override
   @JsonKey()
   final Field captureLoc;
 
   @override
   String toString() {
-    return 'AgunanFormState(jenis: $jenis, deskripsi: $deskripsi, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, nilaiTaksasi: $nilaiTaksasi, captureLoc: $captureLoc)';
+    return 'AgunanFormState(isJaminan: $isJaminan, jenis: $jenis, deskripsi: $deskripsi, deskripsi2: $deskripsi2, deskripsi3: $deskripsi3, deskripsi4: $deskripsi4, deskripsi5: $deskripsi5, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, captureLoc: $captureLoc)';
   }
 
   @override
@@ -422,9 +544,19 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AgunanFormStateImpl &&
+            (identical(other.isJaminan, isJaminan) ||
+                other.isJaminan == isJaminan) &&
             (identical(other.jenis, jenis) || other.jenis == jenis) &&
             (identical(other.deskripsi, deskripsi) ||
                 other.deskripsi == deskripsi) &&
+            (identical(other.deskripsi2, deskripsi2) ||
+                other.deskripsi2 == deskripsi2) &&
+            (identical(other.deskripsi3, deskripsi3) ||
+                other.deskripsi3 == deskripsi3) &&
+            (identical(other.deskripsi4, deskripsi4) ||
+                other.deskripsi4 == deskripsi4) &&
+            (identical(other.deskripsi5, deskripsi5) ||
+                other.deskripsi5 == deskripsi5) &&
             (identical(other.alamat, alamat) || other.alamat == alamat) &&
             (identical(other.image, image) || other.image == image) &&
             (identical(other.latitude, latitude) ||
@@ -439,8 +571,6 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
                 other.kecamatan == kecamatan) &&
             (identical(other.kelurahan, kelurahan) ||
                 other.kelurahan == kelurahan) &&
-            (identical(other.nilaiTaksasi, nilaiTaksasi) ||
-                other.nilaiTaksasi == nilaiTaksasi) &&
             (identical(other.captureLoc, captureLoc) ||
                 other.captureLoc == captureLoc));
   }
@@ -448,8 +578,13 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isJaminan,
       jenis,
       deskripsi,
+      deskripsi2,
+      deskripsi3,
+      deskripsi4,
+      deskripsi5,
       alamat,
       image,
       latitude,
@@ -458,7 +593,6 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
       kabupaten,
       kecamatan,
       kelurahan,
-      nilaiTaksasi,
       captureLoc);
 
   @JsonKey(ignore: true)
@@ -470,25 +604,39 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
 }
 
 abstract class _AgunanFormState extends AgunanFormState {
-  const factory _AgunanFormState(
-      {required final Field jenis,
+  factory _AgunanFormState(
+      {required final Field isJaminan,
+      required final Field jenis,
       required final Field deskripsi,
-      required final Field alamat,
-      required final FileField image,
-      required final Field latitude,
-      required final Field longitude,
-      required final Field provinsi,
-      required final Field kabupaten,
-      required final Field kecamatan,
-      required final Field kelurahan,
-      required final Field nilaiTaksasi,
+      final Field deskripsi2,
+      final Field deskripsi3,
+      final Field deskripsi4,
+      final Field deskripsi5,
+      final Field alamat,
+      final FileField image,
+      final Field latitude,
+      final Field longitude,
+      final Field provinsi,
+      final Field kabupaten,
+      final Field kecamatan,
+      final Field kelurahan,
       final Field captureLoc}) = _$AgunanFormStateImpl;
-  const _AgunanFormState._() : super._();
+  _AgunanFormState._() : super._();
 
+  @override
+  Field get isJaminan;
   @override
   Field get jenis;
   @override
   Field get deskripsi;
+  @override
+  Field get deskripsi2;
+  @override
+  Field get deskripsi3;
+  @override
+  Field get deskripsi4;
+  @override
+  Field get deskripsi5;
   @override
   Field get alamat;
   @override
@@ -505,9 +653,7 @@ abstract class _AgunanFormState extends AgunanFormState {
   Field get kecamatan;
   @override
   Field get kelurahan;
-  @override
-  Field get nilaiTaksasi;
-  @override
+  @override //  Field nilaiTaksasi,
   Field get captureLoc;
   @override
   @JsonKey(ignore: true)

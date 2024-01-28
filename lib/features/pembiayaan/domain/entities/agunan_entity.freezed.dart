@@ -20,6 +20,8 @@ AgunanEntity _$AgunanEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AgunanEntity {
+  @JsonKey(name: 'is_sk')
+  String get isJaminan => throw _privateConstructorUsedError;
   @JsonKey(name: 'jenis')
   String get jenis => throw _privateConstructorUsedError;
   @JsonKey(name: 'deskripsi_agunan')
@@ -41,9 +43,8 @@ mixin _$AgunanEntity {
   @JsonKey(name: 'kec')
   String get kecamatan => throw _privateConstructorUsedError;
   @JsonKey(name: 'kel')
-  String get kelurahan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'nilai_taksasi')
-  String get nilaiTaksasi => throw _privateConstructorUsedError;
+  String get kelurahan =>
+      throw _privateConstructorUsedError; // @Default('0') @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
   @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_loan')
@@ -62,7 +63,8 @@ abstract class $AgunanEntityCopyWith<$Res> {
       _$AgunanEntityCopyWithImpl<$Res, AgunanEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'jenis') String jenis,
+      {@JsonKey(name: 'is_sk') String isJaminan,
+      @JsonKey(name: 'jenis') String jenis,
       @JsonKey(name: 'deskripsi_agunan') String deskripsi,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'image') String image,
@@ -73,7 +75,6 @@ abstract class $AgunanEntityCopyWith<$Res> {
       @JsonKey(name: 'dati2') String kabupaten,
       @JsonKey(name: 'kec') String kecamatan,
       @JsonKey(name: 'kel') String kelurahan,
-      @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
       @JsonKey(name: 'id') String id,
       @JsonKey(name: 'id_loan') String idLoan});
 }
@@ -91,6 +92,7 @@ class _$AgunanEntityCopyWithImpl<$Res, $Val extends AgunanEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
     Object? alamat = null,
@@ -102,11 +104,14 @@ class _$AgunanEntityCopyWithImpl<$Res, $Val extends AgunanEntity>
     Object? kabupaten = null,
     Object? kecamatan = null,
     Object? kelurahan = null,
-    Object? nilaiTaksasi = null,
     Object? id = null,
     Object? idLoan = null,
   }) {
     return _then(_value.copyWith(
+      isJaminan: null == isJaminan
+          ? _value.isJaminan
+          : isJaminan // ignore: cast_nullable_to_non_nullable
+              as String,
       jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
@@ -150,10 +155,6 @@ class _$AgunanEntityCopyWithImpl<$Res, $Val extends AgunanEntity>
       kelurahan: null == kelurahan
           ? _value.kelurahan
           : kelurahan // ignore: cast_nullable_to_non_nullable
-              as String,
-      nilaiTaksasi: null == nilaiTaksasi
-          ? _value.nilaiTaksasi
-          : nilaiTaksasi // ignore: cast_nullable_to_non_nullable
               as String,
       id: null == id
           ? _value.id
@@ -176,7 +177,8 @@ abstract class _$$AgunanEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'jenis') String jenis,
+      {@JsonKey(name: 'is_sk') String isJaminan,
+      @JsonKey(name: 'jenis') String jenis,
       @JsonKey(name: 'deskripsi_agunan') String deskripsi,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'image') String image,
@@ -187,7 +189,6 @@ abstract class _$$AgunanEntityImplCopyWith<$Res>
       @JsonKey(name: 'dati2') String kabupaten,
       @JsonKey(name: 'kec') String kecamatan,
       @JsonKey(name: 'kel') String kelurahan,
-      @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
       @JsonKey(name: 'id') String id,
       @JsonKey(name: 'id_loan') String idLoan});
 }
@@ -203,6 +204,7 @@ class __$$AgunanEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
     Object? alamat = null,
@@ -214,11 +216,14 @@ class __$$AgunanEntityImplCopyWithImpl<$Res>
     Object? kabupaten = null,
     Object? kecamatan = null,
     Object? kelurahan = null,
-    Object? nilaiTaksasi = null,
     Object? id = null,
     Object? idLoan = null,
   }) {
     return _then(_$AgunanEntityImpl(
+      isJaminan: null == isJaminan
+          ? _value.isJaminan
+          : isJaminan // ignore: cast_nullable_to_non_nullable
+              as String,
       jenis: null == jenis
           ? _value.jenis
           : jenis // ignore: cast_nullable_to_non_nullable
@@ -263,10 +268,6 @@ class __$$AgunanEntityImplCopyWithImpl<$Res>
           ? _value.kelurahan
           : kelurahan // ignore: cast_nullable_to_non_nullable
               as String,
-      nilaiTaksasi: null == nilaiTaksasi
-          ? _value.nilaiTaksasi
-          : nilaiTaksasi // ignore: cast_nullable_to_non_nullable
-              as String,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -283,18 +284,18 @@ class __$$AgunanEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AgunanEntityImpl extends _AgunanEntity {
   const _$AgunanEntityImpl(
-      {@JsonKey(name: 'jenis') required this.jenis,
+      {@JsonKey(name: 'is_sk') required this.isJaminan,
+      @JsonKey(name: 'jenis') required this.jenis,
       @JsonKey(name: 'deskripsi_agunan') required this.deskripsi,
-      @JsonKey(name: 'alamat') required this.alamat,
-      @JsonKey(name: 'image') required this.image,
-      @JsonKey(name: 'latitude') required this.latitude,
-      @JsonKey(name: 'longitude') required this.longitude,
-      @JsonKey(name: 'capture_loc') required this.captureLoc,
-      @JsonKey(name: 'provinsi') required this.provinsi,
-      @JsonKey(name: 'dati2') required this.kabupaten,
-      @JsonKey(name: 'kec') required this.kecamatan,
-      @JsonKey(name: 'kel') required this.kelurahan,
-      @JsonKey(name: 'nilai_taksasi') this.nilaiTaksasi = '0',
+      @JsonKey(name: 'alamat') this.alamat = '',
+      @JsonKey(name: 'image') this.image = '',
+      @JsonKey(name: 'latitude') this.latitude = '',
+      @JsonKey(name: 'longitude') this.longitude = '',
+      @JsonKey(name: 'capture_loc') this.captureLoc = '',
+      @JsonKey(name: 'provinsi') this.provinsi = '',
+      @JsonKey(name: 'dati2') this.kabupaten = '',
+      @JsonKey(name: 'kec') this.kecamatan = '',
+      @JsonKey(name: 'kel') this.kelurahan = '',
       @JsonKey(name: 'id') this.id = '',
       @JsonKey(name: 'id_loan') this.idLoan = ''})
       : super._();
@@ -302,6 +303,9 @@ class _$AgunanEntityImpl extends _AgunanEntity {
   factory _$AgunanEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$AgunanEntityImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'is_sk')
+  final String isJaminan;
   @override
   @JsonKey(name: 'jenis')
   final String jenis;
@@ -335,9 +339,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
   @override
   @JsonKey(name: 'kel')
   final String kelurahan;
-  @override
-  @JsonKey(name: 'nilai_taksasi')
-  final String nilaiTaksasi;
+// @Default('0') @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
   @override
   @JsonKey(name: 'id')
   final String id;
@@ -347,7 +349,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
 
   @override
   String toString() {
-    return 'AgunanEntity(jenis: $jenis, deskripsi: $deskripsi, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, captureLoc: $captureLoc, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, nilaiTaksasi: $nilaiTaksasi, id: $id, idLoan: $idLoan)';
+    return 'AgunanEntity(isJaminan: $isJaminan, jenis: $jenis, deskripsi: $deskripsi, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, captureLoc: $captureLoc, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, id: $id, idLoan: $idLoan)';
   }
 
   @override
@@ -355,6 +357,8 @@ class _$AgunanEntityImpl extends _AgunanEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AgunanEntityImpl &&
+            (identical(other.isJaminan, isJaminan) ||
+                other.isJaminan == isJaminan) &&
             (identical(other.jenis, jenis) || other.jenis == jenis) &&
             (identical(other.deskripsi, deskripsi) ||
                 other.deskripsi == deskripsi) &&
@@ -374,8 +378,6 @@ class _$AgunanEntityImpl extends _AgunanEntity {
                 other.kecamatan == kecamatan) &&
             (identical(other.kelurahan, kelurahan) ||
                 other.kelurahan == kelurahan) &&
-            (identical(other.nilaiTaksasi, nilaiTaksasi) ||
-                other.nilaiTaksasi == nilaiTaksasi) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.idLoan, idLoan) || other.idLoan == idLoan));
   }
@@ -384,6 +386,7 @@ class _$AgunanEntityImpl extends _AgunanEntity {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isJaminan,
       jenis,
       deskripsi,
       alamat,
@@ -395,7 +398,6 @@ class _$AgunanEntityImpl extends _AgunanEntity {
       kabupaten,
       kecamatan,
       kelurahan,
-      nilaiTaksasi,
       id,
       idLoan);
 
@@ -415,18 +417,18 @@ class _$AgunanEntityImpl extends _AgunanEntity {
 
 abstract class _AgunanEntity extends AgunanEntity {
   const factory _AgunanEntity(
-      {@JsonKey(name: 'jenis') required final String jenis,
+      {@JsonKey(name: 'is_sk') required final String isJaminan,
+      @JsonKey(name: 'jenis') required final String jenis,
       @JsonKey(name: 'deskripsi_agunan') required final String deskripsi,
-      @JsonKey(name: 'alamat') required final String alamat,
-      @JsonKey(name: 'image') required final String image,
-      @JsonKey(name: 'latitude') required final String latitude,
-      @JsonKey(name: 'longitude') required final String longitude,
-      @JsonKey(name: 'capture_loc') required final String captureLoc,
-      @JsonKey(name: 'provinsi') required final String provinsi,
-      @JsonKey(name: 'dati2') required final String kabupaten,
-      @JsonKey(name: 'kec') required final String kecamatan,
-      @JsonKey(name: 'kel') required final String kelurahan,
-      @JsonKey(name: 'nilai_taksasi') final String nilaiTaksasi,
+      @JsonKey(name: 'alamat') final String alamat,
+      @JsonKey(name: 'image') final String image,
+      @JsonKey(name: 'latitude') final String latitude,
+      @JsonKey(name: 'longitude') final String longitude,
+      @JsonKey(name: 'capture_loc') final String captureLoc,
+      @JsonKey(name: 'provinsi') final String provinsi,
+      @JsonKey(name: 'dati2') final String kabupaten,
+      @JsonKey(name: 'kec') final String kecamatan,
+      @JsonKey(name: 'kel') final String kelurahan,
       @JsonKey(name: 'id') final String id,
       @JsonKey(name: 'id_loan') final String idLoan}) = _$AgunanEntityImpl;
   const _AgunanEntity._() : super._();
@@ -434,6 +436,9 @@ abstract class _AgunanEntity extends AgunanEntity {
   factory _AgunanEntity.fromJson(Map<String, dynamic> json) =
       _$AgunanEntityImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'is_sk')
+  String get isJaminan;
   @override
   @JsonKey(name: 'jenis')
   String get jenis;
@@ -467,10 +472,7 @@ abstract class _AgunanEntity extends AgunanEntity {
   @override
   @JsonKey(name: 'kel')
   String get kelurahan;
-  @override
-  @JsonKey(name: 'nilai_taksasi')
-  String get nilaiTaksasi;
-  @override
+  @override // @Default('0') @JsonKey(name: 'nilai_taksasi') String nilaiTaksasi,
   @JsonKey(name: 'id')
   String get id;
   @override

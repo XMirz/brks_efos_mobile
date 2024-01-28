@@ -6,8 +6,8 @@ part of 'list_pembiayaan_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$fetchPaginatedPembiayaanHash() =>
-    r'94c679fab74e99cc5aaabdf1edb9dd8e2cb833ff';
+String _$fetchPaginatedProduktifHash() =>
+    r'897aec4ecf383fa336ce4c47b5f7ba7412fb3f8c';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,33 +30,30 @@ class _SystemHash {
   }
 }
 
-/// See also [fetchPaginatedPembiayaan].
-@ProviderFor(fetchPaginatedPembiayaan)
-const fetchPaginatedPembiayaanProvider = FetchPaginatedPembiayaanFamily();
+/// See also [fetchPaginatedProduktif].
+@ProviderFor(fetchPaginatedProduktif)
+const fetchPaginatedProduktifProvider = FetchPaginatedProduktifFamily();
 
-/// See also [fetchPaginatedPembiayaan].
-class FetchPaginatedPembiayaanFamily
+/// See also [fetchPaginatedProduktif].
+class FetchPaginatedProduktifFamily
     extends Family<AsyncValue<Either<Failure, PembiayaanPaginatedEntity>>> {
-  /// See also [fetchPaginatedPembiayaan].
-  const FetchPaginatedPembiayaanFamily();
+  /// See also [fetchPaginatedProduktif].
+  const FetchPaginatedProduktifFamily();
 
-  /// See also [fetchPaginatedPembiayaan].
-  FetchPaginatedPembiayaanProvider call(
-    String endpointList,
+  /// See also [fetchPaginatedProduktif].
+  FetchPaginatedProduktifProvider call(
     PaginationRequest request,
   ) {
-    return FetchPaginatedPembiayaanProvider(
-      endpointList,
+    return FetchPaginatedProduktifProvider(
       request,
     );
   }
 
   @override
-  FetchPaginatedPembiayaanProvider getProviderOverride(
-    covariant FetchPaginatedPembiayaanProvider provider,
+  FetchPaginatedProduktifProvider getProviderOverride(
+    covariant FetchPaginatedProduktifProvider provider,
   ) {
     return call(
-      provider.endpointList,
       provider.request,
     );
   }
@@ -73,65 +70,59 @@ class FetchPaginatedPembiayaanFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'fetchPaginatedPembiayaanProvider';
+  String? get name => r'fetchPaginatedProduktifProvider';
 }
 
-/// See also [fetchPaginatedPembiayaan].
-class FetchPaginatedPembiayaanProvider extends AutoDisposeFutureProvider<
+/// See also [fetchPaginatedProduktif].
+class FetchPaginatedProduktifProvider extends AutoDisposeFutureProvider<
     Either<Failure, PembiayaanPaginatedEntity>> {
-  /// See also [fetchPaginatedPembiayaan].
-  FetchPaginatedPembiayaanProvider(
-    String endpointList,
+  /// See also [fetchPaginatedProduktif].
+  FetchPaginatedProduktifProvider(
     PaginationRequest request,
   ) : this._internal(
-          (ref) => fetchPaginatedPembiayaan(
-            ref as FetchPaginatedPembiayaanRef,
-            endpointList,
+          (ref) => fetchPaginatedProduktif(
+            ref as FetchPaginatedProduktifRef,
             request,
           ),
-          from: fetchPaginatedPembiayaanProvider,
-          name: r'fetchPaginatedPembiayaanProvider',
+          from: fetchPaginatedProduktifProvider,
+          name: r'fetchPaginatedProduktifProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$fetchPaginatedPembiayaanHash,
-          dependencies: FetchPaginatedPembiayaanFamily._dependencies,
+                  : _$fetchPaginatedProduktifHash,
+          dependencies: FetchPaginatedProduktifFamily._dependencies,
           allTransitiveDependencies:
-              FetchPaginatedPembiayaanFamily._allTransitiveDependencies,
-          endpointList: endpointList,
+              FetchPaginatedProduktifFamily._allTransitiveDependencies,
           request: request,
         );
 
-  FetchPaginatedPembiayaanProvider._internal(
+  FetchPaginatedProduktifProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.endpointList,
     required this.request,
   }) : super.internal();
 
-  final String endpointList;
   final PaginationRequest request;
 
   @override
   Override overrideWith(
     FutureOr<Either<Failure, PembiayaanPaginatedEntity>> Function(
-            FetchPaginatedPembiayaanRef provider)
+            FetchPaginatedProduktifRef provider)
         create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: FetchPaginatedPembiayaanProvider._internal(
-        (ref) => create(ref as FetchPaginatedPembiayaanRef),
+      override: FetchPaginatedProduktifProvider._internal(
+        (ref) => create(ref as FetchPaginatedProduktifRef),
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        endpointList: endpointList,
         request: request,
       ),
     );
@@ -140,47 +131,176 @@ class FetchPaginatedPembiayaanProvider extends AutoDisposeFutureProvider<
   @override
   AutoDisposeFutureProviderElement<Either<Failure, PembiayaanPaginatedEntity>>
       createElement() {
-    return _FetchPaginatedPembiayaanProviderElement(this);
+    return _FetchPaginatedProduktifProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is FetchPaginatedPembiayaanProvider &&
-        other.endpointList == endpointList &&
-        other.request == request;
+    return other is FetchPaginatedProduktifProvider && other.request == request;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, endpointList.hashCode);
     hash = _SystemHash.combine(hash, request.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin FetchPaginatedPembiayaanRef on AutoDisposeFutureProviderRef<
+mixin FetchPaginatedProduktifRef on AutoDisposeFutureProviderRef<
     Either<Failure, PembiayaanPaginatedEntity>> {
-  /// The parameter `endpointList` of this provider.
-  String get endpointList;
-
   /// The parameter `request` of this provider.
   PaginationRequest get request;
 }
 
-class _FetchPaginatedPembiayaanProviderElement
+class _FetchPaginatedProduktifProviderElement
     extends AutoDisposeFutureProviderElement<
         Either<Failure, PembiayaanPaginatedEntity>>
-    with FetchPaginatedPembiayaanRef {
-  _FetchPaginatedPembiayaanProviderElement(super.provider);
+    with FetchPaginatedProduktifRef {
+  _FetchPaginatedProduktifProviderElement(super.provider);
 
   @override
-  String get endpointList =>
-      (origin as FetchPaginatedPembiayaanProvider).endpointList;
+  PaginationRequest get request =>
+      (origin as FetchPaginatedProduktifProvider).request;
+}
+
+String _$fetchPaginatedKonsumtifHash() =>
+    r'63a6620c39ad3896079c0b564f4136c2ab3fcf99';
+
+/// See also [fetchPaginatedKonsumtif].
+@ProviderFor(fetchPaginatedKonsumtif)
+const fetchPaginatedKonsumtifProvider = FetchPaginatedKonsumtifFamily();
+
+/// See also [fetchPaginatedKonsumtif].
+class FetchPaginatedKonsumtifFamily
+    extends Family<AsyncValue<Either<Failure, PembiayaanPaginatedEntity>>> {
+  /// See also [fetchPaginatedKonsumtif].
+  const FetchPaginatedKonsumtifFamily();
+
+  /// See also [fetchPaginatedKonsumtif].
+  FetchPaginatedKonsumtifProvider call(
+    PaginationRequest request,
+  ) {
+    return FetchPaginatedKonsumtifProvider(
+      request,
+    );
+  }
+
+  @override
+  FetchPaginatedKonsumtifProvider getProviderOverride(
+    covariant FetchPaginatedKonsumtifProvider provider,
+  ) {
+    return call(
+      provider.request,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'fetchPaginatedKonsumtifProvider';
+}
+
+/// See also [fetchPaginatedKonsumtif].
+class FetchPaginatedKonsumtifProvider extends AutoDisposeFutureProvider<
+    Either<Failure, PembiayaanPaginatedEntity>> {
+  /// See also [fetchPaginatedKonsumtif].
+  FetchPaginatedKonsumtifProvider(
+    PaginationRequest request,
+  ) : this._internal(
+          (ref) => fetchPaginatedKonsumtif(
+            ref as FetchPaginatedKonsumtifRef,
+            request,
+          ),
+          from: fetchPaginatedKonsumtifProvider,
+          name: r'fetchPaginatedKonsumtifProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$fetchPaginatedKonsumtifHash,
+          dependencies: FetchPaginatedKonsumtifFamily._dependencies,
+          allTransitiveDependencies:
+              FetchPaginatedKonsumtifFamily._allTransitiveDependencies,
+          request: request,
+        );
+
+  FetchPaginatedKonsumtifProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.request,
+  }) : super.internal();
+
+  final PaginationRequest request;
+
+  @override
+  Override overrideWith(
+    FutureOr<Either<Failure, PembiayaanPaginatedEntity>> Function(
+            FetchPaginatedKonsumtifRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: FetchPaginatedKonsumtifProvider._internal(
+        (ref) => create(ref as FetchPaginatedKonsumtifRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        request: request,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Either<Failure, PembiayaanPaginatedEntity>>
+      createElement() {
+    return _FetchPaginatedKonsumtifProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is FetchPaginatedKonsumtifProvider && other.request == request;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, request.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin FetchPaginatedKonsumtifRef on AutoDisposeFutureProviderRef<
+    Either<Failure, PembiayaanPaginatedEntity>> {
+  /// The parameter `request` of this provider.
+  PaginationRequest get request;
+}
+
+class _FetchPaginatedKonsumtifProviderElement
+    extends AutoDisposeFutureProviderElement<
+        Either<Failure, PembiayaanPaginatedEntity>>
+    with FetchPaginatedKonsumtifRef {
+  _FetchPaginatedKonsumtifProviderElement(super.provider);
+
   @override
   PaginationRequest get request =>
-      (origin as FetchPaginatedPembiayaanProvider).request;
+      (origin as FetchPaginatedKonsumtifProvider).request;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

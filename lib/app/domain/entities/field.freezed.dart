@@ -126,13 +126,14 @@ class __$$$_FieldImplCopyWithImpl<$Res>
 class _$$_FieldImpl implements $_Field {
   const _$$_FieldImpl(
       {required this.value,
-      required this.showValue,
+      this.showValue = '',
       this.errorMessage = '',
       this.isValid = false});
 
   @override
   final String value;
   @override
+  @JsonKey()
   final String showValue;
   @override
   @JsonKey()
@@ -173,7 +174,7 @@ class _$$_FieldImpl implements $_Field {
 abstract class $_Field implements Field {
   const factory $_Field(
       {required final String value,
-      required final String showValue,
+      final String showValue,
       final String errorMessage,
       final bool isValid}) = _$$_FieldImpl;
 

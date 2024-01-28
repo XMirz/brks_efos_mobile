@@ -21,6 +21,8 @@ PembiayaanListItemEntiy _$PembiayaanListItemEntiyFromJson(
 
 /// @nodoc
 mixin _$PembiayaanListItemEntiy {
+  @JsonKey(name: 'id_loan')
+  String get idLoan => throw _privateConstructorUsedError;
   @JsonKey(name: 'ktp')
   String get nik => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
@@ -32,41 +34,40 @@ mixin _$PembiayaanListItemEntiy {
   @JsonKey(name: 'tgl_lahir')
   String get tanggalLahir => throw _privateConstructorUsedError;
   @JsonKey(name: 'kelamin')
-  String get jenisKelamin => throw _privateConstructorUsedError;
+  int get jenisKelamin => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_pernikahan')
   String get statusPernikahan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tanggungan')
-  String get jumlahTanggungan => throw _privateConstructorUsedError;
+  int get jumlahTanggungan => throw _privateConstructorUsedError;
   @JsonKey(name: 'biaya_tanggungan')
-  String get kewajiban => throw _privateConstructorUsedError;
+  num get kewajiban => throw _privateConstructorUsedError;
   @JsonKey(name: 'b_operasional')
-  String get biayaOperasional => throw _privateConstructorUsedError;
+  dynamic get biayaOperasional => throw _privateConstructorUsedError;
   @JsonKey(name: 'b_gaji')
-  String get biayaRumahTangga => throw _privateConstructorUsedError;
+  dynamic get biayaRumahTangga => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_tempat_tinggal')
   String get statusTempatTinggal => throw _privateConstructorUsedError;
   @JsonKey(name: 'hubungan_bank')
-  String get hubunganPerbankan => throw _privateConstructorUsedError;
+  int get hubunganPerbankan => throw _privateConstructorUsedError;
   @JsonKey(name: 'plafon_pengajuan')
-  String get plafonPengajuan => throw _privateConstructorUsedError;
+  num get plafonPengajuan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tenor_pengajuan')
-  String get tenorPengajuan => throw _privateConstructorUsedError;
+  int get tenorPengajuan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan => throw _privateConstructorUsedError;
   @JsonKey(name: 'grace_period')
-  String get gracePeriod => throw _privateConstructorUsedError;
-  @JsonKey(name: 'barang')
-  String get barang => throw _privateConstructorUsedError;
+  String get gracePeriod =>
+      throw _privateConstructorUsedError; // @Default('') @JsonKey(name: 'barang') String barang,
   @JsonKey(name: 'id_kategori_produk')
-  String get idKategoriProduk => throw _privateConstructorUsedError;
+  int get idKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_produk')
-  String get idProduk => throw _privateConstructorUsedError;
+  int get idProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_template_dokumen')
-  String get idJenisPengajuan => throw _privateConstructorUsedError;
+  int get idJenisPengajuan => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_subproduk')
-  String get idSubProduk => throw _privateConstructorUsedError;
+  int get idSubProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_plan')
-  String get idPlan => throw _privateConstructorUsedError;
+  int get idPlan => throw _privateConstructorUsedError;
   @JsonKey(name: 'desc_kategori_produk')
   String get descKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'desc_produk')
@@ -77,6 +78,10 @@ mixin _$PembiayaanListItemEntiy {
   String get descSubProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'desc_plan')
   String get descPlan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'desc_kelamin')
+  String get descKelamin => throw _privateConstructorUsedError;
+  @JsonKey(name: 'desc_status_pernikahan')
+  String get descStatusPernikahan => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -91,34 +96,36 @@ abstract class $PembiayaanListItemEntiyCopyWith<$Res> {
       _$PembiayaanListItemEntiyCopyWithImpl<$Res, PembiayaanListItemEntiy>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ktp') String nik,
+      {@JsonKey(name: 'id_loan') String idLoan,
+      @JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'tmp_lahir') String tempatLahir,
       @JsonKey(name: 'tgl_lahir') String tanggalLahir,
-      @JsonKey(name: 'kelamin') String jenisKelamin,
+      @JsonKey(name: 'kelamin') int jenisKelamin,
       @JsonKey(name: 'status_pernikahan') String statusPernikahan,
-      @JsonKey(name: 'tanggungan') String jumlahTanggungan,
-      @JsonKey(name: 'biaya_tanggungan') String kewajiban,
-      @JsonKey(name: 'b_operasional') String biayaOperasional,
-      @JsonKey(name: 'b_gaji') String biayaRumahTangga,
+      @JsonKey(name: 'tanggungan') int jumlahTanggungan,
+      @JsonKey(name: 'biaya_tanggungan') num kewajiban,
+      @JsonKey(name: 'b_operasional') dynamic biayaOperasional,
+      @JsonKey(name: 'b_gaji') dynamic biayaRumahTangga,
       @JsonKey(name: 'status_tempat_tinggal') String statusTempatTinggal,
-      @JsonKey(name: 'hubungan_bank') String hubunganPerbankan,
-      @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
+      @JsonKey(name: 'hubungan_bank') int hubunganPerbankan,
+      @JsonKey(name: 'plafon_pengajuan') num plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') int tenorPengajuan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
       @JsonKey(name: 'grace_period') String gracePeriod,
-      @JsonKey(name: 'barang') String barang,
-      @JsonKey(name: 'id_kategori_produk') String idKategoriProduk,
-      @JsonKey(name: 'id_produk') String idProduk,
-      @JsonKey(name: 'id_template_dokumen') String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') String idSubProduk,
-      @JsonKey(name: 'id_plan') String idPlan,
+      @JsonKey(name: 'id_kategori_produk') int idKategoriProduk,
+      @JsonKey(name: 'id_produk') int idProduk,
+      @JsonKey(name: 'id_template_dokumen') int idJenisPengajuan,
+      @JsonKey(name: 'id_subproduk') int idSubProduk,
+      @JsonKey(name: 'id_plan') int idPlan,
       @JsonKey(name: 'desc_kategori_produk') String descKategoriProduk,
       @JsonKey(name: 'desc_produk') String descProduk,
       @JsonKey(name: 'desc_template_dokumen') String descJenisPengajuan,
       @JsonKey(name: 'desc_subproduk') String descSubProduk,
-      @JsonKey(name: 'desc_plan') String descPlan});
+      @JsonKey(name: 'desc_plan') String descPlan,
+      @JsonKey(name: 'desc_kelamin') String descKelamin,
+      @JsonKey(name: 'desc_status_pernikahan') String descStatusPernikahan});
 }
 
 /// @nodoc
@@ -135,6 +142,7 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idLoan = null,
     Object? nik = null,
     Object? nama = null,
     Object? alamat = null,
@@ -144,15 +152,14 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
     Object? statusPernikahan = null,
     Object? jumlahTanggungan = null,
     Object? kewajiban = null,
-    Object? biayaOperasional = null,
-    Object? biayaRumahTangga = null,
+    Object? biayaOperasional = freezed,
+    Object? biayaRumahTangga = freezed,
     Object? statusTempatTinggal = null,
     Object? hubunganPerbankan = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
     Object? tujuanPembiayaan = null,
     Object? gracePeriod = null,
-    Object? barang = null,
     Object? idKategoriProduk = null,
     Object? idProduk = null,
     Object? idJenisPengajuan = null,
@@ -163,8 +170,14 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
     Object? descJenisPengajuan = null,
     Object? descSubProduk = null,
     Object? descPlan = null,
+    Object? descKelamin = null,
+    Object? descStatusPernikahan = null,
   }) {
     return _then(_value.copyWith(
+      idLoan: null == idLoan
+          ? _value.idLoan
+          : idLoan // ignore: cast_nullable_to_non_nullable
+              as String,
       nik: null == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
@@ -188,7 +201,7 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
       jenisKelamin: null == jenisKelamin
           ? _value.jenisKelamin
           : jenisKelamin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       statusPernikahan: null == statusPernikahan
           ? _value.statusPernikahan
           : statusPernikahan // ignore: cast_nullable_to_non_nullable
@@ -196,19 +209,19 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
       jumlahTanggungan: null == jumlahTanggungan
           ? _value.jumlahTanggungan
           : jumlahTanggungan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       kewajiban: null == kewajiban
           ? _value.kewajiban
           : kewajiban // ignore: cast_nullable_to_non_nullable
-              as String,
-      biayaOperasional: null == biayaOperasional
+              as num,
+      biayaOperasional: freezed == biayaOperasional
           ? _value.biayaOperasional
           : biayaOperasional // ignore: cast_nullable_to_non_nullable
-              as String,
-      biayaRumahTangga: null == biayaRumahTangga
+              as dynamic,
+      biayaRumahTangga: freezed == biayaRumahTangga
           ? _value.biayaRumahTangga
           : biayaRumahTangga // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       statusTempatTinggal: null == statusTempatTinggal
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
@@ -216,15 +229,15 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
       hubunganPerbankan: null == hubunganPerbankan
           ? _value.hubunganPerbankan
           : hubunganPerbankan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       plafonPengajuan: null == plafonPengajuan
           ? _value.plafonPengajuan
           : plafonPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       tenorPengajuan: null == tenorPengajuan
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
@@ -233,30 +246,26 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
           ? _value.gracePeriod
           : gracePeriod // ignore: cast_nullable_to_non_nullable
               as String,
-      barang: null == barang
-          ? _value.barang
-          : barang // ignore: cast_nullable_to_non_nullable
-              as String,
       idKategoriProduk: null == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idProduk: null == idProduk
           ? _value.idProduk
           : idProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idJenisPengajuan: null == idJenisPengajuan
           ? _value.idJenisPengajuan
           : idJenisPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idSubProduk: null == idSubProduk
           ? _value.idSubProduk
           : idSubProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idPlan: null == idPlan
           ? _value.idPlan
           : idPlan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       descKategoriProduk: null == descKategoriProduk
           ? _value.descKategoriProduk
           : descKategoriProduk // ignore: cast_nullable_to_non_nullable
@@ -276,6 +285,14 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
       descPlan: null == descPlan
           ? _value.descPlan
           : descPlan // ignore: cast_nullable_to_non_nullable
+              as String,
+      descKelamin: null == descKelamin
+          ? _value.descKelamin
+          : descKelamin // ignore: cast_nullable_to_non_nullable
+              as String,
+      descStatusPernikahan: null == descStatusPernikahan
+          ? _value.descStatusPernikahan
+          : descStatusPernikahan // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -291,34 +308,36 @@ abstract class _$$PembiayaanListItemEntiyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ktp') String nik,
+      {@JsonKey(name: 'id_loan') String idLoan,
+      @JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'tmp_lahir') String tempatLahir,
       @JsonKey(name: 'tgl_lahir') String tanggalLahir,
-      @JsonKey(name: 'kelamin') String jenisKelamin,
+      @JsonKey(name: 'kelamin') int jenisKelamin,
       @JsonKey(name: 'status_pernikahan') String statusPernikahan,
-      @JsonKey(name: 'tanggungan') String jumlahTanggungan,
-      @JsonKey(name: 'biaya_tanggungan') String kewajiban,
-      @JsonKey(name: 'b_operasional') String biayaOperasional,
-      @JsonKey(name: 'b_gaji') String biayaRumahTangga,
+      @JsonKey(name: 'tanggungan') int jumlahTanggungan,
+      @JsonKey(name: 'biaya_tanggungan') num kewajiban,
+      @JsonKey(name: 'b_operasional') dynamic biayaOperasional,
+      @JsonKey(name: 'b_gaji') dynamic biayaRumahTangga,
       @JsonKey(name: 'status_tempat_tinggal') String statusTempatTinggal,
-      @JsonKey(name: 'hubungan_bank') String hubunganPerbankan,
-      @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
+      @JsonKey(name: 'hubungan_bank') int hubunganPerbankan,
+      @JsonKey(name: 'plafon_pengajuan') num plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') int tenorPengajuan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
       @JsonKey(name: 'grace_period') String gracePeriod,
-      @JsonKey(name: 'barang') String barang,
-      @JsonKey(name: 'id_kategori_produk') String idKategoriProduk,
-      @JsonKey(name: 'id_produk') String idProduk,
-      @JsonKey(name: 'id_template_dokumen') String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') String idSubProduk,
-      @JsonKey(name: 'id_plan') String idPlan,
+      @JsonKey(name: 'id_kategori_produk') int idKategoriProduk,
+      @JsonKey(name: 'id_produk') int idProduk,
+      @JsonKey(name: 'id_template_dokumen') int idJenisPengajuan,
+      @JsonKey(name: 'id_subproduk') int idSubProduk,
+      @JsonKey(name: 'id_plan') int idPlan,
       @JsonKey(name: 'desc_kategori_produk') String descKategoriProduk,
       @JsonKey(name: 'desc_produk') String descProduk,
       @JsonKey(name: 'desc_template_dokumen') String descJenisPengajuan,
       @JsonKey(name: 'desc_subproduk') String descSubProduk,
-      @JsonKey(name: 'desc_plan') String descPlan});
+      @JsonKey(name: 'desc_plan') String descPlan,
+      @JsonKey(name: 'desc_kelamin') String descKelamin,
+      @JsonKey(name: 'desc_status_pernikahan') String descStatusPernikahan});
 }
 
 /// @nodoc
@@ -334,6 +353,7 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? idLoan = null,
     Object? nik = null,
     Object? nama = null,
     Object? alamat = null,
@@ -343,15 +363,14 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
     Object? statusPernikahan = null,
     Object? jumlahTanggungan = null,
     Object? kewajiban = null,
-    Object? biayaOperasional = null,
-    Object? biayaRumahTangga = null,
+    Object? biayaOperasional = freezed,
+    Object? biayaRumahTangga = freezed,
     Object? statusTempatTinggal = null,
     Object? hubunganPerbankan = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
     Object? tujuanPembiayaan = null,
     Object? gracePeriod = null,
-    Object? barang = null,
     Object? idKategoriProduk = null,
     Object? idProduk = null,
     Object? idJenisPengajuan = null,
@@ -362,8 +381,14 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
     Object? descJenisPengajuan = null,
     Object? descSubProduk = null,
     Object? descPlan = null,
+    Object? descKelamin = null,
+    Object? descStatusPernikahan = null,
   }) {
     return _then(_$PembiayaanListItemEntiyImpl(
+      idLoan: null == idLoan
+          ? _value.idLoan
+          : idLoan // ignore: cast_nullable_to_non_nullable
+              as String,
       nik: null == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
@@ -387,7 +412,7 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
       jenisKelamin: null == jenisKelamin
           ? _value.jenisKelamin
           : jenisKelamin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       statusPernikahan: null == statusPernikahan
           ? _value.statusPernikahan
           : statusPernikahan // ignore: cast_nullable_to_non_nullable
@@ -395,19 +420,19 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
       jumlahTanggungan: null == jumlahTanggungan
           ? _value.jumlahTanggungan
           : jumlahTanggungan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       kewajiban: null == kewajiban
           ? _value.kewajiban
           : kewajiban // ignore: cast_nullable_to_non_nullable
-              as String,
-      biayaOperasional: null == biayaOperasional
+              as num,
+      biayaOperasional: freezed == biayaOperasional
           ? _value.biayaOperasional
           : biayaOperasional // ignore: cast_nullable_to_non_nullable
-              as String,
-      biayaRumahTangga: null == biayaRumahTangga
+              as dynamic,
+      biayaRumahTangga: freezed == biayaRumahTangga
           ? _value.biayaRumahTangga
           : biayaRumahTangga // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       statusTempatTinggal: null == statusTempatTinggal
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
@@ -415,15 +440,15 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
       hubunganPerbankan: null == hubunganPerbankan
           ? _value.hubunganPerbankan
           : hubunganPerbankan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       plafonPengajuan: null == plafonPengajuan
           ? _value.plafonPengajuan
           : plafonPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as num,
       tenorPengajuan: null == tenorPengajuan
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
@@ -432,30 +457,26 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
           ? _value.gracePeriod
           : gracePeriod // ignore: cast_nullable_to_non_nullable
               as String,
-      barang: null == barang
-          ? _value.barang
-          : barang // ignore: cast_nullable_to_non_nullable
-              as String,
       idKategoriProduk: null == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idProduk: null == idProduk
           ? _value.idProduk
           : idProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idJenisPengajuan: null == idJenisPengajuan
           ? _value.idJenisPengajuan
           : idJenisPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idSubProduk: null == idSubProduk
           ? _value.idSubProduk
           : idSubProduk // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       idPlan: null == idPlan
           ? _value.idPlan
           : idPlan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       descKategoriProduk: null == descKategoriProduk
           ? _value.descKategoriProduk
           : descKategoriProduk // ignore: cast_nullable_to_non_nullable
@@ -476,6 +497,14 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
           ? _value.descPlan
           : descPlan // ignore: cast_nullable_to_non_nullable
               as String,
+      descKelamin: null == descKelamin
+          ? _value.descKelamin
+          : descKelamin // ignore: cast_nullable_to_non_nullable
+              as String,
+      descStatusPernikahan: null == descStatusPernikahan
+          ? _value.descStatusPernikahan
+          : descStatusPernikahan // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -484,39 +513,44 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
   const _$PembiayaanListItemEntiyImpl(
-      {@JsonKey(name: 'ktp') required this.nik,
+      {@JsonKey(name: 'id_loan') required this.idLoan,
+      @JsonKey(name: 'ktp') required this.nik,
       @JsonKey(name: 'nama') required this.nama,
-      @JsonKey(name: 'alamat') required this.alamat,
-      @JsonKey(name: 'tmp_lahir') required this.tempatLahir,
-      @JsonKey(name: 'tgl_lahir') required this.tanggalLahir,
-      @JsonKey(name: 'kelamin') required this.jenisKelamin,
-      @JsonKey(name: 'status_pernikahan') required this.statusPernikahan,
-      @JsonKey(name: 'tanggungan') required this.jumlahTanggungan,
-      @JsonKey(name: 'biaya_tanggungan') required this.kewajiban,
-      @JsonKey(name: 'b_operasional') required this.biayaOperasional,
-      @JsonKey(name: 'b_gaji') required this.biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal') required this.statusTempatTinggal,
-      @JsonKey(name: 'hubungan_bank') required this.hubunganPerbankan,
-      @JsonKey(name: 'plafon_pengajuan') required this.plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') required this.tenorPengajuan,
-      @JsonKey(name: 'tujuan_pembiayaan') required this.tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') required this.gracePeriod,
-      @JsonKey(name: 'barang') required this.barang,
-      @JsonKey(name: 'id_kategori_produk') required this.idKategoriProduk,
-      @JsonKey(name: 'id_produk') required this.idProduk,
-      @JsonKey(name: 'id_template_dokumen') required this.idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') required this.idSubProduk,
-      @JsonKey(name: 'id_plan') required this.idPlan,
-      @JsonKey(name: 'desc_kategori_produk') required this.descKategoriProduk,
-      @JsonKey(name: 'desc_produk') required this.descProduk,
-      @JsonKey(name: 'desc_template_dokumen') required this.descJenisPengajuan,
-      @JsonKey(name: 'desc_subproduk') required this.descSubProduk,
-      @JsonKey(name: 'desc_plan') required this.descPlan})
+      @JsonKey(name: 'alamat') this.alamat = '',
+      @JsonKey(name: 'tmp_lahir') this.tempatLahir = '',
+      @JsonKey(name: 'tgl_lahir') this.tanggalLahir = '',
+      @JsonKey(name: 'kelamin') this.jenisKelamin = 1,
+      @JsonKey(name: 'status_pernikahan') this.statusPernikahan = '',
+      @JsonKey(name: 'tanggungan') this.jumlahTanggungan = 0,
+      @JsonKey(name: 'biaya_tanggungan') this.kewajiban = 0,
+      @JsonKey(name: 'b_operasional') this.biayaOperasional = '',
+      @JsonKey(name: 'b_gaji') this.biayaRumahTangga = '',
+      @JsonKey(name: 'status_tempat_tinggal') this.statusTempatTinggal = '',
+      @JsonKey(name: 'hubungan_bank') this.hubunganPerbankan = 0,
+      @JsonKey(name: 'plafon_pengajuan') this.plafonPengajuan = 0,
+      @JsonKey(name: 'tenor_pengajuan') this.tenorPengajuan = 0,
+      @JsonKey(name: 'tujuan_pembiayaan') this.tujuanPembiayaan = '',
+      @JsonKey(name: 'grace_period') this.gracePeriod = '',
+      @JsonKey(name: 'id_kategori_produk') this.idKategoriProduk = 0,
+      @JsonKey(name: 'id_produk') this.idProduk = 0,
+      @JsonKey(name: 'id_template_dokumen') this.idJenisPengajuan = 0,
+      @JsonKey(name: 'id_subproduk') this.idSubProduk = 0,
+      @JsonKey(name: 'id_plan') this.idPlan = 0,
+      @JsonKey(name: 'desc_kategori_produk') this.descKategoriProduk = '',
+      @JsonKey(name: 'desc_produk') this.descProduk = '',
+      @JsonKey(name: 'desc_template_dokumen') this.descJenisPengajuan = '',
+      @JsonKey(name: 'desc_subproduk') this.descSubProduk = '',
+      @JsonKey(name: 'desc_plan') this.descPlan = '',
+      @JsonKey(name: 'desc_kelamin') this.descKelamin = '',
+      @JsonKey(name: 'desc_status_pernikahan') this.descStatusPernikahan = ''})
       : super._();
 
   factory _$PembiayaanListItemEntiyImpl.fromJson(Map<String, dynamic> json) =>
       _$$PembiayaanListItemEntiyImplFromJson(json);
 
+  @override
+  @JsonKey(name: 'id_loan')
+  final String idLoan;
   @override
   @JsonKey(name: 'ktp')
   final String nik;
@@ -534,58 +568,56 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
   final String tanggalLahir;
   @override
   @JsonKey(name: 'kelamin')
-  final String jenisKelamin;
+  final int jenisKelamin;
   @override
   @JsonKey(name: 'status_pernikahan')
   final String statusPernikahan;
   @override
   @JsonKey(name: 'tanggungan')
-  final String jumlahTanggungan;
+  final int jumlahTanggungan;
   @override
   @JsonKey(name: 'biaya_tanggungan')
-  final String kewajiban;
+  final num kewajiban;
   @override
   @JsonKey(name: 'b_operasional')
-  final String biayaOperasional;
+  final dynamic biayaOperasional;
   @override
   @JsonKey(name: 'b_gaji')
-  final String biayaRumahTangga;
+  final dynamic biayaRumahTangga;
   @override
   @JsonKey(name: 'status_tempat_tinggal')
   final String statusTempatTinggal;
   @override
   @JsonKey(name: 'hubungan_bank')
-  final String hubunganPerbankan;
+  final int hubunganPerbankan;
   @override
   @JsonKey(name: 'plafon_pengajuan')
-  final String plafonPengajuan;
+  final num plafonPengajuan;
   @override
   @JsonKey(name: 'tenor_pengajuan')
-  final String tenorPengajuan;
+  final int tenorPengajuan;
   @override
   @JsonKey(name: 'tujuan_pembiayaan')
   final String tujuanPembiayaan;
   @override
   @JsonKey(name: 'grace_period')
   final String gracePeriod;
-  @override
-  @JsonKey(name: 'barang')
-  final String barang;
+// @Default('') @JsonKey(name: 'barang') String barang,
   @override
   @JsonKey(name: 'id_kategori_produk')
-  final String idKategoriProduk;
+  final int idKategoriProduk;
   @override
   @JsonKey(name: 'id_produk')
-  final String idProduk;
+  final int idProduk;
   @override
   @JsonKey(name: 'id_template_dokumen')
-  final String idJenisPengajuan;
+  final int idJenisPengajuan;
   @override
   @JsonKey(name: 'id_subproduk')
-  final String idSubProduk;
+  final int idSubProduk;
   @override
   @JsonKey(name: 'id_plan')
-  final String idPlan;
+  final int idPlan;
   @override
   @JsonKey(name: 'desc_kategori_produk')
   final String descKategoriProduk;
@@ -601,10 +633,16 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
   @override
   @JsonKey(name: 'desc_plan')
   final String descPlan;
+  @override
+  @JsonKey(name: 'desc_kelamin')
+  final String descKelamin;
+  @override
+  @JsonKey(name: 'desc_status_pernikahan')
+  final String descStatusPernikahan;
 
   @override
   String toString() {
-    return 'PembiayaanListItemEntiy(nik: $nik, nama: $nama, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, hubunganPerbankan: $hubunganPerbankan, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, barang: $barang, idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, descKategoriProduk: $descKategoriProduk, descProduk: $descProduk, descJenisPengajuan: $descJenisPengajuan, descSubProduk: $descSubProduk, descPlan: $descPlan)';
+    return 'PembiayaanListItemEntiy(idLoan: $idLoan, nik: $nik, nama: $nama, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, hubunganPerbankan: $hubunganPerbankan, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, descKategoriProduk: $descKategoriProduk, descProduk: $descProduk, descJenisPengajuan: $descJenisPengajuan, descSubProduk: $descSubProduk, descPlan: $descPlan, descKelamin: $descKelamin, descStatusPernikahan: $descStatusPernikahan)';
   }
 
   @override
@@ -612,6 +650,7 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PembiayaanListItemEntiyImpl &&
+            (identical(other.idLoan, idLoan) || other.idLoan == idLoan) &&
             (identical(other.nik, nik) || other.nik == nik) &&
             (identical(other.nama, nama) || other.nama == nama) &&
             (identical(other.alamat, alamat) || other.alamat == alamat) &&
@@ -627,10 +666,10 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
                 other.jumlahTanggungan == jumlahTanggungan) &&
             (identical(other.kewajiban, kewajiban) ||
                 other.kewajiban == kewajiban) &&
-            (identical(other.biayaOperasional, biayaOperasional) ||
-                other.biayaOperasional == biayaOperasional) &&
-            (identical(other.biayaRumahTangga, biayaRumahTangga) ||
-                other.biayaRumahTangga == biayaRumahTangga) &&
+            const DeepCollectionEquality()
+                .equals(other.biayaOperasional, biayaOperasional) &&
+            const DeepCollectionEquality()
+                .equals(other.biayaRumahTangga, biayaRumahTangga) &&
             (identical(other.statusTempatTinggal, statusTempatTinggal) ||
                 other.statusTempatTinggal == statusTempatTinggal) &&
             (identical(other.hubunganPerbankan, hubunganPerbankan) ||
@@ -643,7 +682,6 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
                 other.tujuanPembiayaan == tujuanPembiayaan) &&
             (identical(other.gracePeriod, gracePeriod) ||
                 other.gracePeriod == gracePeriod) &&
-            (identical(other.barang, barang) || other.barang == barang) &&
             (identical(other.idKategoriProduk, idKategoriProduk) ||
                 other.idKategoriProduk == idKategoriProduk) &&
             (identical(other.idProduk, idProduk) ||
@@ -662,13 +700,18 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
             (identical(other.descSubProduk, descSubProduk) ||
                 other.descSubProduk == descSubProduk) &&
             (identical(other.descPlan, descPlan) ||
-                other.descPlan == descPlan));
+                other.descPlan == descPlan) &&
+            (identical(other.descKelamin, descKelamin) ||
+                other.descKelamin == descKelamin) &&
+            (identical(other.descStatusPernikahan, descStatusPernikahan) ||
+                other.descStatusPernikahan == descStatusPernikahan));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
+        idLoan,
         nik,
         nama,
         alamat,
@@ -678,15 +721,14 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
         statusPernikahan,
         jumlahTanggungan,
         kewajiban,
-        biayaOperasional,
-        biayaRumahTangga,
+        const DeepCollectionEquality().hash(biayaOperasional),
+        const DeepCollectionEquality().hash(biayaRumahTangga),
         statusTempatTinggal,
         hubunganPerbankan,
         plafonPengajuan,
         tenorPengajuan,
         tujuanPembiayaan,
         gracePeriod,
-        barang,
         idKategoriProduk,
         idProduk,
         idJenisPengajuan,
@@ -696,7 +738,9 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
         descProduk,
         descJenisPengajuan,
         descSubProduk,
-        descPlan
+        descPlan,
+        descKelamin,
+        descStatusPernikahan
       ]);
 
   @JsonKey(ignore: true)
@@ -716,47 +760,45 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
 
 abstract class _PembiayaanListItemEntiy extends PembiayaanListItemEntiy {
   const factory _PembiayaanListItemEntiy(
-      {@JsonKey(name: 'ktp') required final String nik,
+      {@JsonKey(name: 'id_loan') required final String idLoan,
+      @JsonKey(name: 'ktp') required final String nik,
       @JsonKey(name: 'nama') required final String nama,
-      @JsonKey(name: 'alamat') required final String alamat,
-      @JsonKey(name: 'tmp_lahir') required final String tempatLahir,
-      @JsonKey(name: 'tgl_lahir') required final String tanggalLahir,
-      @JsonKey(name: 'kelamin') required final String jenisKelamin,
-      @JsonKey(name: 'status_pernikahan')
-      required final String statusPernikahan,
-      @JsonKey(name: 'tanggungan') required final String jumlahTanggungan,
-      @JsonKey(name: 'biaya_tanggungan') required final String kewajiban,
-      @JsonKey(name: 'b_operasional') required final String biayaOperasional,
-      @JsonKey(name: 'b_gaji') required final String biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal')
-      required final String statusTempatTinggal,
-      @JsonKey(name: 'hubungan_bank') required final String hubunganPerbankan,
-      @JsonKey(name: 'plafon_pengajuan') required final String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') required final String tenorPengajuan,
-      @JsonKey(name: 'tujuan_pembiayaan')
-      required final String tujuanPembiayaan,
-      @JsonKey(name: 'grace_period') required final String gracePeriod,
-      @JsonKey(name: 'barang') required final String barang,
-      @JsonKey(name: 'id_kategori_produk')
-      required final String idKategoriProduk,
-      @JsonKey(name: 'id_produk') required final String idProduk,
-      @JsonKey(name: 'id_template_dokumen')
-      required final String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') required final String idSubProduk,
-      @JsonKey(name: 'id_plan') required final String idPlan,
-      @JsonKey(name: 'desc_kategori_produk')
-      required final String descKategoriProduk,
-      @JsonKey(name: 'desc_produk') required final String descProduk,
-      @JsonKey(name: 'desc_template_dokumen')
-      required final String descJenisPengajuan,
-      @JsonKey(name: 'desc_subproduk') required final String descSubProduk,
-      @JsonKey(name: 'desc_plan')
-      required final String descPlan}) = _$PembiayaanListItemEntiyImpl;
+      @JsonKey(name: 'alamat') final String alamat,
+      @JsonKey(name: 'tmp_lahir') final String tempatLahir,
+      @JsonKey(name: 'tgl_lahir') final String tanggalLahir,
+      @JsonKey(name: 'kelamin') final int jenisKelamin,
+      @JsonKey(name: 'status_pernikahan') final String statusPernikahan,
+      @JsonKey(name: 'tanggungan') final int jumlahTanggungan,
+      @JsonKey(name: 'biaya_tanggungan') final num kewajiban,
+      @JsonKey(name: 'b_operasional') final dynamic biayaOperasional,
+      @JsonKey(name: 'b_gaji') final dynamic biayaRumahTangga,
+      @JsonKey(name: 'status_tempat_tinggal') final String statusTempatTinggal,
+      @JsonKey(name: 'hubungan_bank') final int hubunganPerbankan,
+      @JsonKey(name: 'plafon_pengajuan') final num plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') final int tenorPengajuan,
+      @JsonKey(name: 'tujuan_pembiayaan') final String tujuanPembiayaan,
+      @JsonKey(name: 'grace_period') final String gracePeriod,
+      @JsonKey(name: 'id_kategori_produk') final int idKategoriProduk,
+      @JsonKey(name: 'id_produk') final int idProduk,
+      @JsonKey(name: 'id_template_dokumen') final int idJenisPengajuan,
+      @JsonKey(name: 'id_subproduk') final int idSubProduk,
+      @JsonKey(name: 'id_plan') final int idPlan,
+      @JsonKey(name: 'desc_kategori_produk') final String descKategoriProduk,
+      @JsonKey(name: 'desc_produk') final String descProduk,
+      @JsonKey(name: 'desc_template_dokumen') final String descJenisPengajuan,
+      @JsonKey(name: 'desc_subproduk') final String descSubProduk,
+      @JsonKey(name: 'desc_plan') final String descPlan,
+      @JsonKey(name: 'desc_kelamin') final String descKelamin,
+      @JsonKey(name: 'desc_status_pernikahan')
+      final String descStatusPernikahan}) = _$PembiayaanListItemEntiyImpl;
   const _PembiayaanListItemEntiy._() : super._();
 
   factory _PembiayaanListItemEntiy.fromJson(Map<String, dynamic> json) =
       _$PembiayaanListItemEntiyImpl.fromJson;
 
+  @override
+  @JsonKey(name: 'id_loan')
+  String get idLoan;
   @override
   @JsonKey(name: 'ktp')
   String get nik;
@@ -774,58 +816,55 @@ abstract class _PembiayaanListItemEntiy extends PembiayaanListItemEntiy {
   String get tanggalLahir;
   @override
   @JsonKey(name: 'kelamin')
-  String get jenisKelamin;
+  int get jenisKelamin;
   @override
   @JsonKey(name: 'status_pernikahan')
   String get statusPernikahan;
   @override
   @JsonKey(name: 'tanggungan')
-  String get jumlahTanggungan;
+  int get jumlahTanggungan;
   @override
   @JsonKey(name: 'biaya_tanggungan')
-  String get kewajiban;
+  num get kewajiban;
   @override
   @JsonKey(name: 'b_operasional')
-  String get biayaOperasional;
+  dynamic get biayaOperasional;
   @override
   @JsonKey(name: 'b_gaji')
-  String get biayaRumahTangga;
+  dynamic get biayaRumahTangga;
   @override
   @JsonKey(name: 'status_tempat_tinggal')
   String get statusTempatTinggal;
   @override
   @JsonKey(name: 'hubungan_bank')
-  String get hubunganPerbankan;
+  int get hubunganPerbankan;
   @override
   @JsonKey(name: 'plafon_pengajuan')
-  String get plafonPengajuan;
+  num get plafonPengajuan;
   @override
   @JsonKey(name: 'tenor_pengajuan')
-  String get tenorPengajuan;
+  int get tenorPengajuan;
   @override
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan;
   @override
   @JsonKey(name: 'grace_period')
   String get gracePeriod;
-  @override
-  @JsonKey(name: 'barang')
-  String get barang;
-  @override
+  @override // @Default('') @JsonKey(name: 'barang') String barang,
   @JsonKey(name: 'id_kategori_produk')
-  String get idKategoriProduk;
+  int get idKategoriProduk;
   @override
   @JsonKey(name: 'id_produk')
-  String get idProduk;
+  int get idProduk;
   @override
   @JsonKey(name: 'id_template_dokumen')
-  String get idJenisPengajuan;
+  int get idJenisPengajuan;
   @override
   @JsonKey(name: 'id_subproduk')
-  String get idSubProduk;
+  int get idSubProduk;
   @override
   @JsonKey(name: 'id_plan')
-  String get idPlan;
+  int get idPlan;
   @override
   @JsonKey(name: 'desc_kategori_produk')
   String get descKategoriProduk;
@@ -841,6 +880,12 @@ abstract class _PembiayaanListItemEntiy extends PembiayaanListItemEntiy {
   @override
   @JsonKey(name: 'desc_plan')
   String get descPlan;
+  @override
+  @JsonKey(name: 'desc_kelamin')
+  String get descKelamin;
+  @override
+  @JsonKey(name: 'desc_status_pernikahan')
+  String get descStatusPernikahan;
   @override
   @JsonKey(ignore: true)
   _$$PembiayaanListItemEntiyImplCopyWith<_$PembiayaanListItemEntiyImpl>

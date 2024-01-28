@@ -13,8 +13,8 @@ class DioClient {
     final baseOption = BaseOptions(
       baseUrl: AppString.baseUrlLogin,
       contentType: Headers.jsonContentType,
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
+      connectTimeout: const Duration(seconds: 20),
+      receiveTimeout: const Duration(seconds: 20),
     );
     dio = Dio(baseOption);
     dio.interceptors.add(LoggingInterceptor());
@@ -23,8 +23,8 @@ class DioClient {
     final baseOption = BaseOptions(
       baseUrl: AppString.baseUrl,
       contentType: Headers.jsonContentType,
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
+      connectTimeout: const Duration(seconds: 20),
+      receiveTimeout: const Duration(seconds: 20),
       headers: {
         HttpHeaders.authorizationHeader: 'Bearer $bearerToken',
       },
@@ -193,8 +193,9 @@ class DioClient {
       // e.type == DioExceptionType.unknown) {
       return left(Failure.network(message: l10n.failureNetwork, code: '04'));
       // }
-    } catch (e) {
+    } catch (e, stk) {
       debugPrint(e.toString());
+      debugPrintStack(stackTrace: stk);
       return left(
         Failure.unknown(
           message: l10n.somethingWrong,

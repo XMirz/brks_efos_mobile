@@ -12,12 +12,7 @@ import 'package:efosm/features/home/presentations/screen/dashboard.dart';
 import 'package:efosm/features/home/presentations/screen/list_pembiayaan.dart';
 import 'package:efosm/features/home/presentations/screen/profile.dart';
 import 'package:efosm/features/home/presentations/widgets/nav_bar.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/agunan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pekerjaan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -115,7 +110,7 @@ class HomeScreen extends HookConsumerWidget {
         index: pageIndex,
         children: const [
           Dashboard(),
-          ListPembiayaan(),
+          PembiayaanSreen(),
           Scaffold(),
           Profile(),
         ],

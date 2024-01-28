@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
@@ -11,7 +12,7 @@ import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/agunan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/agunan_item.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/card.dart';
 import 'package:efosm/features/pembiayaan/services/location_service.dart';
@@ -31,7 +32,12 @@ class AgunanForm extends ConsumerWidget {
     final showAgunanForm = ref.watch(showAgunanFormProvider);
     final listAgunan = ref.watch(listAgunanProvider);
     final initialParametersAsyncData = ref.read(fetchInitialParameterProvider);
+    final isJaminan = ref.watch(agunanFormProvider).isJaminan.value == '1';
 
+    final jenisJaminan = <DropDownItem>[
+      DropDownItem(value: '1', label: l10n.jaminan),
+      DropDownItem(value: '0 ', label: l10n.agunan),
+    ];
     void handleAddAgunan() {
       if (!formState.isValid) {
         print(formState);
@@ -52,6 +58,10 @@ class AgunanForm extends ConsumerWidget {
 
       ref.read(listAgunanProvider.notifier).add(formState);
       ref.read(deskripsiController).text = '';
+      ref.read(deskripsi2Controller).text = '';
+      ref.read(deskripsi3Controller).text = '';
+      ref.read(deskripsi4Controller).text = '';
+      ref.read(deskripsi5Controller).text = '';
       ref.read(alamatAgunanController).text = '';
       ref.read(showAgunanFormProvider.notifier).state = false;
       ref.invalidate(agunanFormProvider);
@@ -117,11 +127,71 @@ class AgunanForm extends ConsumerWidget {
               ),
               spaceY(14),
               if (showAgunanForm)
+                OurDropDownField(
+                  items: jenisJaminan,
+                  label: context.l10n.jenisAgunan,
+                  hint: context.l10n.jenisAgunan,
+                  value: formState.isJaminan.showValue,
+                  backgroundColor: AppColor.success.withOpacity(0.2),
+                  onChanged: (value, label) {
+                    ref
+                        .read(agunanFormProvider.notifier)
+                        .setJenisJaminan(value, label);
+                  },
+                ),
+              spaceY(4),
+              if (showAgunanForm && isJaminan)
                 Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    spaceY(4),
+                    OurTextField(
+                      label: context.l10n.deskripsiAgunan,
+                      controller: ref.read(deskripsiController),
+                      hint: context.l10n.deskripsiAgunan,
+                      error: formState.deskripsi.errorMessage,
+                      onChanged: (value) => ref
+                          .read(agunanFormProvider.notifier)
+                          .setDeskripsi(value, value),
+                    ),
+                    //2
+                    OurTextField(
+                      label: context.l10n.deskripsi('2'),
+                      controller: ref.read(deskripsi2Controller),
+                      hint: context.l10n.deskripsi('2'),
+                      onChanged: (value) => ref
+                          .read(agunanFormProvider.notifier)
+                          .setDeskripsi2(value),
+                    ),
+                    OurTextField(
+                      label: context.l10n.deskripsi('3'),
+                      controller: ref.read(deskripsi3Controller),
+                      hint: context.l10n.deskripsi('3'),
+                      onChanged: (value) => ref
+                          .read(agunanFormProvider.notifier)
+                          .setDeskripsi3(value),
+                    ),
+                    OurTextField(
+                      label: context.l10n.deskripsi('4'),
+                      controller: ref.read(deskripsi4Controller),
+                      hint: context.l10n.deskripsi('4'),
+                      onChanged: (value) => ref
+                          .read(agunanFormProvider.notifier)
+                          .setDeskripsi4(value),
+                    ),
+                    OurTextField(
+                      label: context.l10n.deskripsi('5'),
+                      controller: ref.read(deskripsi5Controller),
+                      hint: context.l10n.deskripsi('5'),
+                      onChanged: (value) => ref
+                          .read(agunanFormProvider.notifier)
+                          .setDeskripsi5(value),
+                    ),
+                  ],
+                ),
+              if (showAgunanForm && !isJaminan)
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                     OurDropDownField(
                       items:
                           buildDropDownItem(initialParameters.parJenisAgunan),
@@ -321,23 +391,24 @@ class AgunanForm extends ConsumerWidget {
                               ),
                       ),
                     ),
-                    spaceY(12),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: PrimaryButton(
-                        radius: 8,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        size: const Size(double.minPositive, 36),
-                        text: '${l10n.save} ${l10n.agunan.toLowerCase()}',
-                        backgroundColor: AppColor.primary,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
-                        onPressed: handleAddAgunan,
-                      ),
-                    ),
-                    spaceY(12),
                   ],
                 ),
+              if (showAgunanForm) spaceY(12),
+              if (showAgunanForm)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: PrimaryButton(
+                    radius: 8,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    size: const Size(double.minPositive, 36),
+                    text: '${l10n.save} ${l10n.agunan.toLowerCase()}',
+                    backgroundColor: AppColor.primary,
+                    textStyle: AppTextStyle.bodyMedium
+                        .copyWith(color: AppColor.textPrimaryInverse),
+                    onPressed: handleAddAgunan,
+                  ),
+                ),
+              spaceY(12),
             ],
           );
         },

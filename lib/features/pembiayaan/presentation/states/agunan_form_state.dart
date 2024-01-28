@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/app/domain/entities/file_field.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,47 +7,46 @@ part 'agunan_form_state.freezed.dart';
 
 @freezed
 class AgunanFormState with _$AgunanFormState {
-  const factory AgunanFormState({
+  factory AgunanFormState({
+    required Field isJaminan,
     required Field jenis,
     required Field deskripsi,
-    required Field alamat,
-    required FileField image,
-    required Field latitude,
-    required Field longitude,
-    required Field provinsi,
-    required Field kabupaten,
-    required Field kecamatan,
-    required Field kelurahan,
-    required Field nilaiTaksasi,
-    @Default(Field(value: '', showValue: '')) Field captureLoc,
+    @Default(Field(value: '')) Field deskripsi2,
+    @Default(Field(value: '')) Field deskripsi3,
+    @Default(Field(value: '')) Field deskripsi4,
+    @Default(Field(value: '')) Field deskripsi5,
+    @Default(Field(value: '')) Field alamat,
+    @Default(FileField(showValue: '')) FileField image,
+    @Default(Field(value: '')) Field latitude,
+    @Default(Field(value: '')) Field longitude,
+    @Default(Field(value: '')) Field provinsi,
+    @Default(Field(value: '')) Field kabupaten,
+    @Default(Field(value: '')) Field kecamatan,
+    @Default(Field(value: '')) Field kelurahan,
+    //  Field nilaiTaksasi,
+    @Default(Field(value: '')) Field captureLoc,
   }) = _AgunanFormState;
 
   const AgunanFormState._();
 
-  factory AgunanFormState.empty() => const AgunanFormState(
-        jenis: Field(value: '', showValue: ''),
-        deskripsi: Field(value: '', showValue: ''),
-        alamat: Field(value: '', showValue: ''),
-        image: FileField(showValue: ''),
-        latitude: Field(value: '', showValue: ''),
-        longitude: Field(value: '', showValue: ''),
-        provinsi: Field(value: '', showValue: ''),
-        kabupaten: Field(value: '', showValue: ''),
-        kecamatan: Field(value: '', showValue: ''),
-        kelurahan: Field(value: '', showValue: ''),
-        nilaiTaksasi: Field(value: '', showValue: ''),
+  factory AgunanFormState.empty() => AgunanFormState(
+        isJaminan: const Field(value: ''),
+        jenis: const Field(value: ''),
+        deskripsi: const Field(value: ''),
+        // nilaiTaksasi: Field(value: '', showValue: ''),
       );
   bool get isValid =>
-      jenis.isValid &&
-      deskripsi.isValid &&
-      alamat.isValid &&
-      image.isValid &&
-      latitude.isValid &&
-      longitude.isValid &&
-      provinsi.isValid &&
-      kabupaten.isValid &&
-      kecamatan.isValid &&
-      kelurahan.isValid;
+      (isJaminan.value == '1' && deskripsi.isValid) ||
+      (jenis.isValid &&
+          deskripsi.isValid &&
+          alamat.isValid &&
+          image.isValid &&
+          latitude.isValid &&
+          longitude.isValid &&
+          provinsi.isValid &&
+          kabupaten.isValid &&
+          kecamatan.isValid &&
+          kelurahan.isValid);
   // captureLoc.isValid &&
   // nilaiTaksasi.isValid;
 }

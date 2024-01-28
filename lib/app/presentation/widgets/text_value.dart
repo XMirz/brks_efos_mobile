@@ -6,14 +6,16 @@ class TextValue extends StatelessWidget {
   const TextValue(
       {super.key,
       required this.title,
-      required this.value,
+      this.value,
       this.titleFlex,
-      this.valueFlex});
+      this.valueFlex,
+      this.values});
 
   final String title;
-  final String value;
+  final String? value;
   final int? titleFlex;
   final int? valueFlex;
+  final List<Widget>? values;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,14 +31,23 @@ class TextValue extends StatelessWidget {
           ),
         ),
         const Flexible(child: Text(':')),
-        Expanded(
-          flex: valueFlex ?? 6,
-          child: Text(
-            value,
-            style: AppTextStyle.subtitleMedium.copyWith(
-                color: AppColor.textPrimary, fontWeight: FontWeight.w500),
+        if (values == null)
+          Expanded(
+            flex: valueFlex ?? 6,
+            child: Text(
+              value ?? '',
+              style: AppTextStyle.subtitleMedium.copyWith(
+                  color: AppColor.textPrimary, fontWeight: FontWeight.w500),
+            ),
           ),
-        ),
+        if (values != null && values!.isNotEmpty)
+          Expanded(
+            flex: valueFlex ?? 6,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: values!.toList(),
+            ),
+          ),
       ],
     );
   }

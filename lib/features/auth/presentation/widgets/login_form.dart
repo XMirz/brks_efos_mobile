@@ -5,13 +5,11 @@ import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/states/user_state.dart';
-import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
-import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/core/di/injector.dart';
 import 'package:efosm/features/auth/presentation/providers/login_form_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -25,8 +23,6 @@ class LoginForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final formState = ref.watch(loginFormProvider);
-    final showError = ref.watch(showErrorProvider);
-    final authRepository = ref.read(authRepositoryProvider);
 
     Future<void> handleLoginButton() async {
       if (!formState.form.isValid) {

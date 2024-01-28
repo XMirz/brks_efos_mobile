@@ -1,4 +1,5 @@
 class ApiPath {
-  static const listPembiayaanProduktif = '/mobile/produktif/listcalondebitur';
-  static const listPembiayaanKonsumtif = '/mobile/konsumtif/listcalondebitur';
+  static const listPembiayaanProduktif =
+      '/mobile/efos/listcalondebiturproduktif';
+  static const listPembiayaanKonsumtif = '/mobile/efos/listcalondebitur';
 }

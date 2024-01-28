@@ -12,6 +12,15 @@ import 'package:image_picker/image_picker.dart';
 class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   AgunanFormProvider() : super(AgunanFormState.empty());
 
+  void setJenisJaminan(String value, String shownValue) {
+    state = state.copyWith(
+      isJaminan: Field(
+        value: value,
+        showValue: shownValue,
+      ),
+    );
+  }
+
   void setJenis(String value, String shownValue) {
     final isValid = value.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
@@ -34,6 +43,38 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
         value: value,
         showValue: shownValue,
         errorMessage: message,
+      ),
+    );
+  }
+
+  void setDeskripsi2(String value) {
+    state = state.copyWith(
+      deskripsi2: Field(
+        value: value,
+      ),
+    );
+  }
+
+  void setDeskripsi3(String value) {
+    state = state.copyWith(
+      deskripsi3: Field(
+        value: value,
+      ),
+    );
+  }
+
+  void setDeskripsi4(String value) {
+    state = state.copyWith(
+      deskripsi4: Field(
+        value: value,
+      ),
+    );
+  }
+
+  void setDeskripsi5(String value) {
+    state = state.copyWith(
+      deskripsi5: Field(
+        value: value,
       ),
     );
   }
@@ -196,5 +237,9 @@ final listAgunanProvider =
 final agunanIndexProvider = StateProvider((ref) => 0);
 
 final deskripsiController = Provider((ref) => TextEditingController(text: ''));
+final deskripsi2Controller = Provider((ref) => TextEditingController(text: ''));
+final deskripsi3Controller = Provider((ref) => TextEditingController(text: ''));
+final deskripsi4Controller = Provider((ref) => TextEditingController(text: ''));
+final deskripsi5Controller = Provider((ref) => TextEditingController(text: ''));
 final alamatAgunanController =
     Provider((ref) => TextEditingController(text: ''));

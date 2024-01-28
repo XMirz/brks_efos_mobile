@@ -9,12 +9,14 @@ part of 'pembiayaan_paginated_entity.dart';
 _$PembiayaanPaginatedEntityImpl _$$PembiayaanPaginatedEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$PembiayaanPaginatedEntityImpl(
-      pageNumber: json['currentPage'] as String,
-      totalPages: json['totalPages'] as String,
-      totalItems: json['totalFilter'] as String,
-      filteredItems: json['totalItems'] as String,
-      pembiayaanList:
-          PembiayaanList.fromJson(json['data'] as Map<String, dynamic>),
+      pageNumber: json['currentPage'] as int,
+      totalPages: json['totalPages'] as int,
+      totalItems: json['totalFilter'] as int,
+      filteredItems: json['totalItems'] as int,
+      pembiayaanList: (json['data'] as List<dynamic>)
+          .map((e) =>
+              PembiayaanListItemEntiy.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$PembiayaanPaginatedEntityImplToJson(
@@ -25,18 +27,4 @@ Map<String, dynamic> _$$PembiayaanPaginatedEntityImplToJson(
       'totalFilter': instance.totalItems,
       'totalItems': instance.filteredItems,
       'data': instance.pembiayaanList,
-    };
-
-_$PembiayaanListImpl _$$PembiayaanListImplFromJson(Map<String, dynamic> json) =>
-    _$PembiayaanListImpl(
-      pembiayaanList: (json['pembiayaanList'] as List<dynamic>)
-          .map((e) =>
-              PembiayaanListItemEntiy.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$$PembiayaanListImplToJson(
-        _$PembiayaanListImpl instance) =>
-    <String, dynamic>{
-      'pembiayaanList': instance.pembiayaanList,
     };

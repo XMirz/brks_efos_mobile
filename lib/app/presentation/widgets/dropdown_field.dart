@@ -24,6 +24,7 @@ class OurDropDownField extends StatelessWidget {
     this.readOnly,
     this.height,
     this.value,
+    this.backgroundColor,
   });
 
   final String label;
@@ -34,6 +35,7 @@ class OurDropDownField extends StatelessWidget {
   final double? height;
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
+  final Color? backgroundColor;
   final ValueChanged<String, String> onChanged;
   final List<DropDownItem> items;
   @override
@@ -93,7 +95,7 @@ class OurDropDownField extends StatelessWidget {
                       height: height ?? 48,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: backgroundColor ?? Colors.white,
                         border: Border.all(
                           color: AppColor.highlight,
                         ),

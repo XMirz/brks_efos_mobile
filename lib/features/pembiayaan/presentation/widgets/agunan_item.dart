@@ -4,6 +4,7 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_value.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -18,6 +19,7 @@ class AgunanItem extends StatelessWidget {
   final VoidCallback onDissmissed;
   @override
   Widget build(BuildContext context) {
+    final isJaminan = agunan.isJaminan.value == AppString.isJaminanValue;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: Dismissible(
@@ -53,14 +55,61 @@ class AgunanItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              TextValue(title: l10n.jenisAgunan, value: agunan.jenis.value),
-              TextValue(
-                  title: l10n.deskripsiAgunan, value: agunan.deskripsi.value),
-              TextValue(
-                title: l10n.lokasi,
-                value:
-                    '${agunan.alamat.showValue}\n${agunan.kelurahan.showValue}, ${agunan.kecamatan.showValue}, ${agunan.kabupaten.showValue}, ${agunan.provinsi.showValue}',
-              ),
+              if (isJaminan)
+                TextValue(title: l10n.jenisJaminan, value: l10n.jaminan),
+              if (!isJaminan)
+                TextValue(title: l10n.jenisAgunan, value: agunan.jenis.value),
+              if (!isJaminan)
+                TextValue(
+                  title: l10n.deskripsiAgunan,
+                  value: agunan.deskripsi.value,
+                ),
+              if (isJaminan)
+                TextValue(
+                  title: l10n.deskripsi(''),
+                  values: [
+                    Text(
+                      agunan.deskripsi.value,
+                      style: AppTextStyle.subtitleMedium.copyWith(
+                          color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    if (agunan.deskripsi2.value.isNotEmpty)
+                      Text(
+                        agunan.deskripsi2.value,
+                        style: AppTextStyle.subtitleMedium.copyWith(
+                            color: AppColor.textPrimary,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    if (agunan.deskripsi3.value.isNotEmpty)
+                      Text(
+                        agunan.deskripsi3.value,
+                        style: AppTextStyle.subtitleMedium.copyWith(
+                            color: AppColor.textPrimary,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    if (agunan.deskripsi4.value.isNotEmpty)
+                      Text(
+                        agunan.deskripsi4.value,
+                        style: AppTextStyle.subtitleMedium.copyWith(
+                            color: AppColor.textPrimary,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    if (agunan.deskripsi5.value.isNotEmpty)
+                      Text(
+                        agunan.deskripsi5.value,
+                        style: AppTextStyle.subtitleMedium.copyWith(
+                            color: AppColor.textPrimary,
+                            fontWeight: FontWeight.w500),
+                      ),
+                  ],
+                ),
+              if (!isJaminan)
+                TextValue(
+                  title: l10n.lokasi,
+                  value:
+                      '${agunan.alamat.showValue}\n${agunan.kelurahan.showValue}, ${agunan.kecamatan.showValue}, ${agunan.kabupaten.showValue}, ${agunan.provinsi.showValue}',
+                ),
               if (agunan.image.value != null &&
                   agunan.image.value!.existsSync())
                 Align(

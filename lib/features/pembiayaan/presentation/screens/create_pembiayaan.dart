@@ -94,6 +94,10 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         ..invalidate(agunanIndexProvider)
         ..invalidate(agunanIndexProvider)
         ..invalidate(deskripsiController)
+        ..invalidate(deskripsi2Controller)
+        ..invalidate(deskripsi3Controller)
+        ..invalidate(deskripsi4Controller)
+        ..invalidate(deskripsi5Controller)
         ..invalidate(alamatAgunanController);
     }
 
@@ -184,11 +188,11 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         idSubProduk: pembiayaanFormState.idSubProduk.value,
         idPlan: pembiayaanFormState.idPlan.value,
         tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value,
-        barang: pembiayaanFormState.barang.value,
-        hargaPerolehan: pembiayaanFormState.hargaPerolehan.value,
-        pajak: pembiayaanFormState.pajak.value,
-        diskon: pembiayaanFormState.diskon.value,
-        uangMuka: pembiayaanFormState.uangMuka.value,
+        // barang: pembiayaanFormState.barang.value,
+        // hargaPerolehan: pembiayaanFormState.hargaPerolehan.value,
+        // pajak: pembiayaanFormState.pajak.value,
+        // diskon: pembiayaanFormState.diskon.value,
+        // uangMuka: pembiayaanFormState.uangMuka.value,
         plafonPengajuan: pembiayaanFormState.plafonPengajuan.value,
         tenorPengajuan: pembiayaanFormState.tenorPengajuan.value,
         // gracePeriod: pembiayaanFormState.gracePeriod.value,
@@ -202,37 +206,50 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       );
 
       final listAgunan = listAgunanState.map((agunan) {
-        var image = img.decodeImage(agunan.image.value!.readAsBytesSync());
-        if (image != null) {
-          //  Resize sehingga tidak melebih 800 px
-          int width;
-          int height;
-          if (image.width > image.height) {
-            width = 800;
-            height = (image.height / image.width * 800).round();
-          } else {
-            height = 800;
-            width = (image.width / image.height * 800).round();
+        var strImage = '';
+        if (agunan.image.value != null) {
+          var image = img.decodeImage(agunan.image.value!.readAsBytesSync());
+          if (image != null) {
+            //  Resize sehingga tidak melebih 800 px
+            int width;
+            int height;
+            if (image.width > image.height) {
+              width = 800;
+              height = (image.height / image.width * 800).round();
+            } else {
+              height = 800;
+              width = (image.width / image.height * 800).round();
+            }
+            image = img.copyResize(image, width: width, height: height);
           }
-          image = img.copyResize(image, width: width, height: height);
+
+          final imageBytes =
+              image != null ? img.encodeJpg(image, quality: 85) : <int>[];
+          strImage = base64Encode(imageBytes);
         }
 
-        final imageBytes =
-            image != null ? img.encodeJpg(image, quality: 85) : <int>[];
-        final base64Image = base64Encode(imageBytes);
+        var deskripsi = agunan.deskripsi.value;
+        if (agunan.deskripsi.value == '1') {
+          deskripsi = deskripsi.padRight(50);
+          deskripsi = deskripsi + agunan.deskripsi2.value.padRight(50);
+          deskripsi = deskripsi + agunan.deskripsi3.value.padRight(50);
+          deskripsi = deskripsi + agunan.deskripsi4.value.padRight(50);
+          deskripsi = deskripsi + agunan.deskripsi5.value.padRight(50);
+        }
         return AgunanEntity(
-            jenis: agunan.jenis.value,
-            deskripsi: agunan.deskripsi.value,
-            alamat: agunan.alamat.value,
-            image: base64Image,
-            latitude: agunan.latitude.value,
-            longitude: agunan.longitude.value,
-            captureLoc: agunan.captureLoc.value,
-            provinsi: agunan.provinsi.value,
-            kabupaten: agunan.kabupaten.value,
-            kecamatan: agunan.kecamatan.value,
-            kelurahan: agunan.kelurahan.value,
-            nilaiTaksasi: agunan.nilaiTaksasi.value);
+          isJaminan: agunan.isJaminan.value,
+          jenis: agunan.jenis.value,
+          deskripsi: agunan.deskripsi.value,
+          alamat: agunan.alamat.value,
+          image: strImage,
+          latitude: agunan.latitude.value,
+          longitude: agunan.longitude.value,
+          captureLoc: agunan.captureLoc.value,
+          provinsi: agunan.provinsi.value,
+          kabupaten: agunan.kabupaten.value,
+          kecamatan: agunan.kecamatan.value,
+          kelurahan: agunan.kelurahan.value,
+        );
       }).toList();
 
       // Pembiayaan
@@ -269,6 +286,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         );
       }, (r) async {
         await showDialog<void>(
+          barrierDismissible: false,
           context: context,
           builder: (context) {
             return OurAlertDialog(
@@ -279,9 +297,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                 SmallButton(
                   text: l10n.ok,
                   onPressed: () {
-                    context
-                      ..pop('dialog')
-                      ..goNamed(AppRoutes.homePage);
+                    context.pop('dialog');
                   },
                 ),
               ],
@@ -294,6 +310,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         invalidatePasanganForm();
         invalidatePembiayaanForm();
         invalidateAgunanForm();
+        if (context.mounted) context.goNamed(AppRoutes.homePage);
       });
     }
 
@@ -314,6 +331,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     }
 
     Future<void> handleFinishButton() async {
+      print(formStates);
       Injector.registerAuthenticatedClient(
           ref.read(authenticatedUserProvider).token!);
       await showDialog<void>(

@@ -22,7 +22,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
   }
 
   void setNama(String nama) {
-    final isValid = nama.length > 7;
+    final isValid = nama.length > 2;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       nama: Field(

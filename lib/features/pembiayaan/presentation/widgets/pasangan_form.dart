@@ -1,14 +1,10 @@
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
-import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
-import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pekerjaan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/pasangan_item.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -158,7 +154,7 @@ class PasanganForm extends ConsumerWidget {
                 keyboardType: TextInputType.number,
                 label: context.l10n.gajiBersih,
                 hint: context.l10n.gajiBersih,
-                controller: ref.read(gajiBersihControllerProvider),
+                controller: ref.read(gajiBersihPasanganController),
                 onChanged: (value) => ref
                     .read(pasanganFormProvider.notifier)
                     .setGajiBersih(value, value),

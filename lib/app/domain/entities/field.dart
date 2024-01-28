@@ -6,10 +6,12 @@ part 'field.freezed.dart';
 class Field with _$Field {
   const factory Field({
     required String value,
-    required String showValue,
+    @Default('') String showValue,
     @Default('') String errorMessage,
     @Default(false) bool isValid,
   }) = $_Field;
+
+  factory Field.empty() => const Field(value: '', showValue: '');
 }
 
 @freezed

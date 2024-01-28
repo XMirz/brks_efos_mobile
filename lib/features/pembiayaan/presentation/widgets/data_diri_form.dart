@@ -5,8 +5,8 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/date_field.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -55,7 +55,6 @@ class DataDiriForm extends ConsumerWidget {
                 onChanged: (value) =>
                     ref.read(dataDiriFormProvider.notifier).setNama(value),
               ),
-
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parKelamin),

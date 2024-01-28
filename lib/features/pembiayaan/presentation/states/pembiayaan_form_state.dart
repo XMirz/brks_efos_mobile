@@ -9,11 +9,11 @@ class PembiayaanFormState with _$PembiayaanFormState {
     required Field idPlan,
     required Field tujuanPembiayaan,
     // required Field gracePeriod,
-    required Field barang,
-    required Field hargaPerolehan,
-    required Field pajak,
-    required Field diskon,
-    required Field uangMuka,
+    // required Field barang,
+    // required Field hargaPerolehan,
+    // required Field pajak,
+    // required Field diskon,
+    // required Field uangMuka,
     required Field plafonPengajuan,
     required Field tenorPengajuan,
     // required DropDownField kodeMargin,
@@ -30,36 +30,36 @@ class PembiayaanFormState with _$PembiayaanFormState {
   const PembiayaanFormState._();
 
   factory PembiayaanFormState.empty() => const PembiayaanFormState(
-        idPlan: Field(value: '', showValue: ''),
-        tujuanPembiayaan: Field(value: '', showValue: ''),
+        idPlan: Field(value: ''),
+        tujuanPembiayaan: Field(value: ''),
         // gracePeriod: Field(value: '', showValue: ''),
-        barang: Field(value: '', showValue: ''),
-        hargaPerolehan: Field(value: '', showValue: ''),
-        pajak: Field(value: '', showValue: ''),
-        diskon: Field(value: '', showValue: ''),
-        uangMuka: Field(value: '', showValue: ''),
-        plafonPengajuan: Field(value: '', showValue: ''),
-        tenorPengajuan: Field(value: '', showValue: ''),
+        // barang: Field(value: '', showValue: ''),
+        // hargaPerolehan: Field(value: '', showValue: ''),
+        // pajak: Field(value: '', showValue: ''),
+        // diskon: Field(value: '', showValue: ''),
+        // uangMuka: Field(value: '', showValue: ''),
+        plafonPengajuan: Field(value: ''),
+        tenorPengajuan: Field(value: ''),
         // kodeMargin: DropDownField(value: '', showValue: '', actualValue: ''),
         // basiPointMargin: Field(value: '', showValue: ''),
         // marginPengajuan: Field(value: '', showValue: ''),
         // totalMargin: Field(value: '', showValue: ''),
         // angsuranPengajuan: Field(value: '', showValue: ''),
-        idKategoriProduk: Field(value: '', showValue: ''),
-        idJenisPengajuan: Field(value: '', showValue: ''),
-        idSubProduk: Field(value: '', showValue: ''),
-        idProduk: Field(value: '', showValue: ''),
+        idKategoriProduk: Field(value: ''),
+        idJenisPengajuan: Field(value: ''),
+        idSubProduk: Field(value: ''),
+        idProduk: Field(value: ''),
       );
 
   bool get isValid =>
       idPlan.isValid &&
       tujuanPembiayaan.isValid &&
       // gracePeriod.isValid &&
-      barang.isValid &&
-      hargaPerolehan.isValid &&
-      pajak.isValid &&
-      diskon.isValid &&
-      uangMuka.isValid &&
+      // barang.isValid &&
+      // hargaPerolehan.isValid &&
+      // pajak.isValid &&
+      // diskon.isValid &&
+      // uangMuka.isValid &&
       // plafonPengajuan.isValid &&
       // tenorPengajuan.isValid &&
       // kodeMargin.isValid &&

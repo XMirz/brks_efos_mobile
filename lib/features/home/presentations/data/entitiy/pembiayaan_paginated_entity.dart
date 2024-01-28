@@ -7,11 +7,12 @@ part 'pembiayaan_paginated_entity.g.dart';
 @freezed
 class PembiayaanPaginatedEntity with _$PembiayaanPaginatedEntity {
   const factory PembiayaanPaginatedEntity({
-    @JsonKey(name: 'currentPage') required String pageNumber,
-    @JsonKey(name: 'totalPages') required String totalPages,
-    @JsonKey(name: 'totalFilter') required String totalItems,
-    @JsonKey(name: 'totalItems') required String filteredItems,
-    @JsonKey(name: 'data') required PembiayaanList pembiayaanList,
+    @JsonKey(name: 'currentPage') required int pageNumber,
+    @JsonKey(name: 'totalPages') required int totalPages,
+    @JsonKey(name: 'totalFilter') required int totalItems,
+    @JsonKey(name: 'totalItems') required int filteredItems,
+    @JsonKey(name: 'data')
+    required List<PembiayaanListItemEntiy> pembiayaanList,
   }) = _PembiayaanPaginatedEntity;
 
   const PembiayaanPaginatedEntity._();
@@ -20,11 +21,11 @@ class PembiayaanPaginatedEntity with _$PembiayaanPaginatedEntity {
       _$PembiayaanPaginatedEntityFromJson(json);
 }
 
-@freezed
-abstract class PembiayaanList with _$PembiayaanList {
-  const factory PembiayaanList({
-    required List<PembiayaanListItemEntiy> pembiayaanList,
-  }) = _PembiayaanList;
-  factory PembiayaanList.fromJson(Map<String, dynamic> json) =>
-      _$PembiayaanListFromJson(json);
-}
+// @freezed
+// abstract class PembiayaanList with _$PembiayaanList {
+//   const factory PembiayaanList({
+//     required List<PembiayaanListItemEntiy> pembiayaanList,
+//   }) = _PembiayaanList;
+//   factory PembiayaanList.fromJson(Map<String, dynamic> json) =>
+//       _$PembiayaanListFromJson(json);
+// }

@@ -19,11 +19,11 @@ mixin _$PembiayaanFormState {
   Field get idPlan => throw _privateConstructorUsedError;
   Field get tujuanPembiayaan =>
       throw _privateConstructorUsedError; // required Field gracePeriod,
-  Field get barang => throw _privateConstructorUsedError;
-  Field get hargaPerolehan => throw _privateConstructorUsedError;
-  Field get pajak => throw _privateConstructorUsedError;
-  Field get diskon => throw _privateConstructorUsedError;
-  Field get uangMuka => throw _privateConstructorUsedError;
+// required Field barang,
+// required Field hargaPerolehan,
+// required Field pajak,
+// required Field diskon,
+// required Field uangMuka,
   Field get plafonPengajuan => throw _privateConstructorUsedError;
   Field get tenorPengajuan =>
       throw _privateConstructorUsedError; // required DropDownField kodeMargin,
@@ -50,11 +50,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
   $Res call(
       {Field idPlan,
       Field tujuanPembiayaan,
-      Field barang,
-      Field hargaPerolehan,
-      Field pajak,
-      Field diskon,
-      Field uangMuka,
       Field plafonPengajuan,
       Field tenorPengajuan,
       Field idKategoriProduk,
@@ -64,11 +59,6 @@ abstract class $PembiayaanFormStateCopyWith<$Res> {
 
   $FieldCopyWith<$Res> get idPlan;
   $FieldCopyWith<$Res> get tujuanPembiayaan;
-  $FieldCopyWith<$Res> get barang;
-  $FieldCopyWith<$Res> get hargaPerolehan;
-  $FieldCopyWith<$Res> get pajak;
-  $FieldCopyWith<$Res> get diskon;
-  $FieldCopyWith<$Res> get uangMuka;
   $FieldCopyWith<$Res> get plafonPengajuan;
   $FieldCopyWith<$Res> get tenorPengajuan;
   $FieldCopyWith<$Res> get idKategoriProduk;
@@ -92,11 +82,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
   $Res call({
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? barang = null,
-    Object? hargaPerolehan = null,
-    Object? pajak = null,
-    Object? diskon = null,
-    Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
     Object? idKategoriProduk = null,
@@ -112,26 +97,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      barang: null == barang
-          ? _value.barang
-          : barang // ignore: cast_nullable_to_non_nullable
-              as Field,
-      hargaPerolehan: null == hargaPerolehan
-          ? _value.hargaPerolehan
-          : hargaPerolehan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      pajak: null == pajak
-          ? _value.pajak
-          : pajak // ignore: cast_nullable_to_non_nullable
-              as Field,
-      diskon: null == diskon
-          ? _value.diskon
-          : diskon // ignore: cast_nullable_to_non_nullable
-              as Field,
-      uangMuka: null == uangMuka
-          ? _value.uangMuka
-          : uangMuka // ignore: cast_nullable_to_non_nullable
               as Field,
       plafonPengajuan: null == plafonPengajuan
           ? _value.plafonPengajuan
@@ -173,46 +138,6 @@ class _$PembiayaanFormStateCopyWithImpl<$Res, $Val extends PembiayaanFormState>
   $FieldCopyWith<$Res> get tujuanPembiayaan {
     return $FieldCopyWith<$Res>(_value.tujuanPembiayaan, (value) {
       return _then(_value.copyWith(tujuanPembiayaan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get barang {
-    return $FieldCopyWith<$Res>(_value.barang, (value) {
-      return _then(_value.copyWith(barang: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get hargaPerolehan {
-    return $FieldCopyWith<$Res>(_value.hargaPerolehan, (value) {
-      return _then(_value.copyWith(hargaPerolehan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get pajak {
-    return $FieldCopyWith<$Res>(_value.pajak, (value) {
-      return _then(_value.copyWith(pajak: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get diskon {
-    return $FieldCopyWith<$Res>(_value.diskon, (value) {
-      return _then(_value.copyWith(diskon: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FieldCopyWith<$Res> get uangMuka {
-    return $FieldCopyWith<$Res>(_value.uangMuka, (value) {
-      return _then(_value.copyWith(uangMuka: value) as $Val);
     });
   }
 
@@ -276,11 +201,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
   $Res call(
       {Field idPlan,
       Field tujuanPembiayaan,
-      Field barang,
-      Field hargaPerolehan,
-      Field pajak,
-      Field diskon,
-      Field uangMuka,
       Field plafonPengajuan,
       Field tenorPengajuan,
       Field idKategoriProduk,
@@ -292,16 +212,6 @@ abstract class _$$PembiayaanFormStateImplCopyWith<$Res>
   $FieldCopyWith<$Res> get idPlan;
   @override
   $FieldCopyWith<$Res> get tujuanPembiayaan;
-  @override
-  $FieldCopyWith<$Res> get barang;
-  @override
-  $FieldCopyWith<$Res> get hargaPerolehan;
-  @override
-  $FieldCopyWith<$Res> get pajak;
-  @override
-  $FieldCopyWith<$Res> get diskon;
-  @override
-  $FieldCopyWith<$Res> get uangMuka;
   @override
   $FieldCopyWith<$Res> get plafonPengajuan;
   @override
@@ -329,11 +239,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
   $Res call({
     Object? idPlan = null,
     Object? tujuanPembiayaan = null,
-    Object? barang = null,
-    Object? hargaPerolehan = null,
-    Object? pajak = null,
-    Object? diskon = null,
-    Object? uangMuka = null,
     Object? plafonPengajuan = null,
     Object? tenorPengajuan = null,
     Object? idKategoriProduk = null,
@@ -349,26 +254,6 @@ class __$$PembiayaanFormStateImplCopyWithImpl<$Res>
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      barang: null == barang
-          ? _value.barang
-          : barang // ignore: cast_nullable_to_non_nullable
-              as Field,
-      hargaPerolehan: null == hargaPerolehan
-          ? _value.hargaPerolehan
-          : hargaPerolehan // ignore: cast_nullable_to_non_nullable
-              as Field,
-      pajak: null == pajak
-          ? _value.pajak
-          : pajak // ignore: cast_nullable_to_non_nullable
-              as Field,
-      diskon: null == diskon
-          ? _value.diskon
-          : diskon // ignore: cast_nullable_to_non_nullable
-              as Field,
-      uangMuka: null == uangMuka
-          ? _value.uangMuka
-          : uangMuka // ignore: cast_nullable_to_non_nullable
               as Field,
       plafonPengajuan: null == plafonPengajuan
           ? _value.plafonPengajuan
@@ -404,11 +289,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   const _$PembiayaanFormStateImpl(
       {required this.idPlan,
       required this.tujuanPembiayaan,
-      required this.barang,
-      required this.hargaPerolehan,
-      required this.pajak,
-      required this.diskon,
-      required this.uangMuka,
       required this.plafonPengajuan,
       required this.tenorPengajuan,
       required this.idKategoriProduk,
@@ -422,16 +302,11 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
   @override
   final Field tujuanPembiayaan;
 // required Field gracePeriod,
-  @override
-  final Field barang;
-  @override
-  final Field hargaPerolehan;
-  @override
-  final Field pajak;
-  @override
-  final Field diskon;
-  @override
-  final Field uangMuka;
+// required Field barang,
+// required Field hargaPerolehan,
+// required Field pajak,
+// required Field diskon,
+// required Field uangMuka,
   @override
   final Field plafonPengajuan;
   @override
@@ -452,7 +327,7 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
 
   @override
   String toString() {
-    return 'PembiayaanFormState(idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, barang: $barang, hargaPerolehan: $hargaPerolehan, pajak: $pajak, diskon: $diskon, uangMuka: $uangMuka, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, idKategoriProduk: $idKategoriProduk, idJenisPengajuan: $idJenisPengajuan, idProduk: $idProduk, idSubProduk: $idSubProduk)';
+    return 'PembiayaanFormState(idPlan: $idPlan, tujuanPembiayaan: $tujuanPembiayaan, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, idKategoriProduk: $idKategoriProduk, idJenisPengajuan: $idJenisPengajuan, idProduk: $idProduk, idSubProduk: $idSubProduk)';
   }
 
   @override
@@ -463,13 +338,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
             (identical(other.idPlan, idPlan) || other.idPlan == idPlan) &&
             (identical(other.tujuanPembiayaan, tujuanPembiayaan) ||
                 other.tujuanPembiayaan == tujuanPembiayaan) &&
-            (identical(other.barang, barang) || other.barang == barang) &&
-            (identical(other.hargaPerolehan, hargaPerolehan) ||
-                other.hargaPerolehan == hargaPerolehan) &&
-            (identical(other.pajak, pajak) || other.pajak == pajak) &&
-            (identical(other.diskon, diskon) || other.diskon == diskon) &&
-            (identical(other.uangMuka, uangMuka) ||
-                other.uangMuka == uangMuka) &&
             (identical(other.plafonPengajuan, plafonPengajuan) ||
                 other.plafonPengajuan == plafonPengajuan) &&
             (identical(other.tenorPengajuan, tenorPengajuan) ||
@@ -489,11 +357,6 @@ class _$PembiayaanFormStateImpl extends _PembiayaanFormState {
       runtimeType,
       idPlan,
       tujuanPembiayaan,
-      barang,
-      hargaPerolehan,
-      pajak,
-      diskon,
-      uangMuka,
       plafonPengajuan,
       tenorPengajuan,
       idKategoriProduk,
@@ -513,11 +376,6 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
   const factory _PembiayaanFormState(
       {required final Field idPlan,
       required final Field tujuanPembiayaan,
-      required final Field barang,
-      required final Field hargaPerolehan,
-      required final Field pajak,
-      required final Field diskon,
-      required final Field uangMuka,
       required final Field plafonPengajuan,
       required final Field tenorPengajuan,
       required final Field idKategoriProduk,
@@ -531,16 +389,11 @@ abstract class _PembiayaanFormState extends PembiayaanFormState {
   @override
   Field get tujuanPembiayaan;
   @override // required Field gracePeriod,
-  Field get barang;
-  @override
-  Field get hargaPerolehan;
-  @override
-  Field get pajak;
-  @override
-  Field get diskon;
-  @override
-  Field get uangMuka;
-  @override
+// required Field barang,
+// required Field hargaPerolehan,
+// required Field pajak,
+// required Field diskon,
+// required Field uangMuka,
   Field get plafonPengajuan;
   @override
   Field get tenorPengajuan;

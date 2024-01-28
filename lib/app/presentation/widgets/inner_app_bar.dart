@@ -11,17 +11,23 @@ final animateLoadProvider = StateProvider.autoDispose((ref) => true);
 class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   const InnerAppBar({
     required this.title,
+    this.borderRadius,
     super.key,
     this.backgroundColor,
     this.centerTitle,
     this.tint,
     this.onBackPressed,
+    this.tabs,
+    this.height,
   });
 
   final String title;
+  final BorderRadius? borderRadius;
+  final double? height;
   final Color? backgroundColor;
   final Color? tint;
   final bool? centerTitle;
+  final List<Widget>? tabs;
   final VoidCallback? onBackPressed;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,17 +35,30 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
       ref.read(animateLoadProvider.notifier).update((state) => false);
     });
     return AnimatedContainer(
+      decoration: const BoxDecoration(),
       alignment: Alignment.centerLeft,
-      // transform: ref.watch(animateLoadProvider)
-      //     ? (Matrix4.identity()..translate(16))
-      //     : Matrix4.identity(),
+      transform: ref.watch(animateLoadProvider)
+          ? (Matrix4.identity()..translate(16))
+          : Matrix4.identity(),
       duration: const Duration(milliseconds: 400),
       child: AppBar(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.elliptical(24, 24),
-            bottomRight: Radius.elliptical(24, 24),
-          ),
+        clipBehavior: Clip.hardEdge,
+        bottom: tabs != null && tabs!.isNotEmpty
+            ? TabBar(
+                labelStyle: AppTextStyle.bodyMedium,
+                tabs: tabs!,
+                labelColor: AppColor.primary,
+                unselectedLabelColor: AppColor.highlightSecondary,
+                indicatorWeight: 1,
+                indicatorSize: TabBarIndicatorSize.tab,
+              )
+            : null,
+        shape: RoundedRectangleBorder(
+          borderRadius: borderRadius ??
+              const BorderRadius.only(
+                bottomLeft: Radius.elliptical(24, 24),
+                bottomRight: Radius.elliptical(24, 24),
+              ),
         ),
         centerTitle: centerTitle ?? false,
         elevation: 0,
@@ -64,5 +83,5 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.maxFinite, 64);
+  Size get preferredSize => Size.fromHeight(height ?? 64);
 }

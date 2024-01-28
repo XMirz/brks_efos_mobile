@@ -22,15 +22,16 @@ PembiayaanPaginatedEntity _$PembiayaanPaginatedEntityFromJson(
 /// @nodoc
 mixin _$PembiayaanPaginatedEntity {
   @JsonKey(name: 'currentPage')
-  String get pageNumber => throw _privateConstructorUsedError;
+  int get pageNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalPages')
-  String get totalPages => throw _privateConstructorUsedError;
+  int get totalPages => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalFilter')
-  String get totalItems => throw _privateConstructorUsedError;
+  int get totalItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalItems')
-  String get filteredItems => throw _privateConstructorUsedError;
+  int get filteredItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
-  PembiayaanList get pembiayaanList => throw _privateConstructorUsedError;
+  List<PembiayaanListItemEntiy> get pembiayaanList =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -45,13 +46,11 @@ abstract class $PembiayaanPaginatedEntityCopyWith<$Res> {
       _$PembiayaanPaginatedEntityCopyWithImpl<$Res, PembiayaanPaginatedEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'currentPage') String pageNumber,
-      @JsonKey(name: 'totalPages') String totalPages,
-      @JsonKey(name: 'totalFilter') String totalItems,
-      @JsonKey(name: 'totalItems') String filteredItems,
-      @JsonKey(name: 'data') PembiayaanList pembiayaanList});
-
-  $PembiayaanListCopyWith<$Res> get pembiayaanList;
+      {@JsonKey(name: 'currentPage') int pageNumber,
+      @JsonKey(name: 'totalPages') int totalPages,
+      @JsonKey(name: 'totalFilter') int totalItems,
+      @JsonKey(name: 'totalItems') int filteredItems,
+      @JsonKey(name: 'data') List<PembiayaanListItemEntiy> pembiayaanList});
 }
 
 /// @nodoc
@@ -78,32 +77,24 @@ class _$PembiayaanPaginatedEntityCopyWithImpl<$Res,
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       filteredItems: null == filteredItems
           ? _value.filteredItems
           : filteredItems // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       pembiayaanList: null == pembiayaanList
           ? _value.pembiayaanList
           : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as PembiayaanList,
+              as List<PembiayaanListItemEntiy>,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PembiayaanListCopyWith<$Res> get pembiayaanList {
-    return $PembiayaanListCopyWith<$Res>(_value.pembiayaanList, (value) {
-      return _then(_value.copyWith(pembiayaanList: value) as $Val);
-    });
   }
 }
 
@@ -117,14 +108,11 @@ abstract class _$$PembiayaanPaginatedEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'currentPage') String pageNumber,
-      @JsonKey(name: 'totalPages') String totalPages,
-      @JsonKey(name: 'totalFilter') String totalItems,
-      @JsonKey(name: 'totalItems') String filteredItems,
-      @JsonKey(name: 'data') PembiayaanList pembiayaanList});
-
-  @override
-  $PembiayaanListCopyWith<$Res> get pembiayaanList;
+      {@JsonKey(name: 'currentPage') int pageNumber,
+      @JsonKey(name: 'totalPages') int totalPages,
+      @JsonKey(name: 'totalFilter') int totalItems,
+      @JsonKey(name: 'totalItems') int filteredItems,
+      @JsonKey(name: 'data') List<PembiayaanListItemEntiy> pembiayaanList});
 }
 
 /// @nodoc
@@ -150,23 +138,23 @@ class __$$PembiayaanPaginatedEntityImplCopyWithImpl<$Res>
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalPages: null == totalPages
           ? _value.totalPages
           : totalPages // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       totalItems: null == totalItems
           ? _value.totalItems
           : totalItems // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       filteredItems: null == filteredItems
           ? _value.filteredItems
           : filteredItems // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       pembiayaanList: null == pembiayaanList
-          ? _value.pembiayaanList
+          ? _value._pembiayaanList
           : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as PembiayaanList,
+              as List<PembiayaanListItemEntiy>,
     ));
   }
 }
@@ -179,27 +167,34 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
       @JsonKey(name: 'totalPages') required this.totalPages,
       @JsonKey(name: 'totalFilter') required this.totalItems,
       @JsonKey(name: 'totalItems') required this.filteredItems,
-      @JsonKey(name: 'data') required this.pembiayaanList})
-      : super._();
+      @JsonKey(name: 'data')
+      required final List<PembiayaanListItemEntiy> pembiayaanList})
+      : _pembiayaanList = pembiayaanList,
+        super._();
 
   factory _$PembiayaanPaginatedEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PembiayaanPaginatedEntityImplFromJson(json);
 
   @override
   @JsonKey(name: 'currentPage')
-  final String pageNumber;
+  final int pageNumber;
   @override
   @JsonKey(name: 'totalPages')
-  final String totalPages;
+  final int totalPages;
   @override
   @JsonKey(name: 'totalFilter')
-  final String totalItems;
+  final int totalItems;
   @override
   @JsonKey(name: 'totalItems')
-  final String filteredItems;
+  final int filteredItems;
+  final List<PembiayaanListItemEntiy> _pembiayaanList;
   @override
   @JsonKey(name: 'data')
-  final PembiayaanList pembiayaanList;
+  List<PembiayaanListItemEntiy> get pembiayaanList {
+    if (_pembiayaanList is EqualUnmodifiableListView) return _pembiayaanList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_pembiayaanList);
+  }
 
   @override
   String toString() {
@@ -219,14 +214,19 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
                 other.totalItems == totalItems) &&
             (identical(other.filteredItems, filteredItems) ||
                 other.filteredItems == filteredItems) &&
-            (identical(other.pembiayaanList, pembiayaanList) ||
-                other.pembiayaanList == pembiayaanList));
+            const DeepCollectionEquality()
+                .equals(other._pembiayaanList, _pembiayaanList));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, pageNumber, totalPages,
-      totalItems, filteredItems, pembiayaanList);
+  int get hashCode => Object.hash(
+      runtimeType,
+      pageNumber,
+      totalPages,
+      totalItems,
+      filteredItems,
+      const DeepCollectionEquality().hash(_pembiayaanList));
 
   @JsonKey(ignore: true)
   @override
@@ -245,12 +245,12 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
 
 abstract class _PembiayaanPaginatedEntity extends PembiayaanPaginatedEntity {
   const factory _PembiayaanPaginatedEntity(
-          {@JsonKey(name: 'currentPage') required final String pageNumber,
-          @JsonKey(name: 'totalPages') required final String totalPages,
-          @JsonKey(name: 'totalFilter') required final String totalItems,
-          @JsonKey(name: 'totalItems') required final String filteredItems,
+          {@JsonKey(name: 'currentPage') required final int pageNumber,
+          @JsonKey(name: 'totalPages') required final int totalPages,
+          @JsonKey(name: 'totalFilter') required final int totalItems,
+          @JsonKey(name: 'totalItems') required final int filteredItems,
           @JsonKey(name: 'data')
-          required final PembiayaanList pembiayaanList}) =
+          required final List<PembiayaanListItemEntiy> pembiayaanList}) =
       _$PembiayaanPaginatedEntityImpl;
   const _PembiayaanPaginatedEntity._() : super._();
 
@@ -259,170 +259,21 @@ abstract class _PembiayaanPaginatedEntity extends PembiayaanPaginatedEntity {
 
   @override
   @JsonKey(name: 'currentPage')
-  String get pageNumber;
+  int get pageNumber;
   @override
   @JsonKey(name: 'totalPages')
-  String get totalPages;
+  int get totalPages;
   @override
   @JsonKey(name: 'totalFilter')
-  String get totalItems;
+  int get totalItems;
   @override
   @JsonKey(name: 'totalItems')
-  String get filteredItems;
+  int get filteredItems;
   @override
   @JsonKey(name: 'data')
-  PembiayaanList get pembiayaanList;
+  List<PembiayaanListItemEntiy> get pembiayaanList;
   @override
   @JsonKey(ignore: true)
   _$$PembiayaanPaginatedEntityImplCopyWith<_$PembiayaanPaginatedEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-PembiayaanList _$PembiayaanListFromJson(Map<String, dynamic> json) {
-  return _PembiayaanList.fromJson(json);
-}
-
-/// @nodoc
-mixin _$PembiayaanList {
-  List<PembiayaanListItemEntiy> get pembiayaanList =>
-      throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PembiayaanListCopyWith<PembiayaanList> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PembiayaanListCopyWith<$Res> {
-  factory $PembiayaanListCopyWith(
-          PembiayaanList value, $Res Function(PembiayaanList) then) =
-      _$PembiayaanListCopyWithImpl<$Res, PembiayaanList>;
-  @useResult
-  $Res call({List<PembiayaanListItemEntiy> pembiayaanList});
-}
-
-/// @nodoc
-class _$PembiayaanListCopyWithImpl<$Res, $Val extends PembiayaanList>
-    implements $PembiayaanListCopyWith<$Res> {
-  _$PembiayaanListCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pembiayaanList = null,
-  }) {
-    return _then(_value.copyWith(
-      pembiayaanList: null == pembiayaanList
-          ? _value.pembiayaanList
-          : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as List<PembiayaanListItemEntiy>,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$PembiayaanListImplCopyWith<$Res>
-    implements $PembiayaanListCopyWith<$Res> {
-  factory _$$PembiayaanListImplCopyWith(_$PembiayaanListImpl value,
-          $Res Function(_$PembiayaanListImpl) then) =
-      __$$PembiayaanListImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<PembiayaanListItemEntiy> pembiayaanList});
-}
-
-/// @nodoc
-class __$$PembiayaanListImplCopyWithImpl<$Res>
-    extends _$PembiayaanListCopyWithImpl<$Res, _$PembiayaanListImpl>
-    implements _$$PembiayaanListImplCopyWith<$Res> {
-  __$$PembiayaanListImplCopyWithImpl(
-      _$PembiayaanListImpl _value, $Res Function(_$PembiayaanListImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? pembiayaanList = null,
-  }) {
-    return _then(_$PembiayaanListImpl(
-      pembiayaanList: null == pembiayaanList
-          ? _value._pembiayaanList
-          : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as List<PembiayaanListItemEntiy>,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$PembiayaanListImpl implements _PembiayaanList {
-  const _$PembiayaanListImpl(
-      {required final List<PembiayaanListItemEntiy> pembiayaanList})
-      : _pembiayaanList = pembiayaanList;
-
-  factory _$PembiayaanListImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PembiayaanListImplFromJson(json);
-
-  final List<PembiayaanListItemEntiy> _pembiayaanList;
-  @override
-  List<PembiayaanListItemEntiy> get pembiayaanList {
-    if (_pembiayaanList is EqualUnmodifiableListView) return _pembiayaanList;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_pembiayaanList);
-  }
-
-  @override
-  String toString() {
-    return 'PembiayaanList(pembiayaanList: $pembiayaanList)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PembiayaanListImpl &&
-            const DeepCollectionEquality()
-                .equals(other._pembiayaanList, _pembiayaanList));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_pembiayaanList));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PembiayaanListImplCopyWith<_$PembiayaanListImpl> get copyWith =>
-      __$$PembiayaanListImplCopyWithImpl<_$PembiayaanListImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$PembiayaanListImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _PembiayaanList implements PembiayaanList {
-  const factory _PembiayaanList(
-          {required final List<PembiayaanListItemEntiy> pembiayaanList}) =
-      _$PembiayaanListImpl;
-
-  factory _PembiayaanList.fromJson(Map<String, dynamic> json) =
-      _$PembiayaanListImpl.fromJson;
-
-  @override
-  List<PembiayaanListItemEntiy> get pembiayaanList;
-  @override
-  @JsonKey(ignore: true)
-  _$$PembiayaanListImplCopyWith<_$PembiayaanListImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }

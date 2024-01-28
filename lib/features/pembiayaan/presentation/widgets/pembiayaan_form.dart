@@ -5,6 +5,7 @@ import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -161,68 +162,68 @@ class PembiayaanForm extends ConsumerWidget {
                     .setTujuanPembiayaan(value, value),
               ),
               spaceY(4),
-              OurTextField(
-                label: context.l10n.barang,
-                controller: ref.read(barangController),
-                hint: context.l10n.barang,
-                error: formState.barang.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setBarang(value, value),
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.hargaPerolehan,
-                controller: ref.read(hargaPerolehanController),
-                hint: context.l10n.hargaPerolehan,
-                error: formState.hargaPerolehan.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setHargaPerolehan(value, value),
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.pajak,
-                controller: ref.read(pajakController),
-                hint: context.l10n.pajak,
-                error: formState.pajak.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setPajak(value, value),
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.diskon,
-                controller: ref.read(diskonController),
-                hint: context.l10n.diskon,
-                error: formState.diskon.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setDiskon(value, value),
-              ),
-              spaceY(4),
-              OurTextField(
-                maxLength: 16,
-                currencyFormat: true,
-                keyboardType: TextInputType.number,
-                label: context.l10n.uangMuka,
-                controller: ref.read(uangMukaController),
-                hint: context.l10n.uangMuka,
-                error: formState.uangMuka.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setUangMuka(value, value),
-              ),
-              spaceY(4),
+              // OurTextField(
+              //   label: context.l10n.barang,
+              //   controller: ref.read(barangController),
+              //   hint: context.l10n.barang,
+              //   error: formState.barang.errorMessage,
+              //   onChanged: (value) => ref
+              //       .read(pembiayaanFormProvider.notifier)
+              //       .setBarang(value, value),
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 16,
+              //   currencyFormat: true,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.hargaPerolehan,
+              //   controller: ref.read(hargaPerolehanController),
+              //   hint: context.l10n.hargaPerolehan,
+              //   error: formState.hargaPerolehan.errorMessage,
+              //   onChanged: (value) => ref
+              //       .read(pembiayaanFormProvider.notifier)
+              //       .setHargaPerolehan(value, value),
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 16,
+              //   currencyFormat: true,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.pajak,
+              //   controller: ref.read(pajakController),
+              //   hint: context.l10n.pajak,
+              //   error: formState.pajak.errorMessage,
+              //   onChanged: (value) => ref
+              //       .read(pembiayaanFormProvider.notifier)
+              //       .setPajak(value, value),
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 16,
+              //   currencyFormat: true,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.diskon,
+              //   controller: ref.read(diskonController),
+              //   hint: context.l10n.diskon,
+              //   error: formState.diskon.errorMessage,
+              //   onChanged: (value) => ref
+              //       .read(pembiayaanFormProvider.notifier)
+              //       .setDiskon(value, value),
+              // ),
+              // spaceY(4),
+              // OurTextField(
+              //   maxLength: 16,
+              //   currencyFormat: true,
+              //   keyboardType: TextInputType.number,
+              //   label: context.l10n.uangMuka,
+              //   controller: ref.read(uangMukaController),
+              //   hint: context.l10n.uangMuka,
+              //   error: formState.uangMuka.errorMessage,
+              //   onChanged: (value) => ref
+              //       .read(pembiayaanFormProvider.notifier)
+              //       .setUangMuka(value, value),
+              // ),
+              // spaceY(4),
               OurTextField(
                   maxLength: 16,
                   currencyFormat: true,

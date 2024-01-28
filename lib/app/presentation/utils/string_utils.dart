@@ -1,3 +1,4 @@
+import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_multi_formatter/formatters/formatter_utils.dart';
 
@@ -9,4 +10,38 @@ String toRupiahString(String number) {
     useSymbolPadding: true,
     mantissaLength: 2,
   );
+}
+
+String capitalizeFirst(String input) {
+  if (input.isEmpty) {
+    return input;
+  }
+  return input[0].toUpperCase() + input.toLowerCase().substring(1);
+}
+
+String capitalizeEachWord(String input) {
+  final words = input.split(' ');
+  for (var i = 0; i < words.length; i++) {
+    if (words[i].isNotEmpty) {
+      words[i] =
+          words[i][0].toUpperCase() + words[i].toLowerCase().substring(1);
+    }
+  }
+
+  return words.join(' ');
+}
+
+String calculateAge(String birthdate) {
+  final currentDate = DateTime.now();
+  final parsedBirthdate = DateTime.parse(birthdate);
+
+  var age = currentDate.year - parsedBirthdate.year;
+
+  if (currentDate.month < parsedBirthdate.month ||
+      (currentDate.month == parsedBirthdate.month &&
+          currentDate.day < parsedBirthdate.day)) {
+    age--;
+  }
+
+  return '$age ${l10n.year}';
 }

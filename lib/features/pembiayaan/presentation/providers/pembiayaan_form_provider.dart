@@ -125,74 +125,74 @@ class PembiayaanFormProvider extends StateNotifier<PembiayaanFormState> {
     );
   }
 
-  void setBarang(String value, String shownValue) {
-    final isValid = value.length > 6;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      barang: Field(
-        isValid: isValid,
-        value: value,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
+  // void setBarang(String value, String shownValue) {
+  //   final isValid = value.length > 6;
+  //   final message = isValid ? '' : l10n.invalidInput;
+  //   state = state.copyWith(
+  //     barang: Field(
+  //       isValid: isValid,
+  //       value: value,
+  //       showValue: shownValue,
+  //       errorMessage: message,
+  //     ),
+  //   );
+  // }
 
-  void setHargaPerolehan(String value, String shownValue) {
-    // final isValid = value.length > 4 && int.tryParse(value) != null;
-    const isValid = true;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      hargaPerolehan: Field(
-        isValid: isValid,
-        value: value,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
+  // void setHargaPerolehan(String value, String shownValue) {
+  //   // final isValid = value.length > 4 && int.tryParse(value) != null;
+  //   const isValid = true;
+  //   final message = isValid ? '' : l10n.invalidInput;
+  //   state = state.copyWith(
+  //     hargaPerolehan: Field(
+  //       isValid: isValid,
+  //       value: value,
+  //       showValue: shownValue,
+  //       errorMessage: message,
+  //     ),
+  //   );
+  // }
 
-  void setPajak(String value, String shownValue) {
-    // final isValid = value.length > 4 && int.tryParse(value) != null;
-    const isValid = true;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      pajak: Field(
-        isValid: isValid,
-        value: value,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
+  // void setPajak(String value, String shownValue) {
+  //   // final isValid = value.length > 4 && int.tryParse(value) != null;
+  //   const isValid = true;
+  //   final message = isValid ? '' : l10n.invalidInput;
+  //   state = state.copyWith(
+  //     pajak: Field(
+  //       isValid: isValid,
+  //       value: value,
+  //       showValue: shownValue,
+  //       errorMessage: message,
+  //     ),
+  //   );
+  // }
 
-  void setDiskon(String value, String shownValue) {
-    // final isValid = value.length > 4 && int.tryParse(value) != null;
-    const isValid = true;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      diskon: Field(
-        isValid: isValid,
-        value: value,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
+  // void setDiskon(String value, String shownValue) {
+  //   // final isValid = value.length > 4 && int.tryParse(value) != null;
+  //   const isValid = true;
+  //   // final message = isValid ? '' : l10n.invalidInput;
+  //   state = state.copyWith(
+  //     diskon: Field(
+  //       isValid: isValid,
+  //       value: value,
+  //       showValue: shownValue,
+  //       // errorMessage: message,
+  //     ),
+  //   );
+  // }
 
-  void setUangMuka(String value, String shownValue) {
-    // final isValid = value.length > 4 && int.tryParse(value) != null;
-    const isValid = true;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      uangMuka: Field(
-        isValid: isValid,
-        value: value,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
+  // void setUangMuka(String value, String shownValue) {
+  //   // final isValid = value.length > 4 && int.tryParse(value) != null;
+  //   const isValid = true;
+  //   final message = isValid ? '' : l10n.invalidInput;
+  //   state = state.copyWith(
+  //     uangMuka: Field(
+  //       isValid: isValid,
+  //       value: value,
+  //       showValue: shownValue,
+  //       errorMessage: message,
+  //     ),
+  //   );
+  // }
 
   void setPlafonPengajuan(String value, String shownValue) {
     final isValid = value.length > 4 && int.tryParse(value) != null;
@@ -324,15 +324,3 @@ final tenorController = Provider((ref) => TextEditingController(text: ''));
 // final angsuranPengajuanController =
 //     Provider((ref) => TextEditingController(text: ''));
 
-final invalidatePembiayaanForm = StateProvider((ref) {
-  ref
-    ..invalidate(pembiayaanFormProvider)
-    ..invalidate(tujuanPembiayaanController)
-    ..invalidate(barangController)
-    ..invalidate(hargaPerolehanController)
-    ..invalidate(pajakController)
-    ..invalidate(diskonController)
-    ..invalidate(uangMukaController)
-    ..invalidate(plafonController)
-    ..invalidate(tenorController);
-});

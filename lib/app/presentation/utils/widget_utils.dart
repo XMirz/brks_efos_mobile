@@ -55,3 +55,28 @@ InputDecoration buildOurInputDecoration({
     ),
   );
 }
+
+InputDecoration buildOurFlatInputDecoration({
+  double? height,
+  String? hint,
+  TextStyle? hintStyle,
+  bool? readOnly,
+}) {
+  return InputDecoration(
+    counterText: '',
+    constraints: BoxConstraints(
+      minHeight: height ?? 56,
+      maxHeight: height ?? 56,
+    ),
+    hintText: hint,
+    hintStyle: hintStyle ??
+        AppTextStyle.bodyMedium.copyWith(
+          color: AppColor.textPlaceholder,
+        ),
+    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+    fillColor: readOnly ?? true ? AppColor.highlight : Colors.transparent,
+    enabledBorder: InputBorder.none,
+    focusedBorder: InputBorder.none,
+    disabledBorder: InputBorder.none,
+  );
+}

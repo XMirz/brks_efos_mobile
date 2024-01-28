@@ -13,9 +13,28 @@
     "success": "Berhasil",
     "cancel": "Batal",
     "back": "Kembali",
+    "search": "Cari",
     "see": "Lihat",
     "exit": "Keluar",
     "next": "Selanjutnya",
+    "welcome": "Selamat datang",
+    "welcomeStr": "Selamat datang, {str}",
+    "@welcomeStr": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
+    "cabang": "Cabang {str}",
+    "@cabang": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
+    "year": "tahun",
     "prev": "Sebelumnya",
     "send": "Kirim",
     "add": "Tambah",
@@ -32,21 +51,30 @@
             }
         }
     },
-    "save": "Simpan",
-    "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
-    "dataXNotFound": "Data {str} tidak ditemukan!",
-    "@dataXNotFound": {
+    "plafonStr": "Plafon {str}",
+    "@plafonStr": {
         "placeholders": {
             "str": {
                 "type": "String"
             }
         }
     },
+    "tenorStr": "Tenor {str} bulan",
+    "@tenorStr": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
+    "detail": "Rincian",
+    "save": "Simpan",
+    "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
     "saveAgunanSuccess": "Agunan ditambahkan.",
     "edit": "Ubah",
     "name": "Nama",
     "username": "Nama pengguna",
-    "failedGetDataPembiayaan": "Gagal mendapatkan data pembiayaan",
+    "failedGetDataPembiayaan": "Terjadi kesalahan ketika mendapatkan data pembiayaan!",
     "usernameHint": "Masukkan nama pengguna",
     "password": "Kata sandi",
     "passwordHint": "Masukkan kata sandi",
@@ -69,7 +97,9 @@
     "dataDiri": "Data diri",
     "nik": "Nomor KTP/NIK",
     "nama": "Nama",
-    "alamat": "Alamat (domisili)",
+    "alamatDomisili": "Alamat (domisili)",
+    "alamat": "Alamat",
+    "aspekPengajuan": "Aspek pengajuan",
     "jenisKelamin": "Jenis kelamin",
     "tempatLahir": "Tempat lahir",
     "tanggalLahir": "Tanggal lahir",
@@ -115,9 +145,28 @@
     "totalMargin": "Total margin (Rupiah)",
     "angsuranPengajuan": "Angsuran pengajuan",
     "agunan": "Agunan",
+    "jaminan": "Jaminan",
     "jenisAgunan": "Jenis agunan",
+    "jenisJaminan": "Jenis jaminan",
+    "jenis": "Jenis",
     "obyekAgunan": "Obyek agunan",
     "deskripsiAgunan": "Deskripsi agunan",
+    "deskripsi": "Deskripsi {str}",
+    "@deskripsi": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
+    "dataXNotFound": "Data {str} tidak ditemukan",
+    "@dataXNotFound": {
+        "placeholders": {
+            "str": {
+                "type": "String"
+            }
+        }
+    },
     "latitude": "Latitude",
     "longitude": "Latitude",
     "lokasi": "Lokasi",
