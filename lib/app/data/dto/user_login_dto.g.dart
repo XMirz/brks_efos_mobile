@@ -11,6 +11,8 @@ _$UserAuthenticationDtoImpl _$$UserAuthenticationDtoImplFromJson(
     _$UserAuthenticationDtoImpl(
       username: json['username'] as String,
       password: json['password'] as String? ?? '',
+      deviceId: json['device_id'] as String? ?? '',
+      deviceName: json['device_name'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$UserAuthenticationDtoImplToJson(
@@ -18,6 +20,8 @@ Map<String, dynamic> _$$UserAuthenticationDtoImplToJson(
     <String, dynamic>{
       'username': instance.username,
       'password': instance.password,
+      'device_id': instance.deviceId,
+      'device_name': instance.deviceName,
     };
 
 _$ParameterDtoImpl _$$ParameterDtoImplFromJson(Map<String, dynamic> json) =>

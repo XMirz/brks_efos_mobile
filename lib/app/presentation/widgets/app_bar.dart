@@ -32,6 +32,7 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
       child: AppBar(
         centerTitle: centerTitle,
         elevation: 0,
+        shadowColor: Colors.transparent,
         title: title != null ? TextTitle(text: title.toString()) : null,
         backgroundColor: backgroundColor ?? Colors.transparent,
         leadingWidth: 160,

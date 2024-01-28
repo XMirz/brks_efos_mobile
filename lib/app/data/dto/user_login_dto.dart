@@ -8,6 +8,8 @@ class UserAuthenticationDto with _$UserAuthenticationDto {
   const factory UserAuthenticationDto({
     required String username,
     @Default('') String? password,
+    @Default('') @JsonKey(name: 'device_id') String? deviceId,
+    @Default('') @JsonKey(name: 'device_name') String? deviceName,
   }) = _UserAuthenticationDto;
 
   const UserAuthenticationDto._();

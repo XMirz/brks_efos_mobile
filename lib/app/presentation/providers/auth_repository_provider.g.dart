@@ -22,7 +22,7 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
 
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
 String _$createAuthenticationHash() =>
-    r'2833a25d45a3390db951d5ea09205ea9e753a403';
+    r'50c0306e11263cd9a863a85e064c36292ac9aca7';
 
 /// Copied from Dart SDK
 class _SystemHash {

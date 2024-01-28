@@ -23,6 +23,10 @@ UserAuthenticationDto _$UserAuthenticationDtoFromJson(
 mixin _$UserAuthenticationDto {
   String get username => throw _privateConstructorUsedError;
   String? get password => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_id')
+  String? get deviceId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'device_name')
+  String? get deviceName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,11 @@ abstract class $UserAuthenticationDtoCopyWith<$Res> {
           $Res Function(UserAuthenticationDto) then) =
       _$UserAuthenticationDtoCopyWithImpl<$Res, UserAuthenticationDto>;
   @useResult
-  $Res call({String username, String? password});
+  $Res call(
+      {String username,
+      String? password,
+      @JsonKey(name: 'device_id') String? deviceId,
+      @JsonKey(name: 'device_name') String? deviceName});
 }
 
 /// @nodoc
@@ -55,6 +63,8 @@ class _$UserAuthenticationDtoCopyWithImpl<$Res,
   $Res call({
     Object? username = null,
     Object? password = freezed,
+    Object? deviceId = freezed,
+    Object? deviceName = freezed,
   }) {
     return _then(_value.copyWith(
       username: null == username
@@ -64,6 +74,14 @@ class _$UserAuthenticationDtoCopyWithImpl<$Res,
       password: freezed == password
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceId: freezed == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _value.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -78,7 +96,11 @@ abstract class _$$UserAuthenticationDtoImplCopyWith<$Res>
       __$$UserAuthenticationDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String username, String? password});
+  $Res call(
+      {String username,
+      String? password,
+      @JsonKey(name: 'device_id') String? deviceId,
+      @JsonKey(name: 'device_name') String? deviceName});
 }
 
 /// @nodoc
@@ -95,6 +117,8 @@ class __$$UserAuthenticationDtoImplCopyWithImpl<$Res>
   $Res call({
     Object? username = null,
     Object? password = freezed,
+    Object? deviceId = freezed,
+    Object? deviceName = freezed,
   }) {
     return _then(_$UserAuthenticationDtoImpl(
       username: null == username
@@ -105,6 +129,14 @@ class __$$UserAuthenticationDtoImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String?,
+      deviceId: freezed == deviceId
+          ? _value.deviceId
+          : deviceId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deviceName: freezed == deviceName
+          ? _value.deviceName
+          : deviceName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,7 +145,10 @@ class __$$UserAuthenticationDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserAuthenticationDtoImpl extends _UserAuthenticationDto {
   const _$UserAuthenticationDtoImpl(
-      {required this.username, this.password = ''})
+      {required this.username,
+      this.password = '',
+      @JsonKey(name: 'device_id') this.deviceId = '',
+      @JsonKey(name: 'device_name') this.deviceName = ''})
       : super._();
 
   factory _$UserAuthenticationDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -124,10 +159,16 @@ class _$UserAuthenticationDtoImpl extends _UserAuthenticationDto {
   @override
   @JsonKey()
   final String? password;
+  @override
+  @JsonKey(name: 'device_id')
+  final String? deviceId;
+  @override
+  @JsonKey(name: 'device_name')
+  final String? deviceName;
 
   @override
   String toString() {
-    return 'UserAuthenticationDto(username: $username, password: $password)';
+    return 'UserAuthenticationDto(username: $username, password: $password, deviceId: $deviceId, deviceName: $deviceName)';
   }
 
   @override
@@ -138,12 +179,17 @@ class _$UserAuthenticationDtoImpl extends _UserAuthenticationDto {
             (identical(other.username, username) ||
                 other.username == username) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.deviceId, deviceId) ||
+                other.deviceId == deviceId) &&
+            (identical(other.deviceName, deviceName) ||
+                other.deviceName == deviceName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, username, password);
+  int get hashCode =>
+      Object.hash(runtimeType, username, password, deviceId, deviceName);
 
   @JsonKey(ignore: true)
   @override
@@ -162,8 +208,11 @@ class _$UserAuthenticationDtoImpl extends _UserAuthenticationDto {
 
 abstract class _UserAuthenticationDto extends UserAuthenticationDto {
   const factory _UserAuthenticationDto(
-      {required final String username,
-      final String? password}) = _$UserAuthenticationDtoImpl;
+          {required final String username,
+          final String? password,
+          @JsonKey(name: 'device_id') final String? deviceId,
+          @JsonKey(name: 'device_name') final String? deviceName}) =
+      _$UserAuthenticationDtoImpl;
   const _UserAuthenticationDto._() : super._();
 
   factory _UserAuthenticationDto.fromJson(Map<String, dynamic> json) =
@@ -173,6 +222,12 @@ abstract class _UserAuthenticationDto extends UserAuthenticationDto {
   String get username;
   @override
   String? get password;
+  @override
+  @JsonKey(name: 'device_id')
+  String? get deviceId;
+  @override
+  @JsonKey(name: 'device_name')
+  String? get deviceName;
   @override
   @JsonKey(ignore: true)
   _$$UserAuthenticationDtoImplCopyWith<_$UserAuthenticationDtoImpl>

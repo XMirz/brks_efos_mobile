@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:efosm/app/data/dto/user_login_dto.dart';
 import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
@@ -43,7 +45,21 @@ class LoginForm extends ConsumerWidget {
           },
         ),
       );
+      final deviceInfo = DeviceInfoPlugin();
+      var deviceId = '';
+      var deviceName = '';
+      if (Platform.isIOS) {
+        final iosDeviceInfo = await deviceInfo.iosInfo;
+        deviceId = iosDeviceInfo.identifierForVendor.toString();
+        deviceName = iosDeviceInfo.name;
+      } else if (Platform.isAndroid) {
+        final androidDeviceInfo = await deviceInfo.androidInfo;
+        deviceId = androidDeviceInfo.id;
+        deviceName = androidDeviceInfo.model;
+      }
       final user = UserAuthenticationDto(
+        deviceId: deviceId,
+        deviceName: deviceName,
         username: formState.form.username.value,
         password: formState.form.password.value,
       );

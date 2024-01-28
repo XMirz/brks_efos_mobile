@@ -315,7 +315,7 @@ class SliverItems extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '${capitalizeEachWord(item.nama)} (${calculateAge(item.tanggalLahir)})',
+                          capitalizeEachWord(item.nama),
                           style: AppTextStyle.bodyMediumBold
                               .copyWith(color: AppColor.textPrimary),
                         ),
@@ -349,7 +349,7 @@ class SliverItems extends StatelessWidget {
                 ),
                 const Divider(),
                 Text(
-                  capitalizeFirst(item.descKelamin),
+                  '${capitalizeFirst(item.descKelamin)}  (${calculateAge(item.tanggalLahir)})',
                   style: AppTextStyle.bodySmall,
                   overflow: TextOverflow.ellipsis,
                 ),
