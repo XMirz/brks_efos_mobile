@@ -8,7 +8,7 @@ class Parameter with _$Parameter {
   const factory Parameter({
     @JsonKey(name: 'id') required dynamic id,
     @JsonKey(name: 'name') String? label,
-    @JsonKey(name: 'nilai') dynamic? value,
+    @JsonKey(name: 'nilai') dynamic value,
   }) = _Parameter;
   const Parameter._();
 

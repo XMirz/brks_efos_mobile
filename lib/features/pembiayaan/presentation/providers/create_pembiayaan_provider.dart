@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/pembiayaan/data/repositories/pembiayaan_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

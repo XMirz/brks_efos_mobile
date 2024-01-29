@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:efosm/app/data/dto/user_login_dto.dart';
-import 'package:efosm/app/domain/repositories/auth_repository_interface.dart';
 import 'package:efosm/app/data/repositories/auth_repository.dart';
 import 'package:efosm/app/domain/entities/user_entity.dart';
 import 'package:efosm/core/error/failures.dart';

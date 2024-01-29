@@ -1,19 +1,19 @@
-import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
-import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_value.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 
 class AgunanItem extends StatelessWidget {
-  const AgunanItem(
-      {required this.agunan, required this.onDissmissed, super.key});
+  const AgunanItem({
+    required this.agunan,
+    required this.onDissmissed,
+    super.key,
+  });
 
   final AgunanFormState agunan;
   final VoidCallback onDissmissed;
@@ -71,36 +71,41 @@ class AgunanItem extends StatelessWidget {
                     Text(
                       agunan.deskripsi.value,
                       style: AppTextStyle.subtitleMedium.copyWith(
-                          color: AppColor.textPrimary,
-                          fontWeight: FontWeight.w500),
+                        color: AppColor.textPrimary,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     if (agunan.deskripsi2.value.isNotEmpty)
                       Text(
                         agunan.deskripsi2.value,
                         style: AppTextStyle.subtitleMedium.copyWith(
-                            color: AppColor.textPrimary,
-                            fontWeight: FontWeight.w500),
+                          color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     if (agunan.deskripsi3.value.isNotEmpty)
                       Text(
                         agunan.deskripsi3.value,
                         style: AppTextStyle.subtitleMedium.copyWith(
-                            color: AppColor.textPrimary,
-                            fontWeight: FontWeight.w500),
+                          color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     if (agunan.deskripsi4.value.isNotEmpty)
                       Text(
                         agunan.deskripsi4.value,
                         style: AppTextStyle.subtitleMedium.copyWith(
-                            color: AppColor.textPrimary,
-                            fontWeight: FontWeight.w500),
+                          color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     if (agunan.deskripsi5.value.isNotEmpty)
                       Text(
                         agunan.deskripsi5.value,
                         style: AppTextStyle.subtitleMedium.copyWith(
-                            color: AppColor.textPrimary,
-                            fontWeight: FontWeight.w500),
+                          color: AppColor.textPrimary,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                   ],
                 ),
@@ -129,7 +134,7 @@ class AgunanItem extends StatelessWidget {
                         barrierColor: Colors.black.withOpacity(0.4),
                         context: context,
                         pageBuilder: (context, animation, secondaryAnimation) {
-                          return Container(
+                          return SizedBox(
                             width: double.infinity,
                             child: Image.file(
                               agunan.image.value!,

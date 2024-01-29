@@ -22,18 +22,18 @@ class PekerjaanFormState with _$PekerjaanFormState {
   const PekerjaanFormState._();
 
   factory PekerjaanFormState.empty() => const PekerjaanFormState(
-        profesi: Field(value: '', showValue: ''),
-        namaInstansi: Field(value: '', showValue: ''),
-        statusPerusahaan: Field(value: '', showValue: ''),
-        jabatan: Field(value: '', showValue: ''),
-        bidangUsaha: Field(value: '', showValue: ''),
-        tahunBekerja: Field(value: '', showValue: ''),
-        statusPekerjaan: Field(value: '', showValue: ''),
-        sistemAngsuran: Field(value: '', showValue: ''),
-        gajiAmprah: Field(value: '', showValue: ''),
-        tunjangan: Field(value: '', showValue: ''),
-        potongan: Field(value: '', showValue: ''),
-        gajiBersih: Field(value: '', showValue: ''),
+        profesi: Field(value: ''),
+        namaInstansi: Field(value: ''),
+        statusPerusahaan: Field(value: ''),
+        jabatan: Field(value: ''),
+        bidangUsaha: Field(value: ''),
+        tahunBekerja: Field(value: ''),
+        statusPekerjaan: Field(value: ''),
+        sistemAngsuran: Field(value: ''),
+        gajiAmprah: Field(value: ''),
+        tunjangan: Field(value: ''),
+        potongan: Field(value: ''),
+        gajiBersih: Field(value: ''),
       );
 
   bool get isValid =>

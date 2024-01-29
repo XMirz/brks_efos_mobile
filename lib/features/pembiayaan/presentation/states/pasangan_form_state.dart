@@ -18,13 +18,13 @@ class PasanganFormState with _$PasanganFormState {
   const PasanganFormState._();
 
   factory PasanganFormState.empty() => const PasanganFormState(
-        nik: Field(value: '', showValue: ''),
-        nama: Field(value: '', showValue: ''),
-        penghasilan: Field(value: '', showValue: ''),
-        gajiAmprah: Field(value: '', showValue: ''),
-        tunjangan: Field(value: '', showValue: ''),
-        potongan: Field(value: '', showValue: ''),
-        gajiBersih: Field(value: '', showValue: ''),
+        nik: Field(value: ''),
+        nama: Field(value: ''),
+        penghasilan: Field(value: ''),
+        gajiAmprah: Field(value: ''),
+        tunjangan: Field(value: ''),
+        potongan: Field(value: ''),
+        gajiBersih: Field(value: ''),
       );
   bool get isValid =>
       nik.isValid &&

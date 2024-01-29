@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/user_login_dto.dart';
 import 'package:efosm/app/domain/entities/user_entity.dart';
-import 'package:efosm/app/domain/repositories/auth_repository_interface.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -15,12 +14,10 @@ class AuthRepository {
   Future<Either<Failure, UserEntity>> createAuthentication(
     UserAuthenticationDto user,
   ) async {
-    // Todo Handle error by code
     final response = await _dioClient.post<Map<String, dynamic>>(
       '/mobile/efos/login',
       data: user.toJson(),
     );
-    print(response);
     return response.fold(
       left,
       (r) {
@@ -40,7 +37,8 @@ class AuthRepository {
 
   // @override
   Future<Either<Failure, bool>> deleteAuthentication(
-      UserAuthenticationDto user) async {
+    UserAuthenticationDto user,
+  ) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
       '/mobile/efos/logout',
       data: user.toJson(),

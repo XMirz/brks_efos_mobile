@@ -1,10 +1,6 @@
-import 'package:efosm/app/data/dto/pagination_request.dart';
-import 'package:efosm/app/domain/entities/dropdown_item.dart';
-import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
@@ -15,7 +11,6 @@ import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_i
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -25,13 +20,8 @@ class PembiayaanSreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final tabBarIndex = ref.watch(tabBarIndexProvider);
     final searchKeyword = ref.watch(searchKeywordProvider);
     // Produktif
-    final pageProduktif = ref.watch(pageProduktifProvider);
-    final listPembiayaanProduktif = ref.watch(listPembiayaanProduktifProvider);
-    final isLoadingProduktif = ref.watch(isLoadingProduktifProvider);
-    final pageSizeProduktif = ref.watch(pageSizeProduktifProvider);
 
     return DefaultTabController(
       length: 2,
@@ -215,7 +205,7 @@ class ListPembiayaan extends ConsumerWidget {
                     style: AppTextStyle.bodyMedium.copyWith(
                       color: AppColor.highlight,
                     ),
-                  )
+                  ),
                 ],
               ),
             );
@@ -248,11 +238,12 @@ class ListPembiayaan extends ConsumerWidget {
               SliverItems(items: items),
               SliverToBoxAdapter(
                 child: Container(
-                    padding: const EdgeInsets.only(
-                      top: 24,
-                      bottom: 32,
-                    ),
-                    child: const OurLoading()),
+                  padding: const EdgeInsets.only(
+                    top: 24,
+                    bottom: 32,
+                  ),
+                  child: const OurLoading(),
+                ),
               ),
             ];
           },
@@ -295,7 +286,6 @@ class SliverItems extends StatelessWidget {
                 BoxShadow(
                   color: Color.fromRGBO(0, 0, 0, 0.16),
                   blurRadius: 4,
-                  spreadRadius: 0,
                   offset: Offset(
                     0,
                     1,
@@ -396,7 +386,7 @@ class SliverItems extends StatelessWidget {
                       },
                     ),
                   ],
-                )
+                ),
               ],
             ),
           );

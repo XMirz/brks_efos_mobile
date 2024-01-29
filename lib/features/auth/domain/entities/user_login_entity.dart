@@ -12,8 +12,8 @@ class UserLoginEntity with _$UserLoginEntity {
   const UserLoginEntity._();
 
   factory UserLoginEntity.empty() => const UserLoginEntity(
-        username: Field(value: '', showValue: ''),
-        password: Field(value: '', showValue: ''),
+        username: Field(value: ''),
+        password: Field(value: ''),
       );
 
   bool get isValid => username.isValid && password.isValid;

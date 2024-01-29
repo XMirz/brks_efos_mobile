@@ -8,8 +8,8 @@ import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/states/user_state.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
+import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/di/injector.dart';
@@ -34,7 +34,7 @@ class LoginForm extends ConsumerWidget {
             behavior: SnackBarBehavior.floating,
           ),
         );
-        if (context.mounted) context.pop('dialog'); // TODO REMOVE
+        if (context.mounted) context.pop('dialog');
         return;
       }
       unawaited(

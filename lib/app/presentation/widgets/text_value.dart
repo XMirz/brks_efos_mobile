@@ -3,13 +3,14 @@ import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 
 class TextValue extends StatelessWidget {
-  const TextValue(
-      {super.key,
-      required this.title,
-      this.value,
-      this.titleFlex,
-      this.valueFlex,
-      this.values});
+  const TextValue({
+    required this.title,
+    super.key,
+    this.value,
+    this.titleFlex,
+    this.valueFlex,
+    this.values,
+  });
 
   final String title;
   final String? value;
@@ -27,7 +28,9 @@ class TextValue extends StatelessWidget {
           child: Text(
             title,
             style: AppTextStyle.subtitleSmall.copyWith(
-                color: AppColor.textPrimary, fontWeight: FontWeight.w500),
+              color: AppColor.textPrimary,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         const Flexible(child: Text(':')),
@@ -37,7 +40,9 @@ class TextValue extends StatelessWidget {
             child: Text(
               value ?? '',
               style: AppTextStyle.subtitleMedium.copyWith(
-                  color: AppColor.textPrimary, fontWeight: FontWeight.w500),
+                color: AppColor.textPrimary,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
         if (values != null && values!.isNotEmpty)

@@ -2,10 +2,8 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:efosm/app/presentation/providers/router_provider.dart';
-import 'package:efosm/core/di/injector.dart';
-import 'package:image/image.dart' as img;
 
+import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
@@ -13,6 +11,7 @@ import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/di/injector.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
@@ -31,20 +30,17 @@ import 'package:efosm/features/pembiayaan/presentation/widgets/pekerjaan_form.da
 import 'package:efosm/features/pembiayaan/presentation/widgets/pembiayaan_form.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:image/image.dart' as img;
 
 class CreatePembiayaanScreen extends HookConsumerWidget {
   const CreatePembiayaanScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screenWidth = MediaQuery.of(context).size.width;
     final stepIndex = ref.watch(stepIndexProvider);
-    final completeIndex = ref.watch(completeIndexProvider);
-    final pageController = usePageController();
 
     final stepValid = [
       ref.watch(dataDiriFormProvider).isValid,
@@ -173,13 +169,14 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       );
 
       final pasangan = PasanganEntity(
-          nik: pasanganState.nik.value,
-          nama: pasanganState.nama.value,
-          penghasilan: pasanganState.penghasilan.value,
-          gajiAmprah: pasanganState.gajiAmprah.value,
-          tunjangan: pasanganState.tunjangan.value,
-          potongan: pasanganState.potongan.value,
-          gajiBersih: pasanganState.gajiBersih.value);
+        nik: pasanganState.nik.value,
+        nama: pasanganState.nama.value,
+        penghasilan: pasanganState.penghasilan.value,
+        gajiAmprah: pasanganState.gajiAmprah.value,
+        tunjangan: pasanganState.tunjangan.value,
+        potongan: pasanganState.potongan.value,
+        gajiBersih: pasanganState.gajiBersih.value,
+      );
 
       final produkPembiayaan = ProdukPembiayaanEntity(
         idKategoriProduk: pembiayaanFormState.idKategoriProduk.value,
@@ -480,7 +477,8 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                       behavior: SnackBarBehavior.floating,
                     ),
                   );
-                  // return; // TODO REMOVE COMMENTS
+                  // TODO(xmirz): Uncomment
+                  // return;
                 }
                 ref.read(stepIndexProvider.notifier).state = step;
               },
@@ -536,7 +534,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                   ),
                   isActive: stepIndex == 0,
                   state: stepIndex > 0 ? StepState.complete : StepState.indexed,
-                  content: DataDiriForm(),
+                  content: const DataDiriForm(),
                 ),
                 Step(
                   title: const Text(''),
@@ -706,8 +704,6 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     );
   }
 }
-
-
 
 // class Step {
 //   Step({required this.title, required Widget this.content});

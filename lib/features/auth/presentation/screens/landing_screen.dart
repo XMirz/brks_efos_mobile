@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/app_bar.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/features/auth/presentation/providers/landing_provider.dart';
 import 'package:efosm/features/auth/presentation/widgets/login_form.dart';
 import 'package:efosm/features/auth/presentation/widgets/slider_content.dart';
-import 'package:efosm/features/auth/presentation/providers/landing_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:heroicons/heroicons.dart';
@@ -40,14 +40,15 @@ class LandingScreen extends HookConsumerWidget {
               height: screenHeight,
               width: double.infinity,
               child: PageView(
-                  controller: pageController,
-                  physics: const ClampingScrollPhysics(),
-                  onPageChanged: (index) {
-                    ref
-                        .read(onboardIndexProvider.notifier)
-                        .update((state) => index);
-                  },
-                  children: sliderContent),
+                controller: pageController,
+                physics: const ClampingScrollPhysics(),
+                onPageChanged: (index) {
+                  ref
+                      .read(onboardIndexProvider.notifier)
+                      .update((state) => index);
+                },
+                children: sliderContent,
+              ),
             ),
           ),
           Align(

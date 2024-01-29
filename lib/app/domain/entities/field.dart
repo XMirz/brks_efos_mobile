@@ -11,7 +11,7 @@ class Field with _$Field {
     @Default(false) bool isValid,
   }) = $_Field;
 
-  factory Field.empty() => const Field(value: '', showValue: '');
+  factory Field.empty() => const Field(value: '');
 }
 
 @freezed

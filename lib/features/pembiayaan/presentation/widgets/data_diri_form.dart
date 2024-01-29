@@ -22,7 +22,8 @@ class DataDiriForm extends ConsumerWidget {
       data: (data) => Builder(
         builder: (context) {
           final initialParameters = data.getOrElse(
-              () => AppParameter.fromJson({})); // I Dont Know Anymore
+            () => AppParameter.fromJson({}),
+          ); // I Dont Know Anymore
           print(initialParameters.parStatusPernikahan);
           return Column(
             mainAxisSize: MainAxisSize.min,

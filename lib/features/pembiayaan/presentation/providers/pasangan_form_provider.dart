@@ -1,5 +1,4 @@
 import 'package:efosm/app/domain/entities/field.dart';
-import 'package:efosm/features/pembiayaan/presentation/states/data_diri_form_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pasangan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';

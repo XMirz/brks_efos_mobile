@@ -29,13 +29,15 @@ class HomeScreen extends HookConsumerWidget {
           ? FloatingActionButton(
               backgroundColor: AppColor.primary,
               onPressed: () async {
-                unawaited(showDialog<void>(
-                  barrierDismissible: false,
-                  context: context,
-                  builder: (context) {
-                    return const LoadingDialog();
-                  },
-                ));
+                unawaited(
+                  showDialog<void>(
+                    barrierDismissible: false,
+                    context: context,
+                    builder: (context) {
+                      return const LoadingDialog();
+                    },
+                  ),
+                );
                 final parameter =
                     await ref.read(fetchInitialParameterProvider.future);
                 debugPrint(parameter.toString());

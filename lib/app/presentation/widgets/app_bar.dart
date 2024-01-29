@@ -37,11 +37,12 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
         backgroundColor: backgroundColor ?? Colors.transparent,
         leadingWidth: 160,
         leading: Container(
-            padding: const EdgeInsets.only(left: 16),
-            child: SvgPicture.asset(
-              'assets/svg/logo_brks.svg',
-              color: tint,
-            )),
+          padding: const EdgeInsets.only(left: 16),
+          child: SvgPicture.asset(
+            'assets/svg/logo_brks.svg',
+            color: tint,
+          ),
+        ),
       ),
     );
   }

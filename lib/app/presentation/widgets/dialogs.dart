@@ -46,9 +46,10 @@ class OurConfirmDialog extends StatelessWidget {
     this.actions,
     this.icon,
   }) : assert(
-            (description != null && content == null) ||
-                (content != null && description == null),
-            'one of description or content must be provided');
+          (description != null && content == null) ||
+              (content != null && description == null),
+          'one of description or content must be provided',
+        );
 
   final String title;
   final String? description;

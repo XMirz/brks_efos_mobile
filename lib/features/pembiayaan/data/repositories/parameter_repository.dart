@@ -70,10 +70,12 @@ class ParameterRepository {
   }
 
   Future<List<Parameter>> fetchSubProduk(
-      String idProduk, String idJenisPengajuan) async {
+    String idProduk,
+    String idJenisPengajuan,
+  ) async {
     final data = {
       'id_produk': idProduk,
-      'id_template_dokumen': idJenisPengajuan
+      'id_template_dokumen': idJenisPengajuan,
     };
     final response = await _dioClient.post<List<dynamic>>(
       '/mobile/parameter/subproduk',
@@ -90,10 +92,12 @@ class ParameterRepository {
   }
 
   Future<List<Parameter>> fetchPlan(
-      String idSubProduk, String idJenisPengajuan) async {
+    String idSubProduk,
+    String idJenisPengajuan,
+  ) async {
     final data = {
       'id_subproduk': idSubProduk,
-      'id_template_dokumen': idJenisPengajuan
+      'id_template_dokumen': idJenisPengajuan,
     };
     final response = await _dioClient.post<List<dynamic>>(
       '/mobile/parameter/plan',

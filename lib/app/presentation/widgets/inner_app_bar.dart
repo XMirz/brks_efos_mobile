@@ -1,8 +1,6 @@
 import 'package:efosm/app/presentation/utils/text_styles.dart';
-import 'package:efosm/app/presentation/widgets/text_widgets.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

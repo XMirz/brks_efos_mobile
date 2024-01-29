@@ -1,5 +1,4 @@
 import 'package:efosm/app/presentation/utils/text_styles.dart';
-import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,14 +22,18 @@ class SliderContent extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(title,
-              style: AppTextStyle.titleLarge
-                  .copyWith(color: AppColor.textPrimaryInverse)),
+          Text(
+            title,
+            style: AppTextStyle.titleLarge
+                .copyWith(color: AppColor.textPrimaryInverse),
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),
-            child: Text(subtitle,
-                style: AppTextStyle.subtitleLarge
-                    .copyWith(color: AppColor.textPrimaryInverse)),
+            child: Text(
+              subtitle,
+              style: AppTextStyle.subtitleLarge
+                  .copyWith(color: AppColor.textPrimaryInverse),
+            ),
           ),
           SizedBox(
             height: screenHeight * 0.4,

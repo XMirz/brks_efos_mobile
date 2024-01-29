@@ -1,5 +1,4 @@
 import 'package:efosm/app/presentation/utils/text_styles.dart';
-import 'package:efosm/app/presentation/widgets/text_widgets.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 

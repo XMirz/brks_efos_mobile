@@ -1,7 +1,5 @@
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/core/di/injector.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

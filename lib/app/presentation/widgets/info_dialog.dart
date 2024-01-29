@@ -1,6 +1,5 @@
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/core/constants/colors.dart';
-import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 
@@ -13,9 +12,10 @@ class OurAlertDialog extends StatelessWidget {
     this.actions,
     this.icon,
   }) : assert(
-            (description != null && content == null) ||
-                (content != null && description == null),
-            'one of description or content must be provided');
+          (description != null && content == null) ||
+              (content != null && description == null),
+          'one of description or content must be provided',
+        );
 
   final String title;
   final String? description;

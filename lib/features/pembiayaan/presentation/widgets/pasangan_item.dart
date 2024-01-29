@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
 
 class PasanganItem extends StatelessWidget {
-  const PasanganItem(
-      {required this.pasangan, super.key, required this.onDissmissed});
+  const PasanganItem({
+    required this.pasangan,
+    required this.onDissmissed,
+    super.key,
+  });
 
   final PasanganFormState pasangan;
   final VoidCallback onDissmissed;

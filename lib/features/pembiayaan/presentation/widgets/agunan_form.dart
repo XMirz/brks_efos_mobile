@@ -238,8 +238,12 @@ class AgunanForm extends ConsumerWidget {
                     spaceY(4),
                     ref
                         .watch(
-                          fetchKabupatenProvider(ref.read(agunanFormProvider
-                              .select((value) => value.provinsi.value))),
+                          fetchKabupatenProvider(
+                            ref.read(
+                              agunanFormProvider
+                                  .select((value) => value.provinsi.value),
+                            ),
+                          ),
                         )
                         .when(
                           data: (data) {
@@ -259,8 +263,12 @@ class AgunanForm extends ConsumerWidget {
                     spaceY(4),
                     ref
                         .watch(
-                          fetchKecamatanProvider(ref.read(agunanFormProvider
-                              .select((value) => value.kabupaten.value))),
+                          fetchKecamatanProvider(
+                            ref.read(
+                              agunanFormProvider
+                                  .select((value) => value.kabupaten.value),
+                            ),
+                          ),
                         )
                         .when(
                           data: (data) {
@@ -280,8 +288,12 @@ class AgunanForm extends ConsumerWidget {
                     spaceY(4),
                     ref
                         .watch(
-                          fetchKelurahanProvider(ref.read(agunanFormProvider
-                              .select((value) => value.kecamatan.value))),
+                          fetchKelurahanProvider(
+                            ref.read(
+                              agunanFormProvider
+                                  .select((value) => value.kecamatan.value),
+                            ),
+                          ),
                         )
                         .when(
                           data: (data) {
@@ -307,12 +319,14 @@ class AgunanForm extends ConsumerWidget {
                     spaceY(8),
                     InkWell(
                       onTap: () async {
-                        unawaited(showDialog<void>(
-                          context: context,
-                          builder: (context) {
-                            return const LoadingDialog();
-                          },
-                        ));
+                        unawaited(
+                          showDialog<void>(
+                            context: context,
+                            builder: (context) {
+                              return const LoadingDialog();
+                            },
+                          ),
+                        );
                         final locationAccess =
                             await LocationService.getLocation();
                         if (context.mounted) context.pop('dialog');
@@ -343,7 +357,8 @@ class AgunanForm extends ConsumerWidget {
                         }, (r) async {
                           final picker = ImagePicker();
                           final photo = await picker.pickImage(
-                              source: ImageSource.camera);
+                            source: ImageSource.camera,
+                          );
                           if (photo == null) {
                             return;
                           }

@@ -1,7 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/pagination_request.dart';
-import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
-import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
@@ -10,7 +8,6 @@ import 'package:efosm/features/home/presentations/providers/list_pembiayaan_noti
 import 'package:efosm/features/home/presentations/states/pagination_state.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
-import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -72,22 +69,3 @@ final paginationProvider = StateNotifierProvider.family.autoDispose<
     },
   );
 });
-
-
-
-
-// final konsumtifPagination = StateNotifierProvider<
-//     PaginationNotifier<List<PembiayaanListItemEntiy>>,
-//     PaginationState<List<PembiayaanListItemEntiy>>>((ref) {
-//   const initialState = PaginationState<List<PembiayaanListItemEntiy>>.loading();
-//   return PaginationNotifier(
-//     initialState,
-//     idCabang: ref.read(authenticatedUserProvider).user!.idCabang,
-//     paginatedFetcher: (paginationRequest) async {
-//       return ref.read(pembiayaanRepositoryProvider).fetchPaginatedPembiayaan(
-//             ApiPath.listPembiayaanKonsumtif,
-//             paginationRequest,
-//           );
-//     },
-//   );
-// });

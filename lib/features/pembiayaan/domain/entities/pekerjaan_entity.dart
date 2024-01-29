@@ -6,8 +6,6 @@ part 'pekerjaan_entity.g.dart';
 @freezed
 class PekerjaanEntity with _$PekerjaanEntity {
   const factory PekerjaanEntity({
-    @Default('') @JsonKey(name: 'id') String id,
-    @Default('') @JsonKey(name: 'id_debitur') String idDebitur,
     @JsonKey(name: 'profesi') required String profesi,
     @JsonKey(name: 'nama_instansi') required String namaInstansi,
     @JsonKey(name: 'status_perusahaan') required String statusPerusahaan,
@@ -20,6 +18,8 @@ class PekerjaanEntity with _$PekerjaanEntity {
     @JsonKey(name: 'tunjangan') required String tunjangan,
     @JsonKey(name: 'potongan') required String potongan,
     @JsonKey(name: 'netto') required String gajiBersih,
+    @Default('') @JsonKey(name: 'id') String id,
+    @Default('') @JsonKey(name: 'id_debitur') String idDebitur,
   }) = _PekerjaanEntity;
   const PekerjaanEntity._();
 

@@ -6,9 +6,7 @@ String toRupiahString(String number) {
   return toCurrencyString(
     number,
     leadingSymbol: 'Rp.',
-    thousandSeparator: ThousandSeparator.Comma,
     useSymbolPadding: true,
-    mantissaLength: 2,
   );
 }
 

@@ -16,7 +16,8 @@ ParameterRepository parameterRepository(ParameterRepositoryRef ref) =>
 
 @Riverpod(keepAlive: true)
 Future<Either<Failure, AppParameter>> fetchInitialParameter(
-    FetchInitialParameterRef ref) {
+  FetchInitialParameterRef ref,
+) {
   return ref.watch(parameterRepositoryProvider).fetchInitialParameter();
 }
 

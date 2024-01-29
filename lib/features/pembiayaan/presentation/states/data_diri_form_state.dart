@@ -24,19 +24,19 @@ class DataDiriFormState with _$DataDiriFormState {
   const DataDiriFormState._();
 
   factory DataDiriFormState.empty() => const DataDiriFormState(
-        nik: Field(value: '', showValue: ''),
-        nama: Field(value: '', showValue: ''),
-        alamat: Field(value: '', showValue: ''),
-        tempatLahir: Field(value: '', showValue: ''),
-        tanggalLahir: Field(value: '', showValue: ''),
-        jenisKelamin: Field(value: '', showValue: ''),
-        statusPernikahan: Field(value: '', showValue: ''),
-        jumlahTanggungan: Field(value: '', showValue: ''),
-        kewajiban: Field(value: '', showValue: ''),
-        biayaOperasional: Field(value: '', showValue: ''),
-        biayaRumahTangga: Field(value: '', showValue: ''),
-        statusTempatTinggal: Field(value: '', showValue: ''),
-        hubunganPerbankan: Field(value: '', showValue: ''),
+        nik: Field(value: ''),
+        nama: Field(value: ''),
+        alamat: Field(value: ''),
+        tempatLahir: Field(value: ''),
+        tanggalLahir: Field(value: ''),
+        jenisKelamin: Field(value: ''),
+        statusPernikahan: Field(value: ''),
+        jumlahTanggungan: Field(value: ''),
+        kewajiban: Field(value: ''),
+        biayaOperasional: Field(value: ''),
+        biayaRumahTangga: Field(value: ''),
+        statusTempatTinggal: Field(value: ''),
+        hubunganPerbankan: Field(value: ''),
       );
   bool get isValid =>
       nik.isValid &&

@@ -7,7 +7,8 @@ import 'package:efosm/core/error/failures.dart';
 
 abstract class AuthRepositoryInterface {
   Future<Either<Failure, UserEntity>> createAuthentication(
-      UserAuthenticationDto user);
+    UserAuthenticationDto user,
+  );
 
   Future<Either<Failure, void>> logout();
 }

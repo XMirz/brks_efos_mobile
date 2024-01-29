@@ -53,6 +53,6 @@ class AgunanFormState with _$AgunanFormState {
 
 @freezed
 class AgunanListFormState with _$AgunanListFormState {
-  const factory AgunanListFormState(List<AgunanFormState> Agunan) =
+  const factory AgunanListFormState(List<AgunanFormState> agunan) =
       _AgunanListFormState;
 }

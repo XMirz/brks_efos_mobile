@@ -24,13 +24,16 @@ class LocationService {
           );
       if (locationData.latitude == null || locationData.longitude == null) {
         return left(
-            Failure.permission(message: l10n.noLocationAccess, code: '04'));
+          Failure.permission(message: l10n.noLocationAccess, code: '04'),
+        );
       }
       var locationName = '';
       try {
         final placemarks = await g
             .placemarkFromCoordinates(
-                locationData.latitude!, locationData.latitude!)
+              locationData.latitude!,
+              locationData.latitude!,
+            )
             .timeout(const Duration(seconds: 15));
         locationName =
             '${placemarks.first.subLocality}, ${placemarks.first.locality}, ${placemarks.first.country}';
@@ -46,7 +49,8 @@ class LocationService {
     } catch (e) {
       print(e);
       return left(
-          Failure.permission(message: l10n.noLocationAccess, code: '04'));
+        Failure.permission(message: l10n.noLocationAccess, code: '04'),
+      );
     }
   }
 

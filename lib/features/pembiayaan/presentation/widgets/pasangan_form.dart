@@ -1,8 +1,8 @@
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
-import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
+import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -42,7 +42,8 @@ class PasanganForm extends ConsumerWidget {
       data: (data) => Builder(
         builder: (context) {
           final initialParameters = data.getOrElse(
-              () => AppParameter.fromJson({})); // I Dont Know Anymore
+            () => AppParameter.fromJson({}),
+          ); // I Dont Know Anymore
           print(initialParameters.parStatusPernikahan);
           return Column(
             mainAxisSize: MainAxisSize.min,

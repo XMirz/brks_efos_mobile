@@ -31,7 +31,9 @@ class LoginFormProvider extends StateNotifier<UserLoginFormState> {
       passwordField = form.password.copyWith(isValid: true, errorMessage: '');
     } else {
       passwordField = form.password.copyWith(
-          isValid: false, errorMessage: 'Ups, kata sandi tidak valid');
+        isValid: false,
+        errorMessage: 'Ups, kata sandi tidak valid',
+      );
     }
     state = state.copyWith(
       form: form.copyWith(password: passwordField),

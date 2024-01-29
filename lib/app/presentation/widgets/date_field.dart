@@ -8,15 +8,15 @@ class OurDateField extends StatelessWidget {
   const OurDateField({
     required this.label,
     required this.hint,
-    super.key,
     required this.onChanged,
+    required this.controller,
+    super.key,
     this.obsecureText,
     this.labelColor,
     this.labelStyle,
     this.hintStyle,
     this.error,
     this.height,
-    required this.controller,
   });
 
   final TextEditingController controller;

@@ -4,7 +4,6 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
@@ -33,7 +32,8 @@ class PembiayaanForm extends ConsumerWidget {
       data: (data) => Builder(
         builder: (context) {
           final initialParameters = data.getOrElse(
-              () => AppParameter.fromJson({})); // I Dont Know Anymore
+            () => AppParameter.fromJson({}),
+          ); // I Dont Know Anymore
           return Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,8 +54,12 @@ class PembiayaanForm extends ConsumerWidget {
               spaceY(4),
               ref
                   .watch(
-                    fetchProdukProvider(ref.read(pembiayaanFormProvider
-                        .select((value) => value.idKategoriProduk.value))),
+                    fetchProdukProvider(
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idKategoriProduk.value),
+                      ),
+                    ),
                   )
                   .when(
                     data: (data) {
@@ -75,8 +79,12 @@ class PembiayaanForm extends ConsumerWidget {
               spaceY(4),
               ref
                   .watch(
-                    fetchJenisPengajuanProvider(ref.read(pembiayaanFormProvider
-                        .select((value) => value.idKategoriProduk.value))),
+                    fetchJenisPengajuanProvider(
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idKategoriProduk.value),
+                      ),
+                    ),
                   )
                   .when(
                     data: (data) {
@@ -97,14 +105,15 @@ class PembiayaanForm extends ConsumerWidget {
               ref
                   .watch(
                     fetchSubProdukProvider(
-                        ref.read(
-                          pembiayaanFormProvider
-                              .select((value) => value.idProduk.value),
-                        ),
-                        ref.read(
-                          pembiayaanFormProvider
-                              .select((value) => value.idKategoriProduk.value),
-                        )),
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idProduk.value),
+                      ),
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idKategoriProduk.value),
+                      ),
+                    ),
                   )
                   .when(
                     data: (data) {
@@ -125,14 +134,15 @@ class PembiayaanForm extends ConsumerWidget {
               ref
                   .watch(
                     fetchPlanProvider(
-                        ref.read(
-                          pembiayaanFormProvider
-                              .select((value) => value.idSubProduk.value),
-                        ),
-                        ref.read(
-                          pembiayaanFormProvider
-                              .select((value) => value.idKategoriProduk.value),
-                        )),
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idSubProduk.value),
+                      ),
+                      ref.read(
+                        pembiayaanFormProvider
+                            .select((value) => value.idKategoriProduk.value),
+                      ),
+                    ),
                   )
                   .when(
                     data: (data) {
@@ -150,7 +160,7 @@ class PembiayaanForm extends ConsumerWidget {
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),
-              const FormHeader(title: "Aspek Pengajuan"),
+              FormHeader(title: l10n.aspekPengajuan),
               spaceY(12),
               OurTextField(
                 label: context.l10n.tujuanPembiayaan,
@@ -225,33 +235,35 @@ class PembiayaanForm extends ConsumerWidget {
               // ),
               // spaceY(4),
               OurTextField(
-                  maxLength: 16,
-                  currencyFormat: true,
-                  keyboardType: TextInputType.number,
-                  label: context.l10n.plafon,
-                  controller: ref.read(plafonController),
-                  hint: context.l10n.plafon,
-                  error: formState.plafonPengajuan.errorMessage,
-                  onChanged: (value) {
-                    ref
-                        .read(pembiayaanFormProvider.notifier)
-                        .setPlafonPengajuan(value, value);
-                    // handleMarginUpdate();
-                  }),
+                maxLength: 16,
+                currencyFormat: true,
+                keyboardType: TextInputType.number,
+                label: context.l10n.plafon,
+                controller: ref.read(plafonController),
+                hint: context.l10n.plafon,
+                error: formState.plafonPengajuan.errorMessage,
+                onChanged: (value) {
+                  ref
+                      .read(pembiayaanFormProvider.notifier)
+                      .setPlafonPengajuan(value, value);
+                  // handleMarginUpdate();
+                },
+              ),
               spaceY(4),
               OurTextField(
-                  maxLength: 3,
-                  keyboardType: TextInputType.number,
-                  label: context.l10n.tenor,
-                  controller: ref.read(tenorController),
-                  hint: context.l10n.tenor,
-                  error: formState.tenorPengajuan.errorMessage,
-                  onChanged: (value) {
-                    ref
-                        .read(pembiayaanFormProvider.notifier)
-                        .setTenor(value, value);
-                    // handleMarginUpdate();
-                  }),
+                maxLength: 3,
+                keyboardType: TextInputType.number,
+                label: context.l10n.tenor,
+                controller: ref.read(tenorController),
+                hint: context.l10n.tenor,
+                error: formState.tenorPengajuan.errorMessage,
+                onChanged: (value) {
+                  ref
+                      .read(pembiayaanFormProvider.notifier)
+                      .setTenor(value, value);
+                  // handleMarginUpdate();
+                },
+              ),
               spaceY(4),
               // OurDropDownField(
               //   items: buildDropDownItem(initialParameters.parKodeMargin),

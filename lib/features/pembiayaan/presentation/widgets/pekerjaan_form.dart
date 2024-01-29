@@ -21,7 +21,8 @@ class PekerjaanForm extends ConsumerWidget {
       data: (data) => Builder(
         builder: (context) {
           final initialParameters = data.getOrElse(
-              () => AppParameter.fromJson({})); // I Dont Know Anymore
+            () => AppParameter.fromJson({}),
+          ); // I Dont Know Anymore
           return Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,

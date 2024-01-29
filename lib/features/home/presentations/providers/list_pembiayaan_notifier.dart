@@ -60,7 +60,6 @@ class PaginationNotifier<T>
         await Future<void>.delayed(const Duration(milliseconds: 500));
         final responseItems = r.pembiayaanList;
         if (r.pageNumber == 0) {
-          print('FIRST BLOCK');
           totalPages = r.totalPages;
           totalItems = r.totalItems;
           totalFilteredItems = r.filteredItems;
@@ -68,15 +67,12 @@ class PaginationNotifier<T>
           state = PaginationState.data(responseItems);
         } else if (r.pageNumber > currentPageNumber &&
             responseItems.isNotEmpty) {
-          print('SECONDBLOCK');
           this.currentPageNumber = r.pageNumber;
           items.addAll(responseItems);
           state = PaginationState.data(items);
         } else {
-          print('ELSE BLOCK');
           // state = PaginationState.data(items);
         }
-        print('Item length : ${items.length}');
       },
     );
   }

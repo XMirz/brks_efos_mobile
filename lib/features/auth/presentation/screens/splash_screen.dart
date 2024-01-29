@@ -19,7 +19,7 @@ class SplashScreen extends HookConsumerWidget {
             'assets/lottie/logo_brks.json',
             controller: animationController,
             onLoaded: (LottieComposition composition) {
-              // TODO REMOVE
+              // TODO(xmirz): Remove these
               animationController
                 // ..duration = composition.duration
                 ..duration = const Duration(milliseconds: 300)

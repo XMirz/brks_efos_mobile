@@ -215,7 +215,10 @@ enum RequestType {
 
 class LoggingInterceptor extends Interceptor {
   @override
-  void onResponse(Response response, ResponseInterceptorHandler handler) {
+  void onResponse(
+    Response<dynamic> response,
+    ResponseInterceptorHandler handler,
+  ) {
     super.onResponse(response, handler);
     debugPrint('\n\n');
     debugPrint('<--- RESPONSE --->');
@@ -226,14 +229,15 @@ class LoggingInterceptor extends Interceptor {
   }
 
   @override
-  void onRequest(RequestOptions request, RequestInterceptorHandler handler) {
-    super.onRequest(request, handler);
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    super.onRequest(options, handler);
     debugPrint('\n\n');
     debugPrint('<--- REQUEST --->');
     debugPrint(
-        'Path   : [${request.method}] ${request.baseUrl}${request.path}');
-    debugPrint('Headers: ${jsonEncode(request.headers)}');
-    printWrapped('Request: ${jsonEncode(request.data)}');
+      'Path   : [${options.method}] ${options.baseUrl}${options.path}',
+    );
+    debugPrint('Headers: ${jsonEncode(options.headers)}');
+    printWrapped('Request: ${jsonEncode(options.data)}');
     debugPrint('<--- REQUEST --->');
     debugPrint('\n\n');
   }
