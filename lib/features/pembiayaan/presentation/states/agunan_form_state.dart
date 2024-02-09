@@ -8,6 +8,7 @@ part 'agunan_form_state.freezed.dart';
 @freezed
 class AgunanFormState with _$AgunanFormState {
   factory AgunanFormState({
+    @Default(false) bool isUpdate,
     required Field isJaminan,
     required Field jenis,
     required Field deskripsi,
@@ -30,6 +31,7 @@ class AgunanFormState with _$AgunanFormState {
   const AgunanFormState._();
 
   factory AgunanFormState.empty() => AgunanFormState(
+        isUpdate: false,
         isJaminan: const Field(value: ''),
         jenis: const Field(value: ''),
         deskripsi: const Field(value: ''),

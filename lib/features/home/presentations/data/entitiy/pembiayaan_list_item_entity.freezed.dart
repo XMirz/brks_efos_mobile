@@ -27,6 +27,8 @@ mixin _$PembiayaanListItemEntiy {
   String get nik => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
   String get nama => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  dynamic get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'alamat')
   String get alamat => throw _privateConstructorUsedError;
   @JsonKey(name: 'tmp_lahir')
@@ -99,6 +101,7 @@ abstract class $PembiayaanListItemEntiyCopyWith<$Res> {
       {@JsonKey(name: 'id_loan') String idLoan,
       @JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
+      @JsonKey(name: 'status') dynamic status,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'tmp_lahir') String tempatLahir,
       @JsonKey(name: 'tgl_lahir') String tanggalLahir,
@@ -145,6 +148,7 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
     Object? idLoan = null,
     Object? nik = null,
     Object? nama = null,
+    Object? status = freezed,
     Object? alamat = null,
     Object? tempatLahir = null,
     Object? tanggalLahir = null,
@@ -186,6 +190,10 @@ class _$PembiayaanListItemEntiyCopyWithImpl<$Res,
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       alamat: null == alamat
           ? _value.alamat
           : alamat // ignore: cast_nullable_to_non_nullable
@@ -311,6 +319,7 @@ abstract class _$$PembiayaanListItemEntiyImplCopyWith<$Res>
       {@JsonKey(name: 'id_loan') String idLoan,
       @JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
+      @JsonKey(name: 'status') dynamic status,
       @JsonKey(name: 'alamat') String alamat,
       @JsonKey(name: 'tmp_lahir') String tempatLahir,
       @JsonKey(name: 'tgl_lahir') String tanggalLahir,
@@ -356,6 +365,7 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
     Object? idLoan = null,
     Object? nik = null,
     Object? nama = null,
+    Object? status = freezed,
     Object? alamat = null,
     Object? tempatLahir = null,
     Object? tanggalLahir = null,
@@ -397,6 +407,10 @@ class __$$PembiayaanListItemEntiyImplCopyWithImpl<$Res>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
+      status: freezed == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       alamat: null == alamat
           ? _value.alamat
           : alamat // ignore: cast_nullable_to_non_nullable
@@ -516,6 +530,7 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
       {@JsonKey(name: 'id_loan') required this.idLoan,
       @JsonKey(name: 'ktp') required this.nik,
       @JsonKey(name: 'nama') required this.nama,
+      @JsonKey(name: 'status') required this.status,
       @JsonKey(name: 'alamat') this.alamat = '',
       @JsonKey(name: 'tmp_lahir') this.tempatLahir = '',
       @JsonKey(name: 'tgl_lahir') this.tanggalLahir = '',
@@ -557,6 +572,9 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
   @override
   @JsonKey(name: 'nama')
   final String nama;
+  @override
+  @JsonKey(name: 'status')
+  final dynamic status;
   @override
   @JsonKey(name: 'alamat')
   final String alamat;
@@ -642,7 +660,7 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
 
   @override
   String toString() {
-    return 'PembiayaanListItemEntiy(idLoan: $idLoan, nik: $nik, nama: $nama, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, hubunganPerbankan: $hubunganPerbankan, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, descKategoriProduk: $descKategoriProduk, descProduk: $descProduk, descJenisPengajuan: $descJenisPengajuan, descSubProduk: $descSubProduk, descPlan: $descPlan, descKelamin: $descKelamin, descStatusPernikahan: $descStatusPernikahan)';
+    return 'PembiayaanListItemEntiy(idLoan: $idLoan, nik: $nik, nama: $nama, status: $status, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, hubunganPerbankan: $hubunganPerbankan, plafonPengajuan: $plafonPengajuan, tenorPengajuan: $tenorPengajuan, tujuanPembiayaan: $tujuanPembiayaan, gracePeriod: $gracePeriod, idKategoriProduk: $idKategoriProduk, idProduk: $idProduk, idJenisPengajuan: $idJenisPengajuan, idSubProduk: $idSubProduk, idPlan: $idPlan, descKategoriProduk: $descKategoriProduk, descProduk: $descProduk, descJenisPengajuan: $descJenisPengajuan, descSubProduk: $descSubProduk, descPlan: $descPlan, descKelamin: $descKelamin, descStatusPernikahan: $descStatusPernikahan)';
   }
 
   @override
@@ -653,6 +671,7 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
             (identical(other.idLoan, idLoan) || other.idLoan == idLoan) &&
             (identical(other.nik, nik) || other.nik == nik) &&
             (identical(other.nama, nama) || other.nama == nama) &&
+            const DeepCollectionEquality().equals(other.status, status) &&
             (identical(other.alamat, alamat) || other.alamat == alamat) &&
             (identical(other.tempatLahir, tempatLahir) ||
                 other.tempatLahir == tempatLahir) &&
@@ -714,6 +733,7 @@ class _$PembiayaanListItemEntiyImpl extends _PembiayaanListItemEntiy {
         idLoan,
         nik,
         nama,
+        const DeepCollectionEquality().hash(status),
         alamat,
         tempatLahir,
         tanggalLahir,
@@ -763,6 +783,7 @@ abstract class _PembiayaanListItemEntiy extends PembiayaanListItemEntiy {
       {@JsonKey(name: 'id_loan') required final String idLoan,
       @JsonKey(name: 'ktp') required final String nik,
       @JsonKey(name: 'nama') required final String nama,
+      @JsonKey(name: 'status') required final dynamic status,
       @JsonKey(name: 'alamat') final String alamat,
       @JsonKey(name: 'tmp_lahir') final String tempatLahir,
       @JsonKey(name: 'tgl_lahir') final String tanggalLahir,
@@ -805,6 +826,9 @@ abstract class _PembiayaanListItemEntiy extends PembiayaanListItemEntiy {
   @override
   @JsonKey(name: 'nama')
   String get nama;
+  @override
+  @JsonKey(name: 'status')
+  dynamic get status;
   @override
   @JsonKey(name: 'alamat')
   String get alamat;

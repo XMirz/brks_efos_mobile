@@ -13,14 +13,14 @@ _$DataDiriEntityImpl _$$DataDiriEntityImplFromJson(Map<String, dynamic> json) =>
       alamat: json['alamat'] as String,
       tempatLahir: json['tmp_lahir'] as String,
       tanggalLahir: json['tgl_lahir'] as String,
-      jenisKelamin: json['kelamin'] as String,
+      jenisKelamin: json['kelamin'] as int,
       statusPernikahan: json['status_pernikahan'] as String,
-      jumlahTanggungan: json['tanggungan'] as String,
-      kewajiban: json['biaya_tanggungan'] as String,
-      biayaOperasional: json['b_operasional'] as String,
-      biayaRumahTangga: json['b_gaji'] as String,
+      jumlahTanggungan: json['tanggungan'],
+      kewajiban: json['biaya_tanggungan'],
+      biayaOperasional: json['b_operasional'],
+      biayaRumahTangga: json['b_gaji'],
       statusTempatTinggal: json['status_tempat_tinggal'] as String,
-      hubunganPerbankan: json['hubungan_bank'] as String,
+      hubunganPerbankan: json['hubungan_bank'],
     );
 
 Map<String, dynamic> _$$DataDiriEntityImplToJson(

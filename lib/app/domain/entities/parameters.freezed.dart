@@ -25,7 +25,7 @@ mixin _$Parameter {
   @JsonKey(name: 'name')
   String? get label => throw _privateConstructorUsedError;
   @JsonKey(name: 'nilai')
-  dynamic? get value => throw _privateConstructorUsedError;
+  dynamic get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,7 +41,7 @@ abstract class $ParameterCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'id') dynamic id,
       @JsonKey(name: 'name') String? label,
-      @JsonKey(name: 'nilai') dynamic? value});
+      @JsonKey(name: 'nilai') dynamic value});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$ParameterCopyWithImpl<$Res, $Val extends Parameter>
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
     ) as $Val);
   }
 }
@@ -89,7 +89,7 @@ abstract class _$$ParameterImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') dynamic id,
       @JsonKey(name: 'name') String? label,
-      @JsonKey(name: 'nilai') dynamic? value});
+      @JsonKey(name: 'nilai') dynamic value});
 }
 
 /// @nodoc
@@ -119,7 +119,7 @@ class __$$ParameterImplCopyWithImpl<$Res>
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as dynamic?,
+              as dynamic,
     ));
   }
 }
@@ -144,7 +144,7 @@ class _$ParameterImpl extends _Parameter {
   final String? label;
   @override
   @JsonKey(name: 'nilai')
-  final dynamic? value;
+  final dynamic value;
 
   @override
   String toString() {
@@ -187,7 +187,7 @@ abstract class _Parameter extends Parameter {
   const factory _Parameter(
       {@JsonKey(name: 'id') required final dynamic id,
       @JsonKey(name: 'name') final String? label,
-      @JsonKey(name: 'nilai') final dynamic? value}) = _$ParameterImpl;
+      @JsonKey(name: 'nilai') final dynamic value}) = _$ParameterImpl;
   const _Parameter._() : super._();
 
   factory _Parameter.fromJson(Map<String, dynamic> json) =
@@ -201,7 +201,7 @@ abstract class _Parameter extends Parameter {
   String? get label;
   @override
   @JsonKey(name: 'nilai')
-  dynamic? get value;
+  dynamic get value;
   @override
   @JsonKey(ignore: true)
   _$$ParameterImplCopyWith<_$ParameterImpl> get copyWith =>

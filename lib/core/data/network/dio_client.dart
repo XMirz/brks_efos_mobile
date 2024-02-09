@@ -236,7 +236,7 @@ class LoggingInterceptor extends Interceptor {
     debugPrint(
       'Path   : [${options.method}] ${options.baseUrl}${options.path}',
     );
-    debugPrint('Headers: ${jsonEncode(options.headers)}');
+    // debugPrint('Headers: ${jsonEncode(options.headers)}');
     printWrapped('Request: ${jsonEncode(options.data)}');
     debugPrint('<--- REQUEST --->');
     debugPrint('\n\n');

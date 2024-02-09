@@ -13,7 +13,13 @@ class UserEntity with _$UserEntity {
     required String role,
     @JsonKey(name: 'id_cabang') required String idCabang,
     required String cabang,
+    // required bool isSupervisorAO,
     required String token,
+    @JsonKey(name: 'level_apv_cabang') required String levelApproveCabang,
+    @JsonKey(name: 'limit_produktif_cabang')
+    required double limitProduktifCabang,
+    @JsonKey(name: 'limit_konsumtif_cabang')
+    required double limitKonsumtifCabang,
     // required List<String> permissions,
     required List<String> authorities,
   }) = _UserEntity;

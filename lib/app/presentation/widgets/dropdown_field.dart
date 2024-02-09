@@ -4,6 +4,7 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart';
 
 typedef ValueChanged<S, T> = void Function(S value, T shownValue);
 
@@ -17,7 +18,7 @@ class OurDropDownField extends StatelessWidget {
     this.labelStyle,
     this.hintStyle,
     this.error,
-    this.readOnly,
+    this.enabled,
     this.height,
     this.value,
     this.backgroundColor,
@@ -26,7 +27,7 @@ class OurDropDownField extends StatelessWidget {
   final String label;
   final String hint;
   final String? error;
-  final bool? readOnly;
+  final bool? enabled;
   final String? value;
   final double? height;
   final TextStyle? labelStyle;
@@ -36,6 +37,9 @@ class OurDropDownField extends StatelessWidget {
   final List<DropDownItem> items;
   @override
   Widget build(BuildContext context) {
+    final showValue = items.isNotEmpty && value != null && value != ''
+        ? items.firstWhereOrNull((e) => e.value == value.toString())?.label
+        : null;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -73,6 +77,8 @@ class OurDropDownField extends StatelessWidget {
               child: Stack(
                 children: [
                   PopupMenuButton<String>(
+                    enabled: enabled ?? true,
+                    initialValue: value,
                     color: AppColor.backgroundPrimary,
                     tooltip: label,
                     shape: RoundedRectangleBorder(
@@ -98,9 +104,7 @@ class OurDropDownField extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        value != null && value!.isNotEmpty
-                            ? value!
-                            : '${l10n.select} $label',
+                        showValue ?? '${l10n.select} $label',
                         style: AppTextStyle.bodyMedium
                             .copyWith(color: AppColor.textPrimary),
                       ),
@@ -113,7 +117,7 @@ class OurDropDownField extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  item.label,
+                                  '${item.value} - ${item.label}',
                                   style: AppTextStyle.bodyMedium
                                       .copyWith(color: AppColor.textPrimary),
                                 ),

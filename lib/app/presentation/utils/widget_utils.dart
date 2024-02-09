@@ -80,3 +80,18 @@ InputDecoration buildOurFlatInputDecoration({
     disabledBorder: InputBorder.none,
   );
 }
+
+const boxShadowMedium = BoxShadow(
+  color: Color.fromRGBO(0, 0, 0, 0.16),
+  blurRadius: 4,
+  offset: Offset(
+    0,
+    1,
+  ),
+);
+
+final buildDivider = Container(
+  color: AppColor.highlightSecondary,
+  width: double.infinity,
+  height: 1,
+);

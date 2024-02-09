@@ -23,6 +23,7 @@ mixin _$PasanganFormState {
   Field get tunjangan => throw _privateConstructorUsedError;
   Field get potongan => throw _privateConstructorUsedError;
   Field get gajiBersih => throw _privateConstructorUsedError;
+  bool get isUpdate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PasanganFormStateCopyWith<PasanganFormState> get copyWith =>
@@ -42,7 +43,8 @@ abstract class $PasanganFormStateCopyWith<$Res> {
       Field gajiAmprah,
       Field tunjangan,
       Field potongan,
-      Field gajiBersih});
+      Field gajiBersih,
+      bool isUpdate});
 
   $FieldCopyWith<$Res> get nik;
   $FieldCopyWith<$Res> get nama;
@@ -73,6 +75,7 @@ class _$PasanganFormStateCopyWithImpl<$Res, $Val extends PasanganFormState>
     Object? tunjangan = null,
     Object? potongan = null,
     Object? gajiBersih = null,
+    Object? isUpdate = null,
   }) {
     return _then(_value.copyWith(
       nik: null == nik
@@ -103,6 +106,10 @@ class _$PasanganFormStateCopyWithImpl<$Res, $Val extends PasanganFormState>
           ? _value.gajiBersih
           : gajiBersih // ignore: cast_nullable_to_non_nullable
               as Field,
+      isUpdate: null == isUpdate
+          ? _value.isUpdate
+          : isUpdate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -178,7 +185,8 @@ abstract class _$$PasanganFormStateImplCopyWith<$Res>
       Field gajiAmprah,
       Field tunjangan,
       Field potongan,
-      Field gajiBersih});
+      Field gajiBersih,
+      bool isUpdate});
 
   @override
   $FieldCopyWith<$Res> get nik;
@@ -214,6 +222,7 @@ class __$$PasanganFormStateImplCopyWithImpl<$Res>
     Object? tunjangan = null,
     Object? potongan = null,
     Object? gajiBersih = null,
+    Object? isUpdate = null,
   }) {
     return _then(_$PasanganFormStateImpl(
       nik: null == nik
@@ -244,6 +253,10 @@ class __$$PasanganFormStateImplCopyWithImpl<$Res>
           ? _value.gajiBersih
           : gajiBersih // ignore: cast_nullable_to_non_nullable
               as Field,
+      isUpdate: null == isUpdate
+          ? _value.isUpdate
+          : isUpdate // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -258,7 +271,8 @@ class _$PasanganFormStateImpl extends _PasanganFormState {
       required this.gajiAmprah,
       required this.tunjangan,
       required this.potongan,
-      required this.gajiBersih})
+      required this.gajiBersih,
+      this.isUpdate = false})
       : super._();
 
   @override
@@ -275,10 +289,13 @@ class _$PasanganFormStateImpl extends _PasanganFormState {
   final Field potongan;
   @override
   final Field gajiBersih;
+  @override
+  @JsonKey()
+  final bool isUpdate;
 
   @override
   String toString() {
-    return 'PasanganFormState(nik: $nik, nama: $nama, penghasilan: $penghasilan, gajiAmprah: $gajiAmprah, tunjangan: $tunjangan, potongan: $potongan, gajiBersih: $gajiBersih)';
+    return 'PasanganFormState(nik: $nik, nama: $nama, penghasilan: $penghasilan, gajiAmprah: $gajiAmprah, tunjangan: $tunjangan, potongan: $potongan, gajiBersih: $gajiBersih, isUpdate: $isUpdate)';
   }
 
   @override
@@ -297,12 +314,14 @@ class _$PasanganFormStateImpl extends _PasanganFormState {
             (identical(other.potongan, potongan) ||
                 other.potongan == potongan) &&
             (identical(other.gajiBersih, gajiBersih) ||
-                other.gajiBersih == gajiBersih));
+                other.gajiBersih == gajiBersih) &&
+            (identical(other.isUpdate, isUpdate) ||
+                other.isUpdate == isUpdate));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, nik, nama, penghasilan,
-      gajiAmprah, tunjangan, potongan, gajiBersih);
+      gajiAmprah, tunjangan, potongan, gajiBersih, isUpdate);
 
   @JsonKey(ignore: true)
   @override
@@ -320,7 +339,8 @@ abstract class _PasanganFormState extends PasanganFormState {
       required final Field gajiAmprah,
       required final Field tunjangan,
       required final Field potongan,
-      required final Field gajiBersih}) = _$PasanganFormStateImpl;
+      required final Field gajiBersih,
+      final bool isUpdate}) = _$PasanganFormStateImpl;
   const _PasanganFormState._() : super._();
 
   @override
@@ -337,6 +357,8 @@ abstract class _PasanganFormState extends PasanganFormState {
   Field get potongan;
   @override
   Field get gajiBersih;
+  @override
+  bool get isUpdate;
   @override
   @JsonKey(ignore: true)
   _$$PasanganFormStateImplCopyWith<_$PasanganFormStateImpl> get copyWith =>

@@ -25,15 +25,15 @@ mixin _$PasanganEntity {
   @JsonKey(name: 'nama')
   String get nama => throw _privateConstructorUsedError;
   @JsonKey(name: 'penghasilan')
-  String get penghasilan => throw _privateConstructorUsedError;
+  dynamic get penghasilan => throw _privateConstructorUsedError;
   @JsonKey(name: 'gaji')
-  String get gajiAmprah => throw _privateConstructorUsedError;
+  dynamic get gajiAmprah => throw _privateConstructorUsedError;
   @JsonKey(name: 'tunjangan')
-  String get tunjangan => throw _privateConstructorUsedError;
+  dynamic get tunjangan => throw _privateConstructorUsedError;
   @JsonKey(name: 'potongan')
-  String get potongan => throw _privateConstructorUsedError;
+  dynamic get potongan => throw _privateConstructorUsedError;
   @JsonKey(name: 'netto')
-  String get gajiBersih => throw _privateConstructorUsedError;
+  dynamic get gajiBersih => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_debitur')
   String get idDebitur => throw _privateConstructorUsedError;
 
@@ -52,11 +52,11 @@ abstract class $PasanganEntityCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
-      @JsonKey(name: 'penghasilan') String penghasilan,
-      @JsonKey(name: 'gaji') String gajiAmprah,
-      @JsonKey(name: 'tunjangan') String tunjangan,
-      @JsonKey(name: 'potongan') String potongan,
-      @JsonKey(name: 'netto') String gajiBersih,
+      @JsonKey(name: 'penghasilan') dynamic penghasilan,
+      @JsonKey(name: 'gaji') dynamic gajiAmprah,
+      @JsonKey(name: 'tunjangan') dynamic tunjangan,
+      @JsonKey(name: 'potongan') dynamic potongan,
+      @JsonKey(name: 'netto') dynamic gajiBersih,
       @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
@@ -75,11 +75,11 @@ class _$PasanganEntityCopyWithImpl<$Res, $Val extends PasanganEntity>
   $Res call({
     Object? nik = null,
     Object? nama = null,
-    Object? penghasilan = null,
-    Object? gajiAmprah = null,
-    Object? tunjangan = null,
-    Object? potongan = null,
-    Object? gajiBersih = null,
+    Object? penghasilan = freezed,
+    Object? gajiAmprah = freezed,
+    Object? tunjangan = freezed,
+    Object? potongan = freezed,
+    Object? gajiBersih = freezed,
     Object? idDebitur = null,
   }) {
     return _then(_value.copyWith(
@@ -91,26 +91,26 @@ class _$PasanganEntityCopyWithImpl<$Res, $Val extends PasanganEntity>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      penghasilan: null == penghasilan
+      penghasilan: freezed == penghasilan
           ? _value.penghasilan
           : penghasilan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiAmprah: null == gajiAmprah
+              as dynamic,
+      gajiAmprah: freezed == gajiAmprah
           ? _value.gajiAmprah
           : gajiAmprah // ignore: cast_nullable_to_non_nullable
-              as String,
-      tunjangan: null == tunjangan
+              as dynamic,
+      tunjangan: freezed == tunjangan
           ? _value.tunjangan
           : tunjangan // ignore: cast_nullable_to_non_nullable
-              as String,
-      potongan: null == potongan
+              as dynamic,
+      potongan: freezed == potongan
           ? _value.potongan
           : potongan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiBersih: null == gajiBersih
+              as dynamic,
+      gajiBersih: freezed == gajiBersih
           ? _value.gajiBersih
           : gajiBersih // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
@@ -130,11 +130,11 @@ abstract class _$$PasanganEntityImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'ktp') String nik,
       @JsonKey(name: 'nama') String nama,
-      @JsonKey(name: 'penghasilan') String penghasilan,
-      @JsonKey(name: 'gaji') String gajiAmprah,
-      @JsonKey(name: 'tunjangan') String tunjangan,
-      @JsonKey(name: 'potongan') String potongan,
-      @JsonKey(name: 'netto') String gajiBersih,
+      @JsonKey(name: 'penghasilan') dynamic penghasilan,
+      @JsonKey(name: 'gaji') dynamic gajiAmprah,
+      @JsonKey(name: 'tunjangan') dynamic tunjangan,
+      @JsonKey(name: 'potongan') dynamic potongan,
+      @JsonKey(name: 'netto') dynamic gajiBersih,
       @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
@@ -151,11 +151,11 @@ class __$$PasanganEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? nik = null,
     Object? nama = null,
-    Object? penghasilan = null,
-    Object? gajiAmprah = null,
-    Object? tunjangan = null,
-    Object? potongan = null,
-    Object? gajiBersih = null,
+    Object? penghasilan = freezed,
+    Object? gajiAmprah = freezed,
+    Object? tunjangan = freezed,
+    Object? potongan = freezed,
+    Object? gajiBersih = freezed,
     Object? idDebitur = null,
   }) {
     return _then(_$PasanganEntityImpl(
@@ -167,26 +167,26 @@ class __$$PasanganEntityImplCopyWithImpl<$Res>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      penghasilan: null == penghasilan
+      penghasilan: freezed == penghasilan
           ? _value.penghasilan
           : penghasilan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiAmprah: null == gajiAmprah
+              as dynamic,
+      gajiAmprah: freezed == gajiAmprah
           ? _value.gajiAmprah
           : gajiAmprah // ignore: cast_nullable_to_non_nullable
-              as String,
-      tunjangan: null == tunjangan
+              as dynamic,
+      tunjangan: freezed == tunjangan
           ? _value.tunjangan
           : tunjangan // ignore: cast_nullable_to_non_nullable
-              as String,
-      potongan: null == potongan
+              as dynamic,
+      potongan: freezed == potongan
           ? _value.potongan
           : potongan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiBersih: null == gajiBersih
+              as dynamic,
+      gajiBersih: freezed == gajiBersih
           ? _value.gajiBersih
           : gajiBersih // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
@@ -220,19 +220,19 @@ class _$PasanganEntityImpl extends _PasanganEntity {
   final String nama;
   @override
   @JsonKey(name: 'penghasilan')
-  final String penghasilan;
+  final dynamic penghasilan;
   @override
   @JsonKey(name: 'gaji')
-  final String gajiAmprah;
+  final dynamic gajiAmprah;
   @override
   @JsonKey(name: 'tunjangan')
-  final String tunjangan;
+  final dynamic tunjangan;
   @override
   @JsonKey(name: 'potongan')
-  final String potongan;
+  final dynamic potongan;
   @override
   @JsonKey(name: 'netto')
-  final String gajiBersih;
+  final dynamic gajiBersih;
   @override
   @JsonKey(name: 'id_debitur')
   final String idDebitur;
@@ -249,24 +249,30 @@ class _$PasanganEntityImpl extends _PasanganEntity {
             other is _$PasanganEntityImpl &&
             (identical(other.nik, nik) || other.nik == nik) &&
             (identical(other.nama, nama) || other.nama == nama) &&
-            (identical(other.penghasilan, penghasilan) ||
-                other.penghasilan == penghasilan) &&
-            (identical(other.gajiAmprah, gajiAmprah) ||
-                other.gajiAmprah == gajiAmprah) &&
-            (identical(other.tunjangan, tunjangan) ||
-                other.tunjangan == tunjangan) &&
-            (identical(other.potongan, potongan) ||
-                other.potongan == potongan) &&
-            (identical(other.gajiBersih, gajiBersih) ||
-                other.gajiBersih == gajiBersih) &&
+            const DeepCollectionEquality()
+                .equals(other.penghasilan, penghasilan) &&
+            const DeepCollectionEquality()
+                .equals(other.gajiAmprah, gajiAmprah) &&
+            const DeepCollectionEquality().equals(other.tunjangan, tunjangan) &&
+            const DeepCollectionEquality().equals(other.potongan, potongan) &&
+            const DeepCollectionEquality()
+                .equals(other.gajiBersih, gajiBersih) &&
             (identical(other.idDebitur, idDebitur) ||
                 other.idDebitur == idDebitur));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, nik, nama, penghasilan,
-      gajiAmprah, tunjangan, potongan, gajiBersih, idDebitur);
+  int get hashCode => Object.hash(
+      runtimeType,
+      nik,
+      nama,
+      const DeepCollectionEquality().hash(penghasilan),
+      const DeepCollectionEquality().hash(gajiAmprah),
+      const DeepCollectionEquality().hash(tunjangan),
+      const DeepCollectionEquality().hash(potongan),
+      const DeepCollectionEquality().hash(gajiBersih),
+      idDebitur);
 
   @JsonKey(ignore: true)
   @override
@@ -287,11 +293,11 @@ abstract class _PasanganEntity extends PasanganEntity {
   const factory _PasanganEntity(
           {@JsonKey(name: 'ktp') required final String nik,
           @JsonKey(name: 'nama') required final String nama,
-          @JsonKey(name: 'penghasilan') required final String penghasilan,
-          @JsonKey(name: 'gaji') required final String gajiAmprah,
-          @JsonKey(name: 'tunjangan') required final String tunjangan,
-          @JsonKey(name: 'potongan') required final String potongan,
-          @JsonKey(name: 'netto') required final String gajiBersih,
+          @JsonKey(name: 'penghasilan') required final dynamic penghasilan,
+          @JsonKey(name: 'gaji') required final dynamic gajiAmprah,
+          @JsonKey(name: 'tunjangan') required final dynamic tunjangan,
+          @JsonKey(name: 'potongan') required final dynamic potongan,
+          @JsonKey(name: 'netto') required final dynamic gajiBersih,
           @JsonKey(name: 'id_debitur') final String idDebitur}) =
       _$PasanganEntityImpl;
   const _PasanganEntity._() : super._();
@@ -307,19 +313,19 @@ abstract class _PasanganEntity extends PasanganEntity {
   String get nama;
   @override
   @JsonKey(name: 'penghasilan')
-  String get penghasilan;
+  dynamic get penghasilan;
   @override
   @JsonKey(name: 'gaji')
-  String get gajiAmprah;
+  dynamic get gajiAmprah;
   @override
   @JsonKey(name: 'tunjangan')
-  String get tunjangan;
+  dynamic get tunjangan;
   @override
   @JsonKey(name: 'potongan')
-  String get potongan;
+  dynamic get potongan;
   @override
   @JsonKey(name: 'netto')
-  String get gajiBersih;
+  dynamic get gajiBersih;
   @override
   @JsonKey(name: 'id_debitur')
   String get idDebitur;

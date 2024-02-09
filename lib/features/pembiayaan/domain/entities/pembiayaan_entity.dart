@@ -11,7 +11,7 @@ part 'pembiayaan_entity.g.dart';
 @freezed
 class PembiayaanEntity with _$PembiayaanEntity {
   const factory PembiayaanEntity({
-    @JsonKey(name: 'debitur') required DataDiriEntity dataDiri,
+    @JsonKey(name: 'data_diri') required DataDiriEntity dataDiri,
     @JsonKey(name: 'pekerjaan') required PekerjaanEntity pekerjaan,
     @JsonKey(name: 'pasangan') required List<PasanganEntity> pasangan,
     @JsonKey(name: 'produk_pembiayaan')

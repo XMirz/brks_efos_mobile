@@ -5,14 +5,16 @@ import 'dart:async';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/info_dialog.dart';
+import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/home/presentations/screen/dashboard.dart';
 import 'package:efosm/features/home/presentations/screen/list_pembiayaan.dart';
-import 'package:efosm/features/home/presentations/screen/profile.dart';
+import 'package:efosm/features/home/presentations/screen/notification_screen.dart';
+import 'package:efosm/features/home/presentations/screen/profile_screen.dart';
 import 'package:efosm/features/home/presentations/widgets/nav_bar.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/parameter_repository_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -24,7 +26,31 @@ class HomeScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final pageIndex = ref.watch(pageIndexProvider);
-    return Scaffold(
+    return
+        // WillPopScope(
+        // onWillPop: () async {
+        //   var willPop = false;
+        //   await showDialog<void>(
+        //     barrierDismissible: false,
+        //     context: context,
+        //     builder: (context) {
+        //       return OurConfirmDialog(
+        //         title: l10n.confirmation,
+        //         description: 'Apakah ingin keluar?',
+        //         onCancel: () {
+        //           if (context.mounted) context.pop('dialog');
+        //         },
+        //         onSubmit: () async {
+        //           willPop = true;
+        //           if (context.mounted) context.pop('dialog');
+        //         },
+        //       );
+        //     },
+        //   );
+        //   return willPop;
+        // },
+        // child:
+        Scaffold(
       floatingActionButton: pageIndex == 0
           ? FloatingActionButton(
               backgroundColor: AppColor.primary,
@@ -40,7 +66,6 @@ class HomeScreen extends HookConsumerWidget {
                 );
                 final parameter =
                     await ref.read(fetchInitialParameterProvider.future);
-                debugPrint(parameter.toString());
                 if (context.mounted) context.pop('dialog'); // Close loading
                 await parameter.fold((l) {
                   // Clear the state if failure occurs
@@ -113,10 +138,11 @@ class HomeScreen extends HookConsumerWidget {
         children: const [
           Dashboard(),
           PembiayaanSreen(),
-          Scaffold(),
-          Profile(),
+          NotificationScreen(),
+          ProfileScreen(),
         ],
       ),
+      // ),
     );
   }
 }

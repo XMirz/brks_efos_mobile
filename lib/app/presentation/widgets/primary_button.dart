@@ -112,7 +112,46 @@ class SmallButton extends StatelessWidget {
       onPressed: onPressed,
       radius: 8,
       backgroundColor: backgroundColor ?? Colors.transparent,
-      textStyle: AppTextStyle.titleExtraSmall,
+      textStyle: textStyle ?? AppTextStyle.titleExtraSmall,
+    );
+  }
+}
+
+class PrimarySmallButton extends StatelessWidget {
+  const PrimarySmallButton({
+    required this.text,
+    required this.onPressed,
+    super.key,
+    this.disabled,
+    this.backgroundColor,
+    this.borderColor,
+    this.color,
+    this.textStyle,
+    this.size,
+    this.padding,
+    this.radius,
+  });
+  final String text;
+  final bool? disabled;
+  final VoidCallback onPressed;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? color;
+  final TextStyle? textStyle;
+  final Size? size;
+  final EdgeInsetsGeometry? padding;
+  final double? radius;
+  @override
+  Widget build(BuildContext context) {
+    return PrimaryButton(
+      radius: 8,
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      size: const Size(double.minPositive, 36),
+      text: text,
+      backgroundColor: color ?? AppColor.primary,
+      textStyle:
+          AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+      onPressed: onPressed,
     );
   }
 }

@@ -12,20 +12,24 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
     this.borderRadius,
     super.key,
     this.backgroundColor,
+    this.foregroundColor,
     this.centerTitle,
     this.tint,
     this.onBackPressed,
     this.tabs,
     this.height,
+    this.actions,
   });
 
   final String title;
   final BorderRadius? borderRadius;
   final double? height;
   final Color? backgroundColor;
+  final Color? foregroundColor;
   final Color? tint;
   final bool? centerTitle;
   final List<Widget>? tabs;
+  final List<Widget>? actions;
   final VoidCallback? onBackPressed;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -40,6 +44,7 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
           : Matrix4.identity(),
       duration: const Duration(milliseconds: 400),
       child: AppBar(
+        foregroundColor: foregroundColor ?? Colors.white,
         clipBehavior: Clip.hardEdge,
         bottom: tabs != null && tabs!.isNotEmpty
             ? TabBar(
@@ -76,6 +81,7 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
                 ),
               )
             : null,
+        actions: actions,
       ),
     );
   }

@@ -20,7 +20,7 @@ PembiayaanEntity _$PembiayaanEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PembiayaanEntity {
-  @JsonKey(name: 'debitur')
+  @JsonKey(name: 'data_diri')
   DataDiriEntity get dataDiri => throw _privateConstructorUsedError;
   @JsonKey(name: 'pekerjaan')
   PekerjaanEntity get pekerjaan => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $PembiayaanEntityCopyWith<$Res> {
       _$PembiayaanEntityCopyWithImpl<$Res, PembiayaanEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'debitur') DataDiriEntity dataDiri,
+      {@JsonKey(name: 'data_diri') DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') PekerjaanEntity pekerjaan,
       @JsonKey(name: 'pasangan') List<PasanganEntity> pasangan,
       @JsonKey(name: 'produk_pembiayaan')
@@ -151,7 +151,7 @@ abstract class _$$PembiayaanEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'debitur') DataDiriEntity dataDiri,
+      {@JsonKey(name: 'data_diri') DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') PekerjaanEntity pekerjaan,
       @JsonKey(name: 'pasangan') List<PasanganEntity> pasangan,
       @JsonKey(name: 'produk_pembiayaan')
@@ -224,7 +224,7 @@ class __$$PembiayaanEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PembiayaanEntityImpl extends _PembiayaanEntity {
   const _$PembiayaanEntityImpl(
-      {@JsonKey(name: 'debitur') required this.dataDiri,
+      {@JsonKey(name: 'data_diri') required this.dataDiri,
       @JsonKey(name: 'pekerjaan') required this.pekerjaan,
       @JsonKey(name: 'pasangan') required final List<PasanganEntity> pasangan,
       @JsonKey(name: 'produk_pembiayaan') required this.produkPembiayaan,
@@ -239,7 +239,7 @@ class _$PembiayaanEntityImpl extends _PembiayaanEntity {
       _$$PembiayaanEntityImplFromJson(json);
 
   @override
-  @JsonKey(name: 'debitur')
+  @JsonKey(name: 'data_diri')
   final DataDiriEntity dataDiri;
   @override
   @JsonKey(name: 'pekerjaan')
@@ -324,7 +324,7 @@ class _$PembiayaanEntityImpl extends _PembiayaanEntity {
 
 abstract class _PembiayaanEntity extends PembiayaanEntity {
   const factory _PembiayaanEntity(
-      {@JsonKey(name: 'debitur') required final DataDiriEntity dataDiri,
+      {@JsonKey(name: 'data_diri') required final DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') required final PekerjaanEntity pekerjaan,
       @JsonKey(name: 'pasangan') required final List<PasanganEntity> pasangan,
       @JsonKey(name: 'produk_pembiayaan')
@@ -339,7 +339,7 @@ abstract class _PembiayaanEntity extends PembiayaanEntity {
       _$PembiayaanEntityImpl.fromJson;
 
   @override
-  @JsonKey(name: 'debitur')
+  @JsonKey(name: 'data_diri')
   DataDiriEntity get dataDiri;
   @override
   @JsonKey(name: 'pekerjaan')

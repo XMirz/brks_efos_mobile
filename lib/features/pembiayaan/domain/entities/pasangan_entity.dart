@@ -8,11 +8,11 @@ class PasanganEntity with _$PasanganEntity {
   const factory PasanganEntity({
     @JsonKey(name: 'ktp') required String nik,
     @JsonKey(name: 'nama') required String nama,
-    @JsonKey(name: 'penghasilan') required String penghasilan,
-    @JsonKey(name: 'gaji') required String gajiAmprah,
-    @JsonKey(name: 'tunjangan') required String tunjangan,
-    @JsonKey(name: 'potongan') required String potongan,
-    @JsonKey(name: 'netto') required String gajiBersih,
+    @JsonKey(name: 'penghasilan') required dynamic penghasilan,
+    @JsonKey(name: 'gaji') required dynamic gajiAmprah,
+    @JsonKey(name: 'tunjangan') required dynamic tunjangan,
+    @JsonKey(name: 'potongan') required dynamic potongan,
+    @JsonKey(name: 'netto') required dynamic gajiBersih,
     @Default('') @JsonKey(name: 'id_debitur') String idDebitur,
 
     // @JsonKey(name: 'profesi') required String profesi

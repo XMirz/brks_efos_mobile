@@ -1,8 +1,12 @@
+import 'package:efosm/app/presentation/providers/router_provider.dart';
+import 'package:efosm/app/presentation/providers/user_provider.dart';
+import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
+import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/constants/colors.dart';
@@ -11,7 +15,7 @@ import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_i
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:heroicons/heroicons.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -136,7 +140,7 @@ class ListPembiayaan extends ConsumerWidget {
             child: TextFormField(
               onChanged: (value) {
                 Future<void>.delayed(
-                  const Duration(milliseconds: 300),
+                  const Duration(milliseconds: 500),
                   () {
                     paginationNotifier.setKeyword(value);
                   },
@@ -165,49 +169,21 @@ class ListPembiayaan extends ConsumerWidget {
         ),
         pagination.maybeWhen(
           data: (items) {
+            if (items.isEmpty) {
+              return SliverToBoxAdapter(
+                child: NoDataPlaceHolder(message: l10n.dataNotFound),
+              );
+            }
             return SliverItems(items: items);
           },
           loading: () {
-            return SliverToBoxAdapter(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  spaceY(96),
-                  const OurLoading(
-                    height: 64,
-                    width: 64,
-                  ),
-                  spaceY(8),
-                  Text(
-                    l10n.pleaseWait,
-                    style: AppTextStyle.bodyMedium.copyWith(
-                      color: AppColor.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
+            return const SliverToBoxAdapter(
+              child: LoadingPlaceholder(),
             );
           },
           error: (e, stk) {
             return SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  HeroIcon(
-                    HeroIcons.exclamationTriangle,
-                    size: 96,
-                    color: AppColor.highlightSecondary,
-                  ),
-                  spaceY(8),
-                  Text(
-                    l10n.failedGetDataPembiayaan,
-                    style: AppTextStyle.bodyMedium.copyWith(
-                      color: AppColor.highlight,
-                    ),
-                  ),
-                ],
-              ),
+              child: ErrorPlaceholder(message: l10n.failedGetDataPembiayaan),
             );
           },
           orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
@@ -253,18 +229,36 @@ class ListPembiayaan extends ConsumerWidget {
   }
 }
 
-class SliverItems extends StatelessWidget {
+class SliverItems extends ConsumerWidget {
   const SliverItems({
     required this.items,
     super.key,
   });
   final List<PembiayaanListItemEntiy> items;
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(authenticatedUserProvider).user!;
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final item = items[index];
+          final isKonsumtif = item.idKategoriProduk == 1;
+          final loanState = isKonsumtif
+              ? buildKonsumtifLoanState(
+                  status: item.status.toString(),
+                  role: user.idRole,
+                  levelCabang: user.levelApproveCabang,
+                  authorities: user.authorities,
+                  limit: user.limitKonsumtifCabang,
+                  plafon: double.parse(item.plafonPengajuan.toString()))
+              : buildProduktifLoanState(
+                  status: item.status.toString(),
+                  role: user.idRole,
+                  levelCabang: user.levelApproveCabang,
+                  authorities: user.authorities,
+                  limit: user.limitProduktifCabang,
+                  plafon: double.parse(item.plafonPengajuan.toString()));
           final tanggalLahir =
               DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
                   .format(DateTime.parse(item.tanggalLahir));
@@ -304,6 +298,11 @@ class SliverItems extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          capitalizeEachWord(item.idLoan),
+                          style: AppTextStyle.bodyMediumBold
+                              .copyWith(color: AppColor.textPrimary),
+                        ),
                         Text(
                           capitalizeEachWord(item.nama),
                           style: AppTextStyle.bodyMediumBold
@@ -354,6 +353,11 @@ class SliverItems extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
+                  capitalizeEachWord(item.descStatusPernikahan),
+                  style: AppTextStyle.bodySmall,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
                   l10n.tenorStr(item.tenorPengajuan.toString()),
                   style: AppTextStyle.bodySmall,
                   overflow: TextOverflow.ellipsis,
@@ -366,8 +370,15 @@ class SliverItems extends StatelessWidget {
                 ),
                 const Divider(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Flexible(
+                      child: Text(
+                        loanState.statusDescription,
+                        style: AppTextStyle.bodySmall
+                            .copyWith(color: AppColor.textPrimary),
+                      ),
+                    ),
                     PrimaryButton(
                       radius: 8,
                       padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -377,11 +388,13 @@ class SliverItems extends StatelessWidget {
                       textStyle: AppTextStyle.bodyMedium
                           .copyWith(color: AppColor.textPrimaryInverse),
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text('Sabar yaaa!'),
-                            behavior: SnackBarBehavior.floating,
-                          ),
+                        context.pushNamed(
+                          AppRoutes.detailPembiayaan,
+                          pathParameters: {
+                            'id': item.idLoan,
+                            'idKategoriProduk':
+                                item.idKategoriProduk.toString(),
+                          },
                         );
                       },
                     ),

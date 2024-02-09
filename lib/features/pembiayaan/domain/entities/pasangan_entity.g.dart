@@ -10,11 +10,11 @@ _$PasanganEntityImpl _$$PasanganEntityImplFromJson(Map<String, dynamic> json) =>
     _$PasanganEntityImpl(
       nik: json['ktp'] as String,
       nama: json['nama'] as String,
-      penghasilan: json['penghasilan'] as String,
-      gajiAmprah: json['gaji'] as String,
-      tunjangan: json['tunjangan'] as String,
-      potongan: json['potongan'] as String,
-      gajiBersih: json['netto'] as String,
+      penghasilan: json['penghasilan'],
+      gajiAmprah: json['gaji'],
+      tunjangan: json['tunjangan'],
+      potongan: json['potongan'],
+      gajiBersih: json['netto'],
       idDebitur: json['id_debitur'] as String? ?? '',
     );
 

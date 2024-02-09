@@ -20,10 +20,10 @@ PaginationRequest _$PaginationRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PaginationRequest {
-  @JsonKey(name: 'keyword')
-  String get keyword => throw _privateConstructorUsedError;
   @JsonKey(name: 'cab')
   String get idCabang => throw _privateConstructorUsedError;
+  @JsonKey(name: 'keyword')
+  String get keyword => throw _privateConstructorUsedError;
   @JsonKey(name: 'page')
   String get pageNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'size')
@@ -42,8 +42,8 @@ abstract class $PaginationRequestCopyWith<$Res> {
       _$PaginationRequestCopyWithImpl<$Res, PaginationRequest>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'keyword') String keyword,
-      @JsonKey(name: 'cab') String idCabang,
+      {@JsonKey(name: 'cab') String idCabang,
+      @JsonKey(name: 'keyword') String keyword,
       @JsonKey(name: 'page') String pageNumber,
       @JsonKey(name: 'size') String pageSize});
 }
@@ -61,19 +61,19 @@ class _$PaginationRequestCopyWithImpl<$Res, $Val extends PaginationRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? keyword = null,
     Object? idCabang = null,
+    Object? keyword = null,
     Object? pageNumber = null,
     Object? pageSize = null,
   }) {
     return _then(_value.copyWith(
-      keyword: null == keyword
-          ? _value.keyword
-          : keyword // ignore: cast_nullable_to_non_nullable
-              as String,
       idCabang: null == idCabang
           ? _value.idCabang
           : idCabang // ignore: cast_nullable_to_non_nullable
+              as String,
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
               as String,
       pageNumber: null == pageNumber
           ? _value.pageNumber
@@ -96,8 +96,8 @@ abstract class _$$PaginationRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'keyword') String keyword,
-      @JsonKey(name: 'cab') String idCabang,
+      {@JsonKey(name: 'cab') String idCabang,
+      @JsonKey(name: 'keyword') String keyword,
       @JsonKey(name: 'page') String pageNumber,
       @JsonKey(name: 'size') String pageSize});
 }
@@ -113,19 +113,19 @@ class __$$PaginationRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? keyword = null,
     Object? idCabang = null,
+    Object? keyword = null,
     Object? pageNumber = null,
     Object? pageSize = null,
   }) {
     return _then(_$PaginationRequestImpl(
-      keyword: null == keyword
-          ? _value.keyword
-          : keyword // ignore: cast_nullable_to_non_nullable
-              as String,
       idCabang: null == idCabang
           ? _value.idCabang
           : idCabang // ignore: cast_nullable_to_non_nullable
+              as String,
+      keyword: null == keyword
+          ? _value.keyword
+          : keyword // ignore: cast_nullable_to_non_nullable
               as String,
       pageNumber: null == pageNumber
           ? _value.pageNumber
@@ -143,8 +143,8 @@ class __$$PaginationRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PaginationRequestImpl extends _PaginationRequest {
   const _$PaginationRequestImpl(
-      {@JsonKey(name: 'keyword') this.keyword = '',
-      @JsonKey(name: 'cab') required this.idCabang,
+      {@JsonKey(name: 'cab') required this.idCabang,
+      @JsonKey(name: 'keyword') this.keyword = '',
       @JsonKey(name: 'page') this.pageNumber = '0',
       @JsonKey(name: 'size') this.pageSize = '10'})
       : super._();
@@ -153,11 +153,11 @@ class _$PaginationRequestImpl extends _PaginationRequest {
       _$$PaginationRequestImplFromJson(json);
 
   @override
-  @JsonKey(name: 'keyword')
-  final String keyword;
-  @override
   @JsonKey(name: 'cab')
   final String idCabang;
+  @override
+  @JsonKey(name: 'keyword')
+  final String keyword;
   @override
   @JsonKey(name: 'page')
   final String pageNumber;
@@ -167,7 +167,7 @@ class _$PaginationRequestImpl extends _PaginationRequest {
 
   @override
   String toString() {
-    return 'PaginationRequest(keyword: $keyword, idCabang: $idCabang, pageNumber: $pageNumber, pageSize: $pageSize)';
+    return 'PaginationRequest(idCabang: $idCabang, keyword: $keyword, pageNumber: $pageNumber, pageSize: $pageSize)';
   }
 
   @override
@@ -175,9 +175,9 @@ class _$PaginationRequestImpl extends _PaginationRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaginationRequestImpl &&
-            (identical(other.keyword, keyword) || other.keyword == keyword) &&
             (identical(other.idCabang, idCabang) ||
                 other.idCabang == idCabang) &&
+            (identical(other.keyword, keyword) || other.keyword == keyword) &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             (identical(other.pageSize, pageSize) ||
@@ -187,7 +187,7 @@ class _$PaginationRequestImpl extends _PaginationRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, keyword, idCabang, pageNumber, pageSize);
+      Object.hash(runtimeType, idCabang, keyword, pageNumber, pageSize);
 
   @JsonKey(ignore: true)
   @override
@@ -206,8 +206,8 @@ class _$PaginationRequestImpl extends _PaginationRequest {
 
 abstract class _PaginationRequest extends PaginationRequest {
   const factory _PaginationRequest(
-      {@JsonKey(name: 'keyword') final String keyword,
-      @JsonKey(name: 'cab') required final String idCabang,
+      {@JsonKey(name: 'cab') required final String idCabang,
+      @JsonKey(name: 'keyword') final String keyword,
       @JsonKey(name: 'page') final String pageNumber,
       @JsonKey(name: 'size') final String pageSize}) = _$PaginationRequestImpl;
   const _PaginationRequest._() : super._();
@@ -216,11 +216,11 @@ abstract class _PaginationRequest extends PaginationRequest {
       _$PaginationRequestImpl.fromJson;
 
   @override
-  @JsonKey(name: 'keyword')
-  String get keyword;
-  @override
   @JsonKey(name: 'cab')
   String get idCabang;
+  @override
+  @JsonKey(name: 'keyword')
+  String get keyword;
   @override
   @JsonKey(name: 'page')
   String get pageNumber;

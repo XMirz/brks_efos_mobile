@@ -9,6 +9,7 @@ class PembiayaanListItemEntiy with _$PembiayaanListItemEntiy {
     @JsonKey(name: 'id_loan') required String idLoan,
     @JsonKey(name: 'ktp') required String nik,
     @JsonKey(name: 'nama') required String nama,
+    @JsonKey(name: 'status') required dynamic status,
     @Default('') @JsonKey(name: 'alamat') String alamat,
     @Default('') @JsonKey(name: 'tmp_lahir') String tempatLahir,
     @Default('') @JsonKey(name: 'tgl_lahir') String tanggalLahir,

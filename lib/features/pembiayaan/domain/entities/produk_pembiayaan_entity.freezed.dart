@@ -22,15 +22,15 @@ ProdukPembiayaanEntity _$ProdukPembiayaanEntityFromJson(
 /// @nodoc
 mixin _$ProdukPembiayaanEntity {
   @JsonKey(name: 'id_kategori_produk')
-  String get idKategoriProduk => throw _privateConstructorUsedError;
+  dynamic get idKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_produk')
-  String get idProduk => throw _privateConstructorUsedError;
+  dynamic get idProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_template_dokumen')
-  String get idJenisPengajuan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id_subproduk')
-  String get idSubProduk => throw _privateConstructorUsedError;
+  dynamic get idJenisPengajuan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_sub_produk')
+  dynamic get idSubProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_plan')
-  String get idPlan => throw _privateConstructorUsedError;
+  dynamic get idPlan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'barang') required String barang,
@@ -39,9 +39,9 @@ mixin _$ProdukPembiayaanEntity {
 // @JsonKey(name: 'diskon') required String diskon,
 // @JsonKey(name: 'uang_muka') required String uangMuka,
   @JsonKey(name: 'plafon_pengajuan')
-  String get plafonPengajuan => throw _privateConstructorUsedError;
+  dynamic get plafonPengajuan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tenor_pengajuan')
-  String get tenorPengajuan =>
+  dynamic get tenorPengajuan =>
       throw _privateConstructorUsedError; // @JsonKey(name: 'grace_period') required String gracePeriod,
 // @JsonKey(name: 'kode_margin') required String kodeMargin,
 // @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
@@ -67,14 +67,14 @@ abstract class $ProdukPembiayaanEntityCopyWith<$Res> {
       _$ProdukPembiayaanEntityCopyWithImpl<$Res, ProdukPembiayaanEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id_kategori_produk') String idKategoriProduk,
-      @JsonKey(name: 'id_produk') String idProduk,
-      @JsonKey(name: 'id_template_dokumen') String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') String idSubProduk,
-      @JsonKey(name: 'id_plan') String idPlan,
+      {@JsonKey(name: 'id_kategori_produk') dynamic idKategoriProduk,
+      @JsonKey(name: 'id_produk') dynamic idProduk,
+      @JsonKey(name: 'id_template_dokumen') dynamic idJenisPengajuan,
+      @JsonKey(name: 'id_sub_produk') dynamic idSubProduk,
+      @JsonKey(name: 'id_plan') dynamic idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
-      @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
+      @JsonKey(name: 'plafon_pengajuan') dynamic plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') dynamic tenorPengajuan,
       @JsonKey(name: 'id') String id});
 }
 
@@ -92,49 +92,49 @@ class _$ProdukPembiayaanEntityCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? idKategoriProduk = null,
-    Object? idProduk = null,
-    Object? idJenisPengajuan = null,
-    Object? idSubProduk = null,
-    Object? idPlan = null,
+    Object? idKategoriProduk = freezed,
+    Object? idProduk = freezed,
+    Object? idJenisPengajuan = freezed,
+    Object? idSubProduk = freezed,
+    Object? idPlan = freezed,
     Object? tujuanPembiayaan = null,
-    Object? plafonPengajuan = null,
-    Object? tenorPengajuan = null,
+    Object? plafonPengajuan = freezed,
+    Object? tenorPengajuan = freezed,
     Object? id = null,
   }) {
     return _then(_value.copyWith(
-      idKategoriProduk: null == idKategoriProduk
+      idKategoriProduk: freezed == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idProduk: null == idProduk
+              as dynamic,
+      idProduk: freezed == idProduk
           ? _value.idProduk
           : idProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idJenisPengajuan: null == idJenisPengajuan
+              as dynamic,
+      idJenisPengajuan: freezed == idJenisPengajuan
           ? _value.idJenisPengajuan
           : idJenisPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      idSubProduk: null == idSubProduk
+              as dynamic,
+      idSubProduk: freezed == idSubProduk
           ? _value.idSubProduk
           : idSubProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idPlan: null == idPlan
+              as dynamic,
+      idPlan: freezed == idPlan
           ? _value.idPlan
           : idPlan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
               as String,
-      plafonPengajuan: null == plafonPengajuan
+      plafonPengajuan: freezed == plafonPengajuan
           ? _value.plafonPengajuan
           : plafonPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      tenorPengajuan: null == tenorPengajuan
+              as dynamic,
+      tenorPengajuan: freezed == tenorPengajuan
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -153,14 +153,14 @@ abstract class _$$ProdukPembiayaanEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id_kategori_produk') String idKategoriProduk,
-      @JsonKey(name: 'id_produk') String idProduk,
-      @JsonKey(name: 'id_template_dokumen') String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') String idSubProduk,
-      @JsonKey(name: 'id_plan') String idPlan,
+      {@JsonKey(name: 'id_kategori_produk') dynamic idKategoriProduk,
+      @JsonKey(name: 'id_produk') dynamic idProduk,
+      @JsonKey(name: 'id_template_dokumen') dynamic idJenisPengajuan,
+      @JsonKey(name: 'id_sub_produk') dynamic idSubProduk,
+      @JsonKey(name: 'id_plan') dynamic idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') String tujuanPembiayaan,
-      @JsonKey(name: 'plafon_pengajuan') String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') String tenorPengajuan,
+      @JsonKey(name: 'plafon_pengajuan') dynamic plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') dynamic tenorPengajuan,
       @JsonKey(name: 'id') String id});
 }
 
@@ -177,49 +177,49 @@ class __$$ProdukPembiayaanEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? idKategoriProduk = null,
-    Object? idProduk = null,
-    Object? idJenisPengajuan = null,
-    Object? idSubProduk = null,
-    Object? idPlan = null,
+    Object? idKategoriProduk = freezed,
+    Object? idProduk = freezed,
+    Object? idJenisPengajuan = freezed,
+    Object? idSubProduk = freezed,
+    Object? idPlan = freezed,
     Object? tujuanPembiayaan = null,
-    Object? plafonPengajuan = null,
-    Object? tenorPengajuan = null,
+    Object? plafonPengajuan = freezed,
+    Object? tenorPengajuan = freezed,
     Object? id = null,
   }) {
     return _then(_$ProdukPembiayaanEntityImpl(
-      idKategoriProduk: null == idKategoriProduk
+      idKategoriProduk: freezed == idKategoriProduk
           ? _value.idKategoriProduk
           : idKategoriProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idProduk: null == idProduk
+              as dynamic,
+      idProduk: freezed == idProduk
           ? _value.idProduk
           : idProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idJenisPengajuan: null == idJenisPengajuan
+              as dynamic,
+      idJenisPengajuan: freezed == idJenisPengajuan
           ? _value.idJenisPengajuan
           : idJenisPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      idSubProduk: null == idSubProduk
+              as dynamic,
+      idSubProduk: freezed == idSubProduk
           ? _value.idSubProduk
           : idSubProduk // ignore: cast_nullable_to_non_nullable
-              as String,
-      idPlan: null == idPlan
+              as dynamic,
+      idPlan: freezed == idPlan
           ? _value.idPlan
           : idPlan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       tujuanPembiayaan: null == tujuanPembiayaan
           ? _value.tujuanPembiayaan
           : tujuanPembiayaan // ignore: cast_nullable_to_non_nullable
               as String,
-      plafonPengajuan: null == plafonPengajuan
+      plafonPengajuan: freezed == plafonPengajuan
           ? _value.plafonPengajuan
           : plafonPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
-      tenorPengajuan: null == tenorPengajuan
+              as dynamic,
+      tenorPengajuan: freezed == tenorPengajuan
           ? _value.tenorPengajuan
           : tenorPengajuan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as dynamic,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -235,7 +235,7 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
       {@JsonKey(name: 'id_kategori_produk') required this.idKategoriProduk,
       @JsonKey(name: 'id_produk') required this.idProduk,
       @JsonKey(name: 'id_template_dokumen') required this.idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') required this.idSubProduk,
+      @JsonKey(name: 'id_sub_produk') required this.idSubProduk,
       @JsonKey(name: 'id_plan') required this.idPlan,
       @JsonKey(name: 'tujuan_pembiayaan') required this.tujuanPembiayaan,
       @JsonKey(name: 'plafon_pengajuan') required this.plafonPengajuan,
@@ -248,19 +248,19 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
 
   @override
   @JsonKey(name: 'id_kategori_produk')
-  final String idKategoriProduk;
+  final dynamic idKategoriProduk;
   @override
   @JsonKey(name: 'id_produk')
-  final String idProduk;
+  final dynamic idProduk;
   @override
   @JsonKey(name: 'id_template_dokumen')
-  final String idJenisPengajuan;
+  final dynamic idJenisPengajuan;
   @override
-  @JsonKey(name: 'id_subproduk')
-  final String idSubProduk;
+  @JsonKey(name: 'id_sub_produk')
+  final dynamic idSubProduk;
   @override
   @JsonKey(name: 'id_plan')
-  final String idPlan;
+  final dynamic idPlan;
   @override
   @JsonKey(name: 'tujuan_pembiayaan')
   final String tujuanPembiayaan;
@@ -271,10 +271,10 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
 // @JsonKey(name: 'uang_muka') required String uangMuka,
   @override
   @JsonKey(name: 'plafon_pengajuan')
-  final String plafonPengajuan;
+  final dynamic plafonPengajuan;
   @override
   @JsonKey(name: 'tenor_pengajuan')
-  final String tenorPengajuan;
+  final dynamic tenorPengajuan;
 // @JsonKey(name: 'grace_period') required String gracePeriod,
 // @JsonKey(name: 'kode_margin') required String kodeMargin,
 // @JsonKey(name: 'basis_point_margin') required String basiPointMargin,
@@ -298,21 +298,20 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ProdukPembiayaanEntityImpl &&
-            (identical(other.idKategoriProduk, idKategoriProduk) ||
-                other.idKategoriProduk == idKategoriProduk) &&
-            (identical(other.idProduk, idProduk) ||
-                other.idProduk == idProduk) &&
-            (identical(other.idJenisPengajuan, idJenisPengajuan) ||
-                other.idJenisPengajuan == idJenisPengajuan) &&
-            (identical(other.idSubProduk, idSubProduk) ||
-                other.idSubProduk == idSubProduk) &&
-            (identical(other.idPlan, idPlan) || other.idPlan == idPlan) &&
+            const DeepCollectionEquality()
+                .equals(other.idKategoriProduk, idKategoriProduk) &&
+            const DeepCollectionEquality().equals(other.idProduk, idProduk) &&
+            const DeepCollectionEquality()
+                .equals(other.idJenisPengajuan, idJenisPengajuan) &&
+            const DeepCollectionEquality()
+                .equals(other.idSubProduk, idSubProduk) &&
+            const DeepCollectionEquality().equals(other.idPlan, idPlan) &&
             (identical(other.tujuanPembiayaan, tujuanPembiayaan) ||
                 other.tujuanPembiayaan == tujuanPembiayaan) &&
-            (identical(other.plafonPengajuan, plafonPengajuan) ||
-                other.plafonPengajuan == plafonPengajuan) &&
-            (identical(other.tenorPengajuan, tenorPengajuan) ||
-                other.tenorPengajuan == tenorPengajuan) &&
+            const DeepCollectionEquality()
+                .equals(other.plafonPengajuan, plafonPengajuan) &&
+            const DeepCollectionEquality()
+                .equals(other.tenorPengajuan, tenorPengajuan) &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -320,14 +319,14 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      idKategoriProduk,
-      idProduk,
-      idJenisPengajuan,
-      idSubProduk,
-      idPlan,
+      const DeepCollectionEquality().hash(idKategoriProduk),
+      const DeepCollectionEquality().hash(idProduk),
+      const DeepCollectionEquality().hash(idJenisPengajuan),
+      const DeepCollectionEquality().hash(idSubProduk),
+      const DeepCollectionEquality().hash(idPlan),
       tujuanPembiayaan,
-      plafonPengajuan,
-      tenorPengajuan,
+      const DeepCollectionEquality().hash(plafonPengajuan),
+      const DeepCollectionEquality().hash(tenorPengajuan),
       id);
 
   @JsonKey(ignore: true)
@@ -348,16 +347,16 @@ class _$ProdukPembiayaanEntityImpl extends _ProdukPembiayaanEntity {
 abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
   const factory _ProdukPembiayaanEntity(
       {@JsonKey(name: 'id_kategori_produk')
-      required final String idKategoriProduk,
-      @JsonKey(name: 'id_produk') required final String idProduk,
+      required final dynamic idKategoriProduk,
+      @JsonKey(name: 'id_produk') required final dynamic idProduk,
       @JsonKey(name: 'id_template_dokumen')
-      required final String idJenisPengajuan,
-      @JsonKey(name: 'id_subproduk') required final String idSubProduk,
-      @JsonKey(name: 'id_plan') required final String idPlan,
+      required final dynamic idJenisPengajuan,
+      @JsonKey(name: 'id_sub_produk') required final dynamic idSubProduk,
+      @JsonKey(name: 'id_plan') required final dynamic idPlan,
       @JsonKey(name: 'tujuan_pembiayaan')
       required final String tujuanPembiayaan,
-      @JsonKey(name: 'plafon_pengajuan') required final String plafonPengajuan,
-      @JsonKey(name: 'tenor_pengajuan') required final String tenorPengajuan,
+      @JsonKey(name: 'plafon_pengajuan') required final dynamic plafonPengajuan,
+      @JsonKey(name: 'tenor_pengajuan') required final dynamic tenorPengajuan,
       @JsonKey(name: 'id') final String id}) = _$ProdukPembiayaanEntityImpl;
   const _ProdukPembiayaanEntity._() : super._();
 
@@ -366,19 +365,19 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
 
   @override
   @JsonKey(name: 'id_kategori_produk')
-  String get idKategoriProduk;
+  dynamic get idKategoriProduk;
   @override
   @JsonKey(name: 'id_produk')
-  String get idProduk;
+  dynamic get idProduk;
   @override
   @JsonKey(name: 'id_template_dokumen')
-  String get idJenisPengajuan;
+  dynamic get idJenisPengajuan;
   @override
-  @JsonKey(name: 'id_subproduk')
-  String get idSubProduk;
+  @JsonKey(name: 'id_sub_produk')
+  dynamic get idSubProduk;
   @override
   @JsonKey(name: 'id_plan')
-  String get idPlan;
+  dynamic get idPlan;
   @override
   @JsonKey(name: 'tujuan_pembiayaan')
   String get tujuanPembiayaan;
@@ -388,10 +387,10 @@ abstract class _ProdukPembiayaanEntity extends ProdukPembiayaanEntity {
 // @JsonKey(name: 'diskon') required String diskon,
 // @JsonKey(name: 'uang_muka') required String uangMuka,
   @JsonKey(name: 'plafon_pengajuan')
-  String get plafonPengajuan;
+  dynamic get plafonPengajuan;
   @override
   @JsonKey(name: 'tenor_pengajuan')
-  String get tenorPengajuan;
+  dynamic get tenorPengajuan;
   @override // @JsonKey(name: 'grace_period') required String gracePeriod,
 // @JsonKey(name: 'kode_margin') required String kodeMargin,
 // @JsonKey(name: 'basis_point_margin') required String basiPointMargin,

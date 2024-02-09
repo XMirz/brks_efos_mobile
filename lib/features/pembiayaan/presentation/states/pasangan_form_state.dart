@@ -14,10 +14,12 @@ class PasanganFormState with _$PasanganFormState {
     required Field tunjangan,
     required Field potongan,
     required Field gajiBersih,
+    @Default(false) bool isUpdate,
   }) = _PasanganFormState;
   const PasanganFormState._();
 
   factory PasanganFormState.empty() => const PasanganFormState(
+        isUpdate: false,
         nik: Field(value: ''),
         nama: Field(value: ''),
         penghasilan: Field(value: ''),

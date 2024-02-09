@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$AgunanFormState {
+  bool get isUpdate => throw _privateConstructorUsedError;
   Field get isJaminan => throw _privateConstructorUsedError;
   Field get jenis => throw _privateConstructorUsedError;
   Field get deskripsi => throw _privateConstructorUsedError;
@@ -46,7 +47,8 @@ abstract class $AgunanFormStateCopyWith<$Res> {
       _$AgunanFormStateCopyWithImpl<$Res, AgunanFormState>;
   @useResult
   $Res call(
-      {Field isJaminan,
+      {bool isUpdate,
+      Field isJaminan,
       Field jenis,
       Field deskripsi,
       Field deskripsi2,
@@ -94,6 +96,7 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isUpdate = null,
     Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
@@ -112,6 +115,10 @@ class _$AgunanFormStateCopyWithImpl<$Res, $Val extends AgunanFormState>
     Object? captureLoc = null,
   }) {
     return _then(_value.copyWith(
+      isUpdate: null == isUpdate
+          ? _value.isUpdate
+          : isUpdate // ignore: cast_nullable_to_non_nullable
+              as bool,
       isJaminan: null == isJaminan
           ? _value.isJaminan
           : isJaminan // ignore: cast_nullable_to_non_nullable
@@ -317,7 +324,8 @@ abstract class _$$AgunanFormStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Field isJaminan,
+      {bool isUpdate,
+      Field isJaminan,
       Field jenis,
       Field deskripsi,
       Field deskripsi2,
@@ -379,6 +387,7 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isUpdate = null,
     Object? isJaminan = null,
     Object? jenis = null,
     Object? deskripsi = null,
@@ -397,6 +406,10 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
     Object? captureLoc = null,
   }) {
     return _then(_$AgunanFormStateImpl(
+      isUpdate: null == isUpdate
+          ? _value.isUpdate
+          : isUpdate // ignore: cast_nullable_to_non_nullable
+              as bool,
       isJaminan: null == isJaminan
           ? _value.isJaminan
           : isJaminan // ignore: cast_nullable_to_non_nullable
@@ -469,7 +482,8 @@ class __$$AgunanFormStateImplCopyWithImpl<$Res>
 
 class _$AgunanFormStateImpl extends _AgunanFormState {
   _$AgunanFormStateImpl(
-      {required this.isJaminan,
+      {this.isUpdate = false,
+      required this.isJaminan,
       required this.jenis,
       required this.deskripsi,
       this.deskripsi2 = const Field(value: ''),
@@ -487,6 +501,9 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
       this.captureLoc = const Field(value: '')})
       : super._();
 
+  @override
+  @JsonKey()
+  final bool isUpdate;
   @override
   final Field isJaminan;
   @override
@@ -536,7 +553,7 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
 
   @override
   String toString() {
-    return 'AgunanFormState(isJaminan: $isJaminan, jenis: $jenis, deskripsi: $deskripsi, deskripsi2: $deskripsi2, deskripsi3: $deskripsi3, deskripsi4: $deskripsi4, deskripsi5: $deskripsi5, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, captureLoc: $captureLoc)';
+    return 'AgunanFormState(isUpdate: $isUpdate, isJaminan: $isJaminan, jenis: $jenis, deskripsi: $deskripsi, deskripsi2: $deskripsi2, deskripsi3: $deskripsi3, deskripsi4: $deskripsi4, deskripsi5: $deskripsi5, alamat: $alamat, image: $image, latitude: $latitude, longitude: $longitude, provinsi: $provinsi, kabupaten: $kabupaten, kecamatan: $kecamatan, kelurahan: $kelurahan, captureLoc: $captureLoc)';
   }
 
   @override
@@ -544,6 +561,8 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AgunanFormStateImpl &&
+            (identical(other.isUpdate, isUpdate) ||
+                other.isUpdate == isUpdate) &&
             (identical(other.isJaminan, isJaminan) ||
                 other.isJaminan == isJaminan) &&
             (identical(other.jenis, jenis) || other.jenis == jenis) &&
@@ -578,6 +597,7 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      isUpdate,
       isJaminan,
       jenis,
       deskripsi,
@@ -605,7 +625,8 @@ class _$AgunanFormStateImpl extends _AgunanFormState {
 
 abstract class _AgunanFormState extends AgunanFormState {
   factory _AgunanFormState(
-      {required final Field isJaminan,
+      {final bool isUpdate,
+      required final Field isJaminan,
       required final Field jenis,
       required final Field deskripsi,
       final Field deskripsi2,
@@ -623,6 +644,8 @@ abstract class _AgunanFormState extends AgunanFormState {
       final Field captureLoc}) = _$AgunanFormStateImpl;
   _AgunanFormState._() : super._();
 
+  @override
+  bool get isUpdate;
   @override
   Field get isJaminan;
   @override
@@ -663,7 +686,7 @@ abstract class _AgunanFormState extends AgunanFormState {
 
 /// @nodoc
 mixin _$AgunanListFormState {
-  List<AgunanFormState> get Agunan => throw _privateConstructorUsedError;
+  List<AgunanFormState> get agunan => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AgunanListFormStateCopyWith<AgunanListFormState> get copyWith =>
@@ -676,7 +699,7 @@ abstract class $AgunanListFormStateCopyWith<$Res> {
           AgunanListFormState value, $Res Function(AgunanListFormState) then) =
       _$AgunanListFormStateCopyWithImpl<$Res, AgunanListFormState>;
   @useResult
-  $Res call({List<AgunanFormState> Agunan});
+  $Res call({List<AgunanFormState> agunan});
 }
 
 /// @nodoc
@@ -692,12 +715,12 @@ class _$AgunanListFormStateCopyWithImpl<$Res, $Val extends AgunanListFormState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? Agunan = null,
+    Object? agunan = null,
   }) {
     return _then(_value.copyWith(
-      Agunan: null == Agunan
-          ? _value.Agunan
-          : Agunan // ignore: cast_nullable_to_non_nullable
+      agunan: null == agunan
+          ? _value.agunan
+          : agunan // ignore: cast_nullable_to_non_nullable
               as List<AgunanFormState>,
     ) as $Val);
   }
@@ -711,7 +734,7 @@ abstract class _$$AgunanListFormStateImplCopyWith<$Res>
       __$$AgunanListFormStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<AgunanFormState> Agunan});
+  $Res call({List<AgunanFormState> agunan});
 }
 
 /// @nodoc
@@ -725,12 +748,12 @@ class __$$AgunanListFormStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? Agunan = null,
+    Object? agunan = null,
   }) {
     return _then(_$AgunanListFormStateImpl(
-      null == Agunan
-          ? _value._Agunan
-          : Agunan // ignore: cast_nullable_to_non_nullable
+      null == agunan
+          ? _value._agunan
+          : agunan // ignore: cast_nullable_to_non_nullable
               as List<AgunanFormState>,
     ));
   }
@@ -739,20 +762,20 @@ class __$$AgunanListFormStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AgunanListFormStateImpl implements _AgunanListFormState {
-  const _$AgunanListFormStateImpl(final List<AgunanFormState> Agunan)
-      : _Agunan = Agunan;
+  const _$AgunanListFormStateImpl(final List<AgunanFormState> agunan)
+      : _agunan = agunan;
 
-  final List<AgunanFormState> _Agunan;
+  final List<AgunanFormState> _agunan;
   @override
-  List<AgunanFormState> get Agunan {
-    if (_Agunan is EqualUnmodifiableListView) return _Agunan;
+  List<AgunanFormState> get agunan {
+    if (_agunan is EqualUnmodifiableListView) return _agunan;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_Agunan);
+    return EqualUnmodifiableListView(_agunan);
   }
 
   @override
   String toString() {
-    return 'AgunanListFormState(Agunan: $Agunan)';
+    return 'AgunanListFormState(agunan: $agunan)';
   }
 
   @override
@@ -760,12 +783,12 @@ class _$AgunanListFormStateImpl implements _AgunanListFormState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AgunanListFormStateImpl &&
-            const DeepCollectionEquality().equals(other._Agunan, _Agunan));
+            const DeepCollectionEquality().equals(other._agunan, _agunan));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_Agunan));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_agunan));
 
   @JsonKey(ignore: true)
   @override
@@ -776,11 +799,11 @@ class _$AgunanListFormStateImpl implements _AgunanListFormState {
 }
 
 abstract class _AgunanListFormState implements AgunanListFormState {
-  const factory _AgunanListFormState(final List<AgunanFormState> Agunan) =
+  const factory _AgunanListFormState(final List<AgunanFormState> agunan) =
       _$AgunanListFormStateImpl;
 
   @override
-  List<AgunanFormState> get Agunan;
+  List<AgunanFormState> get agunan;
   @override
   @JsonKey(ignore: true)
   _$$AgunanListFormStateImplCopyWith<_$AgunanListFormStateImpl> get copyWith =>

@@ -9,8 +9,8 @@ part of 'pagination_request.dart';
 _$PaginationRequestImpl _$$PaginationRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$PaginationRequestImpl(
-      keyword: json['keyword'] as String? ?? '',
       idCabang: json['cab'] as String,
+      keyword: json['keyword'] as String? ?? '',
       pageNumber: json['page'] as String? ?? '0',
       pageSize: json['size'] as String? ?? '10',
     );
@@ -18,8 +18,8 @@ _$PaginationRequestImpl _$$PaginationRequestImplFromJson(
 Map<String, dynamic> _$$PaginationRequestImplToJson(
         _$PaginationRequestImpl instance) =>
     <String, dynamic>{
-      'keyword': instance.keyword,
       'cab': instance.idCabang,
+      'keyword': instance.keyword,
       'page': instance.pageNumber,
       'size': instance.pageSize,
     };

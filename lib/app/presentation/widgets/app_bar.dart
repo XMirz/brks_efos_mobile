@@ -30,6 +30,7 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
           : Matrix4.identity(),
       duration: const Duration(milliseconds: 400),
       child: AppBar(
+        shape: LinearBorder(),
         centerTitle: centerTitle,
         elevation: 0,
         shadowColor: Colors.transparent,

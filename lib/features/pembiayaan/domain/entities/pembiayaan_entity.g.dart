@@ -10,7 +10,7 @@ _$PembiayaanEntityImpl _$$PembiayaanEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$PembiayaanEntityImpl(
       dataDiri:
-          DataDiriEntity.fromJson(json['debitur'] as Map<String, dynamic>),
+          DataDiriEntity.fromJson(json['data_diri'] as Map<String, dynamic>),
       pekerjaan:
           PekerjaanEntity.fromJson(json['pekerjaan'] as Map<String, dynamic>),
       pasangan: (json['pasangan'] as List<dynamic>)
@@ -28,7 +28,7 @@ _$PembiayaanEntityImpl _$$PembiayaanEntityImplFromJson(
 Map<String, dynamic> _$$PembiayaanEntityImplToJson(
         _$PembiayaanEntityImpl instance) =>
     <String, dynamic>{
-      'debitur': instance.dataDiri,
+      'data_diri': instance.dataDiri,
       'pekerjaan': instance.pekerjaan,
       'pasangan': instance.pasangan,
       'produk_pembiayaan': instance.produkPembiayaan,

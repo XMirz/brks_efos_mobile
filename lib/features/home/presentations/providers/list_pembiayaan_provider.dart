@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/pagination_request.dart';
+import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
@@ -7,7 +8,7 @@ import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_pagina
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_notifier.dart';
 import 'package:efosm/features/home/presentations/states/pagination_state.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -59,8 +60,7 @@ final paginationProvider = StateNotifierProvider.family.autoDispose<
   const initialState = PaginationState<List<PembiayaanListItemEntiy>>.loading();
   return PaginationNotifier(
     initialState,
-    // idCabang: ref.read(authenticatedUserProvider).user!.idCabang,
-    idCabang: '820',
+    idCabang: ref.read(authenticatedUserProvider).user!.idCabang,
     paginatedFetcher: (paginationRequest) async {
       return ref.read(pembiayaanRepositoryProvider).fetchPaginatedPembiayaan(
             enpoint,

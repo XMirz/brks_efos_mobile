@@ -1,6 +1,8 @@
 import 'package:efosm/l10n/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_multi_formatter/formatters/formatter_utils.dart';
+import 'package:intl/intl.dart';
 
 String toRupiahString(String number) {
   return toCurrencyString(
@@ -42,4 +44,13 @@ String calculateAge(String birthdate) {
   }
 
   return '$age ${l10n.year}';
+}
+
+String getLocalDate(BuildContext context, String tanggal) {
+  try {
+    return DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
+        .format(DateTime.parse(tanggal));
+  } catch (e) {
+    return '';
+  }
 }

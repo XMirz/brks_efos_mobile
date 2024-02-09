@@ -11,23 +11,25 @@ import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/core/di/injector.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/produk_pembiayaan_entity.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/agunan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/create_pembiayaan_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/data_diri_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pasangan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pekerjaan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/pembiayaan_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/agunan_form.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/data_diri_form.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/pasangan_form.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/pekerjaan_form.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/pembiayaan_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/agunan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/pekerjaan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/produk_pembiayaan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/agunan_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/data_diri_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/pasangan_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/pekerjaan_form.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/produk_pembiayaan_form.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -45,7 +47,11 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     final stepValid = [
       ref.watch(dataDiriFormProvider).isValid,
       ref.watch(pekerjaanFormProvider).isValid,
-      ref.watch(pasanganFormProvider).isValid,
+      if (ref.watch(dataDiriFormProvider).statusPernikahan.value ==
+          AppString.isMarriedValue)
+        ref.watch(pasanganFormProvider).isValid
+      else
+        true,
       ref.watch(pembiayaanFormProvider).isValid,
       ref.watch(listAgunanProvider.notifier).isValid,
     ];
@@ -58,17 +64,16 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     ];
 
     void invalidateDataDiriForm() {
-      ref
-        ..invalidate(dataDiriFormProvider)
-        ..invalidate(nikController)
-        ..invalidate(namaController)
-        ..invalidate(alamatController)
-        ..invalidate(tempatLahirController)
-        ..invalidate(tanggalLahirController)
-        ..invalidate(jumlahTanggunganController)
-        ..invalidate(kewajibanController)
-        ..invalidate(biayaOperasionalController)
-        ..invalidate(biayaRumahTanggaController);
+      ref.invalidate(dataDiriFormProvider);
+      // ..invalidate(nikController)
+      // ..invalidate(namaController)
+      // ..invalidate(alamatController)
+      // ..invalidate(tempatLahirController)
+      // ..invalidate(tanggalLahirController)
+      // ..invalidate(jumlahTanggunganController)
+      // ..invalidate(kewajibanController)
+      // ..invalidate(biayaOperasionalController)
+      // ..invalidate(biayaRumahTanggaController);
     }
 
     void invalidatePekerjaanForm() {
@@ -113,11 +118,11 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       ref
         ..invalidate(pembiayaanFormProvider)
         ..invalidate(tujuanPembiayaanController)
-        ..invalidate(barangController)
-        ..invalidate(hargaPerolehanController)
-        ..invalidate(pajakController)
-        ..invalidate(diskonController)
-        ..invalidate(uangMukaController)
+        // ..invalidate(barangController)
+        // ..invalidate(hargaPerolehanController)
+        // ..invalidate(pajakController)
+        // ..invalidate(diskonController)
+        // ..invalidate(uangMukaController)
         ..invalidate(plafonController)
         ..invalidate(tenorController);
     }
@@ -143,7 +148,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         alamat: dataDiriFormState.alamat.value,
         tempatLahir: dataDiriFormState.tempatLahir.value,
         tanggalLahir: dataDiriFormState.tanggalLahir.value,
-        jenisKelamin: dataDiriFormState.jenisKelamin.value,
+        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value),
         statusPernikahan: dataDiriFormState.statusPernikahan.value,
         jumlahTanggungan: dataDiriFormState.jumlahTanggungan.value,
         kewajiban: dataDiriFormState.kewajiban.value,
@@ -312,7 +317,6 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     }
 
     void handleNextButton() {
-      print(formStates[stepIndex]);
       final isValid = stepValid[stepIndex];
       if (!isValid) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -328,7 +332,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     }
 
     Future<void> handleFinishButton() async {
-      print(formStates);
+      // print(formStates);
       Injector.registerAuthenticatedClient(
           ref.read(authenticatedUserProvider).token!);
       await showDialog<void>(
@@ -353,33 +357,30 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       );
     }
 
+    Future<bool> onBackPressed() async {
+      var willPop = false;
+      await showDialog<void>(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return OurConfirmDialog(
+            title: l10n.confirmation,
+            description: l10n.confirmCancelEdit,
+            onCancel: () => context.pop('dialog'),
+            onSubmit: () async {
+              willPop = true;
+              invalidateForms(ref);
+              context.pop('dialog');
+              context.pop();
+            },
+          );
+        },
+      );
+      return willPop;
+    }
+
     return WillPopScope(
-      onWillPop: () async {
-        var willPop = false;
-        await showDialog<void>(
-          barrierDismissible: false,
-          context: context,
-          builder: (context) {
-            return OurConfirmDialog(
-              title: l10n.confirmation,
-              description: 'Apakah ingin membatalkan pengajuan pembiayaan?',
-              onCancel: () {
-                if (context.mounted) context.pop('dialog');
-              },
-              onSubmit: () async {
-                willPop = true;
-                invalidateDataDiriForm();
-                invalidatePekerjaanForm();
-                invalidatePasanganForm();
-                invalidatePembiayaanForm();
-                invalidateAgunanForm();
-                if (context.mounted) context.pop('dialog');
-              },
-            );
-          },
-        );
-        return willPop;
-      },
+      onWillPop: onBackPressed,
       child: Scaffold(
         appBar: InnerAppBar(
           title: l10n.createPembiayaan,
@@ -564,7 +565,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                   ),
                   isActive: stepIndex == 3,
                   state: stepIndex > 3 ? StepState.complete : StepState.indexed,
-                  content: const PembiayaanForm(),
+                  content: const ProdukPembiayaanForm(),
                 ),
                 Step(
                   title: const Text(''),

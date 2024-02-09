@@ -2,6 +2,7 @@ import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class App extends ConsumerWidget {
@@ -10,6 +11,10 @@ class App extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Injector.registerAuthenticatedClient(AppString.token);
     final router = ref.watch(routerProvider);
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -17,6 +22,8 @@ class App extends ConsumerWidget {
         scaffoldBackgroundColor: AppColor.backgroundPrimary,
         appBarTheme: const AppBarTheme(
           backgroundColor: AppColor.primary,
+          elevation: 0,
+          scrolledUnderElevation: 0,
         ),
         useMaterial3: true,
       ),

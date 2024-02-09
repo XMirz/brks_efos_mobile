@@ -54,6 +54,7 @@ class LoginForm extends ConsumerWidget {
         deviceName = iosDeviceInfo.name;
       } else if (Platform.isAndroid) {
         final androidDeviceInfo = await deviceInfo.androidInfo;
+        debugPrint(androidDeviceInfo.toString());
         deviceId = androidDeviceInfo.id;
         deviceName = androidDeviceInfo.model;
       }

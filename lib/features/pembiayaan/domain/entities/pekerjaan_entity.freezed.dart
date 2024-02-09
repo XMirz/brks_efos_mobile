@@ -20,34 +20,34 @@ PekerjaanEntity _$PekerjaanEntityFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PekerjaanEntity {
+  @JsonKey(name: 'profesi')
+  String? get profesi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nama_instansi')
+  String? get namaInstansi => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status_perusahaan')
+  String? get statusPerusahaan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'jabatan')
+  String? get jabatan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'bidang_usaha')
+  String? get bidangUsaha => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tahun_bekerja')
+  dynamic get tahunBekerja => throw _privateConstructorUsedError;
+  @JsonKey(name: 'status')
+  String? get statusPekerjaan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'kolektif')
+  String? get sistemPembayaranAngsuran => throw _privateConstructorUsedError;
+  @JsonKey(name: 'gaji')
+  dynamic get gajiAmprah => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tunjangan')
+  dynamic get tunjangan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'potongan')
+  dynamic get potongan => throw _privateConstructorUsedError;
+  @JsonKey(name: 'netto')
+  dynamic get gajiBersih => throw _privateConstructorUsedError;
   @JsonKey(name: 'id')
-  String get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_debitur')
   String get idDebitur => throw _privateConstructorUsedError;
-  @JsonKey(name: 'profesi')
-  String get profesi => throw _privateConstructorUsedError;
-  @JsonKey(name: 'nama_instansi')
-  String get namaInstansi => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status_perusahaan')
-  String get statusPerusahaan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'jabatan')
-  String get jabatan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'bidang_usaha')
-  String get bidangUsaha => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tahun_bekerja')
-  String get tahunBekerja => throw _privateConstructorUsedError;
-  @JsonKey(name: 'status')
-  String get statusPekerjaan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'kolektif')
-  String get sistemPembayaranAngsuran => throw _privateConstructorUsedError;
-  @JsonKey(name: 'gaji')
-  String get gajiAmprah => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tunjangan')
-  String get tunjangan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'potongan')
-  String get potongan => throw _privateConstructorUsedError;
-  @JsonKey(name: 'netto')
-  String get gajiBersih => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -62,20 +62,20 @@ abstract class $PekerjaanEntityCopyWith<$Res> {
       _$PekerjaanEntityCopyWithImpl<$Res, PekerjaanEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'id_debitur') String idDebitur,
-      @JsonKey(name: 'profesi') String profesi,
-      @JsonKey(name: 'nama_instansi') String namaInstansi,
-      @JsonKey(name: 'status_perusahaan') String statusPerusahaan,
-      @JsonKey(name: 'jabatan') String jabatan,
-      @JsonKey(name: 'bidang_usaha') String bidangUsaha,
-      @JsonKey(name: 'tahun_bekerja') String tahunBekerja,
-      @JsonKey(name: 'status') String statusPekerjaan,
-      @JsonKey(name: 'kolektif') String sistemPembayaranAngsuran,
-      @JsonKey(name: 'gaji') String gajiAmprah,
-      @JsonKey(name: 'tunjangan') String tunjangan,
-      @JsonKey(name: 'potongan') String potongan,
-      @JsonKey(name: 'netto') String gajiBersih});
+      {@JsonKey(name: 'profesi') String? profesi,
+      @JsonKey(name: 'nama_instansi') String? namaInstansi,
+      @JsonKey(name: 'status_perusahaan') String? statusPerusahaan,
+      @JsonKey(name: 'jabatan') String? jabatan,
+      @JsonKey(name: 'bidang_usaha') String? bidangUsaha,
+      @JsonKey(name: 'tahun_bekerja') dynamic tahunBekerja,
+      @JsonKey(name: 'status') String? statusPekerjaan,
+      @JsonKey(name: 'kolektif') String? sistemPembayaranAngsuran,
+      @JsonKey(name: 'gaji') dynamic gajiAmprah,
+      @JsonKey(name: 'tunjangan') dynamic tunjangan,
+      @JsonKey(name: 'potongan') dynamic potongan,
+      @JsonKey(name: 'netto') dynamic gajiBersih,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
 /// @nodoc
@@ -91,77 +91,77 @@ class _$PekerjaanEntityCopyWithImpl<$Res, $Val extends PekerjaanEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? profesi = freezed,
+    Object? namaInstansi = freezed,
+    Object? statusPerusahaan = freezed,
+    Object? jabatan = freezed,
+    Object? bidangUsaha = freezed,
+    Object? tahunBekerja = freezed,
+    Object? statusPekerjaan = freezed,
+    Object? sistemPembayaranAngsuran = freezed,
+    Object? gajiAmprah = freezed,
+    Object? tunjangan = freezed,
+    Object? potongan = freezed,
+    Object? gajiBersih = freezed,
+    Object? id = freezed,
     Object? idDebitur = null,
-    Object? profesi = null,
-    Object? namaInstansi = null,
-    Object? statusPerusahaan = null,
-    Object? jabatan = null,
-    Object? bidangUsaha = null,
-    Object? tahunBekerja = null,
-    Object? statusPekerjaan = null,
-    Object? sistemPembayaranAngsuran = null,
-    Object? gajiAmprah = null,
-    Object? tunjangan = null,
-    Object? potongan = null,
-    Object? gajiBersih = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      profesi: freezed == profesi
+          ? _value.profesi
+          : profesi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      namaInstansi: freezed == namaInstansi
+          ? _value.namaInstansi
+          : namaInstansi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusPerusahaan: freezed == statusPerusahaan
+          ? _value.statusPerusahaan
+          : statusPerusahaan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      jabatan: freezed == jabatan
+          ? _value.jabatan
+          : jabatan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bidangUsaha: freezed == bidangUsaha
+          ? _value.bidangUsaha
+          : bidangUsaha // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tahunBekerja: freezed == tahunBekerja
+          ? _value.tahunBekerja
+          : tahunBekerja // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      statusPekerjaan: freezed == statusPekerjaan
+          ? _value.statusPekerjaan
+          : statusPekerjaan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sistemPembayaranAngsuran: freezed == sistemPembayaranAngsuran
+          ? _value.sistemPembayaranAngsuran
+          : sistemPembayaranAngsuran // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gajiAmprah: freezed == gajiAmprah
+          ? _value.gajiAmprah
+          : gajiAmprah // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      tunjangan: freezed == tunjangan
+          ? _value.tunjangan
+          : tunjangan // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      potongan: freezed == potongan
+          ? _value.potongan
+          : potongan // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      gajiBersih: freezed == gajiBersih
+          ? _value.gajiBersih
+          : gajiBersih // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
-              as String,
-      profesi: null == profesi
-          ? _value.profesi
-          : profesi // ignore: cast_nullable_to_non_nullable
-              as String,
-      namaInstansi: null == namaInstansi
-          ? _value.namaInstansi
-          : namaInstansi // ignore: cast_nullable_to_non_nullable
-              as String,
-      statusPerusahaan: null == statusPerusahaan
-          ? _value.statusPerusahaan
-          : statusPerusahaan // ignore: cast_nullable_to_non_nullable
-              as String,
-      jabatan: null == jabatan
-          ? _value.jabatan
-          : jabatan // ignore: cast_nullable_to_non_nullable
-              as String,
-      bidangUsaha: null == bidangUsaha
-          ? _value.bidangUsaha
-          : bidangUsaha // ignore: cast_nullable_to_non_nullable
-              as String,
-      tahunBekerja: null == tahunBekerja
-          ? _value.tahunBekerja
-          : tahunBekerja // ignore: cast_nullable_to_non_nullable
-              as String,
-      statusPekerjaan: null == statusPekerjaan
-          ? _value.statusPekerjaan
-          : statusPekerjaan // ignore: cast_nullable_to_non_nullable
-              as String,
-      sistemPembayaranAngsuran: null == sistemPembayaranAngsuran
-          ? _value.sistemPembayaranAngsuran
-          : sistemPembayaranAngsuran // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiAmprah: null == gajiAmprah
-          ? _value.gajiAmprah
-          : gajiAmprah // ignore: cast_nullable_to_non_nullable
-              as String,
-      tunjangan: null == tunjangan
-          ? _value.tunjangan
-          : tunjangan // ignore: cast_nullable_to_non_nullable
-              as String,
-      potongan: null == potongan
-          ? _value.potongan
-          : potongan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiBersih: null == gajiBersih
-          ? _value.gajiBersih
-          : gajiBersih // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -176,20 +176,20 @@ abstract class _$$PekerjaanEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'id_debitur') String idDebitur,
-      @JsonKey(name: 'profesi') String profesi,
-      @JsonKey(name: 'nama_instansi') String namaInstansi,
-      @JsonKey(name: 'status_perusahaan') String statusPerusahaan,
-      @JsonKey(name: 'jabatan') String jabatan,
-      @JsonKey(name: 'bidang_usaha') String bidangUsaha,
-      @JsonKey(name: 'tahun_bekerja') String tahunBekerja,
-      @JsonKey(name: 'status') String statusPekerjaan,
-      @JsonKey(name: 'kolektif') String sistemPembayaranAngsuran,
-      @JsonKey(name: 'gaji') String gajiAmprah,
-      @JsonKey(name: 'tunjangan') String tunjangan,
-      @JsonKey(name: 'potongan') String potongan,
-      @JsonKey(name: 'netto') String gajiBersih});
+      {@JsonKey(name: 'profesi') String? profesi,
+      @JsonKey(name: 'nama_instansi') String? namaInstansi,
+      @JsonKey(name: 'status_perusahaan') String? statusPerusahaan,
+      @JsonKey(name: 'jabatan') String? jabatan,
+      @JsonKey(name: 'bidang_usaha') String? bidangUsaha,
+      @JsonKey(name: 'tahun_bekerja') dynamic tahunBekerja,
+      @JsonKey(name: 'status') String? statusPekerjaan,
+      @JsonKey(name: 'kolektif') String? sistemPembayaranAngsuran,
+      @JsonKey(name: 'gaji') dynamic gajiAmprah,
+      @JsonKey(name: 'tunjangan') dynamic tunjangan,
+      @JsonKey(name: 'potongan') dynamic potongan,
+      @JsonKey(name: 'netto') dynamic gajiBersih,
+      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
 /// @nodoc
@@ -203,77 +203,77 @@ class __$$PekerjaanEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? profesi = freezed,
+    Object? namaInstansi = freezed,
+    Object? statusPerusahaan = freezed,
+    Object? jabatan = freezed,
+    Object? bidangUsaha = freezed,
+    Object? tahunBekerja = freezed,
+    Object? statusPekerjaan = freezed,
+    Object? sistemPembayaranAngsuran = freezed,
+    Object? gajiAmprah = freezed,
+    Object? tunjangan = freezed,
+    Object? potongan = freezed,
+    Object? gajiBersih = freezed,
+    Object? id = freezed,
     Object? idDebitur = null,
-    Object? profesi = null,
-    Object? namaInstansi = null,
-    Object? statusPerusahaan = null,
-    Object? jabatan = null,
-    Object? bidangUsaha = null,
-    Object? tahunBekerja = null,
-    Object? statusPekerjaan = null,
-    Object? sistemPembayaranAngsuran = null,
-    Object? gajiAmprah = null,
-    Object? tunjangan = null,
-    Object? potongan = null,
-    Object? gajiBersih = null,
   }) {
     return _then(_$PekerjaanEntityImpl(
-      id: null == id
+      profesi: freezed == profesi
+          ? _value.profesi
+          : profesi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      namaInstansi: freezed == namaInstansi
+          ? _value.namaInstansi
+          : namaInstansi // ignore: cast_nullable_to_non_nullable
+              as String?,
+      statusPerusahaan: freezed == statusPerusahaan
+          ? _value.statusPerusahaan
+          : statusPerusahaan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      jabatan: freezed == jabatan
+          ? _value.jabatan
+          : jabatan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      bidangUsaha: freezed == bidangUsaha
+          ? _value.bidangUsaha
+          : bidangUsaha // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tahunBekerja: freezed == tahunBekerja
+          ? _value.tahunBekerja
+          : tahunBekerja // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      statusPekerjaan: freezed == statusPekerjaan
+          ? _value.statusPekerjaan
+          : statusPekerjaan // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sistemPembayaranAngsuran: freezed == sistemPembayaranAngsuran
+          ? _value.sistemPembayaranAngsuran
+          : sistemPembayaranAngsuran // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gajiAmprah: freezed == gajiAmprah
+          ? _value.gajiAmprah
+          : gajiAmprah // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      tunjangan: freezed == tunjangan
+          ? _value.tunjangan
+          : tunjangan // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      potongan: freezed == potongan
+          ? _value.potongan
+          : potongan // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      gajiBersih: freezed == gajiBersih
+          ? _value.gajiBersih
+          : gajiBersih // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int?,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
-              as String,
-      profesi: null == profesi
-          ? _value.profesi
-          : profesi // ignore: cast_nullable_to_non_nullable
-              as String,
-      namaInstansi: null == namaInstansi
-          ? _value.namaInstansi
-          : namaInstansi // ignore: cast_nullable_to_non_nullable
-              as String,
-      statusPerusahaan: null == statusPerusahaan
-          ? _value.statusPerusahaan
-          : statusPerusahaan // ignore: cast_nullable_to_non_nullable
-              as String,
-      jabatan: null == jabatan
-          ? _value.jabatan
-          : jabatan // ignore: cast_nullable_to_non_nullable
-              as String,
-      bidangUsaha: null == bidangUsaha
-          ? _value.bidangUsaha
-          : bidangUsaha // ignore: cast_nullable_to_non_nullable
-              as String,
-      tahunBekerja: null == tahunBekerja
-          ? _value.tahunBekerja
-          : tahunBekerja // ignore: cast_nullable_to_non_nullable
-              as String,
-      statusPekerjaan: null == statusPekerjaan
-          ? _value.statusPekerjaan
-          : statusPekerjaan // ignore: cast_nullable_to_non_nullable
-              as String,
-      sistemPembayaranAngsuran: null == sistemPembayaranAngsuran
-          ? _value.sistemPembayaranAngsuran
-          : sistemPembayaranAngsuran // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiAmprah: null == gajiAmprah
-          ? _value.gajiAmprah
-          : gajiAmprah // ignore: cast_nullable_to_non_nullable
-              as String,
-      tunjangan: null == tunjangan
-          ? _value.tunjangan
-          : tunjangan // ignore: cast_nullable_to_non_nullable
-              as String,
-      potongan: null == potongan
-          ? _value.potongan
-          : potongan // ignore: cast_nullable_to_non_nullable
-              as String,
-      gajiBersih: null == gajiBersih
-          ? _value.gajiBersih
-          : gajiBersih // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -283,71 +283,71 @@ class __$$PekerjaanEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PekerjaanEntityImpl extends _PekerjaanEntity {
   const _$PekerjaanEntityImpl(
-      {@JsonKey(name: 'id') this.id = '',
-      @JsonKey(name: 'id_debitur') this.idDebitur = '',
-      @JsonKey(name: 'profesi') required this.profesi,
-      @JsonKey(name: 'nama_instansi') required this.namaInstansi,
-      @JsonKey(name: 'status_perusahaan') required this.statusPerusahaan,
-      @JsonKey(name: 'jabatan') required this.jabatan,
-      @JsonKey(name: 'bidang_usaha') required this.bidangUsaha,
-      @JsonKey(name: 'tahun_bekerja') required this.tahunBekerja,
-      @JsonKey(name: 'status') required this.statusPekerjaan,
-      @JsonKey(name: 'kolektif') required this.sistemPembayaranAngsuran,
-      @JsonKey(name: 'gaji') required this.gajiAmprah,
-      @JsonKey(name: 'tunjangan') required this.tunjangan,
-      @JsonKey(name: 'potongan') required this.potongan,
-      @JsonKey(name: 'netto') required this.gajiBersih})
+      {@JsonKey(name: 'profesi') required this.profesi,
+      @JsonKey(name: 'nama_instansi') this.namaInstansi,
+      @JsonKey(name: 'status_perusahaan') this.statusPerusahaan,
+      @JsonKey(name: 'jabatan') this.jabatan,
+      @JsonKey(name: 'bidang_usaha') this.bidangUsaha,
+      @JsonKey(name: 'tahun_bekerja') this.tahunBekerja,
+      @JsonKey(name: 'status') this.statusPekerjaan,
+      @JsonKey(name: 'kolektif') this.sistemPembayaranAngsuran,
+      @JsonKey(name: 'gaji') this.gajiAmprah,
+      @JsonKey(name: 'tunjangan') this.tunjangan,
+      @JsonKey(name: 'potongan') this.potongan,
+      @JsonKey(name: 'netto') this.gajiBersih,
+      @JsonKey(name: 'id') this.id,
+      @JsonKey(name: 'id_debitur') this.idDebitur = ''})
       : super._();
 
   factory _$PekerjaanEntityImpl.fromJson(Map<String, dynamic> json) =>
       _$$PekerjaanEntityImplFromJson(json);
 
   @override
+  @JsonKey(name: 'profesi')
+  final String? profesi;
+  @override
+  @JsonKey(name: 'nama_instansi')
+  final String? namaInstansi;
+  @override
+  @JsonKey(name: 'status_perusahaan')
+  final String? statusPerusahaan;
+  @override
+  @JsonKey(name: 'jabatan')
+  final String? jabatan;
+  @override
+  @JsonKey(name: 'bidang_usaha')
+  final String? bidangUsaha;
+  @override
+  @JsonKey(name: 'tahun_bekerja')
+  final dynamic tahunBekerja;
+  @override
+  @JsonKey(name: 'status')
+  final String? statusPekerjaan;
+  @override
+  @JsonKey(name: 'kolektif')
+  final String? sistemPembayaranAngsuran;
+  @override
+  @JsonKey(name: 'gaji')
+  final dynamic gajiAmprah;
+  @override
+  @JsonKey(name: 'tunjangan')
+  final dynamic tunjangan;
+  @override
+  @JsonKey(name: 'potongan')
+  final dynamic potongan;
+  @override
+  @JsonKey(name: 'netto')
+  final dynamic gajiBersih;
+  @override
   @JsonKey(name: 'id')
-  final String id;
+  final int? id;
   @override
   @JsonKey(name: 'id_debitur')
   final String idDebitur;
-  @override
-  @JsonKey(name: 'profesi')
-  final String profesi;
-  @override
-  @JsonKey(name: 'nama_instansi')
-  final String namaInstansi;
-  @override
-  @JsonKey(name: 'status_perusahaan')
-  final String statusPerusahaan;
-  @override
-  @JsonKey(name: 'jabatan')
-  final String jabatan;
-  @override
-  @JsonKey(name: 'bidang_usaha')
-  final String bidangUsaha;
-  @override
-  @JsonKey(name: 'tahun_bekerja')
-  final String tahunBekerja;
-  @override
-  @JsonKey(name: 'status')
-  final String statusPekerjaan;
-  @override
-  @JsonKey(name: 'kolektif')
-  final String sistemPembayaranAngsuran;
-  @override
-  @JsonKey(name: 'gaji')
-  final String gajiAmprah;
-  @override
-  @JsonKey(name: 'tunjangan')
-  final String tunjangan;
-  @override
-  @JsonKey(name: 'potongan')
-  final String potongan;
-  @override
-  @JsonKey(name: 'netto')
-  final String gajiBersih;
 
   @override
   String toString() {
-    return 'PekerjaanEntity(id: $id, idDebitur: $idDebitur, profesi: $profesi, namaInstansi: $namaInstansi, statusPerusahaan: $statusPerusahaan, jabatan: $jabatan, bidangUsaha: $bidangUsaha, tahunBekerja: $tahunBekerja, statusPekerjaan: $statusPekerjaan, sistemPembayaranAngsuran: $sistemPembayaranAngsuran, gajiAmprah: $gajiAmprah, tunjangan: $tunjangan, potongan: $potongan, gajiBersih: $gajiBersih)';
+    return 'PekerjaanEntity(profesi: $profesi, namaInstansi: $namaInstansi, statusPerusahaan: $statusPerusahaan, jabatan: $jabatan, bidangUsaha: $bidangUsaha, tahunBekerja: $tahunBekerja, statusPekerjaan: $statusPekerjaan, sistemPembayaranAngsuran: $sistemPembayaranAngsuran, gajiAmprah: $gajiAmprah, tunjangan: $tunjangan, potongan: $potongan, gajiBersih: $gajiBersih, id: $id, idDebitur: $idDebitur)';
   }
 
   @override
@@ -355,9 +355,6 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PekerjaanEntityImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.idDebitur, idDebitur) ||
-                other.idDebitur == idDebitur) &&
             (identical(other.profesi, profesi) || other.profesi == profesi) &&
             (identical(other.namaInstansi, namaInstansi) ||
                 other.namaInstansi == namaInstansi) &&
@@ -366,41 +363,42 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
             (identical(other.jabatan, jabatan) || other.jabatan == jabatan) &&
             (identical(other.bidangUsaha, bidangUsaha) ||
                 other.bidangUsaha == bidangUsaha) &&
-            (identical(other.tahunBekerja, tahunBekerja) ||
-                other.tahunBekerja == tahunBekerja) &&
+            const DeepCollectionEquality()
+                .equals(other.tahunBekerja, tahunBekerja) &&
             (identical(other.statusPekerjaan, statusPekerjaan) ||
                 other.statusPekerjaan == statusPekerjaan) &&
             (identical(
                     other.sistemPembayaranAngsuran, sistemPembayaranAngsuran) ||
                 other.sistemPembayaranAngsuran == sistemPembayaranAngsuran) &&
-            (identical(other.gajiAmprah, gajiAmprah) ||
-                other.gajiAmprah == gajiAmprah) &&
-            (identical(other.tunjangan, tunjangan) ||
-                other.tunjangan == tunjangan) &&
-            (identical(other.potongan, potongan) ||
-                other.potongan == potongan) &&
-            (identical(other.gajiBersih, gajiBersih) ||
-                other.gajiBersih == gajiBersih));
+            const DeepCollectionEquality()
+                .equals(other.gajiAmprah, gajiAmprah) &&
+            const DeepCollectionEquality().equals(other.tunjangan, tunjangan) &&
+            const DeepCollectionEquality().equals(other.potongan, potongan) &&
+            const DeepCollectionEquality()
+                .equals(other.gajiBersih, gajiBersih) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.idDebitur, idDebitur) ||
+                other.idDebitur == idDebitur));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      id,
-      idDebitur,
       profesi,
       namaInstansi,
       statusPerusahaan,
       jabatan,
       bidangUsaha,
-      tahunBekerja,
+      const DeepCollectionEquality().hash(tahunBekerja),
       statusPekerjaan,
       sistemPembayaranAngsuran,
-      gajiAmprah,
-      tunjangan,
-      potongan,
-      gajiBersih);
+      const DeepCollectionEquality().hash(gajiAmprah),
+      const DeepCollectionEquality().hash(tunjangan),
+      const DeepCollectionEquality().hash(potongan),
+      const DeepCollectionEquality().hash(gajiBersih),
+      id,
+      idDebitur);
 
   @JsonKey(ignore: true)
   @override
@@ -419,69 +417,68 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
 
 abstract class _PekerjaanEntity extends PekerjaanEntity {
   const factory _PekerjaanEntity(
-      {@JsonKey(name: 'id') final String id,
-      @JsonKey(name: 'id_debitur') final String idDebitur,
-      @JsonKey(name: 'profesi') required final String profesi,
-      @JsonKey(name: 'nama_instansi') required final String namaInstansi,
-      @JsonKey(name: 'status_perusahaan')
-      required final String statusPerusahaan,
-      @JsonKey(name: 'jabatan') required final String jabatan,
-      @JsonKey(name: 'bidang_usaha') required final String bidangUsaha,
-      @JsonKey(name: 'tahun_bekerja') required final String tahunBekerja,
-      @JsonKey(name: 'status') required final String statusPekerjaan,
-      @JsonKey(name: 'kolektif') required final String sistemPembayaranAngsuran,
-      @JsonKey(name: 'gaji') required final String gajiAmprah,
-      @JsonKey(name: 'tunjangan') required final String tunjangan,
-      @JsonKey(name: 'potongan') required final String potongan,
-      @JsonKey(name: 'netto')
-      required final String gajiBersih}) = _$PekerjaanEntityImpl;
+          {@JsonKey(name: 'profesi') required final String? profesi,
+          @JsonKey(name: 'nama_instansi') final String? namaInstansi,
+          @JsonKey(name: 'status_perusahaan') final String? statusPerusahaan,
+          @JsonKey(name: 'jabatan') final String? jabatan,
+          @JsonKey(name: 'bidang_usaha') final String? bidangUsaha,
+          @JsonKey(name: 'tahun_bekerja') final dynamic tahunBekerja,
+          @JsonKey(name: 'status') final String? statusPekerjaan,
+          @JsonKey(name: 'kolektif') final String? sistemPembayaranAngsuran,
+          @JsonKey(name: 'gaji') final dynamic gajiAmprah,
+          @JsonKey(name: 'tunjangan') final dynamic tunjangan,
+          @JsonKey(name: 'potongan') final dynamic potongan,
+          @JsonKey(name: 'netto') final dynamic gajiBersih,
+          @JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'id_debitur') final String idDebitur}) =
+      _$PekerjaanEntityImpl;
   const _PekerjaanEntity._() : super._();
 
   factory _PekerjaanEntity.fromJson(Map<String, dynamic> json) =
       _$PekerjaanEntityImpl.fromJson;
 
   @override
+  @JsonKey(name: 'profesi')
+  String? get profesi;
+  @override
+  @JsonKey(name: 'nama_instansi')
+  String? get namaInstansi;
+  @override
+  @JsonKey(name: 'status_perusahaan')
+  String? get statusPerusahaan;
+  @override
+  @JsonKey(name: 'jabatan')
+  String? get jabatan;
+  @override
+  @JsonKey(name: 'bidang_usaha')
+  String? get bidangUsaha;
+  @override
+  @JsonKey(name: 'tahun_bekerja')
+  dynamic get tahunBekerja;
+  @override
+  @JsonKey(name: 'status')
+  String? get statusPekerjaan;
+  @override
+  @JsonKey(name: 'kolektif')
+  String? get sistemPembayaranAngsuran;
+  @override
+  @JsonKey(name: 'gaji')
+  dynamic get gajiAmprah;
+  @override
+  @JsonKey(name: 'tunjangan')
+  dynamic get tunjangan;
+  @override
+  @JsonKey(name: 'potongan')
+  dynamic get potongan;
+  @override
+  @JsonKey(name: 'netto')
+  dynamic get gajiBersih;
+  @override
   @JsonKey(name: 'id')
-  String get id;
+  int? get id;
   @override
   @JsonKey(name: 'id_debitur')
   String get idDebitur;
-  @override
-  @JsonKey(name: 'profesi')
-  String get profesi;
-  @override
-  @JsonKey(name: 'nama_instansi')
-  String get namaInstansi;
-  @override
-  @JsonKey(name: 'status_perusahaan')
-  String get statusPerusahaan;
-  @override
-  @JsonKey(name: 'jabatan')
-  String get jabatan;
-  @override
-  @JsonKey(name: 'bidang_usaha')
-  String get bidangUsaha;
-  @override
-  @JsonKey(name: 'tahun_bekerja')
-  String get tahunBekerja;
-  @override
-  @JsonKey(name: 'status')
-  String get statusPekerjaan;
-  @override
-  @JsonKey(name: 'kolektif')
-  String get sistemPembayaranAngsuran;
-  @override
-  @JsonKey(name: 'gaji')
-  String get gajiAmprah;
-  @override
-  @JsonKey(name: 'tunjangan')
-  String get tunjangan;
-  @override
-  @JsonKey(name: 'potongan')
-  String get potongan;
-  @override
-  @JsonKey(name: 'netto')
-  String get gajiBersih;
   @override
   @JsonKey(ignore: true)
   _$$PekerjaanEntityImplCopyWith<_$PekerjaanEntityImpl> get copyWith =>

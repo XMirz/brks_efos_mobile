@@ -1,183 +1,316 @@
 {
-    "@@locale": "en",
-    "appTitle": "EFOS Mobile",
-    "@appTitle": {
-        "description": "Aplikasi Pengajuan EFOS Mobile"
-    },
-    "login": "Masuk",
-    "profile": "Profil",
-    "select": "Pilih",
-    "ok": "Okay",
-    "failed": "Gagal!",
-    "confirmation": "Konfirmasi",
-    "success": "Berhasil",
-    "cancel": "Batal",
-    "back": "Kembali",
-    "search": "Cari",
-    "see": "Lihat",
-    "exit": "Keluar",
-    "next": "Selanjutnya",
-    "welcome": "Selamat datang",
-    "welcomeStr": "Selamat datang, {str}",
-    "@welcomeStr": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "cabang": "Cabang {str}",
-    "@cabang": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "year": "tahun",
-    "prev": "Sebelumnya",
-    "send": "Kirim",
-    "add": "Tambah",
-    "pasanganEmpty": "Data pasangan kosong",
-    "agunanEmpty": "Data agunan kosong",
-    "confirmWithoutPasangan": "Pasangan masih kosong, apakah ingin melanjutkan tanpa pasangan?",
-    "confirmWithoutAgunan": "Agunan masih kosong, apakah ingin melanjutkan tanpa agunan?",
-    "delete": "Hapus",
-    "deleted": "{str} berhasil dihapus.",
-    "@deleted": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "plafonStr": "Plafon {str}",
-    "@plafonStr": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "tenorStr": "Tenor {str} bulan",
-    "@tenorStr": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "detail": "Rincian",
-    "save": "Simpan",
-    "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
-    "saveAgunanSuccess": "Agunan ditambahkan.",
-    "edit": "Ubah",
-    "name": "Nama",
-    "username": "Nama pengguna",
-    "failedGetDataPembiayaan": "Terjadi kesalahan ketika mendapatkan data pembiayaan!",
-    "usernameHint": "Masukkan nama pengguna",
-    "password": "Kata sandi",
-    "passwordHint": "Masukkan kata sandi",
-    "pleaseWait": "Mohon tunggu...",
-    "createPembiayaan": "Registrasi debitur",
-    "debiturProfile": "Data diri",
-    "job": "Pekerjaan",
-    "konsumtif": "Produktif",
-    "produktif": "Konsumtif",
-    "chooseCateogory": "Jenis pembiayaan",
-    "partners": "Pasangan",
-    "invalidInput": "Masukan tidak valid!",
-    "invalidSuffix": " tidak valid!",
-    "failureAuth": "Autentikasi gagal. Harap masukkan kredensial yang valid.",
-    "somethingWrong": "Mohon maaf, tidak dapat menproses permintaan anda. Silahkan coba beberapa saat lagi!.",
-    "failureNetwork": "Gagal terhubung ke jaringan, mohon periksa koneksi internet anda!",
-    "failureServer": "Gagal terhubung ke jaringan.",
-    "kategoriProduk": "Kategori produk",
-    "jenisPengajuan": "Jenis pengajuan",
-    "dataDiri": "Data diri",
-    "nik": "Nomor KTP/NIK",
-    "nama": "Nama",
-    "alamatDomisili": "Alamat (domisili)",
-    "alamat": "Alamat",
-    "aspekPengajuan": "Aspek pengajuan",
-    "jenisKelamin": "Jenis kelamin",
-    "tempatLahir": "Tempat lahir",
-    "tanggalLahir": "Tanggal lahir",
-    "statusPernikahan": "Status pernikahan",
-    "jumlahTanggungan": "Jumlah tanggungan (orang)",
-    "kewajiban": "Kewajiban tetap (Rp/bulan)",
-    "biayaOperasional": "Biaya operasional",
-    "biayaRumahTangga": "Biaya rumah tangga (Rp/Bulan)",
-    "statusTempatTinggal": "Status tempat tinggal",
-    "hubunganPerbankan": "Hubungan perbankan",
-    "pekerjaan": "Pekerjaan",
-    "profesi": "Profesi",
-    "namaInstansi": "Nama instansi",
-    "statusPerusahaan": "Status perusahaan",
-    "jabatan": "Jabatan",
-    "bidangUsaha": "Bidang usaha",
-    "tahunMulaiBekerja": "Tahun mulai bekerja",
-    "statusPekerjaan": "Status pekerjaan",
-    "sistemAngsuran": "Sistem Pembayaran Angsuran",
-    "gajiAmprah": "Gaji amprah (Rupiah)",
-    "tunjangan": "Tunjangan / insentif (Rupiah)",
-    "potongan": "Potongan",
-    "gajiBersih": "Gaji bersih",
-    "pasangan": "Pasangan",
-    "pembiayaan": "Pembiaayan",
-    "produk": "Produk",
-    "tujuanPembiayaan": "Tujuan pembiaayan",
-    "subProduk": "Sub produk",
-    "plan": "Plan",
-    "gracePeriod": "Grace period",
-    "detailPengajuan": "Detail pengajuan",
-    "barang": "Barang",
-    "hargaPerolehan": "Harga perolehan (Rupiah)",
-    "pajak": "Pajak (Rupiah)",
-    "diskon": "Diskon",
-    "plafon": "Plafon pengajuan",
-    "angsuran": "Angsuran",
-    "uangMuka": "Uang muka",
-    "tenor": "Tenor (bulan)",
-    "kodeMargin": "Kode % margin",
-    "margin": "Persentasi margin",
-    "basisPoint": "Basis point margin (%)",
-    "totalMargin": "Total margin (Rupiah)",
-    "angsuranPengajuan": "Angsuran pengajuan",
-    "agunan": "Agunan",
-    "jaminan": "Jaminan",
-    "jenisAgunan": "Jenis agunan",
-    "jenisJaminan": "Jenis jaminan",
-    "jenis": "Jenis",
-    "obyekAgunan": "Obyek agunan",
-    "deskripsiAgunan": "Deskripsi agunan",
-    "deskripsi": "Deskripsi {str}",
-    "@deskripsi": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "dataXNotFound": "Data {str} tidak ditemukan",
-    "@dataXNotFound": {
-        "placeholders": {
-            "str": {
-                "type": "String"
-            }
-        }
-    },
-    "latitude": "Latitude",
-    "longitude": "Latitude",
-    "lokasi": "Lokasi",
-    "provinsi": "Provinsi",
-    "kabupaten": "Kabupaten",
-    "kecamatan": "Kecamatan",
-    "kelurahan": "Kelurahan/Desa",
-    "pleaseFullfillInputs": "Lengkapi masukan terlebih dahulu!.",
-    "agunanImage": "Bukti agunan.",
-    "pickAgunan": "Lampirkan bukti agunan.",
-    "permissionFailure": "Aplikasi ini  tidak memiliki akses.",
-    "noLocationAccess": "Aplikasi ini membutuhkan akses lokasi. Silahkan hidupkan akses lokasi dan beri izin lokasi kepada aplikasi ini.",
-    "failedFetchLocation": "Gagal mendapatkan lokasi. Mohon perikasi akses lokasi dan jaringan anda!."
+  "@@locale": "en",
+  "appTitle": "EFOS Mobile",
+  "@appTitle": {
+    "description": "Aplikasi Pengajuan EFOS Mobile"
+  },
+  "login": "Masuk",
+  "profile": "Profil",
+  "select": "Pilih",
+  "ok": "Okay",
+  "failed": "Gagal!",
+  "confirmation": "Konfirmasi",
+  "success": "Berhasil",
+  "cancel": "Batal",
+  "back": "Kembali",
+  "search": "Cari",
+  "see": "Lihat",
+  "exit": "Keluar",
+  "npwp": "NPWP",
+  "next": "Selanjutnya",
+  "welcome": "Selamat datang",
+  "welcomeStr": "Selamat datang, {str}",
+  "@welcomeStr": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "cabangX": "Cabang {str}",
+  "@cabangX": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "year": "tahun",
+  "prev": "Sebelumnya",
+  "send": "Kirim",
+  "add": "Tambah",
+  "pasanganEmpty": "Data pasangan kosong",
+  "agunanEmpty": "Data agunan kosong",
+  "confirmWithoutPasangan": "Pasangan masih kosong, apakah ingin melanjutkan tanpa pasangan?",
+  "confirmWithoutAgunan": "Agunan masih kosong, apakah ingin melanjutkan tanpa agunan?",
+  "delete": "Hapus",
+  "deleted": "{str} berhasil dihapus.",
+  "@deleted": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "plafonStr": "Plafon {str}",
+  "@plafonStr": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "tenorStr": "Tenor {str} bulan",
+  "@tenorStr": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "detail": "Rincian",
+  "save": "Simpan",
+  "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
+  "saveXSuccess": "Berhasil menyimpan {str}.",
+  "@saveXSuccess": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "saveXFailed": "Gagal menyimpan {str}!.",
+  "@saveXFailed": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteXSuccess": "Berhasil menghapus {str}.",
+  "@deleteXSuccess": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteXFailed": "Gagal menghapus {str}!.",
+  "@deleteXFailed": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "saveAgunanSuccess": "Agunan ditambahkan.",
+  "edit": "Ubah",
+  "name": "Nama",
+  "username": "Nama pengguna",
+  "failedGetDataPembiayaan": "Terjadi kesalahan ketika mendapatkan data pembiayaan!",
+  "failedGetX": "Gagal mendapatkan data {str}!.",
+  "@failedGetX": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "xInvalid": "{str} tidak valid!.",
+  "@xInvalid": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "dashboard": "Dashboard",
+  "usernameHint": "Masukkan nama pengguna",
+  "password": "Kata sandi",
+  "passwordHint": "Masukkan kata sandi",
+  "pleaseWait": "Mohon tunggu...",
+  "createPembiayaan": "Registrasi debitur",
+  "debiturProfile": "Data diri",
+  "job": "Pekerjaan",
+  "konsumtif": "Produktif",
+  "produktif": "Konsumtif",
+  "chooseCateogory": "Jenis pembiayaan",
+  "partners": "Pasangan",
+  "invalidInput": "Masukan tidak valid!",
+  "invalidSuffix": " tidak valid!",
+  "failureAuth": "Autentikasi gagal. Harap masukkan kredensial yang valid.",
+  "somethingWrong": "Mohon maaf, tidak dapat menproses permintaan anda. Silahkan coba beberapa saat lagi!.",
+  "failureNetwork": "Gagal terhubung ke jaringan, mohon periksa koneksi internet anda!",
+  "failureServer": "Gagal terhubung ke jaringan.",
+  "kategoriProduk": "Kategori produk",
+  "jenisPengajuan": "Jenis pengajuan",
+  "dataDiri": "Data diri",
+  "nik": "Nomor KTP/NIK",
+  "nama": "Nama",
+  "alamatDomisili": "Alamat (domisili)",
+  "alamat": "Alamat",
+  "aspekPengajuan": "Aspek pengajuan",
+  "jenisKelamin": "Jenis kelamin",
+  "tempatLahir": "Tempat lahir",
+  "tanggalLahir": "Tanggal lahir",
+  "ttl": "tempat tanggal lahir",
+  "agama": "agama",
+  "noTelp": "Nomor telepon",
+  "country": "Negara",
+  "nationality": "Kebangsaan",
+  "passport": "Passport",
+  "golonganBi": "Golongan BI",
+  "slik": "SLIK OJK",
+  "ideb": "IDEB",
+  "nomorLaporan": "Nomor Laporan",
+  "nomorReff": "Nomor Reff",
+  "posisiDataTerakhir": "Posisi Data Terakhir",
+  "tanggalDataTerakhir": "Tanggal Data Terakhir",
+  "tanggalPermintaan": "Tanggal permintaan",
+  "statusPernikahan": "Status pernikahan",
+  "jumlahTanggungan": "Jumlah tanggungan (orang)",
+  "kewajiban": "Kewajiban tetap (Rp/bulan)",
+  "kewajiban_": "Kewajiban tetap",
+  "biayaOperasional": "Biaya operasional",
+  "biayaRumahTangga": "Biaya rumah tangga (Rp/Bulan)",
+  "biayaRumahTangga_": "Biaya rumah tangga",
+  "statusTempatTinggal": "Status tempat tinggal",
+  "hubunganPerbankan": "Hubungan perbankan",
+  "pekerjaan": "Pekerjaan",
+  "penghasilan": "Penghasilan",
+  "pendidikan": "Pendidikan",
+  "profesi": "Profesi",
+  "namaInstansi": "Nama instansi",
+  "statusPerusahaan": "Status perusahaan",
+  "jabatan": "Jabatan",
+  "dinas": "Dinas",
+  "subDinas": "Sub dinas",
+  "subSubDinas": "Sub Sub Dinas",
+  "bidangUsaha": "Bidang usaha",
+  "norek": "Nomor rekening",
+  "namaRekening": "Nama rekening",
+  "kodeRek": "Kode rekening",
+  "kodeRef": "Kode referensi pengguna",
+  "kolektif": "Kolektif",
+  "tahunMulaiBekerja": "Tahun mulai bekerja",
+  "statusPekerjaan": "Status pekerjaan",
+  "sistemAngsuran": "Sistem Pembayaran Angsuran",
+  "gajiAmprah": "Gaji amprah (Rupiah)",
+  "tunjangan": "Tunjangan / insentif (Rupiah)",
+  "potongan": "Potongan",
+  "gajiBersih": "Gaji bersih",
+  "pasangan": "Pasangan",
+  "pembiayaan": "Pembiaayan",
+  "produk": "Produk",
+  "tujuanPembiayaan": "Tujuan pembiaayan",
+  "subProduk": "Sub produk",
+  "plan": "Plan",
+  "gracePeriod": "Grace period",
+  "detailPengajuan": "Detail pengajuan",
+  "barang": "Barang",
+  "hargaPerolehan": "Harga perolehan (Rupiah)",
+  "pajak": "Pajak (Rupiah)",
+  "diskon": "Diskon",
+  "plafon": "Plafon pengajuan",
+  "angsuran": "Angsuran",
+  "uangMuka": "Uang muka",
+  "tenor": "Tenor (bulan)",
+  "kodeMargin": "Kode % margin",
+  "margin": "Persentasi margin",
+  "basisPoint": "Basis point margin (%)",
+  "totalMargin": "Total margin (Rupiah)",
+  "angsuranPengajuan": "Angsuran pengajuan",
+  "agunan": "Agunan",
+  "jaminan": "Jaminan",
+  "jenisAgunan": "Jenis agunan",
+  "jenisJaminan": "Jenis jaminan",
+  "jenis": "Jenis",
+  "obyekAgunan": "Obyek agunan",
+  "dataDiriDebitur": "Data diri debitur",
+  "deskripsiAgunan": "Deskripsi agunan",
+  "deskripsi": "Deskripsi {str}",
+  "detailPembiayaan": "Rincian pembiayaan",
+  "@deskripsi": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "dataXNotFound": "Data {str} tidak ditemukan",
+  "@dataXNotFound": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "noX": "Tidak ada {str}",
+  "@noX": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "latitude": "Latitude",
+  "longitude": "Latitude",
+  "dataNotFound": "Data tidak ada.",
+  "lokasi": "Lokasi",
+  "provinsi": "Provinsi",
+  "kabupaten": "Kabupaten",
+  "kecamatan": "Kecamatan",
+  "kelurahan": "Kelurahan/Desa",
+  "pleaseFullfillInputs": "Lengkapi masukan terlebih dahulu!.",
+  "agunanImage": "Bukti agunan.",
+  "pickAgunan": "Lampirkan bukti agunan.",
+  "permissionFailure": "Aplikasi ini  tidak memiliki akses.",
+  "noLocationAccess": "Aplikasi ini membutuhkan akses lokasi. Silahkan hidupkan akses lokasi dan beri izin lokasi kepada aplikasi ini.",
+  "failedFetchLocation": "Gagal mendapatkan lokasi. Mohon perikasi akses lokasi dan jaringan anda!.",
+  "bentukCall": "Bentuk Call",
+  "caller": "Yang melakukan Call",
+  "called": "Pihak terpanggil",
+  "hasilCall": "Hasil Call",
+  "tindakCall": "Tindak lanjut",
+  "pendapatCall": "Pendapat / arahan",
+  "tujuanCall": "Tujuan call",
+  "kuasaPemotongan": "Kuasa pemotongan penghasilan pasangan",
+  "pSersentasePemotongan": "Persentase pemotongan",
+  "kodeReferral": "Kode referral",
+  "totalHarta": "Total harta",
+  "frekuensiPembayaranMargin": "Frekuensi pembayaran margin",
+  "coi": "Capability of installment",
+  "urbun": "Urbun",
+  "wakalah": "Wakalah",
+  "pencairan": "Pencairan",
+  "scoring": "Scoring",
+  "hasilScoring": "Hasil scoring",
+  "umur": "Umur",
+  "siapUntukAkad": "Siap Untuk Akad",
+  "cancelled": "Dibatalkan",
+  "review": "Review",
+  "approve": "Approve",
+  "reject": "Reject",
+  "forward": "Teruskan",
+  "disetujuiPimpinan": "Disetujui Pimpinan",
+  "waitingApproval": "Menunggu Approval",
+  "totalProspek": "Total Prospek",
+  "prospekUnhandled": "Prospek Belum Diproses",
+  "monthlyTarget": "Target Pembiaayan Bulanan",
+  "monthlyRealisation": "Target Realisasi Bulanan",
+  "totalNoa": "Total NOA",
+  "nominalNoa": "Nominal NOA",
+  "cairNoa": "Nominal NOA Cair",
+  "confirmCancelCreatePembiayaan": "Apakah ingin membatalkan pengajuan pembiayaan?",
+  "confirmCancelEdit": "Apakah ingin membatalan perubahan?",
+  "confirmExit": "Apakah yakin ingin keluar?",
+  "tambahAgunan": "Tambah Agunan",
+  "editAgunan": "Perbarui Agunan",
+  "cabang": "Cabang",
+  "role": "Role",
+  "nomorPegawai": "NIK",
+  "limitKonsumtif": "Limit Produktif Cabang",
+  "limitProduktif": "Limit Konsumtif Cabang",
+  "notification": "Pemberitahuan",
+  "a": "a"
 }

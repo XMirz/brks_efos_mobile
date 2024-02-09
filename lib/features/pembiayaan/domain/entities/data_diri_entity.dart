@@ -11,14 +11,14 @@ class DataDiriEntity with _$DataDiriEntity {
     @JsonKey(name: 'alamat') required String alamat,
     @JsonKey(name: 'tmp_lahir') required String tempatLahir,
     @JsonKey(name: 'tgl_lahir') required String tanggalLahir,
-    @JsonKey(name: 'kelamin') required String jenisKelamin,
+    @JsonKey(name: 'kelamin') required int jenisKelamin,
     @JsonKey(name: 'status_pernikahan') required String statusPernikahan,
-    @JsonKey(name: 'tanggungan') required String jumlahTanggungan,
-    @JsonKey(name: 'biaya_tanggungan') required String kewajiban,
-    @JsonKey(name: 'b_operasional') required String biayaOperasional,
-    @JsonKey(name: 'b_gaji') required String biayaRumahTangga,
+    @JsonKey(name: 'tanggungan') required dynamic jumlahTanggungan,
+    @JsonKey(name: 'biaya_tanggungan') required dynamic kewajiban,
+    @JsonKey(name: 'b_operasional') required dynamic biayaOperasional,
+    @JsonKey(name: 'b_gaji') required dynamic biayaRumahTangga,
     @JsonKey(name: 'status_tempat_tinggal') required String statusTempatTinggal,
-    @JsonKey(name: 'hubungan_bank') required String hubunganPerbankan,
+    @JsonKey(name: 'hubungan_bank') required dynamic hubunganPerbankan,
   }) = _DataDiriEntity;
   const DataDiriEntity._();
 

@@ -1,7 +1,12 @@
 import 'package:efosm/features/auth/presentation/screens/landing_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:efosm/features/home/presentations/screen/home_screen.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/create_pembiayaan.dart';
+import 'package:efosm/features/pembiayaan/presentation/screens/detail_pembiayaan_screen.dart';
+import 'package:efosm/features/pembiayaan/presentation/screens/edit_pembiayaan.dart';
+import 'package:efosm/features/pembiayaan/presentation/screens/form_agunan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -40,6 +45,52 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (BuildContext context, GoRouterState state) =>
                 const CreatePembiayaanScreen(),
           ),
+          GoRoute(
+            path: AppRoutes.formJaminanPage,
+            name: AppRoutes.formJaminanPage,
+            builder: (BuildContext context, GoRouterState state) {
+              final idLoan = state.pathParameters['id'];
+              final agunan = state.extra as AgunanEntity?;
+              return FormAgunanScreen(
+                idLoan: idLoan.toString(),
+                currentAgunan: agunan,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.editPembiayaanPage,
+            name: AppRoutes.editPembiayaanPage,
+            builder: (BuildContext context, GoRouterState state) {
+              final idLoan = state.pathParameters['id'];
+              final pembiayaan = state.extra! as PembiayaanEntity;
+              return EditPembiayaanScreen(
+                idLoan: idLoan.toString(),
+                pembiayaan: pembiayaan,
+              );
+            },
+          ),
+          GoRoute(
+            path: AppRoutes.detailPembiayaan,
+            name: AppRoutes.detailPembiayaan,
+            builder: (BuildContext context, GoRouterState state) {
+              final idLoan = state.pathParameters['id'];
+              final idKategoriProduk = state.pathParameters['idKategoriProduk'];
+              return DetailPembiayaanScreen(
+                idLoan: idLoan.toString(),
+                idKategoriProduk: idKategoriProduk.toString(),
+              );
+            },
+          ),
+          // GoRoute(
+          //   path: AppRoutes.detailKonsumtif,
+          //   name: AppRoutes.detailKonsumtif,
+          //   builder: (BuildContext context, GoRouterState state) {
+          //     final idLoan = state.pathParameters['id'];
+          //     return DetailProduktifScreen(
+          //       idLoan: idLoan.toString(),
+          //     );
+          //   },
+          // ),
         ],
       ),
     ],
@@ -54,4 +105,9 @@ class AppRoutes {
   static const landingPage = 'landing';
   static const homePage = '/home';
   static const createPembiayaanPage = 'create-pembiayaan';
+  static const formJaminanPage = 'form-jaminan/:id';
+  static const editPembiayaanPage = 'edit-pembiayaan/:id';
+  static const detailPembiayaan = 'detail-pembiayaan/:idKategoriProduk/:id';
+  // static const detailKonsumtif = 'detail-konsumtif/:id';
+  // static const detailProduktif = 'detail-produktif/:id';
 }

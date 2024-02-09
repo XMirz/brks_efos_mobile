@@ -1,4 +1,5 @@
 import 'package:efosm/app/domain/entities/user_entity.dart';
+import 'package:efosm/features/home/presentations/data/entitiy/dashboard_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_state.freezed.dart';

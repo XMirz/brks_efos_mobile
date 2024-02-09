@@ -20,6 +20,7 @@ class DataDiriFormState with _$DataDiriFormState {
     required Field biayaRumahTangga,
     required Field statusTempatTinggal,
     required Field hubunganPerbankan,
+    @Default(false) bool isUpdate,
   }) = _DataDiriFormState;
   const DataDiriFormState._();
 

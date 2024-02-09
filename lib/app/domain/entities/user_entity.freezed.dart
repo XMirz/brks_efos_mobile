@@ -28,8 +28,15 @@ mixin _$UserEntity {
   String get role => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_cabang')
   String get idCabang => throw _privateConstructorUsedError;
-  String get cabang => throw _privateConstructorUsedError;
-  String get token =>
+  String get cabang =>
+      throw _privateConstructorUsedError; // required bool isSupervisorAO,
+  String get token => throw _privateConstructorUsedError;
+  @JsonKey(name: 'level_apv_cabang')
+  String get levelApproveCabang => throw _privateConstructorUsedError;
+  @JsonKey(name: 'limit_produktif_cabang')
+  double get limitProduktifCabang => throw _privateConstructorUsedError;
+  @JsonKey(name: 'limit_konsumtif_cabang')
+  double get limitKonsumtifCabang =>
       throw _privateConstructorUsedError; // required List<String> permissions,
   List<String> get authorities => throw _privateConstructorUsedError;
 
@@ -54,6 +61,9 @@ abstract class $UserEntityCopyWith<$Res> {
       @JsonKey(name: 'id_cabang') String idCabang,
       String cabang,
       String token,
+      @JsonKey(name: 'level_apv_cabang') String levelApproveCabang,
+      @JsonKey(name: 'limit_produktif_cabang') double limitProduktifCabang,
+      @JsonKey(name: 'limit_konsumtif_cabang') double limitKonsumtifCabang,
       List<String> authorities});
 }
 
@@ -78,6 +88,9 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? idCabang = null,
     Object? cabang = null,
     Object? token = null,
+    Object? levelApproveCabang = null,
+    Object? limitProduktifCabang = null,
+    Object? limitKonsumtifCabang = null,
     Object? authorities = null,
   }) {
     return _then(_value.copyWith(
@@ -113,6 +126,18 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      levelApproveCabang: null == levelApproveCabang
+          ? _value.levelApproveCabang
+          : levelApproveCabang // ignore: cast_nullable_to_non_nullable
+              as String,
+      limitProduktifCabang: null == limitProduktifCabang
+          ? _value.limitProduktifCabang
+          : limitProduktifCabang // ignore: cast_nullable_to_non_nullable
+              as double,
+      limitKonsumtifCabang: null == limitKonsumtifCabang
+          ? _value.limitKonsumtifCabang
+          : limitKonsumtifCabang // ignore: cast_nullable_to_non_nullable
+              as double,
       authorities: null == authorities
           ? _value.authorities
           : authorities // ignore: cast_nullable_to_non_nullable
@@ -138,6 +163,9 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       @JsonKey(name: 'id_cabang') String idCabang,
       String cabang,
       String token,
+      @JsonKey(name: 'level_apv_cabang') String levelApproveCabang,
+      @JsonKey(name: 'limit_produktif_cabang') double limitProduktifCabang,
+      @JsonKey(name: 'limit_konsumtif_cabang') double limitKonsumtifCabang,
       List<String> authorities});
 }
 
@@ -160,6 +188,9 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? idCabang = null,
     Object? cabang = null,
     Object? token = null,
+    Object? levelApproveCabang = null,
+    Object? limitProduktifCabang = null,
+    Object? limitKonsumtifCabang = null,
     Object? authorities = null,
   }) {
     return _then(_$UserEntityImpl(
@@ -195,6 +226,18 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      levelApproveCabang: null == levelApproveCabang
+          ? _value.levelApproveCabang
+          : levelApproveCabang // ignore: cast_nullable_to_non_nullable
+              as String,
+      limitProduktifCabang: null == limitProduktifCabang
+          ? _value.limitProduktifCabang
+          : limitProduktifCabang // ignore: cast_nullable_to_non_nullable
+              as double,
+      limitKonsumtifCabang: null == limitKonsumtifCabang
+          ? _value.limitKonsumtifCabang
+          : limitKonsumtifCabang // ignore: cast_nullable_to_non_nullable
+              as double,
       authorities: null == authorities
           ? _value._authorities
           : authorities // ignore: cast_nullable_to_non_nullable
@@ -215,6 +258,11 @@ class _$UserEntityImpl extends _UserEntity {
       @JsonKey(name: 'id_cabang') required this.idCabang,
       required this.cabang,
       required this.token,
+      @JsonKey(name: 'level_apv_cabang') required this.levelApproveCabang,
+      @JsonKey(name: 'limit_produktif_cabang')
+      required this.limitProduktifCabang,
+      @JsonKey(name: 'limit_konsumtif_cabang')
+      required this.limitKonsumtifCabang,
       required final List<String> authorities})
       : _authorities = authorities,
         super._();
@@ -238,8 +286,18 @@ class _$UserEntityImpl extends _UserEntity {
   final String idCabang;
   @override
   final String cabang;
+// required bool isSupervisorAO,
   @override
   final String token;
+  @override
+  @JsonKey(name: 'level_apv_cabang')
+  final String levelApproveCabang;
+  @override
+  @JsonKey(name: 'limit_produktif_cabang')
+  final double limitProduktifCabang;
+  @override
+  @JsonKey(name: 'limit_konsumtif_cabang')
+  final double limitKonsumtifCabang;
 // required List<String> permissions,
   final List<String> _authorities;
 // required List<String> permissions,
@@ -252,7 +310,7 @@ class _$UserEntityImpl extends _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(username: $username, name: $name, nik: $nik, idRole: $idRole, role: $role, idCabang: $idCabang, cabang: $cabang, token: $token, authorities: $authorities)';
+    return 'UserEntity(username: $username, name: $name, nik: $nik, idRole: $idRole, role: $role, idCabang: $idCabang, cabang: $cabang, token: $token, levelApproveCabang: $levelApproveCabang, limitProduktifCabang: $limitProduktifCabang, limitKonsumtifCabang: $limitKonsumtifCabang, authorities: $authorities)';
   }
 
   @override
@@ -270,6 +328,12 @@ class _$UserEntityImpl extends _UserEntity {
                 other.idCabang == idCabang) &&
             (identical(other.cabang, cabang) || other.cabang == cabang) &&
             (identical(other.token, token) || other.token == token) &&
+            (identical(other.levelApproveCabang, levelApproveCabang) ||
+                other.levelApproveCabang == levelApproveCabang) &&
+            (identical(other.limitProduktifCabang, limitProduktifCabang) ||
+                other.limitProduktifCabang == limitProduktifCabang) &&
+            (identical(other.limitKonsumtifCabang, limitKonsumtifCabang) ||
+                other.limitKonsumtifCabang == limitKonsumtifCabang) &&
             const DeepCollectionEquality()
                 .equals(other._authorities, _authorities));
   }
@@ -286,6 +350,9 @@ class _$UserEntityImpl extends _UserEntity {
       idCabang,
       cabang,
       token,
+      levelApproveCabang,
+      limitProduktifCabang,
+      limitKonsumtifCabang,
       const DeepCollectionEquality().hash(_authorities));
 
   @JsonKey(ignore: true)
@@ -312,6 +379,12 @@ abstract class _UserEntity extends UserEntity {
       @JsonKey(name: 'id_cabang') required final String idCabang,
       required final String cabang,
       required final String token,
+      @JsonKey(name: 'level_apv_cabang')
+      required final String levelApproveCabang,
+      @JsonKey(name: 'limit_produktif_cabang')
+      required final double limitProduktifCabang,
+      @JsonKey(name: 'limit_konsumtif_cabang')
+      required final double limitKonsumtifCabang,
       required final List<String> authorities}) = _$UserEntityImpl;
   const _UserEntity._() : super._();
 
@@ -334,8 +407,17 @@ abstract class _UserEntity extends UserEntity {
   String get idCabang;
   @override
   String get cabang;
-  @override
+  @override // required bool isSupervisorAO,
   String get token;
+  @override
+  @JsonKey(name: 'level_apv_cabang')
+  String get levelApproveCabang;
+  @override
+  @JsonKey(name: 'limit_produktif_cabang')
+  double get limitProduktifCabang;
+  @override
+  @JsonKey(name: 'limit_konsumtif_cabang')
+  double get limitKonsumtifCabang;
   @override // required List<String> permissions,
   List<String> get authorities;
   @override

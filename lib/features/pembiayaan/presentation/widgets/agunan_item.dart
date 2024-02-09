@@ -129,8 +129,7 @@ class AgunanItem extends StatelessWidget {
                         .copyWith(color: AppColor.textPrimaryInverse),
                     onPressed: () {
                       showGeneralDialog(
-                        // barrierDismissible: true,
-                        // barrierDismissible: true,
+                        barrierDismissible: false,
                         barrierColor: Colors.black.withOpacity(0.4),
                         context: context,
                         pageBuilder: (context, animation, secondaryAnimation) {
@@ -143,18 +142,6 @@ class AgunanItem extends StatelessWidget {
                           );
                         },
                       );
-                      // showModalBottomSheet<void>(
-                      //   showDragHandle: true,
-                      //   clipBehavior: Clip.hardEdge,
-                      //   context: context,
-                      //   builder: (context) => Container(
-                      //     width: double.infinity,
-                      //     child: Image.file(
-                      //       agunan.image.value!,
-                      //       fit: BoxFit.contain,
-                      //     ),
-                      //   ),
-                      // );
                     },
                   ),
                 ),

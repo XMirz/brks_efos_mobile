@@ -128,17 +128,17 @@ class LandingScreen extends HookConsumerWidget {
 List<Widget> sliderContent = const [
   SliderContent(
     imageSrc: 'assets/svg/landing_1.svg',
-    title: 'Landing One',
+    title: 'EFOS Mobile',
     subtitle: 'Pengajuan pembiayaan lebih mudah',
   ),
   SliderContent(
     imageSrc: 'assets/svg/landing_2.svg',
-    title: 'Landing Two',
-    subtitle: 'Pengajuan pembiayaan lebih mudah',
+    title: 'EFOS Mobile',
+    subtitle: 'Dapat dilakukan dimana saja',
   ),
   SliderContent(
     imageSrc: 'assets/svg/landing_3.svg',
-    title: 'Landing Three',
-    subtitle: 'Pengajuan pembiayaan lebih mudah',
+    title: 'EFOS Mobile',
+    subtitle: 'Kesempatan portabel lebih luas',
   ),
 ];

@@ -18,10 +18,12 @@ class PekerjaanFormState with _$PekerjaanFormState {
     required Field tunjangan,
     required Field potongan,
     required Field gajiBersih,
+    @Default(false) bool isUpdate,
   }) = _PekerjaanFormState;
   const PekerjaanFormState._();
 
   factory PekerjaanFormState.empty() => const PekerjaanFormState(
+        isUpdate: false,
         profesi: Field(value: ''),
         namaInstansi: Field(value: ''),
         statusPerusahaan: Field(value: ''),
