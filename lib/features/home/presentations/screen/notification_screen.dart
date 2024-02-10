@@ -12,7 +12,6 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: InnerAppBar(
         centerTitle: true,
-        height: 48,
         borderRadius: BorderRadius.zero,
         title: l10n.notification,
       ),

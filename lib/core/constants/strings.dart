@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'package:crypto/crypto.dart';
+
 class AppString {
   // static const baseUrl = 'http://172.100.200.46:8041';
   // static const baseUrlLogin = 'http://172.100.200.46:8049';
@@ -11,11 +14,20 @@ class AppString {
 
   static const isJaminanValue = '1';
   static const isMarriedValue = 'M';
+
+  static final encKey = sha256.convert(utf8.encode('enc_key')).toString();
+  static final hiveAuthBox = sha256.convert(utf8.encode('auth_box')).toString();
+  static final hiveUserKey = sha256.convert(utf8.encode('user')).toString();
+  static final deviceId = sha256.convert(utf8.encode('device_id')).toString();
+  static final akwoakowako =
+      sha256.convert(utf8.encode('akwoakowako')).toString();
 }
 
-class EAuth {
-  static const reject = 'REJECT';
-  static const approvalOne = 'APPROVENOTISI1';
-  static const approvalTwo = 'APPROVENOTISI2';
-  static const approvalThree = 'APPROVENOTISI3';
+enum ProductCategory {
+  konsumtif('1'),
+  produktif('2'),
+  komersil('3');
+
+  const ProductCategory(this.typeName);
+  final String typeName;
 }

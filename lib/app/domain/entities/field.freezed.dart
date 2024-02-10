@@ -20,6 +20,7 @@ mixin _$Field {
   String get showValue => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
+  bool get isRequired => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FieldCopyWith<Field> get copyWith => throw _privateConstructorUsedError;
@@ -31,7 +32,11 @@ abstract class $FieldCopyWith<$Res> {
       _$FieldCopyWithImpl<$Res, Field>;
   @useResult
   $Res call(
-      {String value, String showValue, String errorMessage, bool isValid});
+      {String value,
+      String showValue,
+      String errorMessage,
+      bool isValid,
+      bool isRequired});
 }
 
 /// @nodoc
@@ -51,6 +56,7 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
     Object? showValue = null,
     Object? errorMessage = null,
     Object? isValid = null,
+    Object? isRequired = null,
   }) {
     return _then(_value.copyWith(
       value: null == value
@@ -69,6 +75,10 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -81,7 +91,11 @@ abstract class _$$$_FieldImplCopyWith<$Res> implements $FieldCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String value, String showValue, String errorMessage, bool isValid});
+      {String value,
+      String showValue,
+      String errorMessage,
+      bool isValid,
+      bool isRequired});
 }
 
 /// @nodoc
@@ -99,6 +113,7 @@ class __$$$_FieldImplCopyWithImpl<$Res>
     Object? showValue = null,
     Object? errorMessage = null,
     Object? isValid = null,
+    Object? isRequired = null,
   }) {
     return _then(_$$_FieldImpl(
       value: null == value
@@ -117,6 +132,10 @@ class __$$$_FieldImplCopyWithImpl<$Res>
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
               as bool,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -128,7 +147,8 @@ class _$$_FieldImpl implements $_Field {
       {required this.value,
       this.showValue = '',
       this.errorMessage = '',
-      this.isValid = false});
+      this.isValid = false,
+      this.isRequired = false});
 
   @override
   final String value;
@@ -141,10 +161,13 @@ class _$$_FieldImpl implements $_Field {
   @override
   @JsonKey()
   final bool isValid;
+  @override
+  @JsonKey()
+  final bool isRequired;
 
   @override
   String toString() {
-    return 'Field(value: $value, showValue: $showValue, errorMessage: $errorMessage, isValid: $isValid)';
+    return 'Field(value: $value, showValue: $showValue, errorMessage: $errorMessage, isValid: $isValid, isRequired: $isRequired)';
   }
 
   @override
@@ -157,12 +180,14 @@ class _$$_FieldImpl implements $_Field {
                 other.showValue == showValue) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+            (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            (identical(other.isRequired, isRequired) ||
+                other.isRequired == isRequired));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, value, showValue, errorMessage, isValid);
+  int get hashCode => Object.hash(
+      runtimeType, value, showValue, errorMessage, isValid, isRequired);
 
   @JsonKey(ignore: true)
   @override
@@ -176,7 +201,8 @@ abstract class $_Field implements Field {
       {required final String value,
       final String showValue,
       final String errorMessage,
-      final bool isValid}) = _$$_FieldImpl;
+      final bool isValid,
+      final bool isRequired}) = _$$_FieldImpl;
 
   @override
   String get value;
@@ -186,6 +212,8 @@ abstract class $_Field implements Field {
   String get errorMessage;
   @override
   bool get isValid;
+  @override
+  bool get isRequired;
   @override
   @JsonKey(ignore: true)
   _$$$_FieldImplCopyWith<_$$_FieldImpl> get copyWith =>

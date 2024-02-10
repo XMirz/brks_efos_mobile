@@ -2,6 +2,8 @@
 
 import 'dart:async';
 
+import 'package:dartz/dartz.dart';
+import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
@@ -14,8 +16,12 @@ import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
+import 'package:efosm/app/presentation/widgets/text_field.dart';
+import 'package:efosm/core/constants/approval_type.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/data_diri_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pasangan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pekerjaan_detail_entity.dart';
@@ -24,16 +30,21 @@ import 'package:efosm/features/pembiayaan/domain/entities/detail/scoring_detail_
 import 'package:efosm/features/pembiayaan/domain/entities/detail/slik_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/approval_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/detail_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/approval_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pekerjaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/produk_pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/states/approval_form_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_agunan.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_value.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/expandable_card.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/forms/approval_form.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -127,23 +138,19 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                 : null,
             body: detailPembiayaanNotifier.when(
               data: (data) {
-                final loanState = isKonsumtif
-                    ? buildKonsumtifLoanState(
-                        status: data.produkPembiayaan.status,
-                        role: user.idRole,
-                        levelCabang: user.levelApproveCabang,
-                        authorities: user.authorities,
-                        limit: user.limitKonsumtifCabang,
-                        plafon: double.parse(
-                            data.produkPembiayaan.plafonPengajuan.toString()))
-                    : buildProduktifLoanState(
-                        status: data.produkPembiayaan.status,
-                        role: user.idRole,
-                        levelCabang: user.levelApproveCabang,
-                        authorities: user.authorities,
-                        limit: user.limitProduktifCabang,
-                        plafon: double.parse(
-                            data.produkPembiayaan.plafonPengajuan.toString()));
+                final loanState = buildLoanState(
+                  idLoan: idLoan,
+                  idKategoriProduk: idKategoriProduk,
+                  status: data.produkPembiayaan.status,
+                  role: user.idRole,
+                  levelCabang: user.levelApproveCabang,
+                  authorities: user.authorities,
+                  limitKonsumtif: user.limitKonsumtifCabang,
+                  limitProduktif: user.limitProduktifCabang,
+                  plafon: double.parse(
+                    data.produkPembiayaan.plafonPengajuan.toString(),
+                  ),
+                );
                 return Column(
                   children: [
                     Container(
@@ -199,19 +206,47 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                             ),
                             child: ListView(
                               children: [
+                                // Text(user.toString()),
+                                Text(loanState.toString()),
                                 spaceY(18),
                                 Container(
                                   margin: EdgeInsets.only(
                                     left: AppInteger.horizontalPagePadding,
                                     right: AppInteger.horizontalPagePadding,
                                   ),
-                                  child: Text(
-                                    '${l10n.pembiayaan} #${data.produkPembiayaan.id}',
-                                    style: AppTextStyle.titleMedium,
-                                    textAlign: TextAlign.start,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '${l10n.pembiayaan} #${data.produkPembiayaan.id}',
+                                        style: AppTextStyle.titleMedium,
+                                        textAlign: TextAlign.start,
+                                      ),
+                                      spaceY(4),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 4),
+                                        decoration: BoxDecoration(
+                                          color: (loanState.statusColor ??
+                                                  AppColor.highlight)
+                                              .withOpacity(0.2),
+                                          borderRadius:
+                                              BorderRadius.circular(48),
+                                        ),
+                                        child: Text(
+                                          loanState.statusDescription,
+                                          style:
+                                              AppTextStyle.bodySmall.copyWith(
+                                            color: loanState.statusColor,
+                                          ),
+                                          textAlign: TextAlign.start,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                spaceY(4),
+                                spaceY(12),
                                 Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 6),
@@ -289,7 +324,14 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                           child: PrimarySmallButton(
                                             text: l10n.reject,
                                             color: AppColor.error,
-                                            onPressed: () {},
+                                            onPressed: () => showApprovalModal(
+                                              context,
+                                              ref,
+                                              loanState.copyWith(
+                                                approvalType:
+                                                    ApprovalType.reject,
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       if (loanState.canApprove ?? false)
@@ -300,7 +342,11 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                           child: PrimarySmallButton(
                                             text: l10n.approve,
                                             color: AppColor.primary,
-                                            onPressed: () {},
+                                            onPressed: () => showApprovalModal(
+                                              context,
+                                              ref,
+                                              loanState,
+                                            ),
                                           ),
                                         ),
                                       // if (false)
@@ -429,6 +475,73 @@ class DetailPembiayaanScreen extends ConsumerWidget {
         );
       }
     }
+  }
+
+  Future<void> showApprovalModal(BuildContext parentContext,
+      WidgetRef parentRef, LoanState loanState) async {
+    debugPrint('Show Modal Approve');
+    // invalidateApprovalForm(parentRef);
+    var isRekomendasiRequired = false;
+    var isArahanCallRequired = false;
+    var isKeputusanRequired = false;
+    var isKeteranganRequired = false;
+
+    var eligible = true;
+    if (loanState.kategoriProduk == ProductCategory.produktif) {
+      if (loanState.approvalType == ApprovalType.reject) {
+        isKeteranganRequired = true;
+      } else if (loanState.approvalType == ApprovalType.notisi1) {
+        isRekomendasiRequired = true;
+      } else if (loanState.approvalType == ApprovalType.notisi3) {
+        isKeputusanRequired = true;
+      } else {
+        eligible = false;
+      }
+    } else if (loanState.kategoriProduk == ProductCategory.konsumtif) {
+      if (loanState.approvalType == ApprovalType.reject) {
+        isKeteranganRequired = true;
+      } else if (loanState.approvalType == ApprovalType.notisi1) {
+        isArahanCallRequired = true;
+        isRekomendasiRequired = true;
+      } else if (loanState.approvalType == ApprovalType.notisi2) {
+        isRekomendasiRequired = true;
+      } else if (loanState.approvalType == ApprovalType.notisi3) {
+        isKeputusanRequired = true;
+      } else {
+        eligible = false;
+      }
+    } else {
+      eligible = false;
+    }
+    if (!eligible) {
+      ScaffoldMessenger.of(parentContext).showSnackBar(
+        SnackBar(
+          content:
+              Text(loanState.approveErrorMessage ?? l10n.unauthorizedAction),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
+      return;
+    }
+
+    // if (loanState.approvalType == ApprovalType.notisi2) {
+    await showModalBottomSheet<FormState>(
+      useSafeArea: true,
+      showDragHandle: true,
+      context: parentContext,
+      isScrollControlled: true,
+      builder: (context) {
+        return ApprovalFormModal(
+          parentContext: parentContext,
+          loanState: loanState,
+          isRekomendasiRequired: isRekomendasiRequired,
+          isArahanCallRequired: isArahanCallRequired,
+          isKeputusanRequired: isKeputusanRequired,
+          isKeteranganRequired: isKeteranganRequired,
+        );
+      },
+    );
+    // }
   }
 }
 
@@ -716,34 +829,3 @@ class DetailScoring extends StatelessWidget {
     );
   }
 }
-
-// class DetailPenghasilan extends StatelessWidget {
-//   const DetailPenghasilan({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return ExpandableCard(
-//       title: l10n.penghasilan,
-//       children: [
-//         DetailValue(label: l10n.gajiAmprah, value: 'Value ${l10n.gajiAmprah}'),
-//         DetailValue(
-//             label: l10n.namaInstansi, value: 'Value ${l10n.namaInstansi}'),
-//         DetailValue(label: l10n.tunjangan, value: 'Value ${l10n.tunjangan}'),
-//         DetailValue(label: l10n.potongan, value: 'Value ${l10n.potongan}'),
-//         DetailValue(label: l10n.gajiBersih, value: 'Value ${l10n.gajiBersih}'),
-//         DetailValue(label: l10n.kolektif, value: 'Value ${l10n.kolektif}'),
-//         DetailValue(
-//             label: '${l10n.norek} ${l10n.penghasilan}',
-//             value: 'Value ${l10n.norek} ${l10n.penghasilan}'),
-//         DetailValue(
-//           label: '${l10n.namaRekening} ${l10n.penghasilan}',
-//           value: 'Value ${l10n.namaRekening} ${l10n.penghasilan}',
-//         ),
-//         DetailValue(
-//           label: '${l10n.kodeRek} ${l10n.penghasilan}',
-//           value: 'Value ${l10n.kodeRek} ${l10n.penghasilan}',
-//         ),
-//       ],
-//     );
-//   }
-// }

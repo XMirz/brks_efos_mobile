@@ -9,6 +9,7 @@ class Field with _$Field {
     @Default('') String showValue,
     @Default('') String errorMessage,
     @Default(false) bool isValid,
+    @Default(false) bool isRequired,
   }) = $_Field;
 
   factory Field.empty() => const Field(value: '');

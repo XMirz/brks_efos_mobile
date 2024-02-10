@@ -67,7 +67,7 @@ class LoginForm extends ConsumerWidget {
       final userResult =
           await ref.read(createAuthenticationProvider(user).future);
       if (context.mounted) context.pop('dialog');
-      userResult.fold((l) {
+      await userResult.fold((l) {
         showDialog<void>(
           context: context,
           builder: (context) {
@@ -83,8 +83,9 @@ class LoginForm extends ConsumerWidget {
             );
           },
         );
-      }, (r) {
+      }, (r) async {
         Injector.registerAuthenticatedClient(r.token);
+        await ref.read(localAuthRepositoryProvider).saveAuth(r);
         ref.read(authenticatedUserProvider.notifier).state =
             UserState(token: r.token, user: r);
         ref
@@ -92,7 +93,9 @@ class LoginForm extends ConsumerWidget {
           ..invalidate(usernameControllerProvider)
           ..invalidate(passwordControllerProvider);
 
-        context.go(AppRoutes.homePage);
+        if (context.mounted) {
+          context.go(AppRoutes.homePage);
+        }
       });
     }
 

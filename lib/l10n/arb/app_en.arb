@@ -107,7 +107,10 @@
   "edit": "Ubah",
   "name": "Nama",
   "username": "Nama pengguna",
+  "unauthorizedAction": "Anda tidak memiliki akses untuk melakukan hal ini!",
   "failedGetDataPembiayaan": "Terjadi kesalahan ketika mendapatkan data pembiayaan!",
+  "successApprove": "Berhasil approve pembiayaan.",
+  "failedApprove": "Gagal melakukan approval!.",
   "failedGetX": "Gagal mendapatkan data {str}!.",
   "@failedGetX": {
     "placeholders": {
@@ -290,6 +293,7 @@
   "cancelled": "Dibatalkan",
   "review": "Review",
   "approve": "Approve",
+  "approval": "Persetujuan",
   "reject": "Reject",
   "forward": "Teruskan",
   "disetujuiPimpinan": "Disetujui Pimpinan",
@@ -312,5 +316,8 @@
   "limitKonsumtif": "Limit Produktif Cabang",
   "limitProduktif": "Limit Konsumtif Cabang",
   "notification": "Pemberitahuan",
+  "keputusan": "Keputusan",
+  "rekomendasi": "Rekomendasi",
+  "arahanCall": "Arahan Call",
   "a": "a"
 }

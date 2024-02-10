@@ -30,10 +30,12 @@ InputDecoration buildOurInputDecoration({
 }) {
   return InputDecoration(
     counterText: '',
-    constraints: BoxConstraints(
-      minHeight: height ?? 56,
-      maxHeight: height ?? 56,
-    ),
+    constraints: height != null
+        ? BoxConstraints(
+            minHeight: height,
+            maxHeight: height,
+          )
+        : null,
     hintText: hint,
     hintStyle: hintStyle ??
         AppTextStyle.bodyMedium.copyWith(

@@ -1,8 +1,6 @@
-import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/app/domain/entities/file_field.dart';
 import 'package:efosm/app/domain/entities/location.dart';
@@ -15,7 +13,6 @@ import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:collection/collection.dart';
 
 class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   AgunanFormProvider() : super(AgunanFormState.empty());

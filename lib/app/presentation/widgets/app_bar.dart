@@ -12,12 +12,14 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
     this.title,
     this.centerTitle,
     this.tint,
+    this.height,
   });
 
   final String? title;
   final Color? backgroundColor;
   final Color? tint;
   final bool? centerTitle;
+  final double? height;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Future.delayed(const Duration(milliseconds: 100), () {
@@ -30,7 +32,7 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
           : Matrix4.identity(),
       duration: const Duration(milliseconds: 400),
       child: AppBar(
-        shape: LinearBorder(),
+        // shape: LinearBorder(),
         centerTitle: centerTitle,
         elevation: 0,
         shadowColor: Colors.transparent,
@@ -49,7 +51,7 @@ class AppBarLeft extends HookConsumerWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(double.maxFinite, 48);
+  Size get preferredSize => Size.fromHeight(height ?? 56);
 
   // Widget? _buildLeading(BuildContext context) {
   //   if (showLogo) {

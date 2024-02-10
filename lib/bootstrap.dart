@@ -10,7 +10,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   };
 
   // Initialize dependency
-  Injector.registerInitializationDependency();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Injector.registerInitializationDependency();
 
   // Add cross-flavor configuration here
   runApp(await builder());

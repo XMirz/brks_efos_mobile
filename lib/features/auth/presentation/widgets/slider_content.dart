@@ -25,7 +25,7 @@ class SliderContent extends StatelessWidget {
           Text(
             title,
             style: AppTextStyle.titleLarge
-                .copyWith(color: AppColor.textPrimaryInverse),
+                .copyWith(color: AppColor.textPrimaryInverse, fontSize: 28),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 4),

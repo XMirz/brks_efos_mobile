@@ -109,7 +109,8 @@ class LandingScreen extends HookConsumerWidget {
                       duration: const Duration(milliseconds: 200),
                       child: showLoginForm
                           ? const Padding(
-                              padding: EdgeInsets.all(32),
+                              padding:
+                                  EdgeInsets.only(left: 32, right: 32, top: 16),
                               child: LoginForm(),
                             )
                           : null,

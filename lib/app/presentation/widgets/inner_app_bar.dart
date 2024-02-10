@@ -87,5 +87,5 @@ class InnerAppBar extends HookConsumerWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(height ?? 64);
+  Size get preferredSize => Size.fromHeight(height ?? 56);
 }

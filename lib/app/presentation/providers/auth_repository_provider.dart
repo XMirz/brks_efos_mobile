@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/user_login_dto.dart';
+import 'package:efosm/app/data/local_repository/local_auth_repository.dart';
 import 'package:efosm/app/data/repositories/auth_repository.dart';
 import 'package:efosm/app/domain/entities/user_entity.dart';
 import 'package:efosm/core/error/failures.dart';
@@ -24,4 +25,9 @@ Future<Either<Failure, bool>> deleteAuthentication(
   UserAuthenticationDto loginDto,
 ) {
   return ref.watch(authRepositoryProvider).deleteAuthentication(loginDto);
+}
+
+@riverpod
+LocalAuthRepository localAuthRepository(LocalAuthRepositoryRef ref) {
+  return LocalAuthRepository();
 }

@@ -12,6 +12,7 @@ import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
 import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/card.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -26,162 +27,160 @@ class Dashboard extends HookConsumerWidget {
     final user = ref.read(authenticatedUserProvider).user!;
     final dashboardContent = ref.watch(dashbordContentProvider);
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 0,
+      appBar: const AppBarLeft(
+        tint: Colors.white,
         backgroundColor: AppColor.primary,
       ),
-      body: Column(
+      body: ListView(
         children: [
-          const AppBarLeft(
-            tint: Colors.white,
-            backgroundColor: AppColor.primary,
-          ),
           UserCard(user: user),
+          spaceY(12),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12,
+            ),
+            child: FormHeader(title: l10n.dashboard),
+          ),
           Expanded(
             child: dashboardContent.when(
               data: (data) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: AppInteger.verticalPagePadding,
-                      horizontal: 12,
-                    ),
-                    child: StaggeredGrid.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 8,
-                      crossAxisSpacing: 8,
-                      children: [
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    // vertical: AppInteger.verticalPagePadding,
+                    horizontal: 12,
+                  ),
+                  child: StaggeredGrid.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    children: [
+                      DashboardCard(
+                        heroIcons: HeroIcons.newspaper,
+                        backgroundColor: AppColor.placeholder5.withOpacity(0.2),
+                        titleColor: AppColor.primary,
+                        textColor: AppColor.primary,
+                        title: l10n.totalProspek,
+                        konsumtif: data.totalProspekKonsumtif.toString(),
+                        produktif: data.totalProspekProduktif.toString(),
+                      ),
+                      DashboardCard(
+                        heroIcons: HeroIcons.presentationChartLine,
+                        backgroundColor: AppColor.highlight.withOpacity(0.2),
+                        titleColor: AppColor.textSecondary,
+                        textColor: AppColor.textSecondary,
+                        title: l10n.prospekUnhandled,
+                        konsumtif:
+                            data.prospekKonsumtifBelumDiproses.toString(),
+                        produktif:
+                            data.prospekProduktifBelumDiproses.toString(),
+                      ),
+                      DashboardCard(
+                        heroIcons: HeroIcons.clipboardDocumentList,
+                        backgroundColor: AppColor.warning.withOpacity(0.2),
+                        titleColor: AppColor.warning,
+                        textColor: AppColor.warning,
+                        title: l10n.waitingApproval,
+                        konsumtif: data.menungguApprovalKonsumtif.toString(),
+                        produktif: data.menungguApprovalProduktif.toString(),
+                      ),
+                      DashboardCard(
+                        heroIcons: HeroIcons.xCircle,
+                        backgroundColor: AppColor.error.withOpacity(0.2),
+                        titleColor: AppColor.error,
+                        textColor: AppColor.error,
+                        title: l10n.cancelled,
+                        konsumtif: data.cancelKonsumtif.toString(),
+                        produktif: data.cancelProduktif.toString(),
+                      ),
+                      DashboardCard(
+                        heroIcons: HeroIcons.documentMagnifyingGlass,
+                        backgroundColor: AppColor.info.withOpacity(0.2),
+                        titleColor: AppColor.info,
+                        textColor: AppColor.info,
+                        title: l10n.review,
+                        konsumtif: data.reviewKonsumtif.toString(),
+                        produktif: data.reviewProduktif.toString(),
+                      ),
+                      if (isAO(int.parse(user.idRole)))
                         DashboardCard(
-                          heroIcons: HeroIcons.newspaper,
-                          backgroundColor:
-                              AppColor.placeholder5.withOpacity(0.2),
-                          titleColor: AppColor.primary,
-                          textColor: AppColor.primary,
-                          title: l10n.totalProspek,
-                          konsumtif: data.totalProspekKonsumtif.toString(),
-                          produktif: data.totalProspekProduktif.toString(),
-                        ),
-                        DashboardCard(
-                          heroIcons: HeroIcons.presentationChartLine,
-                          backgroundColor: AppColor.highlight.withOpacity(0.2),
-                          titleColor: AppColor.textSecondary,
-                          textColor: AppColor.textSecondary,
-                          title: l10n.prospekUnhandled,
-                          konsumtif:
-                              data.prospekKonsumtifBelumDiproses.toString(),
-                          produktif:
-                              data.prospekProduktifBelumDiproses.toString(),
-                        ),
-                        DashboardCard(
-                          heroIcons: HeroIcons.clipboardDocumentList,
-                          backgroundColor: AppColor.warning.withOpacity(0.2),
-                          titleColor: AppColor.warning,
-                          textColor: AppColor.warning,
-                          title: l10n.waitingApproval,
-                          konsumtif: data.menungguApprovalKonsumtif.toString(),
-                          produktif: data.menungguApprovalProduktif.toString(),
-                        ),
-                        DashboardCard(
-                          heroIcons: HeroIcons.xCircle,
-                          backgroundColor: AppColor.error.withOpacity(0.2),
-                          titleColor: AppColor.error,
-                          textColor: AppColor.error,
-                          title: l10n.cancelled,
-                          konsumtif: data.cancelKonsumtif.toString(),
-                          produktif: data.cancelProduktif.toString(),
-                        ),
-                        DashboardCard(
-                          heroIcons: HeroIcons.documentMagnifyingGlass,
-                          backgroundColor: AppColor.info.withOpacity(0.2),
-                          titleColor: AppColor.info,
-                          textColor: AppColor.info,
-                          title: l10n.review,
-                          konsumtif: data.reviewKonsumtif.toString(),
-                          produktif: data.reviewProduktif.toString(),
-                        ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.checkCircle,
-                            backgroundColor: AppColor.primary.withOpacity(0.2),
-                            titleColor: AppColor.primary,
-                            textColor: AppColor.primary,
-                            title: l10n.disetujuiPimpinan,
-                            konsumtif:
-                                data.telahDisetujuiPimpinanKonsumtif.toString(),
-                            produktif:
-                                data.telahDisetujuiPimpinanProduktif.toString(),
-                          ),
-                        DashboardCard(
-                          heroIcons: HeroIcons.clipboardDocumentCheck,
+                          heroIcons: HeroIcons.checkCircle,
                           backgroundColor: AppColor.primary.withOpacity(0.2),
                           titleColor: AppColor.primary,
                           textColor: AppColor.primary,
-                          title: l10n.siapUntukAkad,
-                          konsumtif: data.siapUntukAkadKonsumtif.toString(),
-                          produktif: data.siapUntukAkadProduktif.toString(),
+                          title: l10n.disetujuiPimpinan,
+                          konsumtif:
+                              data.telahDisetujuiPimpinanKonsumtif.toString(),
+                          produktif:
+                              data.telahDisetujuiPimpinanProduktif.toString(),
                         ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.chartBarSquare,
-                            backgroundColor: AppColor.dead.withOpacity(0.2),
-                            titleColor: AppColor.dead,
-                            textColor: AppColor.dead,
-                            title: l10n.monthlyTarget,
-                            konsumtif: data.targetBulananKonsumtif.toString(),
-                            produktif: data.targetBulananProduktif.toString(),
+                      DashboardCard(
+                        heroIcons: HeroIcons.clipboardDocumentCheck,
+                        backgroundColor: AppColor.primary.withOpacity(0.2),
+                        titleColor: AppColor.primary,
+                        textColor: AppColor.primary,
+                        title: l10n.siapUntukAkad,
+                        konsumtif: data.siapUntukAkadKonsumtif.toString(),
+                        produktif: data.siapUntukAkadProduktif.toString(),
+                      ),
+                      if (isAO(int.parse(user.idRole)))
+                        DashboardCard(
+                          heroIcons: HeroIcons.chartBarSquare,
+                          backgroundColor: AppColor.dead.withOpacity(0.2),
+                          titleColor: AppColor.dead,
+                          textColor: AppColor.dead,
+                          title: l10n.monthlyTarget,
+                          konsumtif: data.targetBulananKonsumtif.toString(),
+                          produktif: data.targetBulananProduktif.toString(),
+                        ),
+                      if (isAO(int.parse(user.idRole)))
+                        DashboardCard(
+                          heroIcons: HeroIcons.sparkles,
+                          backgroundColor: AppColor.info.withOpacity(0.2),
+                          titleColor: AppColor.info,
+                          textColor: AppColor.info,
+                          title: l10n.totalNoa,
+                          konsumtif: data.totalNoaKonsumtif.toString(),
+                          produktif: data.totalNoaProduktif.toString(),
+                        ),
+                      if (isAO(int.parse(user.idRole)))
+                        DashboardCard(
+                          heroIcons: HeroIcons.star,
+                          backgroundColor: AppColor.highlight.withOpacity(0.2),
+                          titleColor: AppColor.highlight,
+                          textColor: AppColor.highlight,
+                          title: l10n.nominalNoa,
+                          konsumtif: toRupiahString(
+                              data.nominalNoaKonsumtif.toString()),
+                          produktif: toRupiahString(
+                              data.nominalNoaProduktif.toString()),
+                        ),
+                      if (isAO(int.parse(user.idRole)))
+                        DashboardCard(
+                          heroIcons: HeroIcons.documentChartBar,
+                          backgroundColor: AppColor.highlight.withOpacity(0.2),
+                          titleColor: AppColor.highlight,
+                          textColor: AppColor.highlight,
+                          title: l10n.cairNoa,
+                          konsumtif:
+                              toRupiahString(data.noaCairKonsumtif.toString()),
+                          produktif:
+                              toRupiahString(data.noaCairProduktif.toString()),
+                        ),
+                      if (isAO(int.parse(user.idRole)))
+                        DashboardCard(
+                          heroIcons: HeroIcons.sparkles,
+                          backgroundColor: AppColor.dead.withOpacity(0.2),
+                          titleColor: AppColor.dead,
+                          textColor: AppColor.dead,
+                          title: l10n.monthlyRealisation,
+                          konsumtif: toRupiahString(
+                            data.realisasiBulananProduktif.toString(),
                           ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.sparkles,
-                            backgroundColor: AppColor.info.withOpacity(0.2),
-                            titleColor: AppColor.info,
-                            textColor: AppColor.info,
-                            title: l10n.totalNoa,
-                            konsumtif: data.totalNoaKonsumtif.toString(),
-                            produktif: data.totalNoaProduktif.toString(),
+                          produktif: toRupiahString(
+                            data.realisasiBulananProduktif.toString(),
                           ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.star,
-                            backgroundColor:
-                                AppColor.highlight.withOpacity(0.2),
-                            titleColor: AppColor.highlight,
-                            textColor: AppColor.highlight,
-                            title: l10n.nominalNoa,
-                            konsumtif: toRupiahString(
-                                data.nominalNoaKonsumtif.toString()),
-                            produktif: toRupiahString(
-                                data.nominalNoaProduktif.toString()),
-                          ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.documentChartBar,
-                            backgroundColor:
-                                AppColor.highlight.withOpacity(0.2),
-                            titleColor: AppColor.highlight,
-                            textColor: AppColor.highlight,
-                            title: l10n.cairNoa,
-                            konsumtif: toRupiahString(
-                                data.noaCairKonsumtif.toString()),
-                            produktif: toRupiahString(
-                                data.noaCairProduktif.toString()),
-                          ),
-                        if (isAO(int.parse(user.idRole)))
-                          DashboardCard(
-                            heroIcons: HeroIcons.sparkles,
-                            backgroundColor: AppColor.dead.withOpacity(0.2),
-                            titleColor: AppColor.dead,
-                            textColor: AppColor.dead,
-                            title: l10n.monthlyRealisation,
-                            konsumtif: toRupiahString(
-                              data.realisasiBulananProduktif.toString(),
-                            ),
-                            produktif: toRupiahString(
-                              data.realisasiBulananProduktif.toString(),
-                            ),
-                          ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 );
               },

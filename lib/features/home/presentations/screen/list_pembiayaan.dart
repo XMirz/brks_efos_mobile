@@ -14,6 +14,7 @@ import 'package:efosm/core/constants/integer.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -32,7 +33,7 @@ class PembiayaanSreen extends HookConsumerWidget {
       child: Scaffold(
         appBar: InnerAppBar(
           centerTitle: true,
-          height: 48,
+          height: 56,
           borderRadius: BorderRadius.zero,
           title: l10n.pembiayaan,
         ),
@@ -126,105 +127,111 @@ class ListPembiayaan extends ConsumerWidget {
       }
     });
 
-    return CustomScrollView(
-      controller: scrollController,
-      slivers: [
-        SliverToBoxAdapter(
-          child: Container(
-            padding: EdgeInsets.only(
-              left: AppInteger.horizontalPagePadding,
-              right: AppInteger.horizontalPagePadding,
-              bottom: 16,
-              top: 8,
-            ),
-            child: TextFormField(
-              onChanged: (value) {
-                Future<void>.delayed(
-                  const Duration(milliseconds: 500),
-                  () {
-                    paginationNotifier.setKeyword(value);
-                  },
-                );
-              },
-              style:
-                  AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
-              cursorColor: AppColor.textPrimary,
-              cursorWidth: 1,
-              decoration: InputDecoration(
-                counterText: '',
-                hintText: l10n.search,
-                hintStyle: AppTextStyle.bodyMedium.copyWith(
-                  color: AppColor.textPlaceholder,
-                ),
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.highlight),
-                ),
-                focusedBorder: const UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.primary, width: 2),
+    return RefreshIndicator(
+      onRefresh: () async {
+        ref.invalidate(paginationProvider(endPoint));
+      },
+      child: CustomScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
+        controller: scrollController,
+        slivers: [
+          SliverToBoxAdapter(
+            child: Container(
+              padding: EdgeInsets.only(
+                left: AppInteger.horizontalPagePadding,
+                right: AppInteger.horizontalPagePadding,
+                bottom: 16,
+                top: 8,
+              ),
+              child: TextFormField(
+                onChanged: (value) {
+                  Future<void>.delayed(
+                    const Duration(milliseconds: 500),
+                    () {
+                      paginationNotifier.setKeyword(value);
+                    },
+                  );
+                },
+                style: AppTextStyle.bodyMedium
+                    .copyWith(color: AppColor.textPrimary),
+                cursorColor: AppColor.textPrimary,
+                cursorWidth: 1,
+                decoration: InputDecoration(
+                  counterText: '',
+                  hintText: l10n.search,
+                  hintStyle: AppTextStyle.bodyMedium.copyWith(
+                    color: AppColor.textPlaceholder,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColor.highlight),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: AppColor.primary, width: 2),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        pagination.maybeWhen(
-          data: (items) {
-            if (items.isEmpty) {
-              return SliverToBoxAdapter(
-                child: NoDataPlaceHolder(message: l10n.dataNotFound),
+          pagination.maybeWhen(
+            data: (items) {
+              if (items.isEmpty) {
+                return SliverToBoxAdapter(
+                  child: NoDataPlaceHolder(message: l10n.dataNotFound),
+                );
+              }
+              return SliverItems(items: items);
+            },
+            loading: () {
+              return const SliverToBoxAdapter(
+                child: LoadingPlaceholder(),
               );
-            }
-            return SliverItems(items: items);
-          },
-          loading: () {
-            return const SliverToBoxAdapter(
-              child: LoadingPlaceholder(),
-            );
-          },
-          error: (e, stk) {
-            return SliverToBoxAdapter(
-              child: ErrorPlaceholder(message: l10n.failedGetDataPembiayaan),
-            );
-          },
-          orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
-        ),
-        ...pagination.maybeWhen(
-          orElse: () => [const SliverToBoxAdapter(child: SizedBox.shrink())],
-          onGoingError: (items, e, stk) {
-            return [
-              SliverItems(items: items),
-              SliverToBoxAdapter(
-                child: Container(
-                  padding: const EdgeInsets.only(
-                    top: 24,
-                    bottom: 32,
-                  ),
-                  child: Text(
-                    l10n.failedGetDataPembiayaan,
-                    style: AppTextStyle.bodyMedium,
+            },
+            error: (e, stk) {
+              return SliverToBoxAdapter(
+                child: ErrorPlaceholder(message: l10n.failedGetDataPembiayaan),
+              );
+            },
+            orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
+          ),
+          ...pagination.maybeWhen(
+            orElse: () => [const SliverToBoxAdapter(child: SizedBox.shrink())],
+            onGoingError: (items, e, stk) {
+              return [
+                SliverItems(items: items),
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: 24,
+                      bottom: 32,
+                    ),
+                    child: Text(
+                      l10n.failedGetDataPembiayaan,
+                      style: AppTextStyle.bodyMedium,
+                    ),
                   ),
                 ),
-              ),
-            ];
-          },
-          onGoingLoading: (
-            items,
-          ) {
-            return [
-              SliverItems(items: items),
-              SliverToBoxAdapter(
-                child: Container(
-                  padding: const EdgeInsets.only(
-                    top: 24,
-                    bottom: 32,
+              ];
+            },
+            onGoingLoading: (
+              items,
+            ) {
+              return [
+                SliverItems(items: items),
+                SliverToBoxAdapter(
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                      top: 24,
+                      bottom: 32,
+                    ),
+                    child: const OurLoading(),
                   ),
-                  child: const OurLoading(),
                 ),
-              ),
-            ];
-          },
-        ),
-      ],
+              ];
+            },
+          ),
+        ],
+      ),
     );
   }
 }
@@ -243,22 +250,17 @@ class SliverItems extends ConsumerWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final item = items[index];
-          final isKonsumtif = item.idKategoriProduk == 1;
-          final loanState = isKonsumtif
-              ? buildKonsumtifLoanState(
-                  status: item.status.toString(),
-                  role: user.idRole,
-                  levelCabang: user.levelApproveCabang,
-                  authorities: user.authorities,
-                  limit: user.limitKonsumtifCabang,
-                  plafon: double.parse(item.plafonPengajuan.toString()))
-              : buildProduktifLoanState(
-                  status: item.status.toString(),
-                  role: user.idRole,
-                  levelCabang: user.levelApproveCabang,
-                  authorities: user.authorities,
-                  limit: user.limitProduktifCabang,
-                  plafon: double.parse(item.plafonPengajuan.toString()));
+          final loanState = buildLoanState(
+            idLoan: item.idLoan,
+            idKategoriProduk: item.idKategoriProduk.toString(),
+            status: item.status.toString(),
+            role: user.idRole,
+            levelCabang: user.levelApproveCabang,
+            authorities: user.authorities,
+            limitKonsumtif: user.limitKonsumtifCabang,
+            limitProduktif: user.limitProduktifCabang,
+            plafon: double.parse(item.plafonPengajuan.toString()),
+          );
           final tanggalLahir =
               DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
                   .format(DateTime.parse(item.tanggalLahir));

@@ -56,8 +56,6 @@ class OurTextField extends StatelessWidget {
         spaceY(8),
         Unfocuser(
           child: TextFormField(
-            // minLines: minLines,
-            // maxLines: minLines,
             inputFormatters: [
               if (currencyFormat ?? false)
                 CurrencyInputFormatter(
@@ -80,7 +78,7 @@ class OurTextField extends StatelessWidget {
             cursorWidth: 1,
             decoration: buildOurInputDecoration(
               hint: hint,
-              height: height,
+              height: height ?? 56,
               hintStyle: hintStyle,
               readOnly: readOnly,
             ),
