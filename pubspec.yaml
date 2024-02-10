@@ -43,7 +43,7 @@ dependencies:
   local_auth_android: ^1.0.36
   local_auth_ios: ^1.1.6
   location: ^5.0.0
-  lottie: ^2.7.0
+  lottie: ^3.0.0
   path_provider: ^2.1.2
   riverpod_annotation: ^2.3.3
   smooth_page_indicator: ^1.1.0
