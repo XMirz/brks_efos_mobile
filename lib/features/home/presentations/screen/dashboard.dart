@@ -1,6 +1,4 @@
-import 'dart:math';
-
-import 'package:efosm/app/domain/entities/user_entity.dart';
+import 'package:efosm/app/domain/entities/session_entity.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
@@ -202,7 +200,7 @@ class UserCard extends StatelessWidget {
     super.key,
   });
 
-  final UserEntity user;
+  final SessionEntity user;
   @override
   Widget build(BuildContext context) {
     return Container(

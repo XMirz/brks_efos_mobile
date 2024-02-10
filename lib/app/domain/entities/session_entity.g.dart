@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_entity.dart';
+part of 'session_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
-    _$UserEntityImpl(
+_$SessionEntityImpl _$$SessionEntityImplFromJson(Map<String, dynamic> json) =>
+    _$SessionEntityImpl(
       username: json['username'] as String,
       name: json['name'] as String,
       nik: json['nik'] as String,
@@ -22,9 +22,10 @@ _$UserEntityImpl _$$UserEntityImplFromJson(Map<String, dynamic> json) =>
       authorities: (json['authorities'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      authorizationType: json['authorizationType'] as String? ?? 'SINGLE',
     );
 
-Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
+Map<String, dynamic> _$$SessionEntityImplToJson(_$SessionEntityImpl instance) =>
     <String, dynamic>{
       'username': instance.username,
       'name': instance.name,
@@ -38,4 +39,5 @@ Map<String, dynamic> _$$UserEntityImplToJson(_$UserEntityImpl instance) =>
       'limit_produktif_cabang': instance.limitProduktifCabang,
       'limit_konsumtif_cabang': instance.limitKonsumtifCabang,
       'authorities': instance.authorities,
+      'authorizationType': instance.authorizationType,
     };

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'auth_repository_provider.dart';
+part of 'auth_provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
@@ -22,7 +22,7 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
 
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
 String _$createAuthenticationHash() =>
-    r'50c0306e11263cd9a863a85e064c36292ac9aca7';
+    r'ae7773fa55bcf3008e100cac8109251a3361d9e1';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -51,7 +51,7 @@ const createAuthenticationProvider = CreateAuthenticationFamily();
 
 /// See also [createAuthentication].
 class CreateAuthenticationFamily
-    extends Family<AsyncValue<Either<Failure, UserEntity>>> {
+    extends Family<AsyncValue<Either<Failure, SessionEntity>>> {
   /// See also [createAuthentication].
   const CreateAuthenticationFamily();
 
@@ -90,7 +90,7 @@ class CreateAuthenticationFamily
 
 /// See also [createAuthentication].
 class CreateAuthenticationProvider
-    extends AutoDisposeFutureProvider<Either<Failure, UserEntity>> {
+    extends AutoDisposeFutureProvider<Either<Failure, SessionEntity>> {
   /// See also [createAuthentication].
   CreateAuthenticationProvider(
     UserAuthenticationDto loginDto,
@@ -125,7 +125,7 @@ class CreateAuthenticationProvider
 
   @override
   Override overrideWith(
-    FutureOr<Either<Failure, UserEntity>> Function(
+    FutureOr<Either<Failure, SessionEntity>> Function(
             CreateAuthenticationRef provider)
         create,
   ) {
@@ -144,7 +144,7 @@ class CreateAuthenticationProvider
   }
 
   @override
-  AutoDisposeFutureProviderElement<Either<Failure, UserEntity>>
+  AutoDisposeFutureProviderElement<Either<Failure, SessionEntity>>
       createElement() {
     return _CreateAuthenticationProviderElement(this);
   }
@@ -164,13 +164,13 @@ class CreateAuthenticationProvider
 }
 
 mixin CreateAuthenticationRef
-    on AutoDisposeFutureProviderRef<Either<Failure, UserEntity>> {
+    on AutoDisposeFutureProviderRef<Either<Failure, SessionEntity>> {
   /// The parameter `loginDto` of this provider.
   UserAuthenticationDto get loginDto;
 }
 
 class _CreateAuthenticationProviderElement
-    extends AutoDisposeFutureProviderElement<Either<Failure, UserEntity>>
+    extends AutoDisposeFutureProviderElement<Either<Failure, SessionEntity>>
     with CreateAuthenticationRef {
   _CreateAuthenticationProviderElement(super.provider);
 
@@ -315,7 +315,7 @@ class _DeleteAuthenticationProviderElement
 }
 
 String _$localAuthRepositoryHash() =>
-    r'9212d821f959bfb2e56e3a9550245eca9958d28b';
+    r'5a7398f3f83fce085502509a1e24430ed8660df4';
 
 /// See also [localAuthRepository].
 @ProviderFor(localAuthRepository)
@@ -331,5 +331,19 @@ final localAuthRepositoryProvider =
 );
 
 typedef LocalAuthRepositoryRef = AutoDisposeProviderRef<LocalAuthRepository>;
+String _$authServiceHash() => r'0dfa6cd7b3d2c42d27d44dbdbba6d3799e31f428';
+
+/// See also [authService].
+@ProviderFor(authService)
+final authServiceProvider = AutoDisposeProvider<AuthService>.internal(
+  authService,
+  name: r'authServiceProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$authServiceHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef AuthServiceRef = AutoDisposeProviderRef<AuthService>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

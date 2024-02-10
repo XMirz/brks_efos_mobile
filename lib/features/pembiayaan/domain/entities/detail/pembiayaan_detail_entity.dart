@@ -1,5 +1,4 @@
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/detail/agunan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/data_diri_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pasangan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pekerjaan_detail_entity.dart';

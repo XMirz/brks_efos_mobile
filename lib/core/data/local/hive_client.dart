@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:hive/hive.dart';
 
@@ -15,7 +14,7 @@ class HiveClient {
       encryptionCipher: HiveAesCipher(encryptionKey),
     );
     await box.put(key, data);
-    unawaited(box.close());
+    await box.close();
   }
 
   Future<T?> read<T>(
@@ -28,7 +27,7 @@ class HiveClient {
       encryptionCipher: HiveAesCipher(encryptionKey),
     );
     final data = box.get(key);
-    unawaited(box.close());
+    await box.close();
     return data;
   }
 
@@ -42,6 +41,6 @@ class HiveClient {
       encryptionCipher: HiveAesCipher(encryptionKey),
     );
     await box.delete(key);
-    unawaited(box.close());
+    await box.close();
   }
 }

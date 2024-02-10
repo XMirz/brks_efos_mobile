@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pasangan_form_state.dart';

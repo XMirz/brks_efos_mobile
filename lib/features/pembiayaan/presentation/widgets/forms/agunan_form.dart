@@ -36,7 +36,7 @@ class AgunanForm extends ConsumerWidget {
 
     final jenisJaminan = <DropDownItem>[
       DropDownItem(value: '1', label: l10n.jaminan),
-      DropDownItem(value: '0 ', label: l10n.agunan),
+      DropDownItem(value: '0', label: l10n.agunan),
     ];
     void handleAddAgunan() {
       if (!formState.isValid) {

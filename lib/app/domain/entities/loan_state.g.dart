@@ -24,6 +24,7 @@ _$LoanStateImpl _$$LoanStateImplFromJson(Map<String, dynamic> json) =>
       approveErrorMessage: json['approveErrorMessage'] as String? ?? null,
       rejectErrorMessage: json['rejectErrorMessage'] as String? ?? null,
       forwardErrorMessage: json['forwardErrorMessage'] as String? ?? null,
+      identityValidation: json['identityValidation'] as bool? ?? false,
       approvalType:
           $enumDecodeNullable(_$ApprovalTypeEnumMap, json['approvalType']) ??
               ApprovalType.none,
@@ -47,6 +48,7 @@ Map<String, dynamic> _$$LoanStateImplToJson(_$LoanStateImpl instance) =>
       'approveErrorMessage': instance.approveErrorMessage,
       'rejectErrorMessage': instance.rejectErrorMessage,
       'forwardErrorMessage': instance.forwardErrorMessage,
+      'identityValidation': instance.identityValidation,
       'approvalType': _$ApprovalTypeEnumMap[instance.approvalType],
       'nextStatus': instance.nextStatus,
     };

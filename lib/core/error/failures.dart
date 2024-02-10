@@ -38,6 +38,10 @@ class Failure implements Exception {
     required String message,
     required String code,
   }) = TimedOutFailure;
+  const factory Failure.noBiometric({
+    required String message,
+    required String code,
+  }) = NoBiometricFailure;
 
   final String message;
   final String code;
@@ -97,6 +101,13 @@ class UnknownFailre extends Failure {
 
 class TimedOutFailure extends Failure {
   const TimedOutFailure({
+    required String message,
+    required String code,
+  }) : super(message, code);
+}
+
+class NoBiometricFailure extends Failure {
+  const NoBiometricFailure({
     required String message,
     required String code,
   }) : super(message, code);

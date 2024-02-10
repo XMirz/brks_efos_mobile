@@ -218,7 +218,7 @@ packages:
     source: hosted
     version: "0.3.3+7"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
@@ -774,7 +774,7 @@ packages:
     source: hosted
     version: "2.1.8"
   local_auth_android:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: local_auth_android
       sha256: "54e9c35ce52c06333355ab0d0f41e4c06dbca354b23426765ba41dfb1de27598"
@@ -782,7 +782,7 @@ packages:
     source: hosted
     version: "1.0.36"
   local_auth_ios:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: local_auth_ios
       sha256: eb283b530029b334698918f1e282d4483737cbca972ff21b9193be3d6de8e2b8

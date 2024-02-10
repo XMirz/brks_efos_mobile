@@ -19,9 +19,9 @@ import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/produk_pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/agunan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pekerjaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/produk_pembiayaan_form_provider.dart';
@@ -55,13 +55,13 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       ref.watch(pembiayaanFormProvider).isValid,
       ref.watch(listAgunanProvider.notifier).isValid,
     ];
-    final formStates = [
-      ref.watch(dataDiriFormProvider),
-      ref.watch(pekerjaanFormProvider),
-      ref.watch(pasanganFormProvider),
-      ref.watch(pembiayaanFormProvider),
-      ref.watch(listAgunanProvider),
-    ];
+    // final formStates = [
+    //   ref.watch(dataDiriFormProvider),
+    //   ref.watch(pekerjaanFormProvider),
+    //   ref.watch(pasanganFormProvider),
+    //   ref.watch(pembiayaanFormProvider),
+    //   ref.watch(listAgunanProvider),
+    // ];
 
     void invalidateDataDiriForm() {
       ref.invalidate(dataDiriFormProvider);

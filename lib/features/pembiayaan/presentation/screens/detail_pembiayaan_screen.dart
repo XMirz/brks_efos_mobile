@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
-import 'package:dartz/dartz.dart';
 import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
@@ -16,12 +16,11 @@ import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
-import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/approval_type.dart';
+import 'package:efosm/core/constants/authorization_type.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
 import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/data_diri_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pasangan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pekerjaan_detail_entity.dart';
@@ -30,20 +29,16 @@ import 'package:efosm/features/pembiayaan/domain/entities/detail/scoring_detail_
 import 'package:efosm/features/pembiayaan/domain/entities/detail/slik_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/approval_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/detail_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/providers/forms/approval_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pekerjaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/produk_pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
-import 'package:efosm/features/pembiayaan/presentation/states/approval_form_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_agunan.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_value.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/expandable_card.dart';
-import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/forms/approval_form.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -67,9 +62,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     final user = ref.read(authenticatedUserProvider).user!;
     final isKonsumtif = idKategoriProduk == '1';
     final detailPembiayaanNotifier = ref.watch(
-      isKonsumtif
-          ? detailKonsumtifProvider(idLoan)
-          : detailProduktifProvider(idLoan),
+      isKonsumtif ? detailKonsumtifProvider(idLoan) : detailProduktifProvider(idLoan),
     );
 
     return DefaultTabController(
@@ -100,8 +93,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                           },
                         ),
                       );
-                      final parameter =
-                          await ref.read(fetchInitialParameterProvider.future);
+                      final parameter = await ref.read(fetchInitialParameterProvider.future);
                       if (context.mounted) context.pop('dialog');
                       await parameter.fold(
                         (l) {
@@ -166,16 +158,13 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                       ),
                       child: Theme(
                         data: Theme.of(context).copyWith(
-                          colorScheme: Theme.of(context)
-                              .colorScheme
-                              .copyWith(surfaceVariant: Colors.transparent),
+                          colorScheme: Theme.of(context).colorScheme.copyWith(surfaceVariant: Colors.transparent),
                         ),
                         child: TabBar(
                           controller: tabController,
                           labelColor: AppColor.primary,
                           splashFactory: NoSplash.splashFactory,
-                          overlayColor: const MaterialStatePropertyAll(
-                              Colors.transparent),
+                          overlayColor: const MaterialStatePropertyAll(Colors.transparent),
                           indicatorSize: TabBarIndicatorSize.label,
                           indicatorWeight: 4,
                           labelStyle: AppTextStyle.bodyMedium,
@@ -204,162 +193,155 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                               focusColor: Colors.transparent,
                               dividerColor: Colors.transparent,
                             ),
-                            child: ListView(
-                              children: [
-                                // Text(user.toString()),
-                                Text(loanState.toString()),
-                                spaceY(18),
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    left: AppInteger.horizontalPagePadding,
-                                    right: AppInteger.horizontalPagePadding,
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        '${l10n.pembiayaan} #${data.produkPembiayaan.id}',
-                                        style: AppTextStyle.titleMedium,
-                                        textAlign: TextAlign.start,
-                                      ),
-                                      spaceY(4),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8, vertical: 4),
-                                        decoration: BoxDecoration(
-                                          color: (loanState.statusColor ??
-                                                  AppColor.highlight)
-                                              .withOpacity(0.2),
-                                          borderRadius:
-                                              BorderRadius.circular(48),
-                                        ),
-                                        child: Text(
-                                          loanState.statusDescription,
-                                          style:
-                                              AppTextStyle.bodySmall.copyWith(
-                                            color: loanState.statusColor,
-                                          ),
+                            child: RefreshIndicator(
+                              onRefresh: () async {
+                                ref.invalidate(
+                                    isKonsumtif ? detailKonsumtifProvider(idLoan) : detailProduktifProvider(idLoan));
+                              },
+                              child: ListView(
+                                children: [
+                                  // Text(user.toString()),
+                                  // Text(loanState.toString()),
+                                  spaceY(18),
+                                  Container(
+                                    margin: EdgeInsets.only(
+                                      left: AppInteger.horizontalPagePadding,
+                                      right: AppInteger.horizontalPagePadding,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          '${l10n.pembiayaan} #${data.produkPembiayaan.id}',
+                                          style: AppTextStyle.titleMedium,
                                           textAlign: TextAlign.start,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                spaceY(12),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  child: DetailDataDiri(
-                                    dataDiri: data.dataDiri,
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  child: DetailPekerjaan(
-                                    pekerjaan: data.pekerjaan,
-                                  ),
-                                ),
-                                if (data.pasangan.isNotEmpty)
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    child: DetailPasangan(
-                                      pasangan: data.pasangan.first,
-                                    ),
-                                  ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  child: DetailPembiayaan(
-                                    produk: data.produkPembiayaan,
-                                  ),
-                                ),
-                                if (data.slikOjk != null)
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    child: DetailSlik(
-                                      slik: data.slikOjk!,
-                                    ),
-                                  ),
-                                if (data.scoring != null)
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    child: DetailScoring(
-                                      scoring: data.scoring!,
-                                    ),
-                                  ),
-                                Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 6),
-                                  margin: EdgeInsets.symmetric(
-                                    horizontal:
-                                        AppInteger.horizontalPagePadding,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      if (loanState.canUpdate ?? false)
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 4,
+                                        spaceY(4),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                                          decoration: BoxDecoration(
+                                            color: (loanState.statusColor ?? AppColor.highlight).withOpacity(0.2),
+                                            borderRadius: BorderRadius.circular(48),
                                           ),
-                                          child: PrimarySmallButton(
-                                            text: l10n.edit,
-                                            color: AppColor.warning,
-                                            onPressed: () {
-                                              handleEditButton(
-                                                  idLoan, context, ref);
-                                            },
+                                          child: Text(
+                                            loanState.statusDescription,
+                                            style: AppTextStyle.bodySmall.copyWith(
+                                              color: loanState.statusColor,
+                                            ),
+                                            textAlign: TextAlign.start,
                                           ),
                                         ),
-                                      if (loanState.canReject ?? false)
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 4,
+                                      ],
+                                    ),
+                                  ),
+                                  spaceY(12),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 6),
+                                    child: DetailDataDiri(
+                                      dataDiri: data.dataDiri,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 6),
+                                    child: DetailPekerjaan(
+                                      pekerjaan: data.pekerjaan,
+                                    ),
+                                  ),
+                                  if (data.pasangan.isNotEmpty)
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 6),
+                                      child: DetailPasangan(
+                                        pasangan: data.pasangan.first,
+                                      ),
+                                    ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(vertical: 6),
+                                    child: DetailPembiayaan(
+                                      produk: data.produkPembiayaan,
+                                    ),
+                                  ),
+                                  if (data.slikOjk != null)
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 6),
+                                      child: DetailSlik(
+                                        slik: data.slikOjk!,
+                                      ),
+                                    ),
+                                  if (data.scoring != null)
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 6),
+                                      child: DetailScoring(
+                                        scoring: data.scoring!,
+                                      ),
+                                    ),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(vertical: 6),
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: AppInteger.horizontalPagePadding,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        if (loanState.canUpdate ?? false)
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4,
+                                            ),
+                                            child: PrimarySmallButton(
+                                              text: l10n.edit,
+                                              color: AppColor.warning,
+                                              onPressed: () {
+                                                handleEdit(idLoan, context, ref);
+                                              },
+                                            ),
                                           ),
-                                          child: PrimarySmallButton(
-                                            text: l10n.reject,
-                                            color: AppColor.error,
-                                            onPressed: () => showApprovalModal(
-                                              context,
-                                              ref,
-                                              loanState.copyWith(
-                                                approvalType:
-                                                    ApprovalType.reject,
+                                        if (loanState.canReject ?? false)
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4,
+                                            ),
+                                            child: PrimarySmallButton(
+                                              text: l10n.reject,
+                                              color: AppColor.error,
+                                              onPressed: () => showApprovalModal(
+                                                context,
+                                                ref,
+                                                data.dataDiri,
+                                                loanState.copyWith(
+                                                  approvalType: ApprovalType.reject,
+                                                  identityValidation: false,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                      if (loanState.canApprove ?? false)
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 4,
-                                          ),
-                                          child: PrimarySmallButton(
-                                            text: l10n.approve,
-                                            color: AppColor.primary,
-                                            onPressed: () => showApprovalModal(
-                                              context,
-                                              ref,
-                                              loanState,
+                                        if (loanState.canApprove ?? false)
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 4,
+                                            ),
+                                            child: PrimarySmallButton(
+                                              text: l10n.approve,
+                                              color: AppColor.primary,
+                                              onPressed: () => showApprovalModal(
+                                                context,
+                                                ref,
+                                                data.dataDiri,
+                                                loanState,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      // if (false)
-                                      //   PrimarySmallButton(
-                                      //     text: l10n.forward,
-                                      //     color: AppColor.info,
-                                      //     onPressed: () {},
-                                      //   ),
-                                    ],
+                                        // if (false)
+                                        //   PrimarySmallButton(
+                                        //     text: l10n.forward,
+                                        //     color: AppColor.info,
+                                        //     onPressed: () {},
+                                        //   ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                spaceY(18),
-                              ],
+                                  spaceY(18),
+                                ],
+                              ),
                             ),
                           ),
                           if (data.agunan.isEmpty)
@@ -394,8 +376,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     );
   }
 
-  Future<void> handleEditButton(
-      String idLoan, BuildContext context, WidgetRef ref) async {
+  Future<void> handleEdit(String idLoan, BuildContext context, WidgetRef ref) async {
     unawaited(
       showDialog<void>(
         barrierDismissible: false,
@@ -407,8 +388,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     );
 
     final parameter = await ref.read(fetchInitialParameterProvider.future);
-    final pembiayaanEntity =
-        await ref.read(fetchEditPembiayaanProvider(idLoan).future);
+    final pembiayaanEntity = await ref.read(fetchEditPembiayaanProvider(idLoan).future);
 
     var message = '';
     AppParameter? parameters;
@@ -450,22 +430,13 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     } else {
       invalidateForms(ref);
       ref.read(dataDiriFormProvider.notifier).setDataDiri(pembiayaan!.dataDiri);
-
-      ref
-          .read(pekerjaanFormProvider.notifier)
-          .setPekerjaan(pembiayaan!.pekerjaan, parameters!);
-
+      ref.read(pekerjaanFormProvider.notifier).setPekerjaan(pembiayaan!.pekerjaan, parameters!);
       if (pembiayaan!.pasangan.isNotEmpty) {
-        ref
-            .read(pasanganFormProvider.notifier)
-            .setPasanganForm(pembiayaan!.pasangan.first);
+        ref.read(pasanganFormProvider.notifier).setPasanganForm(pembiayaan!.pasangan.first);
       }
-      ref
-          .read(pembiayaanFormProvider.notifier)
-          .setProdukPembiayaanForm(pembiayaan!.produkPembiayaan, parameters!);
+      ref.read(pembiayaanFormProvider.notifier).setProdukPembiayaanForm(pembiayaan!.produkPembiayaan, parameters!);
 
       if (context.mounted) {
-        // debugPrintStack(label: ref.read(dataDiriFormProvider).toString());
         await context.pushNamed(
           AppRoutes.editPembiayaanPage,
           extra: pembiayaan,
@@ -477,9 +448,69 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     }
   }
 
-  Future<void> showApprovalModal(BuildContext parentContext,
-      WidgetRef parentRef, LoanState loanState) async {
-    debugPrint('Show Modal Approve');
+  Future<void> showApprovalModal(
+    BuildContext parentContext,
+    WidgetRef parentRef,
+    DataDiriDetailEntity dataDiri,
+    LoanState loanState,
+  ) async {
+    // Check AuthType
+    final user = parentRef.read(authenticatedUserProvider).user!;
+    final authorizationType = getAuthorizationType(user.authorizationType);
+    var isSingle = false;
+    var isAccountRequired = true;
+    var isBiometricRequired = true;
+    if (authorizationType == AuthorizationType.biometric) {
+      isAccountRequired = false;
+    } else if (authorizationType == AuthorizationType.account) {
+      isBiometricRequired = false;
+    } else if (authorizationType == AuthorizationType.single) {
+      isSingle = true;
+    }
+
+    var isBiometricAuthenticated = false;
+    if (isBiometricRequired || isSingle) {
+      final authService = parentRef.read(authServiceProvider);
+      final biometricAuth = await authService.authenticateBiometric();
+      await biometricAuth.fold(
+        (l) async {
+          if (!isSingle) {
+            await showDialog<void>(
+              barrierDismissible: false,
+              context: parentContext,
+              builder: (context) {
+                return OurAlertDialog(
+                  title: l10n.failedBiometricAuth,
+                  description: l.message,
+                  actions: [
+                    SmallButton(
+                      text: l10n.ok,
+                      onPressed: () {
+                        if (context.mounted) {
+                          context.pop('dialog');
+                        }
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+        },
+        (r) {
+          // Matikan autentikasi akun jika fingerprint OK
+          isBiometricAuthenticated = true;
+          isAccountRequired = false;
+        },
+      );
+    }
+
+// Jika hanya by biometrik, return
+    if (isBiometricAuthenticated && isAccountRequired) {
+      return;
+    }
+    debugPrint('akwaokwao');
+
     // invalidateApprovalForm(parentRef);
     var isRekomendasiRequired = false;
     var isArahanCallRequired = false;
@@ -513,35 +544,40 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     } else {
       eligible = false;
     }
+
     if (!eligible) {
-      ScaffoldMessenger.of(parentContext).showSnackBar(
-        SnackBar(
-          content:
-              Text(loanState.approveErrorMessage ?? l10n.unauthorizedAction),
-          behavior: SnackBarBehavior.floating,
-        ),
-      );
+      if (parentContext.mounted) {
+        ScaffoldMessenger.of(parentContext).showSnackBar(
+          SnackBar(
+            content: Text(loanState.approveErrorMessage ?? l10n.unauthorizedAction),
+            behavior: SnackBarBehavior.floating,
+          ),
+        );
+      }
       return;
     }
 
-    // if (loanState.approvalType == ApprovalType.notisi2) {
-    await showModalBottomSheet<FormState>(
-      useSafeArea: true,
-      showDragHandle: true,
-      context: parentContext,
-      isScrollControlled: true,
-      builder: (context) {
-        return ApprovalFormModal(
-          parentContext: parentContext,
-          loanState: loanState,
-          isRekomendasiRequired: isRekomendasiRequired,
-          isArahanCallRequired: isArahanCallRequired,
-          isKeputusanRequired: isKeputusanRequired,
-          isKeteranganRequired: isKeteranganRequired,
-        );
-      },
-    );
-    // }
+    debugPrint('Show Modal Approve');
+    if (parentContext.mounted) {
+      await showModalBottomSheet<FormState>(
+        useSafeArea: true,
+        showDragHandle: true,
+        context: parentContext,
+        isScrollControlled: true,
+        builder: (context) {
+          return ApprovalFormModal(
+            parentContext: parentContext,
+            dataDiri: dataDiri,
+            loanState: loanState,
+            isRekomendasiRequired: isRekomendasiRequired,
+            isArahanCallRequired: isArahanCallRequired,
+            isKeputusanRequired: isKeputusanRequired,
+            isKeteranganRequired: isKeteranganRequired,
+            isAccountRequired: isAccountRequired,
+          );
+        },
+      );
+    }
   }
 }
 
@@ -554,8 +590,7 @@ class DetailDataDiri extends StatelessWidget {
   final DataDiriDetailEntity dataDiri;
   @override
   Widget build(BuildContext context) {
-    final ttl =
-        '${capitalizeEachWord(dataDiri.tempatLahir)}, ${getLocalDate(context, dataDiri.tanggalLahir)}';
+    final ttl = '${capitalizeEachWord(dataDiri.tempatLahir)}, ${getLocalDate(context, dataDiri.tanggalLahir)}';
     return ExpandableCard(
       title: l10n.dataDiriDebitur,
       initiallyExpanded: true,
@@ -634,9 +669,7 @@ class DetailPekerjaan extends StatelessWidget {
       children: [
         DetailValue(label: l10n.profesi, value: pekerjaan.descProfesi),
         DetailValue(label: l10n.namaInstansi, value: pekerjaan.namaInstansi),
-        DetailValue(
-            label: l10n.statusPerusahaan,
-            value: pekerjaan.descStatusPerusahaan),
+        DetailValue(label: l10n.statusPerusahaan, value: pekerjaan.descStatusPerusahaan),
         DetailValue(label: l10n.jabatan, value: pekerjaan.jabatan),
 
         DetailValue(
@@ -683,11 +716,9 @@ class DetailPasangan extends StatelessWidget {
   final PasanganDetailEntity pasangan;
   @override
   Widget build(BuildContext context) {
-    final tanggalLahir = pasangan.tanggalLahir != null
-        ? DateFormat.yMMMMd('id').format(DateTime.parse(pasangan.tanggalLahir!))
-        : '-';
-    final ttl =
-        '${capitalizeEachWord(pasangan.tempatLahir ?? '-')}, $tanggalLahir';
+    final tanggalLahir =
+        pasangan.tanggalLahir != null ? DateFormat.yMMMMd('id').format(DateTime.parse(pasangan.tanggalLahir!)) : '-';
+    final ttl = '${capitalizeEachWord(pasangan.tempatLahir ?? '-')}, $tanggalLahir';
     return ExpandableCard(
       title: l10n.pasangan,
       children: [
@@ -697,9 +728,7 @@ class DetailPasangan extends StatelessWidget {
         DetailValue(label: l10n.ttl, value: ttl),
         DetailValue(
           label: l10n.umur,
-          value: pasangan.tanggalLahir != null
-              ? calculateAge(pasangan.tanggalLahir!)
-              : '-',
+          value: pasangan.tanggalLahir != null ? calculateAge(pasangan.tanggalLahir!) : '-',
         ),
       ],
     );
@@ -717,8 +746,7 @@ class DetailPembiayaan extends StatelessWidget {
       children: [
         DetailValue(
           label: l10n.kategoriProduk,
-          value:
-              '${produk.idKategoriProduk} - ${capitalizeFirst(produk.kategoriProduk)}',
+          value: '${produk.idKategoriProduk} - ${capitalizeFirst(produk.kategoriProduk)}',
         ),
         DetailValue(label: l10n.produk, value: produk.descProduk),
         DetailValue(

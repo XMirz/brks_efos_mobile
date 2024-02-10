@@ -14,7 +14,6 @@ class LoadingPlaceholder extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        spaceY(96),
         const OurLoading(
           height: 64,
           width: 64,

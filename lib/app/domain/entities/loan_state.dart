@@ -24,12 +24,12 @@ class LoanState with _$LoanState {
     @Default(null) String? approveErrorMessage,
     @Default(null) String? rejectErrorMessage,
     @Default(null) String? forwardErrorMessage,
+    @Default(false) bool? identityValidation,
     @Default(null) @JsonKey(includeFromJson: false) Color? statusColor,
     @Default(ApprovalType.none) ApprovalType? approvalType,
     String? nextStatus,
   }) = _LoanState;
 
   const LoanState._();
-  factory LoanState.fromJson(Map<String, dynamic> json) =>
-      _$LoanStateFromJson(json);
+  factory LoanState.fromJson(Map<String, dynamic> json) => _$LoanStateFromJson(json);
 }

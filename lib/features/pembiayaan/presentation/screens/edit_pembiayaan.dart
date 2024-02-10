@@ -43,8 +43,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
   final PembiayaanEntity pembiayaan;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isMarried = ref.watch(dataDiriFormProvider).statusPernikahan.value ==
-        AppString.isMarriedValue;
+    final isMarried = ref.watch(dataDiriFormProvider).statusPernikahan.value == AppString.isMarriedValue;
     final stepIndex = ref.watch(stepIndexProvider);
 
     final stepValid = [
@@ -54,13 +53,12 @@ class EditPembiayaanScreen extends HookConsumerWidget {
       ref.watch(pembiayaanFormProvider).isValid,
     ];
 
-    final formStates = [
-      ref.watch(dataDiriFormProvider),
-      ref.watch(pekerjaanFormProvider),
-      ref.watch(pasanganFormProvider),
-      ref.watch(pembiayaanFormProvider),
-      // ref.watch(listAgunanProvider),
-    ];
+    // final formStates = [
+    //   ref.watch(dataDiriFormProvider),
+    //   ref.watch(pekerjaanFormProvider),
+    //   ref.watch(pasanganFormProvider),
+    //   ref.watch(pembiayaanFormProvider),
+    // ];
 
     Future<void> saveDataPembiayaan() async {
       unawaited(
@@ -147,8 +145,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         'produk_pembiayaan': produkPembiayaan,
       };
 
-      final editResponse =
-          await ref.read(updateLoanProvider(pembiayaan).future);
+      final editResponse = await ref.read(updateLoanProvider(pembiayaan).future);
       if (context.mounted) context.pop('dialog');
       await editResponse.fold((l) {
         showDialog<void>(
@@ -189,8 +186,8 @@ class EditPembiayaanScreen extends HookConsumerWidget {
           },
         );
         invalidateForms(ref);
-        ref.invalidate(detailKonsumtifProvider);
-        ref.invalidate(detailProduktifProvider);
+        ref.invalidate(detailKonsumtifProvider(idLoan));
+        ref.invalidate(detailProduktifProvider(idLoan));
         if (context.mounted) context.pop();
       });
     }
@@ -208,13 +205,11 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         );
         return;
       }
-      ref.read(stepIndexProvider.notifier).state =
-          ref.read(stepIndexProvider) + 1;
+      ref.read(stepIndexProvider.notifier).state = ref.read(stepIndexProvider) + 1;
     }
 
     Future<void> handleFinishButton() async {
-      Injector.registerAuthenticatedClient(
-          ref.read(authenticatedUserProvider).token!);
+      Injector.registerAuthenticatedClient(ref.read(authenticatedUserProvider).token!);
       await showDialog<void>(
         barrierDismissible: false,
         context: context,
@@ -286,15 +281,13 @@ class EditPembiayaanScreen extends HookConsumerWidget {
                       ),
                     StepState.indexed => Text(
                         (stepIndex + 1).toString(),
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                       ),
                     StepState.editing => null,
                     StepState.disabled => null,
                     StepState.error => Text(
                         stepIndex.toString(),
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.error),
+                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.error),
                       ),
                   },
                 );
@@ -304,8 +297,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
                 (states) {
                   if (states.contains(MaterialState.disabled)) {
                     return AppColor.disabled;
-                  } else if (states.contains(MaterialState.selected) ||
-                      states.contains(MaterialState.pressed)) {
+                  } else if (states.contains(MaterialState.selected) || states.contains(MaterialState.pressed)) {
                     return AppColor.primary;
                   }
                   return AppColor.highlightSecondary;
@@ -327,9 +319,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
               },
               controlsBuilder: (context, details) {
                 return Row(
-                  mainAxisAlignment: stepIndex == 0
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: stepIndex == 0 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     if (stepIndex > 0)
                       PrimaryButton(
@@ -338,12 +328,10 @@ class EditPembiayaanScreen extends HookConsumerWidget {
                         size: const Size(double.minPositive, 36),
                         text: l10n.prev,
                         backgroundColor: AppColor.accent,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                         onPressed: () {
                           if (stepIndex > 0) {
-                            ref.read(stepIndexProvider.notifier).state =
-                                stepIndex - 1;
+                            ref.read(stepIndexProvider.notifier).state = stepIndex - 1;
                           }
                         },
                       ),
@@ -355,8 +343,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
                         text: stepIndex != 3 ? l10n.next : l10n.send,
                         disabled: !stepValid[stepIndex],
                         backgroundColor: AppColor.primary,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                         onPressed: () async {
                           if (stepIndex == 3) {
                             await handleFinishButton();

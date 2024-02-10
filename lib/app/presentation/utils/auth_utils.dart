@@ -51,6 +51,7 @@ LoanState buildKonsumtifLoanState({
   var showReject = false;
   var canForward = false;
   var showForward = false;
+  var identityValidation = false;
   var nextStatus = status;
   var approvalType = ApprovalType.none;
   var statusColor = AppColor.highlight;
@@ -79,6 +80,7 @@ LoanState buildKonsumtifLoanState({
     showApprove = true;
     showReject = true;
     statusColor = AppColor.warning;
+
     if (typeCabang == 1) {
       final canAuth = canAuthorizeAll(authorities, [
         ApprovalType.notisi1.typeName,
@@ -86,14 +88,12 @@ LoanState buildKonsumtifLoanState({
         ApprovalType.notisi3.typeName,
       ]);
       statusDescription = 'Menunggu Approval Pinkedai';
-      canApprove = authorities.contains(ApprovalType.notisi3.typeName) &&
-          plafon <= limit;
+      canApprove = authorities.contains(ApprovalType.notisi3.typeName) && plafon <= limit;
       canForward = plafon > limit;
       showForward = true;
       approvalType = ApprovalType.notisi3;
       nextStatus = '13';
-      approveErrorMessage =
-          !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
+      approveErrorMessage = !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     } else if (typeCabang == 2 || typeCabang == 3) {
       statusDescription = 'Menunggu Approval Team Leader';
       canApprove = authorities.contains(ApprovalType.notisi1.typeName);
@@ -109,6 +109,7 @@ LoanState buildKonsumtifLoanState({
     canUpdate = isAO(roleId);
     statusDescription = 'Review Data Nasabah';
     statusColor = AppColor.info;
+    identityValidation = true;
   } else if (status == '6') {
     statusDescription = 'Menunggu Apv Manager Bisnis';
     canApprove = authorities.contains(ApprovalType.notisi2.typeName);
@@ -118,8 +119,7 @@ LoanState buildKonsumtifLoanState({
     nextStatus = '7';
   } else if (status == '7') {
     canReject = authorities.contains(ApprovalType.reject.typeName);
-    canApprove =
-        authorities.contains(ApprovalType.notisi3.typeName) && plafon <= limit;
+    canApprove = authorities.contains(ApprovalType.notisi3.typeName) && plafon <= limit;
     canForward = plafon > limit;
     showForward = true;
     approvalType = ApprovalType.notisi3;
@@ -132,10 +132,7 @@ LoanState buildKonsumtifLoanState({
     } else if (typeCabang == 4) {
       statusDescription = 'Menunggu Apv General Manager';
     }
-  } else if (status == '8' ||
-      status == '9 ' ||
-      status == '10' ||
-      status == '12') {
+  } else if (status == '8' || status == '9 ' || status == '10' || status == '12') {
     statusDescription = 'Menunggu Apv Cabang Induk';
     statusColor = AppColor.warning;
   } else if (status == '12') {
@@ -204,6 +201,7 @@ LoanState buildKonsumtifLoanState({
     showReject: showReject,
     canApprove: canApprove,
     showApprove: showApprove,
+    identityValidation: identityValidation,
     approvalType: approvalType,
     approveErrorMessage: approveErrorMessage,
     statusColor: statusColor,
@@ -233,6 +231,7 @@ LoanState buildProduktifLoanState({
   var showReject = false;
   var canForward = false;
   var showForward = false;
+  var identityValidation = false;
   var nextStatus = status;
   var approvalType = ApprovalType.none;
   var statusColor = AppColor.textSecondary;
@@ -266,6 +265,7 @@ LoanState buildProduktifLoanState({
     showApprove = true;
     showReject = true;
     statusColor = AppColor.warning;
+    identityValidation = true;
     if (typeCabang == 1) {
       final canAuth = canAuthorizeAll(authorities, [
         ApprovalType.notisi1.typeName,
@@ -278,8 +278,7 @@ LoanState buildProduktifLoanState({
       showForward = true;
       nextStatus = '9';
       approvalType = ApprovalType.notisi3;
-      approveErrorMessage =
-          !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
+      approveErrorMessage = !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     } else if (typeCabang == 2 || typeCabang == 3 || typeCabang == 4) {
       final canAuth = canAuthorizeAll(authorities, [
         ApprovalType.notisi1.typeName,
@@ -289,8 +288,7 @@ LoanState buildProduktifLoanState({
       canApprove = canAuth;
       nextStatus = '8';
       approvalType = ApprovalType.notisi1;
-      approveErrorMessage =
-          !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
+      approveErrorMessage = !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     }
     //  else if (typeCabang == 4) {
     //   statusDescription = 'Menunggu Approval Team Leader';
@@ -308,9 +306,8 @@ LoanState buildProduktifLoanState({
     canReject = authorities.contains(ApprovalType.reject.typeName);
     approvalType = ApprovalType.notisi2;
     nextStatus = '8';
-    approveErrorMessage = !authorities.contains(ApprovalType.notisi2.typeName)
-        ? 'Maaf, anda tidak dapat melakukan aksi ini!.'
-        : null;
+    approveErrorMessage =
+        !authorities.contains(ApprovalType.notisi2.typeName) ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     statusColor = AppColor.info;
   } else if (status == '8') {
     final canAuth = authorities.contains(ApprovalType.notisi3.typeName);
@@ -321,8 +318,7 @@ LoanState buildProduktifLoanState({
     approvalType = ApprovalType.notisi3;
     statusColor = AppColor.warning;
     nextStatus = '9';
-    approveErrorMessage =
-        !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
+    approveErrorMessage = !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     if (typeCabang == 2) {
       statusDescription = 'Menunggu Apv Pincapem';
     } else if (typeCabang == 3) {
@@ -347,11 +343,7 @@ LoanState buildProduktifLoanState({
     statusDescription = 'Review Cabang Induk';
   } else if (status == '12') {
     statusDescription = 'Ditolak Cabang Induk';
-  } else if (status == '13' ||
-      status == '14' ||
-      status == '15' ||
-      status == '16' ||
-      status == '17') {
+  } else if (status == '13' || status == '14' || status == '15' || status == '16' || status == '17') {
     statusDescription = 'Menunggu Apv Cabang Induk';
     statusColor = AppColor.warning;
   } else if (status == '18') {
@@ -418,6 +410,7 @@ LoanState buildProduktifLoanState({
     showReject: showReject,
     canApprove: canApprove,
     showApprove: showApprove,
+    identityValidation: identityValidation,
     approvalType: approvalType,
     approveErrorMessage: approveErrorMessage,
     statusColor: statusColor,

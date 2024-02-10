@@ -1,5 +1,4 @@
-import 'dart:io';
-
+import 'package:efosm/app/data/local_repository/local_auth_repository.dart';
 import 'package:efosm/app/domain/hive_entities/user_hive.dart';
 import 'package:efosm/core/data/local/hive_client.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
@@ -20,6 +19,16 @@ class Injector {
       ..registerAdapter(UserHiveEntityAdapter());
     // Register Hive
     GetIt.I.registerSingleton<HiveClient>(HiveClient());
+
+    // Register Repositories
+    GetIt.I.registerSingletonAsync<LocalAuthRepository>(() async {
+      final localRepository = LocalAuthRepository();
+      await localRepository.getEncryptionKey();
+      return localRepository;
+    });
+
+    // // Services
+    // GetIt.I.registerSingleton(AuthService());
   }
 
   static void registerAuthenticatedClient(String bearerToken) {

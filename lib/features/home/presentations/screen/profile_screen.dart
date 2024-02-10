@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:efosm/app/data/dto/user_login_dto.dart';
-import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
@@ -54,9 +54,7 @@ class ProfileScreen extends HookConsumerWidget {
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColor.colorList[
-                          random.nextInt(AppColor.colorList.length)]),
+                      shape: BoxShape.circle, color: AppColor.colorList[random.nextInt(AppColor.colorList.length)]),
                   height: 72,
                   width: 72,
                   child: Text(
@@ -101,32 +99,32 @@ class ProfileScreen extends HookConsumerWidget {
                 DetailValue(
                   label: l10n.nama,
                   value: user.name,
-                  large: true,
+                  // large: true,
                 ),
                 DetailValue(
                   label: l10n.username,
                   value: user.username,
-                  large: true,
+                  // large: true,
                 ),
                 DetailValue(
                   label: l10n.role,
                   value: user.role,
-                  large: true,
+                  // large: true,
                 ),
                 DetailValue(
                   label: l10n.cabang,
                   value: '${user.idCabang} - ${user.cabang}',
-                  large: true,
+                  // large: true,
                 ),
                 DetailValue(
                   label: l10n.limitKonsumtif,
                   value: toRupiahString(user.limitKonsumtifCabang.toString()),
-                  large: true,
+                  // large: true,
                 ),
                 DetailValue(
                   label: l10n.limitProduktif,
                   value: toRupiahString(user.limitProduktifCabang.toString()),
-                  large: true,
+                  // large: true,
                 ),
                 spaceY(4),
                 buildDivider,
@@ -135,8 +133,7 @@ class ProfileScreen extends HookConsumerWidget {
                   onTap: () => handleLogout(context, ref),
                   child: Text(
                     l10n.exit,
-                    style:
-                        AppTextStyle.bodyLarge.copyWith(color: AppColor.error),
+                    style: AppTextStyle.bodyLarge.copyWith(color: AppColor.error),
                   ),
                 ),
                 spaceY(8),

@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:efosm/app/data/dto/user_login_dto.dart';
-import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/states/user_state.dart';
@@ -64,8 +64,7 @@ class LoginForm extends ConsumerWidget {
         username: formState.form.username.value,
         password: formState.form.password.value,
       );
-      final userResult =
-          await ref.read(createAuthenticationProvider(user).future);
+      final userResult = await ref.read(createAuthenticationProvider(user).future);
       if (context.mounted) context.pop('dialog');
       await userResult.fold((l) {
         showDialog<void>(
@@ -86,8 +85,9 @@ class LoginForm extends ConsumerWidget {
       }, (r) async {
         Injector.registerAuthenticatedClient(r.token);
         await ref.read(localAuthRepositoryProvider).saveAuth(r);
-        ref.read(authenticatedUserProvider.notifier).state =
-            UserState(token: r.token, user: r);
+        await ref.read(localAuthRepositoryProvider).saveAkwoakowako(formState.form.password.value);
+        await ref.read(localAuthRepositoryProvider).savedeviceId(deviceId);
+        ref.read(authenticatedUserProvider.notifier).state = UserState(token: r.token, user: r);
         ref
           ..invalidate(loginFormProvider)
           ..invalidate(usernameControllerProvider)
@@ -106,8 +106,7 @@ class LoginForm extends ConsumerWidget {
           hint: context.l10n.username,
           controller: ref.read(usernameControllerProvider),
           error: formState.form.username.errorMessage,
-          onChanged: (value) =>
-              ref.read(loginFormProvider.notifier).setUsername(value),
+          onChanged: (value) => ref.read(loginFormProvider.notifier).setUsername(value),
         ),
         spaceY(16),
         OurTextField(
@@ -116,8 +115,7 @@ class LoginForm extends ConsumerWidget {
           obsecureText: true,
           controller: ref.read(passwordControllerProvider),
           error: formState.form.password.errorMessage,
-          onChanged: (value) =>
-              ref.read(loginFormProvider.notifier).setPassword(value),
+          onChanged: (value) => ref.read(loginFormProvider.notifier).setPassword(value),
         ),
         spaceY(16),
         Container(

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$UserState {
   String? get token => throw _privateConstructorUsedError;
-  UserEntity? get user => throw _privateConstructorUsedError;
+  SessionEntity? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserStateCopyWith<UserState> get copyWith =>
@@ -29,9 +29,9 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({String? token, UserEntity? user});
+  $Res call({String? token, SessionEntity? user});
 
-  $UserEntityCopyWith<$Res>? get user;
+  $SessionEntityCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -58,18 +58,18 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
+              as SessionEntity?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $UserEntityCopyWith<$Res>? get user {
+  $SessionEntityCopyWith<$Res>? get user {
     if (_value.user == null) {
       return null;
     }
 
-    return $UserEntityCopyWith<$Res>(_value.user!, (value) {
+    return $SessionEntityCopyWith<$Res>(_value.user!, (value) {
       return _then(_value.copyWith(user: value) as $Val);
     });
   }
@@ -83,10 +83,10 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? token, UserEntity? user});
+  $Res call({String? token, SessionEntity? user});
 
   @override
-  $UserEntityCopyWith<$Res>? get user;
+  $SessionEntityCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
       user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as UserEntity?,
+              as SessionEntity?,
     ));
   }
 }
@@ -124,7 +124,7 @@ class _$UserStateImpl extends _UserState {
   @override
   final String? token;
   @override
-  final UserEntity? user;
+  final SessionEntity? user;
 
   @override
   String toString() {
@@ -151,14 +151,14 @@ class _$UserStateImpl extends _UserState {
 }
 
 abstract class _UserState extends UserState {
-  factory _UserState({final String? token, final UserEntity? user}) =
+  factory _UserState({final String? token, final SessionEntity? user}) =
       _$UserStateImpl;
   _UserState._() : super._();
 
   @override
   String? get token;
   @override
-  UserEntity? get user;
+  SessionEntity? get user;
   @override
   @JsonKey(ignore: true)
   _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>

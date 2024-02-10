@@ -9,8 +9,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'approval_provider.g.dart';
 
 @Riverpod(keepAlive: true)
-ApprovalRepository approvalRepository(ApprovalRepositoryRef ref) =>
-    ApprovalRepository();
+ApprovalRepository approvalRepository(ApprovalRepositoryRef ref) => ApprovalRepository();
 
 @Riverpod()
 Future<Either<Failure, bool>> approvalOneKonsumtif(

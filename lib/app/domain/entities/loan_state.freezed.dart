@@ -35,6 +35,7 @@ mixin _$LoanState {
   String? get approveErrorMessage => throw _privateConstructorUsedError;
   String? get rejectErrorMessage => throw _privateConstructorUsedError;
   String? get forwardErrorMessage => throw _privateConstructorUsedError;
+  bool? get identityValidation => throw _privateConstructorUsedError;
   @JsonKey(includeFromJson: false)
   Color? get statusColor => throw _privateConstructorUsedError;
   ApprovalType? get approvalType => throw _privateConstructorUsedError;
@@ -67,6 +68,7 @@ abstract class $LoanStateCopyWith<$Res> {
       String? approveErrorMessage,
       String? rejectErrorMessage,
       String? forwardErrorMessage,
+      bool? identityValidation,
       @JsonKey(includeFromJson: false) Color? statusColor,
       ApprovalType? approvalType,
       String? nextStatus});
@@ -100,6 +102,7 @@ class _$LoanStateCopyWithImpl<$Res, $Val extends LoanState>
     Object? approveErrorMessage = freezed,
     Object? rejectErrorMessage = freezed,
     Object? forwardErrorMessage = freezed,
+    Object? identityValidation = freezed,
     Object? statusColor = freezed,
     Object? approvalType = freezed,
     Object? nextStatus = freezed,
@@ -165,6 +168,10 @@ class _$LoanStateCopyWithImpl<$Res, $Val extends LoanState>
           ? _value.forwardErrorMessage
           : forwardErrorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      identityValidation: freezed == identityValidation
+          ? _value.identityValidation
+          : identityValidation // ignore: cast_nullable_to_non_nullable
+              as bool?,
       statusColor: freezed == statusColor
           ? _value.statusColor
           : statusColor // ignore: cast_nullable_to_non_nullable
@@ -205,6 +212,7 @@ abstract class _$$LoanStateImplCopyWith<$Res>
       String? approveErrorMessage,
       String? rejectErrorMessage,
       String? forwardErrorMessage,
+      bool? identityValidation,
       @JsonKey(includeFromJson: false) Color? statusColor,
       ApprovalType? approvalType,
       String? nextStatus});
@@ -236,6 +244,7 @@ class __$$LoanStateImplCopyWithImpl<$Res>
     Object? approveErrorMessage = freezed,
     Object? rejectErrorMessage = freezed,
     Object? forwardErrorMessage = freezed,
+    Object? identityValidation = freezed,
     Object? statusColor = freezed,
     Object? approvalType = freezed,
     Object? nextStatus = freezed,
@@ -301,6 +310,10 @@ class __$$LoanStateImplCopyWithImpl<$Res>
           ? _value.forwardErrorMessage
           : forwardErrorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      identityValidation: freezed == identityValidation
+          ? _value.identityValidation
+          : identityValidation // ignore: cast_nullable_to_non_nullable
+              as bool?,
       statusColor: freezed == statusColor
           ? _value.statusColor
           : statusColor // ignore: cast_nullable_to_non_nullable
@@ -336,6 +349,7 @@ class _$LoanStateImpl extends _LoanState {
       this.approveErrorMessage = null,
       this.rejectErrorMessage = null,
       this.forwardErrorMessage = null,
+      this.identityValidation = false,
       @JsonKey(includeFromJson: false) this.statusColor = null,
       this.approvalType = ApprovalType.none,
       this.nextStatus})
@@ -386,6 +400,9 @@ class _$LoanStateImpl extends _LoanState {
   @JsonKey()
   final String? forwardErrorMessage;
   @override
+  @JsonKey()
+  final bool? identityValidation;
+  @override
   @JsonKey(includeFromJson: false)
   final Color? statusColor;
   @override
@@ -396,7 +413,7 @@ class _$LoanStateImpl extends _LoanState {
 
   @override
   String toString() {
-    return 'LoanState(id: $id, kategoriProduk: $kategoriProduk, currentStatus: $currentStatus, statusDescription: $statusDescription, canApprove: $canApprove, showApprove: $showApprove, canUpdate: $canUpdate, showUpdate: $showUpdate, canForward: $canForward, showForward: $showForward, canReject: $canReject, showReject: $showReject, approveErrorMessage: $approveErrorMessage, rejectErrorMessage: $rejectErrorMessage, forwardErrorMessage: $forwardErrorMessage, statusColor: $statusColor, approvalType: $approvalType, nextStatus: $nextStatus)';
+    return 'LoanState(id: $id, kategoriProduk: $kategoriProduk, currentStatus: $currentStatus, statusDescription: $statusDescription, canApprove: $canApprove, showApprove: $showApprove, canUpdate: $canUpdate, showUpdate: $showUpdate, canForward: $canForward, showForward: $showForward, canReject: $canReject, showReject: $showReject, approveErrorMessage: $approveErrorMessage, rejectErrorMessage: $rejectErrorMessage, forwardErrorMessage: $forwardErrorMessage, identityValidation: $identityValidation, statusColor: $statusColor, approvalType: $approvalType, nextStatus: $nextStatus)';
   }
 
   @override
@@ -433,6 +450,8 @@ class _$LoanStateImpl extends _LoanState {
                 other.rejectErrorMessage == rejectErrorMessage) &&
             (identical(other.forwardErrorMessage, forwardErrorMessage) ||
                 other.forwardErrorMessage == forwardErrorMessage) &&
+            (identical(other.identityValidation, identityValidation) ||
+                other.identityValidation == identityValidation) &&
             (identical(other.statusColor, statusColor) ||
                 other.statusColor == statusColor) &&
             (identical(other.approvalType, approvalType) ||
@@ -443,26 +462,28 @@ class _$LoanStateImpl extends _LoanState {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      kategoriProduk,
-      currentStatus,
-      statusDescription,
-      canApprove,
-      showApprove,
-      canUpdate,
-      showUpdate,
-      canForward,
-      showForward,
-      canReject,
-      showReject,
-      approveErrorMessage,
-      rejectErrorMessage,
-      forwardErrorMessage,
-      statusColor,
-      approvalType,
-      nextStatus);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        kategoriProduk,
+        currentStatus,
+        statusDescription,
+        canApprove,
+        showApprove,
+        canUpdate,
+        showUpdate,
+        canForward,
+        showForward,
+        canReject,
+        showReject,
+        approveErrorMessage,
+        rejectErrorMessage,
+        forwardErrorMessage,
+        identityValidation,
+        statusColor,
+        approvalType,
+        nextStatus
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -495,6 +516,7 @@ abstract class _LoanState extends LoanState {
       final String? approveErrorMessage,
       final String? rejectErrorMessage,
       final String? forwardErrorMessage,
+      final bool? identityValidation,
       @JsonKey(includeFromJson: false) final Color? statusColor,
       final ApprovalType? approvalType,
       final String? nextStatus}) = _$LoanStateImpl;
@@ -533,6 +555,8 @@ abstract class _LoanState extends LoanState {
   String? get rejectErrorMessage;
   @override
   String? get forwardErrorMessage;
+  @override
+  bool? get identityValidation;
   @override
   @JsonKey(includeFromJson: false)
   Color? get statusColor;

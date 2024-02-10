@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:efosm/app/domain/entities/user_entity.dart';
+import 'package:efosm/app/domain/entities/session_entity.dart';
 import 'package:efosm/app/domain/hive_entities/user_hive.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/core/data/local/hive_client.dart';
@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
+import 'package:crypto/crypto.dart';
 
 class LocalAuthRepository {
   final HiveClient hiveClient = GetIt.I.get();
@@ -16,8 +17,7 @@ class LocalAuthRepository {
 
   Future<List<int>> getEncryptionKey() async {
     const secureStorage = FlutterSecureStorage();
-    final containsEncryptionKey =
-        await secureStorage.containsKey(key: AppString.encKey);
+    final containsEncryptionKey = await secureStorage.containsKey(key: AppString.encKey);
     if (!containsEncryptionKey) {
       final key = Hive.generateSecureKey();
       await secureStorage.write(
@@ -34,30 +34,29 @@ class LocalAuthRepository {
     }
   }
 
-  Future<void> saveAuth(UserEntity authUser) async {
+  Future<void> saveAuth(SessionEntity authUser) async {
     debugPrint(authUser.toString());
     final hiveAuth = UserHiveEntity(
-      username: authUser.username,
-      name: authUser.name,
-      idRole: authUser.idRole,
-      role: authUser.role,
-      idCabang: authUser.idCabang,
-      cabang: authUser.cabang,
-      levelApproveCabang: authUser.levelApproveCabang,
-      token: authUser.token,
-      limitKonsumtifCabang: authUser.limitKonsumtifCabang,
-      limitProduktifCabang: authUser.limitProduktifCabang,
-    );
+        nik: authUser.nik,
+        username: authUser.username,
+        name: authUser.name,
+        idRole: authUser.idRole,
+        role: authUser.role,
+        idCabang: authUser.idCabang,
+        cabang: authUser.cabang,
+        levelApproveCabang: authUser.levelApproveCabang,
+        token: authUser.token,
+        limitKonsumtifCabang: authUser.limitKonsumtifCabang,
+        limitProduktifCabang: authUser.limitProduktifCabang,
+        authorities: authUser.authorities);
 
-    await hiveClient.createOrUpdate(
-        boxName, AppString.hiveUserKey, encryptionKey, hiveAuth);
+    await hiveClient.createOrUpdate(boxName, AppString.hiveUserKey, encryptionKey, hiveAuth);
   }
 
-  Future<UserEntity?> retrieveAuth() async {
-    final hiveAuth = await hiveClient.read<UserHiveEntity>(
-        boxName, AppString.hiveUserKey, encryptionKey);
+  Future<SessionEntity?> retrieveAuth() async {
+    final hiveAuth = await hiveClient.read<UserHiveEntity>(boxName, AppString.hiveUserKey, encryptionKey);
     if (hiveAuth == null) return null;
-    final auth = UserEntity(
+    final auth = SessionEntity(
       nik: hiveAuth.nik!,
       username: hiveAuth.username!,
       name: hiveAuth.name!,
@@ -74,23 +73,23 @@ class LocalAuthRepository {
     return auth;
   }
 
-  Future<String?> destroyAuth() async {
-    final akwoakowako = await hiveClient.read<String>(
-        boxName, AppString.hiveUserKey, encryptionKey);
-    return akwoakowako;
+  Future<void> destroyAuth() async {
+    await hiveClient.delete(boxName, AppString.hiveUserKey, encryptionKey);
   }
 
   Future<void> saveAkwoakowako(String akwoakowako) async {
+    final bytes = utf8.encode(akwoakowako);
+    final hashedAkwoakowako = sha256.convert(bytes);
     await hiveClient.createOrUpdate(
       boxName,
       AppString.akwoakowako,
       encryptionKey,
-      akwoakowako,
+      hashedAkwoakowako.toString(),
     );
   }
 
-  Future<void> retrieveAkwoakowako(String akwoakowako) async {
-    await hiveClient.delete(boxName, AppString.akwoakowako, encryptionKey);
+  Future<String?> retrieveAkwoakowako() async {
+    return hiveClient.read<String>(boxName, AppString.akwoakowako, encryptionKey);
   }
 
   Future<void> destroyAkwoakowako(String akwoakowako) async {

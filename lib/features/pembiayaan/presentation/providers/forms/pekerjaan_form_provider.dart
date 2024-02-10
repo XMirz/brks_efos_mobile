@@ -1,10 +1,10 @@
+import 'package:collection/collection.dart';
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pekerjaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
@@ -14,19 +14,19 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     print(state);
     const isValid = true;
     // final isValid = profesi.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    // final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       profesi: Field(
         isValid: isValid,
         value: profesi,
         showValue: shownValue,
-        errorMessage: message,
+        // errorMessage: message,
       ),
     );
   }
 
   void setNamaInstansi(String namaInstansi) {
-    const isValid = true;
+    final isValid = namaInstansi.isNotEmpty;
     // final isValid = namaInstansi.length > 7;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
@@ -65,27 +65,26 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setBidangUsaha(String bidangUsaha, String shownValue) {
-    const isValid = true;
+  void setBidangUsaha(String value, String shownValue) {
+    final isValid = value.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       bidangUsaha: Field(
         isValid: isValid,
-        value: bidangUsaha,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setTahunBekerja(String tahunBekerja, String shownValue) {
-    // final isValid = tahunBekerja.length == 4;
-    const isValid = true;
+  void setTahunBekerja(String value, String shownValue) {
+    final isValid = value.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       tahunBekerja: Field(
         isValid: isValid,
-        value: tahunBekerja,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),

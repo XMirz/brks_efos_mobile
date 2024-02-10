@@ -5,15 +5,43 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ApprovalFormProvider extends StateNotifier<ApprovalFormState> {
-  ApprovalFormProvider()
-      : super(ApprovalFormState(ApprovalFormEntity.empty(), showErrors: false));
+  ApprovalFormProvider() : super(ApprovalFormState(ApprovalFormEntity.empty(), showErrors: false));
+  void setNik({required String value, bool isRequired = false}) {
+    final isValid = !isRequired || (value.isNotEmpty && value != '');
+    final message = isValid ? '' : l10n.invalidInput;
+    state = state.copyWith(
+      form: state.form.copyWith(
+        nik: Field(value: value, isValid: isValid, errorMessage: message),
+      ),
+    );
+  }
+
+  void setNama({required String value, bool isRequired = false}) {
+    final isValid = !isRequired || (value.isNotEmpty && value != '');
+    final message = isValid ? '' : l10n.invalidInput;
+    state = state.copyWith(
+      form: state.form.copyWith(
+        nama: Field(value: value, isValid: isValid, errorMessage: message),
+      ),
+    );
+  }
+
+  void setTanggalLahir({required String value, bool isRequired = false}) {
+    final isValid = !isRequired || (value.isNotEmpty && value != '');
+    final message = isValid ? '' : l10n.invalidInput;
+    state = state.copyWith(
+      form: state.form.copyWith(
+        tanggalLahir: Field(value: value, isValid: isValid, errorMessage: message),
+      ),
+    );
+  }
+
   void setKeterangan({required String value, bool isRequired = false}) {
     final isValid = !isRequired || (value.isNotEmpty && value != '');
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       form: state.form.copyWith(
-        keterangan:
-            Field(value: value, isValid: isValid, errorMessage: message),
+        keterangan: Field(value: value, isValid: isValid, errorMessage: message),
       ),
     );
   }
@@ -23,8 +51,7 @@ class ApprovalFormProvider extends StateNotifier<ApprovalFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       form: state.form.copyWith(
-        rekomendasi:
-            Field(value: value, isValid: isValid, errorMessage: message),
+        rekomendasi: Field(value: value, isValid: isValid, errorMessage: message),
       ),
     );
   }
@@ -34,8 +61,7 @@ class ApprovalFormProvider extends StateNotifier<ApprovalFormState> {
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       form: state.form.copyWith(
-        arahanCall:
-            Field(value: value, isValid: isValid, errorMessage: message),
+        arahanCall: Field(value: value, isValid: isValid, errorMessage: message),
       ),
     );
   }
@@ -70,34 +96,51 @@ class ApprovalFormProvider extends StateNotifier<ApprovalFormState> {
     );
   }
 
-  bool get isValid {
-    setRekomendasi(
-        value: state.form.keterangan.value,
-        isRequired: state.form.keterangan.isRequired);
-    setRekomendasi(
-        value: state.form.rekomendasi.value,
-        isRequired: state.form.rekomendasi.isRequired);
-    setArahanCall(
-        value: state.form.arahanCall.value,
-        isRequired: state.form.arahanCall.isRequired);
-    setKeputusan(
-        value: state.form.keputusan.value,
-        isRequired: state.form.keputusan.isRequired);
-    setUsername(
-        value: state.form.username.value,
-        isRequired: state.form.username.isRequired);
-    setPassword(
-        value: state.form.password.value,
-        isRequired: state.form.password.isRequired);
-    return state.form.isValid;
-  }
+  // bool validate({
+  //   bool? isIdentityRequired,
+  //   bool? isKeteranganRequired,
+  //   bool? isRekomendasiRequired,
+  //   bool? isArahanCallRequired,
+  //   bool? isKeputusanRequired,
+  //   bool? isAccountRequired,
+  // }) {
+  //   setNik(value: state.form.nik.value, isRequired: isIdentityRequired ?? false);
+  //   setNama(value: state.form.nama.value, isRequired: isIdentityRequired ?? false);
+  //   setTanggalLahir(value: state.form.tanggalLahir.value, isRequired: isIdentityRequired ?? false);
+  //   setKeterangan(value: state.form.keterangan.value, isRequired: isKeteranganRequired ?? false);
+  //   setRekomendasi(value: state.form.rekomendasi.value, isRequired: isRekomendasiRequired ?? false);
+  //   setArahanCall(value: state.form.arahanCall.value, isRequired: isArahanCallRequired ?? false);
+  //   setKeputusan(value: state.form.keputusan.value, isRequired: isKeputusanRequired ?? false);
+  //   setUsername(value: state.form.username.value, isRequired: isAccountRequired ?? false);
+  //   setPassword(value: state.form.password.value, isRequired: isAccountRequired ?? false);
+  //   return state.form.isValid;
+  // }
 }
 
-final approvalFormProvider =
-    StateNotifierProvider<ApprovalFormProvider, ApprovalFormState>(
+final approvalFormProvider = StateNotifierProvider<ApprovalFormProvider, ApprovalFormState>(
   (ref) => ApprovalFormProvider(),
 );
 
+final nikController = Provider(
+  (ref) => TextEditingController(
+    text: ref.read(approvalFormProvider).form.nik.value,
+  ),
+);
+final namaController = Provider(
+  (ref) => TextEditingController(
+    text: ref.read(approvalFormProvider).form.nama.value,
+  ),
+);
+final tanggalLahirController = Provider(
+  (ref) => TextEditingController(
+    text: ref.read(approvalFormProvider).form.tanggalLahir.value,
+  ),
+);
+final keteranganController = Provider(
+  (ref) => TextEditingController(
+    text: ref.read(approvalFormProvider).form.keterangan.value,
+  ),
+);
 final rekomendasiController = Provider(
   (ref) => TextEditingController(
     text: ref.read(approvalFormProvider).form.rekomendasi.value,
@@ -127,6 +170,9 @@ final passwordController = Provider(
 void invalidateApprovalForm(WidgetRef ref) {
   ref
     ..invalidate(approvalFormProvider)
+    ..invalidate(nikController)
+    ..invalidate(namaController)
+    ..invalidate(tanggalLahirController)
     ..invalidate(rekomendasiController)
     ..invalidate(arahanCallController)
     ..invalidate(keputusanController)

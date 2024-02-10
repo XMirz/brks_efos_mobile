@@ -1,4 +1,3 @@
-import 'package:efosm/app/presentation/providers/auth_repository_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -11,7 +10,6 @@ class App extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(routerProvider);
-    ref.read(localAuthRepositoryProvider).getEncryptionKey(); // Initialization
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

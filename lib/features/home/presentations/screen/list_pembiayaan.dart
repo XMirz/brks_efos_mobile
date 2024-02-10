@@ -52,17 +52,13 @@ class PembiayaanSreen extends HookConsumerWidget {
               ),
               child: Theme(
                 data: Theme.of(context).copyWith(
-                  colorScheme: Theme.of(context)
-                      .colorScheme
-                      .copyWith(surfaceVariant: Colors.transparent),
+                  colorScheme: Theme.of(context).colorScheme.copyWith(surfaceVariant: Colors.transparent),
                 ),
                 child: TabBar(
-                  onTap: (value) =>
-                      ref.read(tabBarIndexProvider.notifier).state = value,
+                  onTap: (value) => ref.read(tabBarIndexProvider.notifier).state = value,
                   labelColor: AppColor.primary,
                   splashFactory: NoSplash.splashFactory,
-                  overlayColor:
-                      const MaterialStatePropertyAll(Colors.transparent),
+                  overlayColor: const MaterialStatePropertyAll(Colors.transparent),
                   indicatorSize: TabBarIndicatorSize.label,
                   indicatorWeight: 4,
                   labelStyle: AppTextStyle.bodyMedium,
@@ -152,8 +148,7 @@ class ListPembiayaan extends ConsumerWidget {
                     },
                   );
                 },
-                style: AppTextStyle.bodyMedium
-                    .copyWith(color: AppColor.textPrimary),
+                style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
                 cursorColor: AppColor.textPrimary,
                 cursorWidth: 1,
                 decoration: InputDecoration(
@@ -176,26 +171,26 @@ class ListPembiayaan extends ConsumerWidget {
           pagination.maybeWhen(
             data: (items) {
               if (items.isEmpty) {
-                return SliverToBoxAdapter(
+                return SliverFillRemaining(
                   child: NoDataPlaceHolder(message: l10n.dataNotFound),
                 );
               }
               return SliverItems(items: items);
             },
             loading: () {
-              return const SliverToBoxAdapter(
+              return const SliverFillRemaining(
                 child: LoadingPlaceholder(),
               );
             },
             error: (e, stk) {
-              return SliverToBoxAdapter(
+              return SliverFillRemaining(
                 child: ErrorPlaceholder(message: l10n.failedGetDataPembiayaan),
               );
             },
             orElse: () => const SliverToBoxAdapter(child: SizedBox.shrink()),
           ),
           ...pagination.maybeWhen(
-            orElse: () => [const SliverToBoxAdapter(child: SizedBox.shrink())],
+            orElse: () => [SliverToBoxAdapter(child: spaceY(24))],
             onGoingError: (items, e, stk) {
               return [
                 SliverItems(items: items),
@@ -262,8 +257,7 @@ class SliverItems extends ConsumerWidget {
             plafon: double.parse(item.plafonPengajuan.toString()),
           );
           final tanggalLahir =
-              DateFormat.yMMMMd(Localizations.localeOf(context).languageCode)
-                  .format(DateTime.parse(item.tanggalLahir));
+              DateFormat.yMMMMd(Localizations.localeOf(context).languageCode).format(DateTime.parse(item.tanggalLahir));
           return Container(
             margin: EdgeInsets.symmetric(
               horizontal: AppInteger.horizontalPagePadding,
@@ -302,13 +296,11 @@ class SliverItems extends ConsumerWidget {
                       children: [
                         Text(
                           capitalizeEachWord(item.idLoan),
-                          style: AppTextStyle.bodyMediumBold
-                              .copyWith(color: AppColor.textPrimary),
+                          style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
                         ),
                         Text(
                           capitalizeEachWord(item.nama),
-                          style: AppTextStyle.bodyMediumBold
-                              .copyWith(color: AppColor.textPrimary),
+                          style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
                         ),
                         Text(
                           item.nik,
@@ -324,8 +316,7 @@ class SliverItems extends ConsumerWidget {
                         children: [
                           Text(
                             '${capitalizeEachWord(item.descKategoriProduk)} - ${item.descJenisPengajuan}',
-                            style: AppTextStyle.bodySmall
-                                .copyWith(color: AppColor.textPrimary),
+                            style: AppTextStyle.bodySmall.copyWith(color: AppColor.textPrimary),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
@@ -365,41 +356,60 @@ class SliverItems extends ConsumerWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  l10n.plafonStr(
-                      toRupiahString(item.plafonPengajuan.toString())),
-                  style: AppTextStyle.bodyMediumBold
-                      .copyWith(color: AppColor.textPrimary),
+                  l10n.plafonStr(toRupiahString(item.plafonPengajuan.toString())),
+                  style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
                 ),
                 const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Flexible(
-                      child: Text(
-                        loanState.statusDescription,
-                        style: AppTextStyle.bodySmall
-                            .copyWith(color: AppColor.textPrimary),
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: (loanState.statusColor ?? AppColor.highlight).withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(48),
+                        ),
+                        child: Text(
+                          loanState.statusDescription,
+                          style: AppTextStyle.bodySmall.copyWith(
+                            color: loanState.statusColor,
+                          ),
+                          textAlign: TextAlign.start,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
-                    PrimaryButton(
-                      radius: 8,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      size: const Size(double.minPositive, 36),
+                    SmallButton(
                       text: l10n.detail,
-                      backgroundColor: AppColor.primary,
-                      textStyle: AppTextStyle.bodyMedium
-                          .copyWith(color: AppColor.textPrimaryInverse),
                       onPressed: () {
                         context.pushNamed(
                           AppRoutes.detailPembiayaan,
                           pathParameters: {
                             'id': item.idLoan,
-                            'idKategoriProduk':
-                                item.idKategoriProduk.toString(),
+                            'idKategoriProduk': item.idKategoriProduk.toString(),
                           },
                         );
                       },
+                      textStyle: AppTextStyle.bodyMedium,
                     ),
+                    // PrimaryButton(
+                    //   radius: 8,
+                    //   padding: const EdgeInsets.symmetric(horizontal: 12),
+                    //   size: const Size(double.minPositive, 36),
+                    //   text: l10n.detail,
+                    //   backgroundColor: AppColor.primary,
+                    //   textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+                    //   onPressed: () {
+                    //     context.pushNamed(
+                    //       AppRoutes.detailPembiayaan,
+                    //       pathParameters: {
+                    //         'id': item.idLoan,
+                    //         'idKategoriProduk': item.idKategoriProduk.toString(),
+                    //       },
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ],

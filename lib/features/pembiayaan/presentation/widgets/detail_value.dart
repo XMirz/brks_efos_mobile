@@ -21,14 +21,11 @@ class DetailValue extends StatelessWidget {
         spaceY(8),
         Text(
           label,
-          style:
-              large ?? false ? AppTextStyle.bodyMedium : AppTextStyle.bodySmall,
+          style: large ?? false ? AppTextStyle.bodyMedium : AppTextStyle.bodySmall,
         ),
         Text(
           value ?? '-',
-          style: large ?? false
-              ? AppTextStyle.bodyLarge
-              : AppTextStyle.bodyMediumBold,
+          style: large ?? false ? AppTextStyle.bodyLarge : AppTextStyle.bodyMediumBold,
         ),
         spaceY(8),
       ],

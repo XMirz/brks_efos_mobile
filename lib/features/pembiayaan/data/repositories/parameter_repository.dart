@@ -3,7 +3,6 @@ import 'package:efosm/app/data/dto/user_login_dto.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
-import 'package:efosm/features/pembiayaan/domain/repositories/pembiayaan_repository.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -11,7 +10,6 @@ import 'package:get_it/get_it.dart';
 class ParameterRepository {
   final DioClient _dioClient = GetIt.I.get();
 
-  @override
   Future<Either<Failure, AppParameter>> fetchInitialParameter() async {
     final response = await _dioClient
         .get<Map<String, dynamic>>('/mobile/parameter/inquiryall');

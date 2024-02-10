@@ -1,11 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_entity.freezed.dart';
-part 'user_entity.g.dart';
+part 'session_entity.freezed.dart';
+part 'session_entity.g.dart';
 
 @freezed
-class UserEntity with _$UserEntity {
-  const factory UserEntity({
+class SessionEntity with _$SessionEntity {
+  const factory SessionEntity({
     required String username,
     required String name,
     required String nik,
@@ -22,9 +22,10 @@ class UserEntity with _$UserEntity {
     required double limitKonsumtifCabang,
     // required List<String> permissions,
     required List<String> authorities,
-  }) = _UserEntity;
+    @Default('SINGLE') String authorizationType,
+  }) = _SessionEntity;
 
-  const UserEntity._();
-  factory UserEntity.fromJson(Map<String, dynamic> json) =>
-      _$UserEntityFromJson(json);
+  const SessionEntity._();
+  factory SessionEntity.fromJson(Map<String, dynamic> json) =>
+      _$SessionEntityFromJson(json);
 }
