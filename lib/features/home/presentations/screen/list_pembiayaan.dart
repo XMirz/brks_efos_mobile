@@ -1,6 +1,8 @@
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
+// ignore: unused_import
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
+import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
@@ -14,7 +16,6 @@ import 'package:efosm/core/constants/integer.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

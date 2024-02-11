@@ -7,7 +7,7 @@ import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
-import 'package:efosm/app/presentation/utils/auth_utils.dart';
+import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
@@ -356,6 +356,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                 right: AppInteger.horizontalPagePadding,
                               ),
                               child: DetailAgunan(
+                                loanState: loanState,
                                 listAgunan: data.agunan,
                               ),
                             ),

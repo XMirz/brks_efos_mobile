@@ -211,8 +211,7 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
   }
 
   void setTenor(String value, String shownValue) {
-    final isValid =
-        value.isNotEmpty && value.length < 4 && int.tryParse(value) != null;
+    final isValid = value.isNotEmpty && value.length < 4 && int.tryParse(value) != null;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       tenorPengajuan: Field(
@@ -300,16 +299,13 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
   //   );
   // }
 
-  void setProdukPembiayaanForm(
-      ProdukPembiayaanEntity data, AppParameter parameter) {
-    final kategoriProdukLabel = parameter.parKategoriProduk
-        .firstWhere((element) => element.id == data.idKategoriProduk)
-        .label;
+  void setProdukPembiayaanForm(ProdukPembiayaanEntity data, AppParameter parameter) {
+    final kategoriProdukLabel =
+        parameter.parKategoriProduk.firstWhere((element) => element.id == data.idKategoriProduk).label;
     // final produkLabel = parameter.
     //     .firstWhere((element) => element.id == data.idKategoriProduk)
     //     .label;
-    setKategoriProduk(
-        data.idKategoriProduk.toString(), kategoriProdukLabel ?? '');
+    setKategoriProduk(data.idKategoriProduk.toString(), kategoriProdukLabel ?? '');
     setProduk(data.idProduk.toString(), '');
     setJenisPengajuan(data.idJenisPengajuan.toString(), '');
     setSubProduk(data.idSubProduk.toString(), '');
@@ -321,42 +317,16 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
   }
 }
 
-final pembiayaanFormProvider =
-    StateNotifierProvider<PembiayaanFormProvider, ProdukPembiayaanFormState>(
+final pembiayaanFormProvider = StateNotifierProvider<PembiayaanFormProvider, ProdukPembiayaanFormState>(
   (ref) => PembiayaanFormProvider(),
 );
 
 final tujuanPembiayaanController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pembiayaanFormProvider).tujuanPembiayaan.value),
+  (ref) => TextEditingController(text: ref.read(pembiayaanFormProvider).tujuanPembiayaan.value),
 );
 final plafonController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pembiayaanFormProvider).plafonPengajuan.value),
+  (ref) => TextEditingController(text: ref.read(pembiayaanFormProvider).plafonPengajuan.value),
 );
 final tenorController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pembiayaanFormProvider).tenorPengajuan.value),
+  (ref) => TextEditingController(text: ref.read(pembiayaanFormProvider).tenorPengajuan.value),
 );
-
-
-// final gracePeriodController =
-//     Provider((ref) => TextEditingController(text: ''));
-// final barangController = Provider((ref) =>
-//     TextEditingController(text: ref.read(pembiayaanFormProvider).barang.value));
-// final hargaPerolehanController = Provider((ref) => TextEditingController(
-//     text: ref.read(pembiayaanFormProvider).hargaPerolehan.value));
-// final pajakController = Provider((ref) =>
-//     TextEditingController(text: ref.read(pembiayaanFormProvider).pajak.value));
-// final diskonController = Provider((ref) =>
-//     TextEditingController(text: ref.read(pembiayaanFormProvider)..value));
-// final uangMukaController = Provider((ref) => TextEditingController(
-//     text: ref.read(pembiayaanFormProvider).uangMuka.value));
-// final basisPointMarginController =
-//     Provider((ref) => TextEditingController(text: ''));
-// final marginController = Provider((ref) => TextEditingController(text: ''));
-// final totalMarginController =
-//     Provider((ref) => TextEditingController(text: ''));
-// final angsuranPengajuanController =
-//     Provider((ref) => TextEditingController(text: ''));
-

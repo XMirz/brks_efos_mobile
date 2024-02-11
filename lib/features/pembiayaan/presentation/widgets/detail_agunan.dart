@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
@@ -24,44 +25,28 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class DetailAgunan extends ConsumerWidget {
   const DetailAgunan({
     required this.listAgunan,
+    required this.loanState,
     super.key,
   });
 
   final List<AgunanEntity> listAgunan;
+  final LoanState loanState;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: listAgunan.length,
       itemBuilder: (context, index) {
-        final isJaminan =
-            listAgunan[index].isJaminan == AppString.isJaminanValue;
+        final isJaminan = listAgunan[index].isJaminan == AppString.isJaminanValue;
         final deskripsiJaminan = isJaminan
-            ? (listAgunan[index].deskripsi ?? '')
-                .padRight(AppInteger.jaminanDescriptionLength)
+            ? (listAgunan[index].deskripsi ?? '').padRight(AppInteger.jaminanDescriptionLength)
             : (listAgunan[index].deskripsi ?? '');
         final chunkSize = AppInteger.jaminanDescriptionItemLength;
-        final deskripsi1 = isJaminan
-            ? deskripsiJaminan.substring(0, chunkSize).trimRight()
-            : '';
-        final deskripsi2 = isJaminan
-            ? deskripsiJaminan.substring(chunkSize, 2 * chunkSize).trimRight()
-            : '';
-        final deskripsi3 = isJaminan
-            ? deskripsiJaminan
-                .substring(2 * chunkSize, 3 * chunkSize)
-                .trimRight()
-            : '';
-        final deskripsi4 = isJaminan
-            ? deskripsiJaminan
-                .substring(3 * chunkSize, 4 * chunkSize)
-                .trimRight()
-            : '';
-        final deskripsi5 = isJaminan
-            ? deskripsiJaminan
-                .substring(4 * chunkSize, 5 * chunkSize)
-                .trimRight()
-            : '';
+        final deskripsi1 = isJaminan ? deskripsiJaminan.substring(0, chunkSize).trimRight() : '';
+        final deskripsi2 = isJaminan ? deskripsiJaminan.substring(chunkSize, 2 * chunkSize).trimRight() : '';
+        final deskripsi3 = isJaminan ? deskripsiJaminan.substring(2 * chunkSize, 3 * chunkSize).trimRight() : '';
+        final deskripsi4 = isJaminan ? deskripsiJaminan.substring(3 * chunkSize, 4 * chunkSize).trimRight() : '';
+        final deskripsi5 = isJaminan ? deskripsiJaminan.substring(4 * chunkSize, 5 * chunkSize).trimRight() : '';
         return Container(
           margin: const EdgeInsets.only(bottom: 24),
           child: Column(
@@ -70,9 +55,9 @@ class DetailAgunan extends ConsumerWidget {
               // Text(listAgunan[index].toString()),
               FormHeader(
                   title: '${l10n.jaminan} #${index + 1}',
-                  actionText: l10n.edit,
-                  onPressed: () =>
-                      {handleEditAgunan(listAgunan[index], context, ref)},
+                  actionText: loanState.canUpdate ?? false ? l10n.edit : null,
+                  onPressed:
+                      loanState.canUpdate ?? false ? () => handleEditAgunan(listAgunan[index], context, ref) : null,
                   actionColor: AppColor.primary),
               buildDivider,
               DetailValue(
@@ -120,8 +105,7 @@ class DetailAgunan extends ConsumerWidget {
                     size: const Size(double.minPositive, 36),
                     text: l10n.see,
                     backgroundColor: AppColor.info,
-                    textStyle: AppTextStyle.bodyMedium
-                        .copyWith(color: AppColor.textPrimaryInverse),
+                    textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                     onPressed: () {
                       showGeneralDialog(
                         barrierDismissible: false,
@@ -148,8 +132,7 @@ class DetailAgunan extends ConsumerWidget {
     );
   }
 
-  Future<void> handleEditAgunan(
-      AgunanEntity agunan, BuildContext context, WidgetRef ref) async {
+  Future<void> handleEditAgunan(AgunanEntity agunan, BuildContext context, WidgetRef ref) async {
     unawaited(
       showDialog<void>(
         barrierDismissible: false,

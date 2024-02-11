@@ -16,7 +16,6 @@ import 'package:image_picker/image_picker.dart';
 
 class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   AgunanFormProvider() : super(AgunanFormState.empty());
-
   void setJenisJaminan(String value, String shownValue) {
     state = state.copyWith(
       isJaminan: Field(
@@ -202,26 +201,17 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   Future<void> setAgunanForm(AgunanEntity data, AppParameter parameter) async {
     final isJaminan = data.isJaminan == '1';
-    final jenisLabel = parameter.parJenisAgunan
-        .firstWhereOrNull((element) => element.id == data.jenis)
-        ?.label;
-    final provinsiLabel = parameter.parProvinsi
-        .firstWhereOrNull((element) => element.id == data.provinsi)
-        ?.label;
+    final jenisLabel = parameter.parJenisAgunan.firstWhereOrNull((element) => element.id == data.jenis)?.label;
+    final provinsiLabel = parameter.parProvinsi.firstWhereOrNull((element) => element.id == data.provinsi)?.label;
     var deskripsi = data.deskripsi;
     if (isJaminan) {
-      final deskripsiJaminan =
-          (deskripsi ?? '').padRight(AppInteger.jaminanDescriptionLength);
+      final deskripsiJaminan = (deskripsi ?? '').padRight(AppInteger.jaminanDescriptionLength);
       final chunkSize = AppInteger.jaminanDescriptionItemLength;
       deskripsi = deskripsiJaminan.substring(0, chunkSize).trimRight();
-      final deskripsi2 =
-          deskripsiJaminan.substring(chunkSize, 2 * chunkSize).trimRight();
-      final deskripsi3 =
-          deskripsiJaminan.substring(2 * chunkSize, 3 * chunkSize).trimRight();
-      final deskripsi4 =
-          deskripsiJaminan.substring(3 * chunkSize, 4 * chunkSize).trimRight();
-      final deskripsi5 =
-          deskripsiJaminan.substring(4 * chunkSize, 5 * chunkSize).trimRight();
+      final deskripsi2 = deskripsiJaminan.substring(chunkSize, 2 * chunkSize).trimRight();
+      final deskripsi3 = deskripsiJaminan.substring(2 * chunkSize, 3 * chunkSize).trimRight();
+      final deskripsi4 = deskripsiJaminan.substring(3 * chunkSize, 4 * chunkSize).trimRight();
+      final deskripsi5 = deskripsiJaminan.substring(4 * chunkSize, 5 * chunkSize).trimRight();
       setDeskripsi2(deskripsi2);
       setDeskripsi3(deskripsi3);
       setDeskripsi4(deskripsi4);
@@ -240,9 +230,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
     setKelurahan(data.kelurahan != null ? data.kelurahan.toString() : '', '');
     final file = await base64ToXFile(data.image.toString());
     if (file != null) {
-      final loc = OurLocation(
-          longitude: data.longitude.toString(),
-          latitude: data.latitude.toString());
+      final loc = OurLocation(longitude: data.longitude.toString(), latitude: data.latitude.toString());
       setFile(file, '', loc);
     }
     state = state.copyWith(isUpdate: true);
@@ -271,39 +259,31 @@ class ListAgunanProvider extends StateNotifier<List<AgunanFormState>> {
 
 final showAgunanFormProvider = StateProvider<bool>((ref) => false);
 
-final agunanFormProvider =
-    StateNotifierProvider<AgunanFormProvider, AgunanFormState>(
+final agunanFormProvider = StateNotifierProvider<AgunanFormProvider, AgunanFormState>(
   (ref) => AgunanFormProvider(),
 );
 
-final listAgunanProvider =
-    StateNotifierProvider<ListAgunanProvider, List<AgunanFormState>>(
+final listAgunanProvider = StateNotifierProvider<ListAgunanProvider, List<AgunanFormState>>(
   (ref) => ListAgunanProvider(),
 );
 
 final agunanIndexProvider = StateProvider((ref) => 0);
 
 final deskripsiController = Provider(
-  (ref) =>
-      TextEditingController(text: ref.read(agunanFormProvider).deskripsi.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).deskripsi.value),
 );
 final deskripsi2Controller = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(agunanFormProvider).deskripsi2.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).deskripsi2.value),
 );
 final deskripsi3Controller = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(agunanFormProvider).deskripsi3.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).deskripsi3.value),
 );
 final deskripsi4Controller = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(agunanFormProvider).deskripsi4.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).deskripsi4.value),
 );
 final deskripsi5Controller = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(agunanFormProvider).deskripsi5.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).deskripsi5.value),
 );
 final alamatAgunanController = Provider(
-  (ref) =>
-      TextEditingController(text: ref.read(agunanFormProvider).alamat.value),
+  (ref) => TextEditingController(text: ref.read(agunanFormProvider).alamat.value),
 );
