@@ -7,7 +7,7 @@ import 'package:efosm/app/data/dto/pembiayaan_request.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
-import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_paginated_entity.dart';
+import 'package:efosm/features/home/presentations/data/entitiy/paginated_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -60,8 +60,7 @@ class AgunanRepository {
     return response.fold(left, (r) {
       try {
         final pembiayaanEntity = PembiayaanEntity.fromJson(r);
-        final agunan = pembiayaanEntity.agunan
-            .firstWhere((element) => element.id == data.urut);
+        final agunan = pembiayaanEntity.agunan.firstWhere((element) => element.id == data.urut);
         return right(agunan);
       } catch (e, stk) {
         debugPrint(e.toString());

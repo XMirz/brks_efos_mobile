@@ -47,8 +47,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
     final stepValid = [
       ref.watch(dataDiriFormProvider).isValid,
       ref.watch(pekerjaanFormProvider).isValid,
-      if (ref.watch(dataDiriFormProvider).statusPernikahan.value ==
-          AppString.isMarriedValue)
+      if (ref.watch(dataDiriFormProvider).statusPernikahan.value == AppString.isMarriedValue)
         ref.watch(pasanganFormProvider).isValid
       else
         true,
@@ -225,8 +224,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
             image = img.copyResize(image, width: width, height: height);
           }
 
-          final imageBytes =
-              image != null ? img.encodeJpg(image, quality: 85) : <int>[];
+          final imageBytes = image != null ? img.encodeJpg(image, quality: 85) : <int>[];
           strImage = base64Encode(imageBytes);
         }
 
@@ -327,14 +325,12 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         );
         return;
       }
-      ref.read(stepIndexProvider.notifier).state =
-          ref.read(stepIndexProvider) + 1;
+      ref.read(stepIndexProvider.notifier).state = ref.read(stepIndexProvider) + 1;
     }
 
     Future<void> handleFinishButton() async {
       // print(formStates);
-      Injector.registerAuthenticatedClient(
-          ref.read(authenticatedUserProvider).token!);
+      Injector.registerAuthenticatedClient(ref.read(authenticatedUserProvider).token!);
       await showDialog<void>(
         barrierDismissible: false,
         context: context,
@@ -444,15 +440,13 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                       ),
                     StepState.indexed => Text(
                         (stepIndex + 1).toString(),
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                       ),
                     StepState.editing => null,
                     StepState.disabled => null,
                     StepState.error => Text(
                         stepIndex.toString(),
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.error),
+                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.error),
                       ),
                   },
                 );
@@ -462,8 +456,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                 (states) {
                   if (states.contains(MaterialState.disabled)) {
                     return AppColor.disabled;
-                  } else if (states.contains(MaterialState.selected) ||
-                      states.contains(MaterialState.pressed)) {
+                  } else if (states.contains(MaterialState.selected) || states.contains(MaterialState.pressed)) {
                     return AppColor.primary;
                   }
                   return AppColor.highlightSecondary;
@@ -478,16 +471,12 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                       behavior: SnackBarBehavior.floating,
                     ),
                   );
-                  // TODO(xmirz): Uncomment
-                  // return;
                 }
                 ref.read(stepIndexProvider.notifier).state = step;
               },
               controlsBuilder: (context, details) {
                 return Row(
-                  mainAxisAlignment: stepIndex == 0
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: stepIndex == 0 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     if (stepIndex > 0)
                       PrimaryButton(
@@ -496,12 +485,10 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                         size: const Size(double.minPositive, 36),
                         text: l10n.prev,
                         backgroundColor: AppColor.accent,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                         onPressed: () {
                           if (stepIndex > 0) {
-                            ref.read(stepIndexProvider.notifier).state =
-                                stepIndex - 1;
+                            ref.read(stepIndexProvider.notifier).state = stepIndex - 1;
                           }
                         },
                       ),
@@ -513,8 +500,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
                         text: stepIndex != 4 ? l10n.next : l10n.send,
                         disabled: !stepValid[stepIndex],
                         backgroundColor: AppColor.primary,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
+                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                         onPressed: () async {
                           if (stepIndex == 4) {
                             await handleFinishButton();

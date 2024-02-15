@@ -41,7 +41,6 @@ class AnotherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       padding: padding,
       margin: margin,
       clipBehavior: Clip.hardEdge,

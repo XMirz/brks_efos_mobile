@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'pembiayaan_paginated_entity.dart';
+part of 'paginated_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PembiayaanPaginatedEntityImpl _$$PembiayaanPaginatedEntityImplFromJson(
+_$PaginatedEntityImpl _$$PaginatedEntityImplFromJson(
         Map<String, dynamic> json) =>
-    _$PembiayaanPaginatedEntityImpl(
+    _$PaginatedEntityImpl(
       pageNumber: json['currentPage'] as int,
       totalPages: json['totalPages'] as int,
       totalItems: json['totalFilter'] as int,
@@ -19,8 +19,8 @@ _$PembiayaanPaginatedEntityImpl _$$PembiayaanPaginatedEntityImplFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$PembiayaanPaginatedEntityImplToJson(
-        _$PembiayaanPaginatedEntityImpl instance) =>
+Map<String, dynamic> _$$PaginatedEntityImplToJson(
+        _$PaginatedEntityImpl instance) =>
     <String, dynamic>{
       'currentPage': instance.pageNumber,
       'totalPages': instance.totalPages,

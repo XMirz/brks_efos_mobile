@@ -1,6 +1,5 @@
 class ApiPath {
-  static const listPembiayaanProduktif =
-      '/mobile/efos/listcalondebiturproduktif';
+  static const listPembiayaanProduktif = '/mobile/efos/listcalondebiturproduktif';
   static const listPembiayaanKonsumtif = '/mobile/efos/listcalondebitur';
   static const detailPembiayaanKonsumtif = '/mobile/konsumtif/detail';
   static const detailPembiayaanProduktif = '/mobile/produktif/detail';
@@ -24,6 +23,6 @@ class ApiPath {
   static const approvalThreeProduktif = '/mkm/pembiayaan/approve3mobile';
 
   // Usulan
-  static const usulanKonsumtif = '/mobile/usulan/konsumtif';
-  static const usulanProduktif = '/mobile/usulan/produktif';
+  static const listUsulanKonsumtif = '/mobile/usulan/konsumtif';
+  static const listUsulanProduktif = '/mobile/usulan/produktif';
 }

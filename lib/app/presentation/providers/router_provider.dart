@@ -7,6 +7,7 @@ import 'package:efosm/features/pembiayaan/presentation/screens/create_pembiayaan
 import 'package:efosm/features/pembiayaan/presentation/screens/detail_pembiayaan_screen.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/edit_pembiayaan.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/form_agunan_screen.dart';
+import 'package:efosm/features/usulan/screens/list_usulan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -22,28 +23,29 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: AppRoutes.splashScreen,
         name: AppRoutes.splashScreen,
-        builder: (BuildContext context, GoRouterState state) =>
-            const SplashScreen(),
+        builder: (BuildContext context, GoRouterState state) => const SplashScreen(),
         routes: [
           GoRoute(
             path: AppRoutes.landingPage,
             name: AppRoutes.landingPage,
-            builder: (BuildContext context, GoRouterState state) =>
-                const LandingScreen(),
+            builder: (BuildContext context, GoRouterState state) => const LandingScreen(),
           ),
         ],
       ),
       GoRoute(
         path: AppRoutes.homePage,
         name: AppRoutes.homePage,
-        builder: (BuildContext context, GoRouterState state) =>
-            const HomeScreen(),
+        builder: (BuildContext context, GoRouterState state) => const HomeScreen(),
         routes: [
           GoRoute(
             path: AppRoutes.createPembiayaanPage,
             name: AppRoutes.createPembiayaanPage,
-            builder: (BuildContext context, GoRouterState state) =>
-                const CreatePembiayaanScreen(),
+            builder: (BuildContext context, GoRouterState state) => const CreatePembiayaanScreen(),
+          ),
+          GoRoute(
+            path: AppRoutes.indexUsulanPage,
+            name: AppRoutes.indexUsulanPage,
+            builder: (BuildContext context, GoRouterState state) => const ListUsulanScreen(),
           ),
           GoRoute(
             path: AppRoutes.formJaminanPage,
@@ -104,10 +106,9 @@ class AppRoutes {
   static const splashScreen = '/auth';
   static const landingPage = 'landing';
   static const homePage = '/home';
+  static const indexUsulanPage = 'index-usulan';
   static const createPembiayaanPage = 'create-pembiayaan';
   static const formJaminanPage = 'form-jaminan/:id';
   static const editPembiayaanPage = 'edit-pembiayaan/:id';
   static const detailPembiayaan = 'detail-pembiayaan/:idKategoriProduk/:id';
-  // static const detailKonsumtif = 'detail-konsumtif/:id';
-  // static const detailProduktif = 'detail-produktif/:id';
 }

@@ -1,28 +1,28 @@
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/pagination_request.dart';
 import 'package:efosm/core/error/failures.dart';
-import 'package:efosm/features/home/presentations/data/entitiy/paginated_entity.dart';
-import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
 import 'package:efosm/features/home/presentations/states/pagination_state.dart';
+import 'package:efosm/features/usulan/data/entities/paginated_usulan_entity.dart';
+import 'package:efosm/features/usulan/data/entities/usulan_list_item_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class PaginationNotifier<T> extends StateNotifier<PaginationState<List<PembiayaanListItemEntiy>>> {
-  PaginationNotifier(
+class UsulanPaginationNotifier<T> extends StateNotifier<PaginationState<List<ListUsulanItemEntiy>>> {
+  UsulanPaginationNotifier(
     super.state, {
     required this.idCabang,
     required this.paginatedFetcher,
   }) : super() {
-    print('asldkasjdlkasjd');
     if (items.isEmpty) {
       fetchItems(0);
     }
   }
 
-  final Future<Either<Failure, PaginatedEntity>> Function(
+  final Future<Either<Failure, PaginatedUsulanEntity>> Function(
     PaginationRequest paginationRequest,
   ) paginatedFetcher;
-  final List<PembiayaanListItemEntiy> items = [];
+
+  final List<ListUsulanItemEntiy> items = [];
   final String idCabang;
   String pageSize = '10';
   int totalPages = 0;
@@ -57,7 +57,7 @@ class PaginationNotifier<T> extends StateNotifier<PaginationState<List<Pembiayaa
       },
       (r) async {
         await Future<void>.delayed(const Duration(milliseconds: 500));
-        final responseItems = r.pembiayaanList;
+        final responseItems = r.pembiayaanList.map(ListUsulanItemEntiy.fromJson).toList();
         if (r.pageNumber == 0) {
           totalPages = r.totalPages;
           totalItems = r.totalItems;

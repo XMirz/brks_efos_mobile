@@ -1,10 +1,8 @@
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
-// ignore: unused_import
-import 'package:efosm/app/presentation/utils/auth_utils.dart';
-import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
+import 'package:efosm/app/presentation/utils/usulan_utils.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
@@ -13,23 +11,20 @@ import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
-import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
-import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
+import 'package:efosm/features/usulan/data/entities/usulan_list_item_entity.dart';
+import 'package:efosm/features/usulan/providers/list_usulan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-class PembiayaanSreen extends HookConsumerWidget {
-  const PembiayaanSreen({super.key});
+class ListUsulanScreen extends HookConsumerWidget {
+  const ListUsulanScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final searchKeyword = ref.watch(searchKeywordProvider);
-    // Produktif
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -37,14 +32,7 @@ class PembiayaanSreen extends HookConsumerWidget {
           centerTitle: true,
           height: 56,
           borderRadius: BorderRadius.zero,
-          title: l10n.pembiayaan,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.pushNamed(AppRoutes.indexUsulanPage);
-                },
-                icon: const HeroIcon(HeroIcons.documentArrowUp)),
-          ],
+          title: l10n.usulan,
         ),
         body: Column(
           children: [
@@ -89,11 +77,11 @@ class PembiayaanSreen extends HookConsumerWidget {
                 children: [
                   ListPembiayaan(
                     searchKey: searchKeyword,
-                    endPoint: ApiPath.listPembiayaanProduktif,
+                    endPoint: ApiPath.listUsulanKonsumtif,
                   ),
                   ListPembiayaan(
                     searchKey: searchKeyword,
-                    endPoint: ApiPath.listPembiayaanKonsumtif,
+                    endPoint: ApiPath.listUsulanProduktif,
                   ),
                 ],
               ),
@@ -243,9 +231,11 @@ class ListPembiayaan extends ConsumerWidget {
 class SliverItems extends ConsumerWidget {
   const SliverItems({
     required this.items,
+    this.showDetail,
     super.key,
   });
-  final List<PembiayaanListItemEntiy> items;
+  final List<ListUsulanItemEntiy> items;
+  final bool? showDetail;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -254,7 +244,7 @@ class SliverItems extends ConsumerWidget {
       delegate: SliverChildBuilderDelegate(
         (context, index) {
           final item = items[index];
-          final loanState = buildLoanState(
+          final loanState = buildUsulanState(
             idLoan: item.idLoan,
             idKategoriProduk: item.idKategoriProduk.toString(),
             status: item.status.toString(),
@@ -303,9 +293,14 @@ class SliverItems extends ConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(item.status.toString()),
+                        Text(
+                          capitalizeEachWord(item.idUsulan.toString()),
+                          style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
+                        ),
                         Text(
                           capitalizeEachWord(item.idLoan),
-                          style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
+                          style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
                         ),
                         Text(
                           capitalizeEachWord(item.nama),
@@ -317,7 +312,7 @@ class SliverItems extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    spaceY(24),
+                    spaceX(24),
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -389,35 +384,20 @@ class SliverItems extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    SmallButton(
-                      text: l10n.detail,
-                      onPressed: () {
-                        context.pushNamed(
-                          AppRoutes.detailPembiayaan,
-                          pathParameters: {
-                            'id': item.idLoan,
-                            'idKategoriProduk': item.idKategoriProduk.toString(),
-                          },
-                        );
-                      },
-                      textStyle: AppTextStyle.bodyMedium,
-                    ),
-                    // PrimaryButton(
-                    //   radius: 8,
-                    //   padding: const EdgeInsets.symmetric(horizontal: 12),
-                    //   size: const Size(double.minPositive, 36),
-                    //   text: l10n.detail,
-                    //   backgroundColor: AppColor.primary,
-                    //   textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
-                    //   onPressed: () {
-                    //     context.pushNamed(
-                    //       AppRoutes.detailPembiayaan,
-                    //       pathParameters: {
-                    //         'id': item.idLoan,
-                    //         'idKategoriProduk': item.idKategoriProduk.toString(),
-                    //       },
-                    //     );
-                    //   },
+                    if (showDetail ?? false)
+                      SmallButton(
+                        text: l10n.detail,
+                        onPressed: () {
+                          context.pushNamed(
+                            AppRoutes.detailPembiayaan,
+                            pathParameters: {
+                              'id': item.idLoan,
+                              'idKategoriProduk': item.idKategoriProduk.toString(),
+                            },
+                          );
+                        },
+                        textStyle: AppTextStyle.bodyMedium,
+                      ),
                     // ),
                   ],
                 ),

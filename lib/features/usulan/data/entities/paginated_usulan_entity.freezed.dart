@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'pembiayaan_paginated_entity.dart';
+part of 'paginated_usulan_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-PembiayaanPaginatedEntity _$PembiayaanPaginatedEntityFromJson(
+PaginatedUsulanEntity _$PaginatedUsulanEntityFromJson(
     Map<String, dynamic> json) {
-  return _PembiayaanPaginatedEntity.fromJson(json);
+  return _PaginatedUsulanEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PembiayaanPaginatedEntity {
+mixin _$PaginatedUsulanEntity {
   @JsonKey(name: 'currentPage')
   int get pageNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'totalPages')
@@ -30,34 +30,34 @@ mixin _$PembiayaanPaginatedEntity {
   @JsonKey(name: 'totalItems')
   int get filteredItems => throw _privateConstructorUsedError;
   @JsonKey(name: 'data')
-  List<PembiayaanListItemEntiy> get pembiayaanList =>
+  List<Map<String, dynamic>> get pembiayaanList =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PembiayaanPaginatedEntityCopyWith<PembiayaanPaginatedEntity> get copyWith =>
+  $PaginatedUsulanEntityCopyWith<PaginatedUsulanEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PembiayaanPaginatedEntityCopyWith<$Res> {
-  factory $PembiayaanPaginatedEntityCopyWith(PembiayaanPaginatedEntity value,
-          $Res Function(PembiayaanPaginatedEntity) then) =
-      _$PembiayaanPaginatedEntityCopyWithImpl<$Res, PembiayaanPaginatedEntity>;
+abstract class $PaginatedUsulanEntityCopyWith<$Res> {
+  factory $PaginatedUsulanEntityCopyWith(PaginatedUsulanEntity value,
+          $Res Function(PaginatedUsulanEntity) then) =
+      _$PaginatedUsulanEntityCopyWithImpl<$Res, PaginatedUsulanEntity>;
   @useResult
   $Res call(
       {@JsonKey(name: 'currentPage') int pageNumber,
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'totalFilter') int totalItems,
       @JsonKey(name: 'totalItems') int filteredItems,
-      @JsonKey(name: 'data') List<PembiayaanListItemEntiy> pembiayaanList});
+      @JsonKey(name: 'data') List<Map<String, dynamic>> pembiayaanList});
 }
 
 /// @nodoc
-class _$PembiayaanPaginatedEntityCopyWithImpl<$Res,
-        $Val extends PembiayaanPaginatedEntity>
-    implements $PembiayaanPaginatedEntityCopyWith<$Res> {
-  _$PembiayaanPaginatedEntityCopyWithImpl(this._value, this._then);
+class _$PaginatedUsulanEntityCopyWithImpl<$Res,
+        $Val extends PaginatedUsulanEntity>
+    implements $PaginatedUsulanEntityCopyWith<$Res> {
+  _$PaginatedUsulanEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,18 +93,18 @@ class _$PembiayaanPaginatedEntityCopyWithImpl<$Res,
       pembiayaanList: null == pembiayaanList
           ? _value.pembiayaanList
           : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as List<PembiayaanListItemEntiy>,
+              as List<Map<String, dynamic>>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$PembiayaanPaginatedEntityImplCopyWith<$Res>
-    implements $PembiayaanPaginatedEntityCopyWith<$Res> {
-  factory _$$PembiayaanPaginatedEntityImplCopyWith(
-          _$PembiayaanPaginatedEntityImpl value,
-          $Res Function(_$PembiayaanPaginatedEntityImpl) then) =
-      __$$PembiayaanPaginatedEntityImplCopyWithImpl<$Res>;
+abstract class _$$PaginatedUsulanEntityImplCopyWith<$Res>
+    implements $PaginatedUsulanEntityCopyWith<$Res> {
+  factory _$$PaginatedUsulanEntityImplCopyWith(
+          _$PaginatedUsulanEntityImpl value,
+          $Res Function(_$PaginatedUsulanEntityImpl) then) =
+      __$$PaginatedUsulanEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -112,17 +112,16 @@ abstract class _$$PembiayaanPaginatedEntityImplCopyWith<$Res>
       @JsonKey(name: 'totalPages') int totalPages,
       @JsonKey(name: 'totalFilter') int totalItems,
       @JsonKey(name: 'totalItems') int filteredItems,
-      @JsonKey(name: 'data') List<PembiayaanListItemEntiy> pembiayaanList});
+      @JsonKey(name: 'data') List<Map<String, dynamic>> pembiayaanList});
 }
 
 /// @nodoc
-class __$$PembiayaanPaginatedEntityImplCopyWithImpl<$Res>
-    extends _$PembiayaanPaginatedEntityCopyWithImpl<$Res,
-        _$PembiayaanPaginatedEntityImpl>
-    implements _$$PembiayaanPaginatedEntityImplCopyWith<$Res> {
-  __$$PembiayaanPaginatedEntityImplCopyWithImpl(
-      _$PembiayaanPaginatedEntityImpl _value,
-      $Res Function(_$PembiayaanPaginatedEntityImpl) _then)
+class __$$PaginatedUsulanEntityImplCopyWithImpl<$Res>
+    extends _$PaginatedUsulanEntityCopyWithImpl<$Res,
+        _$PaginatedUsulanEntityImpl>
+    implements _$$PaginatedUsulanEntityImplCopyWith<$Res> {
+  __$$PaginatedUsulanEntityImplCopyWithImpl(_$PaginatedUsulanEntityImpl _value,
+      $Res Function(_$PaginatedUsulanEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -134,7 +133,7 @@ class __$$PembiayaanPaginatedEntityImplCopyWithImpl<$Res>
     Object? filteredItems = null,
     Object? pembiayaanList = null,
   }) {
-    return _then(_$PembiayaanPaginatedEntityImpl(
+    return _then(_$PaginatedUsulanEntityImpl(
       pageNumber: null == pageNumber
           ? _value.pageNumber
           : pageNumber // ignore: cast_nullable_to_non_nullable
@@ -154,26 +153,26 @@ class __$$PembiayaanPaginatedEntityImplCopyWithImpl<$Res>
       pembiayaanList: null == pembiayaanList
           ? _value._pembiayaanList
           : pembiayaanList // ignore: cast_nullable_to_non_nullable
-              as List<PembiayaanListItemEntiy>,
+              as List<Map<String, dynamic>>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
-  const _$PembiayaanPaginatedEntityImpl(
+class _$PaginatedUsulanEntityImpl extends _PaginatedUsulanEntity {
+  const _$PaginatedUsulanEntityImpl(
       {@JsonKey(name: 'currentPage') required this.pageNumber,
       @JsonKey(name: 'totalPages') required this.totalPages,
       @JsonKey(name: 'totalFilter') required this.totalItems,
       @JsonKey(name: 'totalItems') required this.filteredItems,
       @JsonKey(name: 'data')
-      required final List<PembiayaanListItemEntiy> pembiayaanList})
+      required final List<Map<String, dynamic>> pembiayaanList})
       : _pembiayaanList = pembiayaanList,
         super._();
 
-  factory _$PembiayaanPaginatedEntityImpl.fromJson(Map<String, dynamic> json) =>
-      _$$PembiayaanPaginatedEntityImplFromJson(json);
+  factory _$PaginatedUsulanEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PaginatedUsulanEntityImplFromJson(json);
 
   @override
   @JsonKey(name: 'currentPage')
@@ -187,10 +186,10 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
   @override
   @JsonKey(name: 'totalItems')
   final int filteredItems;
-  final List<PembiayaanListItemEntiy> _pembiayaanList;
+  final List<Map<String, dynamic>> _pembiayaanList;
   @override
   @JsonKey(name: 'data')
-  List<PembiayaanListItemEntiy> get pembiayaanList {
+  List<Map<String, dynamic>> get pembiayaanList {
     if (_pembiayaanList is EqualUnmodifiableListView) return _pembiayaanList;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_pembiayaanList);
@@ -198,14 +197,14 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
 
   @override
   String toString() {
-    return 'PembiayaanPaginatedEntity(pageNumber: $pageNumber, totalPages: $totalPages, totalItems: $totalItems, filteredItems: $filteredItems, pembiayaanList: $pembiayaanList)';
+    return 'PaginatedUsulanEntity(pageNumber: $pageNumber, totalPages: $totalPages, totalItems: $totalItems, filteredItems: $filteredItems, pembiayaanList: $pembiayaanList)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PembiayaanPaginatedEntityImpl &&
+            other is _$PaginatedUsulanEntityImpl &&
             (identical(other.pageNumber, pageNumber) ||
                 other.pageNumber == pageNumber) &&
             (identical(other.totalPages, totalPages) ||
@@ -231,31 +230,31 @@ class _$PembiayaanPaginatedEntityImpl extends _PembiayaanPaginatedEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$PembiayaanPaginatedEntityImplCopyWith<_$PembiayaanPaginatedEntityImpl>
-      get copyWith => __$$PembiayaanPaginatedEntityImplCopyWithImpl<
-          _$PembiayaanPaginatedEntityImpl>(this, _$identity);
+  _$$PaginatedUsulanEntityImplCopyWith<_$PaginatedUsulanEntityImpl>
+      get copyWith => __$$PaginatedUsulanEntityImplCopyWithImpl<
+          _$PaginatedUsulanEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PembiayaanPaginatedEntityImplToJson(
+    return _$$PaginatedUsulanEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _PembiayaanPaginatedEntity extends PembiayaanPaginatedEntity {
-  const factory _PembiayaanPaginatedEntity(
+abstract class _PaginatedUsulanEntity extends PaginatedUsulanEntity {
+  const factory _PaginatedUsulanEntity(
           {@JsonKey(name: 'currentPage') required final int pageNumber,
           @JsonKey(name: 'totalPages') required final int totalPages,
           @JsonKey(name: 'totalFilter') required final int totalItems,
           @JsonKey(name: 'totalItems') required final int filteredItems,
           @JsonKey(name: 'data')
-          required final List<PembiayaanListItemEntiy> pembiayaanList}) =
-      _$PembiayaanPaginatedEntityImpl;
-  const _PembiayaanPaginatedEntity._() : super._();
+          required final List<Map<String, dynamic>> pembiayaanList}) =
+      _$PaginatedUsulanEntityImpl;
+  const _PaginatedUsulanEntity._() : super._();
 
-  factory _PembiayaanPaginatedEntity.fromJson(Map<String, dynamic> json) =
-      _$PembiayaanPaginatedEntityImpl.fromJson;
+  factory _PaginatedUsulanEntity.fromJson(Map<String, dynamic> json) =
+      _$PaginatedUsulanEntityImpl.fromJson;
 
   @override
   @JsonKey(name: 'currentPage')
@@ -271,9 +270,9 @@ abstract class _PembiayaanPaginatedEntity extends PembiayaanPaginatedEntity {
   int get filteredItems;
   @override
   @JsonKey(name: 'data')
-  List<PembiayaanListItemEntiy> get pembiayaanList;
+  List<Map<String, dynamic>> get pembiayaanList;
   @override
   @JsonKey(ignore: true)
-  _$$PembiayaanPaginatedEntityImplCopyWith<_$PembiayaanPaginatedEntityImpl>
+  _$$PaginatedUsulanEntityImplCopyWith<_$PaginatedUsulanEntityImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
