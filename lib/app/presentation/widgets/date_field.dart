@@ -66,7 +66,6 @@ class OurDateField extends StatelessWidget {
           cursorWidth: 1,
           decoration: buildOurInputDecoration(
             hint: hint,
-            height: height,
             hintStyle: hintStyle,
           ),
         ),

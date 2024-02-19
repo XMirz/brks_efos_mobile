@@ -51,11 +51,13 @@ class DetailPembiayaanScreen extends ConsumerWidget {
   const DetailPembiayaanScreen({
     required this.idLoan,
     required this.idKategoriProduk,
+    required this.loanState,
     super.key,
   });
 
   final String idLoan;
   final String idKategoriProduk;
+  final LoanState loanState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,7 +82,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
               borderRadius: BorderRadius.zero,
               title: l10n.detailPembiayaan,
             ),
-            floatingActionButton: ref.watch(tabBarIndexProvider) != 0
+            floatingActionButton: (ref.watch(tabBarIndexProvider) != 0 && loanState.canUpdate != true)
                 ? FloatingActionButton(
                     backgroundColor: AppColor.primary,
                     onPressed: () async {

@@ -1,3 +1,4 @@
+import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/features/auth/presentation/screens/landing_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:efosm/features/home/presentations/screen/home_screen.dart';
@@ -77,9 +78,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (BuildContext context, GoRouterState state) {
               final idLoan = state.pathParameters['id'];
               final idKategoriProduk = state.pathParameters['idKategoriProduk'];
+              final loanState = state.extra as LoanState;
               return DetailPembiayaanScreen(
                 idLoan: idLoan.toString(),
                 idKategoriProduk: idKategoriProduk.toString(),
+                loanState: loanState,
               );
             },
           ),

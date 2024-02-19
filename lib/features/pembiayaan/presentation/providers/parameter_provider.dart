@@ -7,12 +7,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'parameter_provider.g.dart';
 
-final stepIndexProvider = StateProvider.autoDispose<int>((ref) => 0);
-final completeIndexProvider = StateProvider.autoDispose<int>((ref) => 0);
-
 @Riverpod(keepAlive: true)
-ParameterRepository parameterRepository(ParameterRepositoryRef ref) =>
-    ParameterRepository();
+ParameterRepository parameterRepository(ParameterRepositoryRef ref) => ParameterRepository();
 
 @Riverpod(keepAlive: true)
 Future<Either<Failure, AppParameter>> fetchInitialParameter(

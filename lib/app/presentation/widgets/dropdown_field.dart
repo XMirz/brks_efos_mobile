@@ -1,10 +1,11 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
+import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 
 typedef ValueChanged<S, T> = void Function(S value, T shownValue);
 
@@ -22,12 +23,14 @@ class OurDropDownField extends StatelessWidget {
     this.height,
     this.value,
     this.backgroundColor,
+    this.capitalizeFirst,
   });
 
   final String label;
-  final String hint;
+  final String? hint; // unused
   final String? error;
   final bool? enabled;
+  final bool? capitalizeFirst;
   final String? value;
   final double? height;
   final TextStyle? labelStyle;
@@ -37,99 +40,45 @@ class OurDropDownField extends StatelessWidget {
   final List<DropDownItem> items;
   @override
   Widget build(BuildContext context) {
-    final showValue = items.isNotEmpty && value != null && value != ''
-        ? items.firstWhereOrNull((e) => e.value == value.toString())?.label
-        : null;
+    final hintText = capitalizeFirst ?? false ? capitalizeEachWord('${l10n.select} $label') : '${l10n.select} $label';
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
           textAlign: TextAlign.left,
-          style: labelStyle ?? AppTextStyle.subtitleLarge,
+          style: labelStyle ?? AppTextStyle.subtitleMedium,
         ),
         spaceY(8),
-        Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: AppColor.backgroundPrimary,
-            // color
-            colorScheme: Theme.of(context).colorScheme.copyWith(
-                  background: AppColor.backgroundPrimary,
-                ),
-          ),
+        IgnorePointer(
+          ignoring: enabled == false,
           child: SizedBox(
-            width: double.infinity,
-            child: InkWell(
-              highlightColor: Colors.transparent,
-              hoverColor: Colors.transparent,
-              focusColor: Colors.transparent,
-              splashColor: Colors.transparent,
-              onTap: () {
-                if (items.isEmpty) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(l10n.dataXNotFound(label)),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                }
-              },
-              child: Stack(
-                children: [
-                  PopupMenuButton<String>(
-                    enabled: enabled ?? true,
-                    initialValue: value,
-                    color: AppColor.backgroundPrimary,
-                    tooltip: label,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      side: BorderSide(color: AppColor.highlightSecondary),
-                    ),
-                    position: PopupMenuPosition.under,
-                    // constraints: BoxConstraints(maxHeight: height ?? 56),
-                    onSelected: (selected) {
-                      final item = items
-                          .firstWhere((element) => element.value == selected);
-                      onChanged(item.value, item.label);
-                    },
-                    child: Container(
-                      alignment: Alignment.centerLeft,
-                      height: height ?? 48,
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      decoration: BoxDecoration(
-                        color: backgroundColor ?? Colors.white,
-                        border: Border.all(
-                          color: AppColor.highlight,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Text(
-                        showValue ?? '${l10n.select} $label',
-                        style: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimary),
-                      ),
-                    ),
-                    itemBuilder: (context) => [
-                      ...items.map(
-                        (item) => PopupMenuItem<String>(
-                          value: item.value,
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '${item.value} - ${item.label}',
-                                  style: AppTextStyle.bodyMedium
-                                      .copyWith(color: AppColor.textPrimary),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            height: height ?? 48,
+            child: CustomDropdown<DropDownItem>.search(
+              hideSelectedFieldWhenExpanded: true,
+              excludeSelected: false,
+              hintText: hintText,
+              items: items.length > 0 ? items : [DropDownItem(value: '', label: hintText)],
+              initialItem: value != null && value != '' ? items.firstWhere((element) => element.value == value) : null,
+              searchHintText: l10n.search,
+              noResultFoundText: l10n.dataXNotFound(''),
+              headerBuilder: (_, selectedItem) => Text(
+                '${selectedItem.value} - ${capitalizeFirst ?? false ? capitalizeEachWord(selectedItem.label) : selectedItem.label}',
+                style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
               ),
+              listItemBuilder: (context, item, isSelected, onItemSelect) => Text(
+                '${item.value} - ${capitalizeFirst ?? false ? capitalizeEachWord(item.label) : item.label}',
+                style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
+              ),
+              closedHeaderPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              decoration: CustomDropdownDecoration(
+                closedBorder: Border.all(color: AppColor.highlight),
+                closedBorderRadius: BorderRadius.circular(8),
+                closedFillColor: enabled ?? true ? backgroundColor : AppColor.textPrimary.withOpacity(0.1),
+              ),
+              onChanged: (item) {
+                onChanged(item.value, item.label);
+              },
             ),
           ),
         ),
@@ -143,33 +92,3 @@ class OurDropDownField extends StatelessWidget {
     );
   }
 }
-
-
-
-        // DropdownButtonFormField<String>(
-        //   isExpanded: true,
-        //   value: value,
-        //   icon: const HeroIcon(HeroIcons.chevronDown),
-        //   isDense: false,
-        //   decoration: buildOurInputDecoration(
-        //       height: height,
-        //       hint: hint,
-        //       hintStyle: hintStyle,
-        //       hintText: label,
-        //       readOnly: readOnly),
-        //   style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
-        //   onChanged: onChanged,
-        //   items: List.generate(
-        //     items.length,
-        //     (index) => DropdownMenuItem(
-        //       enabled: items[index].enabled ?? true,
-        //       value: items[index].value,
-        //       child: Padding(
-        //         padding: const EdgeInsets.all(8),
-        //         child: Text(
-        //           items[index].label,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),

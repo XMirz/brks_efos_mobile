@@ -31,12 +31,11 @@ class PekerjaanForm extends ConsumerWidget {
               spaceY(14),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parProfesi),
+                capitalizeFirst: true,
                 label: context.l10n.profesi,
                 hint: context.l10n.profesi,
                 value: formState.profesi.value,
-                onChanged: (value, label) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setProfesi(value, label),
+                onChanged: (value, label) => ref.read(pekerjaanFormProvider.notifier).setProfesi(value, label),
               ),
               spaceY(4),
               OurTextField(
@@ -44,9 +43,7 @@ class PekerjaanForm extends ConsumerWidget {
                 controller: ref.read(jabatanControllerProvider),
                 hint: context.l10n.jabatan,
                 error: formState.jabatan.errorMessage,
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setJabatan(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setJabatan(value, value),
               ),
               spaceY(4),
               OurTextField(
@@ -54,29 +51,25 @@ class PekerjaanForm extends ConsumerWidget {
                 controller: ref.read(namaInstansiControllerProvider),
                 hint: context.l10n.namaInstansi,
                 error: formState.namaInstansi.errorMessage,
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setNamaInstansi(value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setNamaInstansi(value),
               ),
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parBidangUsaha),
+                capitalizeFirst: true,
                 label: context.l10n.bidangUsaha,
                 hint: context.l10n.bidangUsaha,
                 value: formState.bidangUsaha.value,
-                onChanged: (value, label) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setBidangUsaha(value, label),
+                onChanged: (value, label) => ref.read(pekerjaanFormProvider.notifier).setBidangUsaha(value, label),
               ),
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parStatusPerusahaan),
+                capitalizeFirst: true,
                 label: context.l10n.statusPerusahaan,
                 hint: context.l10n.statusPerusahaan,
                 value: formState.statusPerusahaan.value,
-                onChanged: (value, label) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setStatusPerusahaan(value, label),
+                onChanged: (value, label) => ref.read(pekerjaanFormProvider.notifier).setStatusPerusahaan(value, label),
               ),
               spaceY(4),
               OurTextField(
@@ -86,29 +79,25 @@ class PekerjaanForm extends ConsumerWidget {
                 controller: ref.read(tahunBekerjaControllerProvider),
                 hint: context.l10n.tahunMulaiBekerja,
                 error: formState.tahunBekerja.errorMessage,
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setTahunBekerja(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setTahunBekerja(value, value),
               ),
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parStatusPekerjaan),
+                capitalizeFirst: true,
                 label: context.l10n.statusPekerjaan,
                 hint: context.l10n.statusPekerjaan,
                 value: formState.statusPekerjaan.value,
-                onChanged: (value, label) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setStatusPekerjaan(value, label),
+                onChanged: (value, label) => ref.read(pekerjaanFormProvider.notifier).setStatusPekerjaan(value, label),
               ),
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parKolektif),
+                capitalizeFirst: true,
                 label: context.l10n.sistemAngsuran,
                 hint: context.l10n.sistemAngsuran,
                 value: formState.sistemAngsuran.value,
-                onChanged: (value, label) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setSistemAngsuran(value, label),
+                onChanged: (value, label) => ref.read(pekerjaanFormProvider.notifier).setSistemAngsuran(value, label),
               ),
               spaceY(4),
               OurTextField(
@@ -118,9 +107,7 @@ class PekerjaanForm extends ConsumerWidget {
                 label: context.l10n.gajiAmprah,
                 hint: context.l10n.gajiAmprah,
                 controller: ref.read(gajiAmprahControllerProvider),
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setGajiAmprah(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setGajiAmprah(value, value),
               ),
               spaceY(4),
               OurTextField(
@@ -130,9 +117,7 @@ class PekerjaanForm extends ConsumerWidget {
                 label: context.l10n.tunjangan,
                 hint: context.l10n.tunjangan,
                 controller: ref.read(tunjanganControllerProvider),
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setTunjangan(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setTunjangan(value, value),
               ),
               spaceY(4),
               OurTextField(
@@ -142,9 +127,7 @@ class PekerjaanForm extends ConsumerWidget {
                 label: context.l10n.potongan,
                 hint: context.l10n.potongan,
                 controller: ref.read(potonganControllerProvider),
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setPotongan(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setPotongan(value, value),
               ),
               spaceY(4),
               OurTextField(
@@ -154,9 +137,7 @@ class PekerjaanForm extends ConsumerWidget {
                 label: context.l10n.gajiBersih,
                 hint: context.l10n.gajiBersih,
                 controller: ref.read(gajiBersihControllerProvider),
-                onChanged: (value) => ref
-                    .read(pekerjaanFormProvider.notifier)
-                    .setGajiBersih(value, value),
+                onChanged: (value) => ref.read(pekerjaanFormProvider.notifier).setGajiBersih(value, value),
               ),
               spaceY(12),
             ],

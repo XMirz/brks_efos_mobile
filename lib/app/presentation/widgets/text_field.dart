@@ -3,29 +3,30 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:heroicons/heroicons.dart';
 
-class OurTextField extends StatelessWidget {
+class OurTextField extends StatefulWidget {
   const OurTextField({
     required this.label,
     required this.hint,
     required this.onChanged,
-    this.controller,
     super.key,
+    this.controller,
+    this.error,
+    this.keyboardType,
+    this.readOnly,
+    this.maxLength,
+    this.minLines,
+    this.maxLines,
     this.obsecureText,
+    this.verticalPadding,
     this.labelColor,
     this.cursorColor,
     this.labelStyle,
     this.hintStyle,
-    this.error,
-    this.readOnly,
-    this.height,
-    this.maxLength,
-    this.keyboardType,
     this.currencyFormat,
-    // this.minLines,
-    // this.maxLines,
+    this.verticalMargin,
   });
-
   final String label;
   final String hint;
   final TextEditingController? controller;
@@ -33,10 +34,11 @@ class OurTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool? readOnly;
   final int? maxLength;
-  // final int? minLines;
-  // final int? maxLines;
+  final int? minLines;
+  final int? maxLines;
   final bool? obsecureText;
-  final double? height;
+  final double? verticalPadding;
+  final double? verticalMargin;
   final Color? labelColor;
   final Color? cursorColor;
   final TextStyle? labelStyle;
@@ -44,52 +46,97 @@ class OurTextField extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final bool? currencyFormat;
   @override
+  State<OurTextField> createState() => _OurTextFieldState();
+}
+
+class _OurTextFieldState extends State<OurTextField> {
+  bool showObscured = false;
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          textAlign: TextAlign.left,
-          style: labelStyle ?? AppTextStyle.subtitleLarge,
-        ),
-        spaceY(8),
-        Unfocuser(
-          child: TextFormField(
-            inputFormatters: [
-              if (currencyFormat ?? false)
-                CurrencyInputFormatter(
-                  leadingSymbol: 'Rp ',
-                  mantissaLength: 0,
-                ),
-            ],
-            keyboardType: keyboardType ?? TextInputType.text,
-            maxLength: maxLength,
-            readOnly: readOnly ?? false,
-            onChanged: (value) {
-              if (currencyFormat ?? false) value = toNumericString(value);
-              onChanged(value);
-            },
-            controller: controller ?? TextEditingController(),
-            obscureText: obsecureText ?? false,
-            style:
-                AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
-            cursorColor: cursorColor ?? AppColor.textPrimary,
-            cursorWidth: 1,
-            decoration: buildOurInputDecoration(
-              hint: hint,
-              height: height ?? 56,
-              hintStyle: hintStyle,
-              readOnly: readOnly,
-            ),
-          ),
-        ),
-        if (error != null && error != '')
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: widget.verticalMargin ?? 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
           Text(
-            error ?? '',
-            style: labelStyle ?? AppTextStyle.errorText,
+            widget.label,
+            textAlign: TextAlign.left,
+            style: widget.labelStyle ?? AppTextStyle.bodySmall,
           ),
-      ],
+          spaceY(4),
+          if (widget.obsecureText != null)
+            TextFormField(
+              inputFormatters: [
+                if (widget.currencyFormat ?? false)
+                  CurrencyInputFormatter(
+                    leadingSymbol: 'Rp ',
+                    mantissaLength: 0,
+                  ),
+              ],
+              keyboardType: widget.keyboardType ?? TextInputType.text,
+              maxLength: widget.maxLength,
+              readOnly: widget.readOnly ?? false,
+              onChanged: (value) {
+                if (widget.currencyFormat ?? false) value = toNumericString(value);
+                widget.onChanged(value);
+              },
+              controller: widget.controller ?? TextEditingController(),
+              obscureText: showObscured,
+              style: AppTextStyle.bodyMedium,
+              cursorColor: widget.cursorColor ?? AppColor.textPrimary,
+              cursorWidth: 1,
+              decoration: buildOurInputDecoration(
+                hint: widget.hint,
+                verticalPadding: widget.verticalPadding ?? 0,
+                hintStyle: widget.hintStyle,
+                readOnly: widget.readOnly,
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        showObscured = !showObscured;
+                      });
+                    },
+                    icon: HeroIcon(!showObscured ? HeroIcons.eye : HeroIcons.eyeSlash)),
+              ),
+            ),
+          if (widget.obsecureText != true)
+            TextFormField(
+              minLines: widget.minLines,
+              maxLines: widget.maxLines ?? widget.minLines,
+              inputFormatters: [
+                if (widget.currencyFormat ?? false)
+                  CurrencyInputFormatter(
+                    leadingSymbol: 'Rp ',
+                    mantissaLength: 0,
+                  ),
+              ],
+              keyboardType: widget.keyboardType ?? TextInputType.text,
+              maxLength: widget.maxLength,
+              readOnly: widget.readOnly ?? false,
+              onChanged: (value) {
+                if (widget.currencyFormat ?? false) value = toNumericString(value);
+                print("ASd");
+
+                widget.onChanged(value);
+              },
+              controller: widget.controller ?? TextEditingController(),
+              style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimary),
+              cursorColor: widget.cursorColor ?? AppColor.textPrimary,
+              cursorWidth: 1,
+              decoration: buildOurInputDecoration(
+                hint: widget.hint,
+                verticalPadding: widget.verticalPadding ?? 0,
+                hintStyle: widget.hintStyle,
+                readOnly: widget.readOnly,
+              ),
+            ),
+          if (widget.error != null && widget.error != '')
+            Text(
+              widget.error ?? '',
+              style: widget.labelStyle ?? AppTextStyle.errorText,
+            ),
+        ],
+      ),
     );
   }
 }

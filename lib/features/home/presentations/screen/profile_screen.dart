@@ -130,6 +130,8 @@ class ProfileScreen extends HookConsumerWidget {
                 buildDivider,
                 spaceY(8),
                 InkWell(
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () => handleLogout(context, ref),
                   child: Text(
                     l10n.exit,

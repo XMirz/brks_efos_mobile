@@ -22,26 +22,37 @@ List<DropDownItem> buildDropDownItem(List<Parameter> items) {
   }).toList();
 }
 
+const boxShadowMedium = BoxShadow(
+  color: Color.fromRGBO(0, 0, 0, 0.16),
+  blurRadius: 4,
+  offset: Offset(
+    0,
+    1,
+  ),
+);
+
+final buildDivider = Container(
+  color: AppColor.highlightSecondary,
+  width: double.infinity,
+  height: 1,
+);
+
 InputDecoration buildOurInputDecoration({
-  double? height,
+  double? verticalPadding,
   String? hint,
   TextStyle? hintStyle,
   bool? readOnly,
+  Widget? suffixIcon,
 }) {
   return InputDecoration(
     counterText: '',
-    constraints: height != null
-        ? BoxConstraints(
-            minHeight: height,
-            maxHeight: height,
-          )
-        : null,
+    suffixIcon: suffixIcon,
     hintText: hint,
     hintStyle: hintStyle ??
         AppTextStyle.bodyMedium.copyWith(
           color: AppColor.textPlaceholder,
         ),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+    contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: verticalPadding ?? 12),
     fillColor: readOnly ?? true ? AppColor.highlight : Colors.transparent,
     disabledBorder: OutlineInputBorder(
       borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -57,43 +68,3 @@ InputDecoration buildOurInputDecoration({
     ),
   );
 }
-
-InputDecoration buildOurFlatInputDecoration({
-  double? height,
-  String? hint,
-  TextStyle? hintStyle,
-  bool? readOnly,
-}) {
-  return InputDecoration(
-    counterText: '',
-    constraints: BoxConstraints(
-      minHeight: height ?? 56,
-      maxHeight: height ?? 56,
-    ),
-    hintText: hint,
-    hintStyle: hintStyle ??
-        AppTextStyle.bodyMedium.copyWith(
-          color: AppColor.textPlaceholder,
-        ),
-    contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-    fillColor: readOnly ?? true ? AppColor.highlight : Colors.transparent,
-    enabledBorder: InputBorder.none,
-    focusedBorder: InputBorder.none,
-    disabledBorder: InputBorder.none,
-  );
-}
-
-const boxShadowMedium = BoxShadow(
-  color: Color.fromRGBO(0, 0, 0, 0.16),
-  blurRadius: 4,
-  offset: Offset(
-    0,
-    1,
-  ),
-);
-
-final buildDivider = Container(
-  color: AppColor.highlightSecondary,
-  width: double.infinity,
-  height: 1,
-);

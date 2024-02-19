@@ -13,6 +13,7 @@ import 'package:efosm/features/pembiayaan/presentation/widgets/card.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -45,11 +46,12 @@ class Dashboard extends HookConsumerWidget {
             ),
             child: dashboardContent.when(
               data: (data) {
-                return Column(
-                  // return StaggeredGrid.count(
-                  // crossAxisCount: 2,
-                  // mainAxisSpacing: 8,
-                  // crossAxisSpacing: 8,
+                // return Column(
+                return StaggeredGrid.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 8,
+                  crossAxisSpacing: 8,
+                  // mainAxisSize: MainAxisSize.min,
                   children: [
                     DashboardCard(
                       heroIcons: HeroIcons.newspaper,
@@ -278,7 +280,7 @@ class DashboardCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnotherCard(
-      margin: const EdgeInsets.only(bottom: 12),
+      // margin: const EdgeInsets.only(bottom: 12),
       boxShadow: const [],
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       backgroundColor: backgroundColor,
@@ -305,47 +307,41 @@ class DashboardCard extends StatelessWidget {
             style: HeroIconStyle.solid,
           ),
           spaceY(4),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    l10n.konsumtif,
-                    style: AppTextStyle.bodySmall.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
-                  ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  l10n.konsumtif,
+                  style: AppTextStyle.bodySmall.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
                 ),
-                spaceY(4),
-                Flexible(
-                  child: Text(
-                    konsumtif,
-                    style: AppTextStyle.bodyMediumBold.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
-                  ),
+              ),
+              spaceY(4),
+              Flexible(
+                child: Text(
+                  konsumtif,
+                  style: AppTextStyle.bodyMediumBold.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-          SizedBox(
-            width: double.infinity,
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Text(
-                    l10n.produktif,
-                    style: AppTextStyle.bodySmall.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
-                  ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  l10n.produktif,
+                  style: AppTextStyle.bodySmall.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
                 ),
-                spaceY(4),
-                Flexible(
-                  child: Text(
-                    produktif,
-                    style: AppTextStyle.bodyMediumBold.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
-                  ),
-                )
-              ],
-            ),
+              ),
+              spaceY(4),
+              Flexible(
+                child: Text(
+                  produktif,
+                  style: AppTextStyle.bodyMediumBold.copyWith(color: textColor ?? AppColor.textPrimaryInverse),
+                ),
+              )
+            ],
           )
         ],
       ),

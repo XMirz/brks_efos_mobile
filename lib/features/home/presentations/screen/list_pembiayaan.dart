@@ -392,13 +392,12 @@ class SliverItems extends ConsumerWidget {
                     SmallButton(
                       text: l10n.detail,
                       onPressed: () {
-                        context.pushNamed(
-                          AppRoutes.detailPembiayaan,
-                          pathParameters: {
-                            'id': item.idLoan,
-                            'idKategoriProduk': item.idKategoriProduk.toString(),
-                          },
-                        );
+                        context.pushNamed(AppRoutes.detailPembiayaan,
+                            pathParameters: {
+                              'id': item.idLoan,
+                              'idKategoriProduk': item.idKategoriProduk.toString(),
+                            },
+                            extra: loanState);
                       },
                       textStyle: AppTextStyle.bodyMedium,
                     ),

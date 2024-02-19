@@ -42,13 +42,12 @@ class ProdukPembiayaanForm extends ConsumerWidget {
               spaceY(14),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parKategoriProduk),
+                capitalizeFirst: true,
                 label: context.l10n.kategoriProduk,
                 hint: context.l10n.kategoriProduk,
                 value: formState.idKategoriProduk.value,
                 onChanged: (value, label) {
-                  ref
-                      .read(pembiayaanFormProvider.notifier)
-                      .setKategoriProduk(value, label);
+                  ref.read(pembiayaanFormProvider.notifier).setKategoriProduk(value, label);
                 },
               ),
               spaceY(4),
@@ -56,8 +55,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                   .watch(
                     fetchProdukProvider(
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idKategoriProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idKategoriProduk.value),
                       ),
                     ),
                   )
@@ -68,9 +66,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         label: context.l10n.produk,
                         hint: context.l10n.produk,
                         value: formState.idProduk.value,
-                        onChanged: (value, label) => ref
-                            .read(pembiayaanFormProvider.notifier)
-                            .setProduk(value, label),
+                        onChanged: (value, label) => ref.read(pembiayaanFormProvider.notifier).setProduk(value, label),
                       );
                     },
                     error: (error, stackTrace) => Container(),
@@ -81,8 +77,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                   .watch(
                     fetchJenisPengajuanProvider(
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idKategoriProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idKategoriProduk.value),
                       ),
                     ),
                   )
@@ -93,9 +88,8 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         label: context.l10n.jenisPengajuan,
                         hint: context.l10n.jenisPengajuan,
                         value: formState.idJenisPengajuan.value,
-                        onChanged: (value, label) => ref
-                            .read(pembiayaanFormProvider.notifier)
-                            .setJenisPengajuan(value, label),
+                        onChanged: (value, label) =>
+                            ref.read(pembiayaanFormProvider.notifier).setJenisPengajuan(value, label),
                       );
                     },
                     error: (error, stackTrace) => Container(),
@@ -106,12 +100,10 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                   .watch(
                     fetchSubProdukProvider(
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idProduk.value),
                       ),
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idKategoriProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idKategoriProduk.value),
                       ),
                     ),
                   )
@@ -122,9 +114,8 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         label: context.l10n.subProduk,
                         hint: context.l10n.subProduk,
                         value: formState.idSubProduk.value,
-                        onChanged: (value, label) => ref
-                            .read(pembiayaanFormProvider.notifier)
-                            .setSubProduk(value, label),
+                        onChanged: (value, label) =>
+                            ref.read(pembiayaanFormProvider.notifier).setSubProduk(value, label),
                       );
                     },
                     error: (error, stackTrace) => Container(),
@@ -135,12 +126,10 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                   .watch(
                     fetchPlanProvider(
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idSubProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idSubProduk.value),
                       ),
                       ref.read(
-                        pembiayaanFormProvider
-                            .select((value) => value.idKategoriProduk.value),
+                        pembiayaanFormProvider.select((value) => value.idKategoriProduk.value),
                       ),
                     ),
                   )
@@ -151,9 +140,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         label: context.l10n.plan,
                         hint: context.l10n.plan,
                         value: formState.idPlan.value,
-                        onChanged: (value, label) => ref
-                            .read(pembiayaanFormProvider.notifier)
-                            .setPlan(value, label),
+                        onChanged: (value, label) => ref.read(pembiayaanFormProvider.notifier).setPlan(value, label),
                       );
                     },
                     error: (error, stackTrace) => Container(),
@@ -167,9 +154,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                 controller: ref.read(tujuanPembiayaanController),
                 hint: context.l10n.tujuanPembiayaan,
                 error: formState.tujuanPembiayaan.errorMessage,
-                onChanged: (value) => ref
-                    .read(pembiayaanFormProvider.notifier)
-                    .setTujuanPembiayaan(value, value),
+                onChanged: (value) => ref.read(pembiayaanFormProvider.notifier).setTujuanPembiayaan(value, value),
               ),
               spaceY(4),
               // OurTextField(
@@ -243,9 +228,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                 hint: context.l10n.plafon,
                 error: formState.plafonPengajuan.errorMessage,
                 onChanged: (value) {
-                  ref
-                      .read(pembiayaanFormProvider.notifier)
-                      .setPlafonPengajuan(value, value);
+                  ref.read(pembiayaanFormProvider.notifier).setPlafonPengajuan(value, value);
                   // handleMarginUpdate();
                 },
               ),
@@ -258,9 +241,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                 hint: context.l10n.tenor,
                 error: formState.tenorPengajuan.errorMessage,
                 onChanged: (value) {
-                  ref
-                      .read(pembiayaanFormProvider.notifier)
-                      .setTenor(value, value);
+                  ref.read(pembiayaanFormProvider.notifier).setTenor(value, value);
                   // handleMarginUpdate();
                 },
               ),

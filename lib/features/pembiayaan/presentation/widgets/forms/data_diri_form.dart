@@ -41,8 +41,7 @@ class DataDiriForm extends ConsumerWidget {
                 controller: ref.read(nikController),
                 hint: context.l10n.nik,
                 error: formState.nik.errorMessage,
-                onChanged: (value) =>
-                    ref.read(dataDiriFormProvider.notifier).setNik(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setNik(value),
               ),
               spaceY(4),
               OurTextField(
@@ -50,18 +49,16 @@ class DataDiriForm extends ConsumerWidget {
                 controller: ref.read(namaController),
                 hint: context.l10n.nama,
                 error: formState.nama.errorMessage,
-                onChanged: (value) =>
-                    ref.read(dataDiriFormProvider.notifier).setNama(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setNama(value),
               ),
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parKelamin),
+                capitalizeFirst: true,
                 label: context.l10n.jenisKelamin,
                 hint: context.l10n.jenisKelamin,
                 value: formState.jenisKelamin.value,
-                onChanged: (value, label) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setJenisKelamin(value, label),
+                onChanged: (value, label) => ref.read(dataDiriFormProvider.notifier).setJenisKelamin(value, label),
               ),
               spaceY(4),
               Row(
@@ -75,9 +72,7 @@ class DataDiriForm extends ConsumerWidget {
                       hint: context.l10n.tempatLahir,
                       controller: ref.read(tempatLahirController),
                       error: formState.tempatLahir.errorMessage,
-                      onChanged: (value) => ref
-                          .read(dataDiriFormProvider.notifier)
-                          .setTempatLahir(value),
+                      onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setTempatLahir(value),
                     ),
                   ),
                   spaceX(8),
@@ -88,9 +83,7 @@ class DataDiriForm extends ConsumerWidget {
                       label: context.l10n.tanggalLahir,
                       hint: context.l10n.tanggalLahir,
                       error: formState.tanggalLahir.errorMessage,
-                      onChanged: (value) => ref
-                          .read(dataDiriFormProvider.notifier)
-                          .setTanggalLahir(value),
+                      onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setTanggalLahir(value),
                     ),
                   ),
                 ],
@@ -101,8 +94,7 @@ class DataDiriForm extends ConsumerWidget {
                 controller: ref.read(alamatController),
                 hint: context.l10n.alamat,
                 error: formState.alamat.errorMessage,
-                onChanged: (value) =>
-                    ref.read(dataDiriFormProvider.notifier).setAlamat(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setAlamat(value),
               ),
 
               // PROVINSI GOES HERE
@@ -111,11 +103,10 @@ class DataDiriForm extends ConsumerWidget {
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parStatusPernikahan),
                 label: context.l10n.statusPernikahan,
+                capitalizeFirst: true,
                 hint: context.l10n.statusPernikahan,
                 value: formState.statusPernikahan.value,
-                onChanged: (value, label) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setStatusPernikahan(value, label),
+                onChanged: (value, label) => ref.read(dataDiriFormProvider.notifier).setStatusPernikahan(value, label),
               ),
 
               spaceY(4),
@@ -125,9 +116,7 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.jumlahTanggungan,
                 hint: context.l10n.jumlahTanggungan,
                 controller: ref.read(jumlahTanggunganController),
-                onChanged: (value) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setJumlahTanggungan(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setJumlahTanggungan(value),
               ),
               spaceY(4),
               OurTextField(
@@ -137,8 +126,7 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.kewajiban,
                 hint: context.l10n.kewajiban,
                 controller: ref.read(kewajibanController),
-                onChanged: (value) =>
-                    ref.read(dataDiriFormProvider.notifier).setKewajiban(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setKewajiban(value),
               ),
               spaceY(4),
               OurTextField(
@@ -148,9 +136,7 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.biayaOperasional,
                 hint: context.l10n.biayaOperasional,
                 controller: ref.read(biayaOperasionalController),
-                onChanged: (value) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setBiayaOperasional(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setBiayaOperasional(value),
               ),
 
               spaceY(4),
@@ -161,9 +147,7 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.biayaRumahTangga,
                 hint: context.l10n.biayaRumahTangga,
                 controller: ref.read(biayaRumahTanggaController),
-                onChanged: (value) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setBiayaRumahTangga(value),
+                onChanged: (value) => ref.read(dataDiriFormProvider.notifier).setBiayaRumahTangga(value),
               ),
 
               spaceY(4),
@@ -172,21 +156,18 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.statusTempatTinggal,
                 hint: context.l10n.statusTempatTinggal,
                 value: formState.statusTempatTinggal.value,
-                onChanged: (value, label) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setStatusTempatTinggal(value, label),
+                onChanged: (value, label) =>
+                    ref.read(dataDiriFormProvider.notifier).setStatusTempatTinggal(value, label),
               ),
 
               spaceY(4),
               OurDropDownField(
-                items:
-                    buildDropDownItem(initialParameters.parHubunganPerbankan),
+                items: buildDropDownItem(initialParameters.parHubunganPerbankan),
+                capitalizeFirst: true,
                 label: context.l10n.hubunganPerbankan,
                 hint: context.l10n.hubunganPerbankan,
                 value: formState.hubunganPerbankan.value,
-                onChanged: (value, label) => ref
-                    .read(dataDiriFormProvider.notifier)
-                    .setHubunganPerbankan(value, label),
+                onChanged: (value, label) => ref.read(dataDiriFormProvider.notifier).setHubunganPerbankan(value, label),
               ),
 
               spaceY(12),

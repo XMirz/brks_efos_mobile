@@ -23,9 +23,7 @@ class PasanganForm extends ConsumerWidget {
     return initialParametersAsyncData.when(
       data: (data) => Builder(
         builder: (context) {
-          final isMarried =
-              ref.watch(dataDiriFormProvider).statusPernikahan.value ==
-                  AppString.isMarriedValue;
+          final isMarried = ref.watch(dataDiriFormProvider).statusPernikahan.value == AppString.isMarriedValue;
           final initialParameters = data.getOrElse(
             () => AppParameter.fromJson({}),
           ); // I Dont Know Anymore
@@ -51,8 +49,7 @@ class PasanganForm extends ConsumerWidget {
                     controller: ref.read(nikPasanganController),
                     hint: context.l10n.nik,
                     error: formState.nik.errorMessage,
-                    onChanged: (value) =>
-                        ref.read(pasanganFormProvider.notifier).setNik(value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setNik(value),
                   ),
                   spaceY(4),
                   OurTextField(
@@ -60,19 +57,16 @@ class PasanganForm extends ConsumerWidget {
                     controller: ref.read(namaPasanganController),
                     hint: context.l10n.nama,
                     error: formState.nama.errorMessage,
-                    onChanged: (value) =>
-                        ref.read(pasanganFormProvider.notifier).setNama(value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setNama(value),
                   ),
                   spaceY(4),
                   OurDropDownField(
-                    items:
-                        buildDropDownItem(initialParameters.parStatusPekerjaan),
+                    items: buildDropDownItem(initialParameters.parStatusPekerjaan),
+                    capitalizeFirst: true,
                     label: context.l10n.statusPekerjaan,
                     hint: context.l10n.statusPekerjaan,
                     value: formState.penghasilan.value,
-                    onChanged: (value, label) => ref
-                        .read(pasanganFormProvider.notifier)
-                        .setPenghasilan(value, label),
+                    onChanged: (value, label) => ref.read(pasanganFormProvider.notifier).setPenghasilan(value, label),
                   ),
                   OurTextField(
                     maxLength: 16,
@@ -81,9 +75,7 @@ class PasanganForm extends ConsumerWidget {
                     label: context.l10n.gajiAmprah,
                     hint: context.l10n.gajiAmprah,
                     controller: ref.read(gajiAmprahPasanganController),
-                    onChanged: (value) => ref
-                        .read(pasanganFormProvider.notifier)
-                        .setGajiAmprah(value, value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setGajiAmprah(value, value),
                   ),
                   spaceY(4),
                   OurTextField(
@@ -93,9 +85,7 @@ class PasanganForm extends ConsumerWidget {
                     label: context.l10n.tunjangan,
                     hint: context.l10n.tunjangan,
                     controller: ref.read(tunjanganPasanganController),
-                    onChanged: (value) => ref
-                        .read(pasanganFormProvider.notifier)
-                        .setTunjangan(value, value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setTunjangan(value, value),
                   ),
                   spaceY(4),
                   OurTextField(
@@ -105,9 +95,7 @@ class PasanganForm extends ConsumerWidget {
                     label: context.l10n.potongan,
                     hint: context.l10n.potongan,
                     controller: ref.read(potonganPasanganController),
-                    onChanged: (value) => ref
-                        .read(pasanganFormProvider.notifier)
-                        .setPotongan(value, value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setPotongan(value, value),
                   ),
                   spaceY(4),
                   OurTextField(
@@ -117,9 +105,7 @@ class PasanganForm extends ConsumerWidget {
                     label: context.l10n.gajiBersih,
                     hint: context.l10n.gajiBersih,
                     controller: ref.read(gajiBersihPasanganController),
-                    onChanged: (value) => ref
-                        .read(pasanganFormProvider.notifier)
-                        .setGajiBersih(value, value),
+                    onChanged: (value) => ref.read(pasanganFormProvider.notifier).setGajiBersih(value, value),
                   ),
                   spaceY(12),
                 ],
