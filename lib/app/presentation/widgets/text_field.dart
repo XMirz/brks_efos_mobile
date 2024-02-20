@@ -50,7 +50,7 @@ class OurTextField extends StatefulWidget {
 }
 
 class _OurTextFieldState extends State<OurTextField> {
-  bool showObscured = false;
+  bool showObscured = true;
   @override
   Widget build(BuildContext context) {
     return Container(

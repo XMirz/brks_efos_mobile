@@ -41,8 +41,10 @@ class Dashboard extends HookConsumerWidget {
             child: FormHeader(title: l10n.dashboard),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
+            padding: const EdgeInsets.only(
+              right: 12,
+              left: 12,
+              bottom: 16,
             ),
             child: dashboardContent.when(
               data: (data) {

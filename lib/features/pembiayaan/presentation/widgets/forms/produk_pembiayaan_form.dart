@@ -38,10 +38,12 @@ class ProdukPembiayaanForm extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Text(formState.toString()),
               FormHeader(title: l10n.pembiayaan),
               spaceY(14),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parKategoriProduk),
+                enabled: !formState.isUpdate,
                 capitalizeFirst: true,
                 label: context.l10n.kategoriProduk,
                 hint: context.l10n.kategoriProduk,
@@ -69,7 +71,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         onChanged: (value, label) => ref.read(pembiayaanFormProvider.notifier).setProduk(value, label),
                       );
                     },
-                    error: (error, stackTrace) => Container(),
+                    error: (error, stackTrace) => const OurLoading(),
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),
@@ -92,7 +94,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                             ref.read(pembiayaanFormProvider.notifier).setJenisPengajuan(value, label),
                       );
                     },
-                    error: (error, stackTrace) => Container(),
+                    error: (error, stackTrace) => const OurLoading(),
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),
@@ -118,7 +120,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                             ref.read(pembiayaanFormProvider.notifier).setSubProduk(value, label),
                       );
                     },
-                    error: (error, stackTrace) => Container(),
+                    error: (error, stackTrace) => const OurLoading(),
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),
@@ -143,7 +145,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
                         onChanged: (value, label) => ref.read(pembiayaanFormProvider.notifier).setPlan(value, label),
                       );
                     },
-                    error: (error, stackTrace) => Container(),
+                    error: (error, stackTrace) => const OurLoading(),
                     loading: () => const OurLoading(),
                   ),
               spaceY(4),

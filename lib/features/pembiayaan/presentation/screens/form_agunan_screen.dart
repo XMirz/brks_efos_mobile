@@ -7,6 +7,7 @@ import 'package:efosm/app/data/dto/our_request.dart';
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
+import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
@@ -35,11 +36,6 @@ import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
-
-final jenisJaminan = <DropDownItem>[
-  DropDownItem(value: '1', label: l10n.jaminan),
-  DropDownItem(value: '0 ', label: l10n.agunan),
-];
 
 class FormAgunanScreen extends ConsumerWidget {
   const FormAgunanScreen({
@@ -83,6 +79,8 @@ class FormAgunanScreen extends ConsumerWidget {
                 );
                 return ListView(
                   children: [
+                    Text(formState.toString()),
+                    Text(formState.isJaminan.value),
                     spaceY(24),
                     FormHeader(
                       title: l10n.agunan,

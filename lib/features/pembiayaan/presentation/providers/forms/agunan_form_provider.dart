@@ -172,10 +172,10 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
     );
   }
 
-  void setFile(XFile value, String shownValue, OurLocation loc) {
+  void setFile(XFile value, String shownValue, OurLocation loc, {bool isUpdate = false}) {
     final file = File(value.path);
-    print(file.absolute);
-    final isValid = file.existsSync();
+    // print(file.absolute);
+    final isValid = isUpdate || file.existsSync();
     final message = isValid ? '' : l10n.pickAgunan;
     state = state.copyWith(
       image: FileField(
@@ -194,6 +194,12 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
         value: loc.longitude,
         showValue: loc.longitude,
         isValid: isValid,
+        errorMessage: message,
+      ),
+      captureLoc: Field(
+        value: loc.locationName ?? '',
+        showValue: loc.longitude,
+        isValid: true,
         errorMessage: message,
       ),
     );
@@ -217,6 +223,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
       setDeskripsi4(deskripsi4);
       setDeskripsi5(deskripsi5);
     }
+    debugPrint(' AKWOKWO ${data.isJaminan}');
     setJenisJaminan(data.isJaminan ?? '', '');
     setJenis(data.jenis ?? '', jenisLabel ?? '');
     setDeskripsi(deskripsi ?? '', deskripsi ?? '');

@@ -1,8 +1,15 @@
+import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/core/constants/approval_type.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/l10n/l10n.dart';
+
+final jenisJaminan = <DropDownItem>[
+  DropDownItem(value: '1', label: l10n.jaminan),
+  DropDownItem(value: '0', label: l10n.agunan),
+];
 
 LoanState buildKonsumtifLoanState({
   required String id,

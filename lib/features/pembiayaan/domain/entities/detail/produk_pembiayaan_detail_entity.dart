@@ -6,7 +6,7 @@ part 'produk_pembiayaan_detail_entity.g.dart';
 @freezed
 class ProdukPembiayaanDetailEntity with _$ProdukPembiayaanDetailEntity {
   const factory ProdukPembiayaanDetailEntity({
-    @Default(0) @JsonKey(name: 'kategori_produk') dynamic idKategoriProduk,
+    @Default(0) @JsonKey(name: 'id_kategori_produk') dynamic idKategoriProduk,
     @Default('-') @JsonKey(name: 'desc_kategori_produk') String kategoriProduk,
     @Default(0) @JsonKey(name: 'id_produk') dynamic idProduk,
     @Default('-') @JsonKey(name: 'desc_produk') String descProduk,

@@ -3,6 +3,8 @@
 import 'dart:async';
 
 import 'package:efosm/app/presentation/providers/router_provider.dart';
+import 'package:efosm/app/presentation/providers/user_provider.dart';
+import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
@@ -16,6 +18,7 @@ import 'package:efosm/features/home/presentations/widgets/nav_bar.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -24,6 +27,7 @@ class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.read(authenticatedUserProvider).user!;
     final pageIndex = ref.watch(pageIndexProvider);
     return
         // WillPopScope(
@@ -50,7 +54,7 @@ class HomeScreen extends HookConsumerWidget {
         // },
         // child:
         Scaffold(
-      floatingActionButton: pageIndex == 0
+      floatingActionButton: pageIndex == 0 && isAO(int.parse(user.idRole))
           ? FloatingActionButton(
               backgroundColor: AppColor.primary,
               onPressed: () async {
@@ -63,8 +67,7 @@ class HomeScreen extends HookConsumerWidget {
                     },
                   ),
                 );
-                final parameter =
-                    await ref.read(fetchInitialParameterProvider.future);
+                final parameter = await ref.read(fetchInitialParameterProvider.future);
                 if (context.mounted) context.pop('dialog'); // Close loading
                 await parameter.fold((l) {
                   // Clear the state if failure occurs

@@ -82,7 +82,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
               borderRadius: BorderRadius.zero,
               title: l10n.detailPembiayaan,
             ),
-            floatingActionButton: (ref.watch(tabBarIndexProvider) != 0 && loanState.canUpdate != true)
+            floatingActionButton: (ref.watch(tabBarIndexProvider) != 0 && loanState.canUpdate == true)
                 ? FloatingActionButton(
                     backgroundColor: AppColor.primary,
                     onPressed: () async {
@@ -202,7 +202,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                               },
                               child: ListView(
                                 children: [
-                                  // Text(user.toString()),
+                                  // Text(data.toString()),
                                   // Text(loanState.toString()),
                                   spaceY(18),
                                   Container(
@@ -432,8 +432,8 @@ class DetailPembiayaanScreen extends ConsumerWidget {
       }
     } else {
       invalidateForms(ref);
-      ref.read(dataDiriFormProvider.notifier).setDataDiri(pembiayaan!.dataDiri);
-      ref.read(pekerjaanFormProvider.notifier).setPekerjaan(pembiayaan!.pekerjaan, parameters!);
+      ref.read(dataDiriFormProvider.notifier).setDataDiri(pembiayaan!);
+      ref.read(pekerjaanFormProvider.notifier).setPekerjaan(pembiayaan!, parameters!);
       if (pembiayaan!.pasangan.isNotEmpty) {
         ref.read(pasanganFormProvider.notifier).setPasanganForm(pembiayaan!.pasangan.first);
       }

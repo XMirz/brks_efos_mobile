@@ -21,7 +21,7 @@ ProdukPembiayaanDetailEntity _$ProdukPembiayaanDetailEntityFromJson(
 
 /// @nodoc
 mixin _$ProdukPembiayaanDetailEntity {
-  @JsonKey(name: 'kategori_produk')
+  @JsonKey(name: 'id_kategori_produk')
   dynamic get idKategoriProduk => throw _privateConstructorUsedError;
   @JsonKey(name: 'desc_kategori_produk')
   String get kategoriProduk => throw _privateConstructorUsedError;
@@ -81,7 +81,7 @@ abstract class $ProdukPembiayaanDetailEntityCopyWith<$Res> {
           ProdukPembiayaanDetailEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'kategori_produk') dynamic idKategoriProduk,
+      {@JsonKey(name: 'id_kategori_produk') dynamic idKategoriProduk,
       @JsonKey(name: 'desc_kategori_produk') String kategoriProduk,
       @JsonKey(name: 'id_produk') dynamic idProduk,
       @JsonKey(name: 'desc_produk') String descProduk,
@@ -245,7 +245,7 @@ abstract class _$$ProdukPembiayaanDetailEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'kategori_produk') dynamic idKategoriProduk,
+      {@JsonKey(name: 'id_kategori_produk') dynamic idKategoriProduk,
       @JsonKey(name: 'desc_kategori_produk') String kategoriProduk,
       @JsonKey(name: 'id_produk') dynamic idProduk,
       @JsonKey(name: 'desc_produk') String descProduk,
@@ -402,7 +402,7 @@ class __$$ProdukPembiayaanDetailEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProdukPembiayaanDetailEntityImpl extends _ProdukPembiayaanDetailEntity {
   const _$ProdukPembiayaanDetailEntityImpl(
-      {@JsonKey(name: 'kategori_produk') this.idKategoriProduk = 0,
+      {@JsonKey(name: 'id_kategori_produk') this.idKategoriProduk = 0,
       @JsonKey(name: 'desc_kategori_produk') this.kategoriProduk = '-',
       @JsonKey(name: 'id_produk') this.idProduk = 0,
       @JsonKey(name: 'desc_produk') this.descProduk = '-',
@@ -431,7 +431,7 @@ class _$ProdukPembiayaanDetailEntityImpl extends _ProdukPembiayaanDetailEntity {
       _$$ProdukPembiayaanDetailEntityImplFromJson(json);
 
   @override
-  @JsonKey(name: 'kategori_produk')
+  @JsonKey(name: 'id_kategori_produk')
   final dynamic idKategoriProduk;
   @override
   @JsonKey(name: 'desc_kategori_produk')
@@ -594,7 +594,7 @@ class _$ProdukPembiayaanDetailEntityImpl extends _ProdukPembiayaanDetailEntity {
 abstract class _ProdukPembiayaanDetailEntity
     extends ProdukPembiayaanDetailEntity {
   const factory _ProdukPembiayaanDetailEntity(
-          {@JsonKey(name: 'kategori_produk') final dynamic idKategoriProduk,
+          {@JsonKey(name: 'id_kategori_produk') final dynamic idKategoriProduk,
           @JsonKey(name: 'desc_kategori_produk') final String kategoriProduk,
           @JsonKey(name: 'id_produk') final dynamic idProduk,
           @JsonKey(name: 'desc_produk') final String descProduk,
@@ -623,7 +623,7 @@ abstract class _ProdukPembiayaanDetailEntity
       _$ProdukPembiayaanDetailEntityImpl.fromJson;
 
   @override
-  @JsonKey(name: 'kategori_produk')
+  @JsonKey(name: 'id_kategori_produk')
   dynamic get idKategoriProduk;
   @override
   @JsonKey(name: 'desc_kategori_produk')

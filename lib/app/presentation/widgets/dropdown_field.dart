@@ -1,4 +1,5 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
+import 'package:collection/collection.dart';
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
@@ -42,6 +43,7 @@ class OurDropDownField extends StatelessWidget {
   Widget build(BuildContext context) {
     final hintText = capitalizeFirst ?? false ? capitalizeEachWord('${l10n.select} $label') : '${l10n.select} $label';
     return Column(
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
@@ -59,7 +61,8 @@ class OurDropDownField extends StatelessWidget {
               excludeSelected: false,
               hintText: hintText,
               items: items.length > 0 ? items : [DropDownItem(value: '', label: hintText)],
-              initialItem: value != null && value != '' ? items.firstWhere((element) => element.value == value) : null,
+              initialItem:
+                  value != null && value != '' ? items.firstWhereOrNull((element) => element.value == value) : null,
               searchHintText: l10n.search,
               noResultFoundText: l10n.dataXNotFound(''),
               headerBuilder: (_, selectedItem) => Text(

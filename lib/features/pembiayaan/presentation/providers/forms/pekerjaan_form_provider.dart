@@ -1,7 +1,9 @@
 import 'package:collection/collection.dart';
 import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pekerjaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -78,8 +80,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setTahunBekerja(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
+  void setTahunBekerja(String value, String shownValue, {bool isNotRequired = false}) {
+    final isValid = isNotRequired ? true : value.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       tahunBekerja: Field(
@@ -91,8 +93,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setStatusPekerjaan(String statusPekerjaan, String shownValue) {
-    final isValid = statusPekerjaan.isNotEmpty;
+  void setStatusPekerjaan(String statusPekerjaan, String shownValue, {bool isNotRequired = false}) {
+    final isValid = isNotRequired ? true : statusPekerjaan.isNotEmpty;
     final message = isValid ? '' : l10n.invalidInput;
     state = state.copyWith(
       statusPekerjaan: Field(
@@ -172,36 +174,32 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setPekerjaan(PekerjaanEntity data, AppParameter parameter) {
-    final profesi = parameter.parProfesi.firstWhereOrNull(
-        (element) => element.id.toString() == (data.profesi ?? ''));
-    final statusPerusahaan = parameter.parStatusPerusahaan.firstWhereOrNull(
-        (element) => element.id.toString() == (data.statusPerusahaan ?? ''));
-    final bidangUsaha = parameter.parBidangUsaha.firstWhereOrNull(
-        (element) => element.id.toString() == (data.bidangUsaha ?? ''));
-    final statusPekerjaan = parameter.parStatusPekerjaan.firstWhereOrNull(
-        (element) => element.id.toString() == (data.statusPekerjaan ?? ''));
-    final sistemAngsuran = parameter.parKolektif.firstWhereOrNull((element) =>
-        element.id.toString() == (data.sistemPembayaranAngsuran ?? ''));
+  void setPekerjaan(PembiayaanEntity pembiayaanEntity, AppParameter parameter) {
+    final data = pembiayaanEntity.pekerjaan;
+    final isProduktif =
+        pembiayaanEntity.produkPembiayaan.idKategoriProduk.toString() == ProductCategory.produktif.typeName;
+    final profesi = parameter.parProfesi.firstWhereOrNull((element) => element.id.toString() == (data.profesi ?? ''));
+    final statusPerusahaan = parameter.parStatusPerusahaan
+        .firstWhereOrNull((element) => element.id.toString() == (data.statusPerusahaan ?? ''));
+    final bidangUsaha =
+        parameter.parBidangUsaha.firstWhereOrNull((element) => element.id.toString() == (data.bidangUsaha ?? ''));
+    final statusPekerjaan = parameter.parStatusPekerjaan
+        .firstWhereOrNull((element) => element.id.toString() == (data.statusPekerjaan ?? ''));
+    final sistemAngsuran = parameter.parKolektif
+        .firstWhereOrNull((element) => element.id.toString() == (data.sistemPembayaranAngsuran ?? ''));
 
     setProfesi(data.profesi ?? '', profesi?.label ?? '');
     setNamaInstansi(data.namaInstansi ?? '');
     setBidangUsaha(data.bidangUsaha ?? '', bidangUsaha?.label ?? '');
-    setStatusPerusahaan(
-        data.statusPerusahaan ?? '', statusPerusahaan?.label ?? '');
+    setStatusPerusahaan(data.statusPerusahaan ?? '', statusPerusahaan?.label ?? '');
     setJabatan(data.jabatan ?? '', data.jabatan ?? '');
-    final tahunBekerja =
-        data.tahunBekerja != null ? data.tahunBekerja.toString() : '';
-    setTahunBekerja(tahunBekerja, tahunBekerja);
-    setStatusPekerjaan(
-        data.statusPekerjaan ?? '', statusPekerjaan?.label ?? '');
-    setSistemAngsuran(
-        data.sistemPembayaranAngsuran ?? '', sistemAngsuran?.label ?? '');
-    final gajiAmprah =
-        data.gajiAmprah != null ? data.gajiAmprah.toString() : '';
+    final tahunBekerja = data.tahunBekerja != null ? data.tahunBekerja.toString() : '';
+    setTahunBekerja(tahunBekerja, tahunBekerja, isNotRequired: isProduktif);
+    setStatusPekerjaan(data.statusPekerjaan ?? '', statusPekerjaan?.label ?? '', isNotRequired: isProduktif);
+    setSistemAngsuran(data.sistemPembayaranAngsuran ?? '', sistemAngsuran?.label ?? '');
+    final gajiAmprah = data.gajiAmprah != null ? data.gajiAmprah.toString() : '';
     final tunjangan = data.tunjangan != null ? data.tunjangan.toString() : '';
-    final gajiBersih =
-        data.gajiBersih != null ? data.gajiBersih.toString() : '';
+    final gajiBersih = data.gajiBersih != null ? data.gajiBersih.toString() : '';
     final potongan = data.potongan != null ? data.potongan.toString() : '';
     setGajiAmprah(gajiAmprah, gajiAmprah);
     setTunjangan(tunjangan, tunjangan);
@@ -211,36 +209,28 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   }
 }
 
-final pekerjaanFormProvider =
-    StateNotifierProvider<PerkerjaanFormProvider, PekerjaanFormState>(
+final pekerjaanFormProvider = StateNotifierProvider<PerkerjaanFormProvider, PekerjaanFormState>(
   (ref) => PerkerjaanFormProvider(),
 );
 
 final namaInstansiControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).namaInstansi.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).namaInstansi.value),
 );
 final jabatanControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).jabatan.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).jabatan.value),
 );
 final tahunBekerjaControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).tahunBekerja.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).tahunBekerja.value),
 );
 final gajiAmprahControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).gajiAmprah.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).gajiAmprah.value),
 );
 final tunjanganControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).tunjangan.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).tunjangan.value),
 );
 final potonganControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).potongan.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).potongan.value),
 );
 final gajiBersihControllerProvider = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pekerjaanFormProvider).gajiBersih.value),
+  (ref) => TextEditingController(text: ref.read(pekerjaanFormProvider).gajiBersih.value),
 );

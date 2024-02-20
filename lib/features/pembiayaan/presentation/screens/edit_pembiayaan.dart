@@ -255,7 +255,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
       onWillPop: onBackPressed,
       child: Scaffold(
         appBar: InnerAppBar(
-          title: l10n.createPembiayaan,
+          title: l10n.edit,
           onBackPressed: onBackPressed,
         ),
         body: Theme(
@@ -312,8 +312,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
                       behavior: SnackBarBehavior.floating,
                     ),
                   );
-                  // TODO(xmirz): Uncomment
-                  // return;
+                  return;
                 }
                 ref.read(stepIndexProvider.notifier).state = step;
               },

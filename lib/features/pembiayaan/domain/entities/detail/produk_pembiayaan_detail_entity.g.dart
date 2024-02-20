@@ -9,7 +9,7 @@ part of 'produk_pembiayaan_detail_entity.dart';
 _$ProdukPembiayaanDetailEntityImpl _$$ProdukPembiayaanDetailEntityImplFromJson(
         Map<String, dynamic> json) =>
     _$ProdukPembiayaanDetailEntityImpl(
-      idKategoriProduk: json['kategori_produk'] ?? 0,
+      idKategoriProduk: json['id_kategori_produk'] ?? 0,
       kategoriProduk: json['desc_kategori_produk'] as String? ?? '-',
       idProduk: json['id_produk'] ?? 0,
       descProduk: json['desc_produk'] as String? ?? '-',
@@ -36,7 +36,7 @@ _$ProdukPembiayaanDetailEntityImpl _$$ProdukPembiayaanDetailEntityImplFromJson(
 Map<String, dynamic> _$$ProdukPembiayaanDetailEntityImplToJson(
         _$ProdukPembiayaanDetailEntityImpl instance) =>
     <String, dynamic>{
-      'kategori_produk': instance.idKategoriProduk,
+      'id_kategori_produk': instance.idKategoriProduk,
       'desc_kategori_produk': instance.kategoriProduk,
       'id_produk': instance.idProduk,
       'desc_produk': instance.descProduk,
