@@ -107,8 +107,7 @@ class SmallButton extends StatelessWidget {
       text: text,
       disabled: disabled,
       color: color,
-      padding:
-          padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       onPressed: onPressed,
       radius: 8,
       backgroundColor: backgroundColor ?? Colors.transparent,
@@ -149,9 +148,38 @@ class PrimarySmallButton extends StatelessWidget {
       size: const Size(double.minPositive, 36),
       text: text,
       backgroundColor: color ?? AppColor.primary,
-      textStyle:
-          AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+      textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
       onPressed: onPressed,
+    );
+  }
+}
+
+class OurTextButton extends StatelessWidget {
+  const OurTextButton({
+    required this.onPressed,
+    required this.text,
+    super.key,
+    this.color,
+    this.textStyle,
+    this.padding,
+  });
+  final VoidCallback onPressed;
+  final EdgeInsetsGeometry? padding;
+  final Color? color;
+  final String text;
+
+  final TextStyle? textStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      onTap: onPressed,
+      child: Text(
+        text,
+        style: textStyle ?? AppTextStyle.bodySmallBold.copyWith(color: color ?? AppColor.textPrimary),
+      ),
     );
   }
 }

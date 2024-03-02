@@ -88,6 +88,12 @@ class AppTextStyle {
     color: AppColor.textSecondary,
     fontSize: 15,
   );
+  static const TextStyle bodySmallBold = TextStyle(
+    fontFamily: Fonts.nunito,
+    fontWeight: FontWeight.w600,
+    color: AppColor.textSecondary,
+    fontSize: 15,
+  );
 
   // Caption Text
   static const TextStyle caption = TextStyle(

@@ -82,7 +82,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         alamat: dataDiriFormState.alamat.value,
         tempatLahir: dataDiriFormState.tempatLahir.value,
         tanggalLahir: dataDiriFormState.tanggalLahir.value,
-        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value),
+        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value ?? ''),
         statusPernikahan: dataDiriFormState.statusPernikahan.value,
         jumlahTanggungan: dataDiriFormState.jumlahTanggungan.value,
         kewajiban: dataDiriFormState.kewajiban.value,

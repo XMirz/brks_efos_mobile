@@ -7,6 +7,7 @@ import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/paginated_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pembiayaan_detail_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/lampiran_pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -56,6 +57,56 @@ class PembiayaanRepository {
         );
       }
     });
+  }
+
+  Future<List<LampiranPembiayaanEntity>> fetchLampiranPembiayaanKonsumtif(
+    OurRequest data,
+  ) async {
+    final response = await _dioClient.rawPost<Map<String, dynamic>>(
+      ApiPath.dokumenKonsumtif,
+      data: data.toJson(),
+    );
+
+    return response.fold(
+      (l) => throw l,
+      (r) {
+        try {
+          final rawDocuments = r['ceklist'] as List<dynamic>;
+          final documents =
+              rawDocuments.map((e) => LampiranPembiayaanEntity.fromJson(e as Map<String, dynamic>)).toList();
+          return documents;
+        } catch (e, stk) {
+          debugPrint(e.toString());
+          debugPrintStack(stackTrace: stk);
+          throw Failure.unknown(message: l10n.failedGetDocument, code: '04');
+        }
+      },
+    );
+  }
+
+  Future<List<LampiranPembiayaanEntity>> fetchLampiranPembiayaanProduktif(
+    OurRequest data,
+  ) async {
+    final response = await _dioClient.rawPost<Map<String, dynamic>>(
+      ApiPath.dokumenProduktif,
+      data: data.toJson(),
+    );
+
+    return response.fold(
+      (l) => throw l,
+      (r) {
+        try {
+          final rawDocuments = r['dokumen'] as List<dynamic>;
+          final documents =
+              rawDocuments.map((e) => LampiranPembiayaanEntity.fromJson(e as Map<String, dynamic>)).toList();
+          return documents;
+        } catch (e, stk) {
+          debugPrint(e.toString());
+          debugPrintStack(stackTrace: stk);
+          throw Failure.unknown(message: l10n.failedGetDocument, code: '04');
+        }
+      },
+    );
   }
 
   Future<Either<Failure, PaginatedEntity>> fetchPaginatedPembiayaan(

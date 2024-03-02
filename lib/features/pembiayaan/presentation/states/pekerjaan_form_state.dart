@@ -6,37 +6,23 @@ part 'pekerjaan_form_state.freezed.dart';
 @freezed
 class PekerjaanFormState with _$PekerjaanFormState {
   const factory PekerjaanFormState({
-    required Field profesi,
-    required Field namaInstansi,
-    required Field statusPerusahaan,
-    required Field jabatan,
-    required Field bidangUsaha,
-    required Field tahunBekerja,
-    required Field statusPekerjaan,
-    required Field sistemAngsuran,
-    required Field gajiAmprah,
-    required Field tunjangan,
-    required Field potongan,
-    required Field gajiBersih,
+    @Default(Field()) Field profesi,
+    @Default(Field()) Field namaInstansi,
+    @Default(Field()) Field statusPerusahaan,
+    @Default(Field()) Field jabatan,
+    @Default(Field()) Field bidangUsaha,
+    @Default(Field(isRequired: false)) Field tahunBekerja,
+    @Default(Field(isRequired: false)) Field statusPekerjaan,
+    @Default(Field()) Field sistemAngsuran,
+    @Default(Field(isRequired: false)) Field gajiAmprah,
+    @Default(Field(isRequired: false)) Field tunjangan,
+    @Default(Field(isRequired: false)) Field potongan,
+    @Default(Field(isRequired: false)) Field gajiBersih,
     @Default(false) bool isUpdate,
   }) = _PekerjaanFormState;
   const PekerjaanFormState._();
 
-  factory PekerjaanFormState.empty() => const PekerjaanFormState(
-        isUpdate: false,
-        profesi: Field(value: ''),
-        namaInstansi: Field(value: ''),
-        statusPerusahaan: Field(value: ''),
-        jabatan: Field(value: ''),
-        bidangUsaha: Field(value: ''),
-        tahunBekerja: Field(value: ''),
-        statusPekerjaan: Field(value: ''),
-        sistemAngsuran: Field(value: ''),
-        gajiAmprah: Field(value: ''),
-        tunjangan: Field(value: ''),
-        potongan: Field(value: ''),
-        gajiBersih: Field(value: ''),
-      );
+  factory PekerjaanFormState.empty() => PekerjaanFormState();
 
   bool get isValid =>
       profesi.isValid &&

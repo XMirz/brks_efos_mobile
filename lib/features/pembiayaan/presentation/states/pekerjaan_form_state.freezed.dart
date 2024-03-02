@@ -385,44 +385,56 @@ class __$$PekerjaanFormStateImplCopyWithImpl<$Res>
 
 class _$PekerjaanFormStateImpl extends _PekerjaanFormState {
   const _$PekerjaanFormStateImpl(
-      {required this.profesi,
-      required this.namaInstansi,
-      required this.statusPerusahaan,
-      required this.jabatan,
-      required this.bidangUsaha,
-      required this.tahunBekerja,
-      required this.statusPekerjaan,
-      required this.sistemAngsuran,
-      required this.gajiAmprah,
-      required this.tunjangan,
-      required this.potongan,
-      required this.gajiBersih,
+      {this.profesi = const Field(),
+      this.namaInstansi = const Field(),
+      this.statusPerusahaan = const Field(),
+      this.jabatan = const Field(),
+      this.bidangUsaha = const Field(),
+      this.tahunBekerja = const Field(isRequired: false),
+      this.statusPekerjaan = const Field(isRequired: false),
+      this.sistemAngsuran = const Field(),
+      this.gajiAmprah = const Field(isRequired: false),
+      this.tunjangan = const Field(isRequired: false),
+      this.potongan = const Field(isRequired: false),
+      this.gajiBersih = const Field(isRequired: false),
       this.isUpdate = false})
       : super._();
 
   @override
+  @JsonKey()
   final Field profesi;
   @override
+  @JsonKey()
   final Field namaInstansi;
   @override
+  @JsonKey()
   final Field statusPerusahaan;
   @override
+  @JsonKey()
   final Field jabatan;
   @override
+  @JsonKey()
   final Field bidangUsaha;
   @override
+  @JsonKey()
   final Field tahunBekerja;
   @override
+  @JsonKey()
   final Field statusPekerjaan;
   @override
+  @JsonKey()
   final Field sistemAngsuran;
   @override
+  @JsonKey()
   final Field gajiAmprah;
   @override
+  @JsonKey()
   final Field tunjangan;
   @override
+  @JsonKey()
   final Field potongan;
   @override
+  @JsonKey()
   final Field gajiBersih;
   @override
   @JsonKey()
@@ -491,18 +503,18 @@ class _$PekerjaanFormStateImpl extends _PekerjaanFormState {
 
 abstract class _PekerjaanFormState extends PekerjaanFormState {
   const factory _PekerjaanFormState(
-      {required final Field profesi,
-      required final Field namaInstansi,
-      required final Field statusPerusahaan,
-      required final Field jabatan,
-      required final Field bidangUsaha,
-      required final Field tahunBekerja,
-      required final Field statusPekerjaan,
-      required final Field sistemAngsuran,
-      required final Field gajiAmprah,
-      required final Field tunjangan,
-      required final Field potongan,
-      required final Field gajiBersih,
+      {final Field profesi,
+      final Field namaInstansi,
+      final Field statusPerusahaan,
+      final Field jabatan,
+      final Field bidangUsaha,
+      final Field tahunBekerja,
+      final Field statusPekerjaan,
+      final Field sistemAngsuran,
+      final Field gajiAmprah,
+      final Field tunjangan,
+      final Field potongan,
+      final Field gajiBersih,
       final bool isUpdate}) = _$PekerjaanFormStateImpl;
   const _PekerjaanFormState._() : super._();
 

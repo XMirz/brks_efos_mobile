@@ -6,14 +6,14 @@ part 'pasangan_entity.g.dart';
 @freezed
 class PasanganEntity with _$PasanganEntity {
   const factory PasanganEntity({
-    @JsonKey(name: 'ktp') required String nik,
-    @JsonKey(name: 'nama') required String nama,
-    @JsonKey(name: 'penghasilan') required dynamic penghasilan,
-    @JsonKey(name: 'gaji') required dynamic gajiAmprah,
-    @JsonKey(name: 'tunjangan') required dynamic tunjangan,
-    @JsonKey(name: 'potongan') required dynamic potongan,
-    @JsonKey(name: 'netto') required dynamic gajiBersih,
-    @Default('') @JsonKey(name: 'id_debitur') String idDebitur,
+    @JsonKey(name: 'ktp') String? nik,
+    @JsonKey(name: 'nama') String? nama,
+    @JsonKey(name: 'penghasilan') dynamic penghasilan,
+    @JsonKey(name: 'gaji') dynamic gajiAmprah,
+    @JsonKey(name: 'tunjangan') dynamic tunjangan,
+    @JsonKey(name: 'potongan') dynamic potongan,
+    @JsonKey(name: 'netto') dynamic gajiBersih,
+    @Default('') @JsonKey(name: 'id_debitur') String? idDebitur,
 
     // @JsonKey(name: 'profesi') required String profesi
     // @JsonKey(name: 'alamat') required String alamat,
@@ -29,6 +29,5 @@ class PasanganEntity with _$PasanganEntity {
   }) = _PasanganEntity;
   const PasanganEntity._();
 
-  factory PasanganEntity.fromJson(Map<String, dynamic> json) =>
-      _$PasanganEntityFromJson(json);
+  factory PasanganEntity.fromJson(Map<String, dynamic> json) => _$PasanganEntityFromJson(json);
 }

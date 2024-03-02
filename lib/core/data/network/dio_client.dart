@@ -63,9 +63,7 @@ class DioClient {
           ),
         );
       }
-      final innerData = response.data!.containsKey('data')
-          ? response.data!['data'] as T
-          : <String, dynamic>{} as T;
+      final innerData = response.data!.containsKey('data') ? response.data!['data'] as T : <String, dynamic>{} as T;
       return right(innerData);
     } on DioException catch (e) {
       debugPrint(e.toString());
@@ -188,9 +186,6 @@ class DioClient {
           e.type == DioExceptionType.badResponse) {
         return left(Failure.network(message: l10n.failureServer, code: '04'));
       }
-      // if (e.type == DioExceptionType.sendTimeout ||
-      // e.type == DioExceptionType.connectionError ||
-      // e.type == DioExceptionType.unknown) {
       return left(Failure.network(message: l10n.failureNetwork, code: '04'));
       // }
     } catch (e, stk) {
@@ -223,7 +218,7 @@ class LoggingInterceptor extends Interceptor {
     debugPrint('\n\n');
     debugPrint('<--- RESPONSE --->');
     debugPrint('Status : ${response.statusCode}');
-    printWrapped('Response : ${jsonEncode(response.data)}');
+    // printWrapped('Response : ${jsonEncode(response.data)}');
     debugPrint('<--- RESPONSE --->');
     debugPrint('\n\n');
   }
@@ -244,8 +239,6 @@ class LoggingInterceptor extends Interceptor {
 
   void printWrapped(String text) {
     final pattern = RegExp('.{1,800}');
-    pattern
-        .allMatches(text)
-        .forEach((RegExpMatch match) => debugPrint(match.group(0)));
+    pattern.allMatches(text).forEach((RegExpMatch match) => debugPrint(match.group(0)));
   }
 }

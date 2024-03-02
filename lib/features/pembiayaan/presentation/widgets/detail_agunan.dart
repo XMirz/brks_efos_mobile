@@ -96,7 +96,7 @@ class DetailAgunan extends ConsumerWidget {
                 //   value: listAgunan[index].alamat,
                 // ),
               ],
-              if (listAgunan[index].image != null)
+              if (listAgunan[index].image != '')
                 Align(
                   alignment: Alignment.centerRight,
                   child: PrimaryButton(

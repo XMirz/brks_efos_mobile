@@ -61,7 +61,7 @@ class LoginForm extends ConsumerWidget {
       final user = UserAuthenticationDto(
         deviceId: deviceId,
         deviceName: deviceName,
-        username: formState.form.username.value,
+        username: formState.form.username.value ?? '',
         password: formState.form.password.value,
       );
       final userResult = await ref.read(createAuthenticationProvider(user).future);
@@ -85,7 +85,7 @@ class LoginForm extends ConsumerWidget {
       }, (r) async {
         Injector.registerAuthenticatedClient(r.token);
         await ref.read(localAuthRepositoryProvider).saveAuth(r);
-        await ref.read(localAuthRepositoryProvider).saveAkwoakowako(formState.form.password.value);
+        await ref.read(localAuthRepositoryProvider).saveAkwoakowako(formState.form.password.value!);
         await ref.read(localAuthRepositoryProvider).savedeviceId(deviceId);
         ref.read(authenticatedUserProvider.notifier).state = UserState(token: r.token, user: r);
         ref

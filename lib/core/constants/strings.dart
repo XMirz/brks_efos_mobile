@@ -14,6 +14,7 @@ class AppString {
   // static const token = '';
 
   static const isJaminanValue = '1';
+  static const existValue = 'Ada';
   static const isMarriedValue = 'M';
 
   static final encKey = sha256.convert(utf8.encode('enc_key')).toString();

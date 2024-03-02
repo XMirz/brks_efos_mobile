@@ -25,9 +25,50 @@ class DetailValue extends StatelessWidget {
         ),
         Text(
           value ?? '-',
-          style: large ?? false ? AppTextStyle.bodyLarge : AppTextStyle.bodyMediumBold,
+          style: large ?? false ? AppTextStyle.bodyMediumBold : AppTextStyle.bodySmallBold,
         ),
         spaceY(8),
+      ],
+    );
+  }
+}
+
+class DetailValueOneline extends StatelessWidget {
+  const DetailValueOneline({
+    required this.label,
+    this.value,
+    this.valueFlex,
+    this.labelFlex,
+    super.key,
+  });
+
+  final String label;
+  final String? value;
+  final int? labelFlex;
+  final int? valueFlex;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: labelFlex ?? 1,
+          child: Text(
+            label,
+            style: AppTextStyle.bodySmall,
+          ),
+        ),
+        const Text(
+          ': ',
+          style: AppTextStyle.bodySmall,
+        ),
+        Expanded(
+          flex: valueFlex ?? 3,
+          child: Text(
+            value ?? '-',
+            style: AppTextStyle.bodySmall,
+          ),
+        ),
       ],
     );
   }

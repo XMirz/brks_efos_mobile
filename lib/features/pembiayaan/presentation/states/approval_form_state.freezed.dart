@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ApprovalFormEntity {
-  bool get isUpdate => throw _privateConstructorUsedError;
   Field get nik => throw _privateConstructorUsedError;
   Field get nama => throw _privateConstructorUsedError;
   Field get tanggalLahir => throw _privateConstructorUsedError;
@@ -39,8 +38,7 @@ abstract class $ApprovalFormEntityCopyWith<$Res> {
       _$ApprovalFormEntityCopyWithImpl<$Res, ApprovalFormEntity>;
   @useResult
   $Res call(
-      {bool isUpdate,
-      Field nik,
+      {Field nik,
       Field nama,
       Field tanggalLahir,
       Field keterangan,
@@ -74,7 +72,6 @@ class _$ApprovalFormEntityCopyWithImpl<$Res, $Val extends ApprovalFormEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isUpdate = null,
     Object? nik = null,
     Object? nama = null,
     Object? tanggalLahir = null,
@@ -86,10 +83,6 @@ class _$ApprovalFormEntityCopyWithImpl<$Res, $Val extends ApprovalFormEntity>
     Object? password = null,
   }) {
     return _then(_value.copyWith(
-      isUpdate: null == isUpdate
-          ? _value.isUpdate
-          : isUpdate // ignore: cast_nullable_to_non_nullable
-              as bool,
       nik: null == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
@@ -211,8 +204,7 @@ abstract class _$$ApprovalFormEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isUpdate,
-      Field nik,
+      {Field nik,
       Field nama,
       Field tanggalLahir,
       Field keterangan,
@@ -253,7 +245,6 @@ class __$$ApprovalFormEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isUpdate = null,
     Object? nik = null,
     Object? nama = null,
     Object? tanggalLahir = null,
@@ -265,10 +256,6 @@ class __$$ApprovalFormEntityImplCopyWithImpl<$Res>
     Object? password = null,
   }) {
     return _then(_$ApprovalFormEntityImpl(
-      isUpdate: null == isUpdate
-          ? _value.isUpdate
-          : isUpdate // ignore: cast_nullable_to_non_nullable
-              as bool,
       nik: null == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
@@ -313,21 +300,17 @@ class __$$ApprovalFormEntityImplCopyWithImpl<$Res>
 
 class _$ApprovalFormEntityImpl extends _ApprovalFormEntity {
   _$ApprovalFormEntityImpl(
-      {this.isUpdate = false,
-      this.nik = const Field(value: ''),
-      this.nama = const Field(value: ''),
-      this.tanggalLahir = const Field(value: ''),
-      this.keterangan = const Field(value: ''),
-      this.rekomendasi = const Field(value: ''),
-      this.arahanCall = const Field(value: ''),
-      this.keputusan = const Field(value: ''),
-      this.username = const Field(value: ''),
-      this.password = const Field(value: '')})
+      {this.nik = const Field(),
+      this.nama = const Field(),
+      this.tanggalLahir = const Field(),
+      this.keterangan = const Field(),
+      this.rekomendasi = const Field(),
+      this.arahanCall = const Field(),
+      this.keputusan = const Field(),
+      this.username = const Field(),
+      this.password = const Field()})
       : super._();
 
-  @override
-  @JsonKey()
-  final bool isUpdate;
   @override
   @JsonKey()
   final Field nik;
@@ -358,7 +341,7 @@ class _$ApprovalFormEntityImpl extends _ApprovalFormEntity {
 
   @override
   String toString() {
-    return 'ApprovalFormEntity(isUpdate: $isUpdate, nik: $nik, nama: $nama, tanggalLahir: $tanggalLahir, keterangan: $keterangan, rekomendasi: $rekomendasi, arahanCall: $arahanCall, keputusan: $keputusan, username: $username, password: $password)';
+    return 'ApprovalFormEntity(nik: $nik, nama: $nama, tanggalLahir: $tanggalLahir, keterangan: $keterangan, rekomendasi: $rekomendasi, arahanCall: $arahanCall, keputusan: $keputusan, username: $username, password: $password)';
   }
 
   @override
@@ -366,8 +349,6 @@ class _$ApprovalFormEntityImpl extends _ApprovalFormEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ApprovalFormEntityImpl &&
-            (identical(other.isUpdate, isUpdate) ||
-                other.isUpdate == isUpdate) &&
             (identical(other.nik, nik) || other.nik == nik) &&
             (identical(other.nama, nama) || other.nama == nama) &&
             (identical(other.tanggalLahir, tanggalLahir) ||
@@ -387,18 +368,8 @@ class _$ApprovalFormEntityImpl extends _ApprovalFormEntity {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      isUpdate,
-      nik,
-      nama,
-      tanggalLahir,
-      keterangan,
-      rekomendasi,
-      arahanCall,
-      keputusan,
-      username,
-      password);
+  int get hashCode => Object.hash(runtimeType, nik, nama, tanggalLahir,
+      keterangan, rekomendasi, arahanCall, keputusan, username, password);
 
   @JsonKey(ignore: true)
   @override
@@ -410,8 +381,7 @@ class _$ApprovalFormEntityImpl extends _ApprovalFormEntity {
 
 abstract class _ApprovalFormEntity extends ApprovalFormEntity {
   factory _ApprovalFormEntity(
-      {final bool isUpdate,
-      final Field nik,
+      {final Field nik,
       final Field nama,
       final Field tanggalLahir,
       final Field keterangan,
@@ -422,8 +392,6 @@ abstract class _ApprovalFormEntity extends ApprovalFormEntity {
       final Field password}) = _$ApprovalFormEntityImpl;
   _ApprovalFormEntity._() : super._();
 
-  @override
-  bool get isUpdate;
   @override
   Field get nik;
   @override

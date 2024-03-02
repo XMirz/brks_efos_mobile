@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/presentation/providers/auth_provider.dart';
-import 'package:efosm/app/presentation/utils/dialog_utils.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/date_field.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
@@ -242,7 +241,9 @@ class ApprovalFormModal extends ConsumerWidget {
               if (isAccountRequired ?? false) {
                 final authService = ref.read(authServiceProvider);
                 final authResult = await authService.authenticateUser(
-                    approvalFormState.form.username.value, approvalFormState.form.password.value);
+                  approvalFormState.form.username.value ?? '',
+                  approvalFormState.form.password.value ?? '',
+                );
                 var isAuthenticated = false;
                 await authResult.fold((l) async {
                   if (parentContext.mounted) {
@@ -289,29 +290,29 @@ class ApprovalFormModal extends ConsumerWidget {
                   approvalRes = await ref.read(
                     reviewKonsumtifProvider(
                       idLoan: loanState.id,
-                      keterangan: form.arahanCall.value,
+                      keterangan: form.arahanCall.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi1) {
                   approvalRes = await ref.read(
                     approvalOneKonsumtifProvider(
                       idLoan: loanState.id,
-                      arahanCall: form.arahanCall.value,
-                      rekomendasi: form.keterangan.value,
+                      arahanCall: form.arahanCall.value ?? '',
+                      rekomendasi: form.keterangan.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi2) {
                   approvalRes = await ref.read(
                     approvalTwoKonsumtifProvider(
                       idLoan: loanState.id,
-                      rekomendasi: form.rekomendasi.value,
+                      rekomendasi: form.rekomendasi.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi3) {
                   approvalRes = await ref.read(
                     approvalThreeKonsumtifProvider(
                       idLoan: loanState.id,
-                      keputusan: form.keputusan.value,
+                      keputusan: form.keputusan.value ?? '',
                     ).future,
                   );
                 }
@@ -320,14 +321,14 @@ class ApprovalFormModal extends ConsumerWidget {
                   approvalRes = await ref.read(
                     reviewProduktifProvider(
                       idLoan: loanState.id,
-                      keterangan: form.keterangan.value,
+                      keterangan: form.keterangan.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi1) {
                   approvalRes = await ref.read(
                     approvalOneProduktifProvider(
                       idLoan: loanState.id,
-                      rekomendasi: form.rekomendasi.value,
+                      rekomendasi: form.rekomendasi.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi2) {
@@ -340,7 +341,7 @@ class ApprovalFormModal extends ConsumerWidget {
                   approvalRes = await ref.read(
                     approvalThreeProduktifProvider(
                       idLoan: loanState.id,
-                      keputusan: form.keputusan.value,
+                      keputusan: form.keputusan.value ?? '',
                     ).future,
                   );
                 }

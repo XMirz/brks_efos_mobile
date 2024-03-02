@@ -68,6 +68,47 @@
       }
     }
   },
+  "xNotValid": "{str} tidak valid!",
+  "@xNotValid": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "xMinimalXChars": "{str} minimal {str2} karakter!",
+  "@xMinimalXChars": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      },
+      "str2": {
+        "type": "String"
+      }
+    }
+  },
+  "xMustXChars": "{str} harus berjumlah {str2} digit!",
+  "@xMustXChars": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      },
+      "str2": {
+        "type": "String"
+      }
+    }
+  },
+  "xMaxXChars": "{str} harus berjumlah {str2} digit!",
+  "@xMaxXChars": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      },
+      "str2": {
+        "type": "String"
+      }
+    }
+  },
   "detail": "Rincian",
   "save": "Simpan",
   "saveLoanSuccess": "Berhasil menyimpan data pembiayaan.",
@@ -109,6 +150,7 @@
   "username": "Nama pengguna",
   "unauthorizedAction": "Anda tidak memiliki akses untuk melakukan hal ini!",
   "failedGetDataPembiayaan": "Terjadi kesalahan ketika mendapatkan data pembiayaan!",
+  "failedGetDocument": "Terjadi kesalahan ketika mendapatkan berkas!",
   "successApprove": "Berhasil melakukan approval pembiayaan.",
   "successReview": "Berhasil, pengajuan pembiayaan akan direview.",
   "failedApprove": "Gagal melakukan approval!.",
@@ -208,6 +250,7 @@
   "usulan": "Usulan Pembiayaan",
   "produk": "Produk",
   "tujuanPembiayaan": "Tujuan pembiayaan",
+  "status": "Status",
   "subProduk": "Sub produk",
   "plan": "Plan",
   "gracePeriod": "Grace period",
@@ -227,10 +270,14 @@
   "angsuranPengajuan": "Angsuran pengajuan",
   "agunan": "Agunan",
   "jaminan": "Jaminan",
+  "lampiran": "Lampiran",
+  "lampiranPersyaratan": "Lampiran Dokument Persyaratan",
   "jenisAgunan": "Jenis agunan",
   "jenisJaminan": "Jenis jaminan",
   "jenis": "Jenis",
   "keterangan": "Keterangan",
+  "exits": "Ada",
+  "notExist": "Tidak Ada",
   "obyekAgunan": "Obyek agunan",
   "dataDiriDebitur": "Data diri debitur",
   "deskripsiAgunan": "Deskripsi agunan",
@@ -273,6 +320,7 @@
   "permissionFailure": "Aplikasi ini  tidak memiliki akses.",
   "noLocationAccess": "Aplikasi ini membutuhkan akses lokasi. Silahkan hidupkan akses lokasi dan beri izin lokasi kepada aplikasi ini.",
   "failedFetchLocation": "Gagal mendapatkan lokasi. Mohon perikasi akses lokasi dan jaringan anda!.",
+  "failedLoadPdf": "Gagal membuka dokumen!.",
   "bentukCall": "Bentuk Call",
   "caller": "Yang melakukan Call",
   "called": "Pihak terpanggil",

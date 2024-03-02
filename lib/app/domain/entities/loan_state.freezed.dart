@@ -452,8 +452,8 @@ class _$LoanStateImpl extends _LoanState {
                 other.forwardErrorMessage == forwardErrorMessage) &&
             (identical(other.identityValidation, identityValidation) ||
                 other.identityValidation == identityValidation) &&
-            const DeepCollectionEquality()
-                .equals(other.statusColor, statusColor) &&
+            (identical(other.statusColor, statusColor) ||
+                other.statusColor == statusColor) &&
             (identical(other.approvalType, approvalType) ||
                 other.approvalType == approvalType) &&
             (identical(other.nextStatus, nextStatus) ||
@@ -480,7 +480,7 @@ class _$LoanStateImpl extends _LoanState {
         rejectErrorMessage,
         forwardErrorMessage,
         identityValidation,
-        const DeepCollectionEquality().hash(statusColor),
+        statusColor,
         approvalType,
         nextStatus
       ]);

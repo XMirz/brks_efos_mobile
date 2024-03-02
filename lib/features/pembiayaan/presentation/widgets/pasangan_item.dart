@@ -59,25 +59,25 @@ class PasanganItem extends StatelessWidget {
             TextValue(
               title: l10n.gajiAmprah,
               value: toRupiahString(
-                pasangan.gajiAmprah.value,
+                pasangan.gajiAmprah.value ?? '',
               ),
             ),
             TextValue(
               title: l10n.tunjangan,
               value: toRupiahString(
-                pasangan.tunjangan.value,
+                pasangan.tunjangan.value ?? '',
               ),
             ),
             TextValue(
               title: l10n.potongan,
               value: toRupiahString(
-                pasangan.potongan.value,
+                pasangan.potongan.value ?? '',
               ),
             ),
             TextValue(
               title: l10n.gajiBersih,
               value: toRupiahString(
-                pasangan.gajiBersih.value,
+                pasangan.gajiBersih.value ?? '',
               ),
             ),
           ],

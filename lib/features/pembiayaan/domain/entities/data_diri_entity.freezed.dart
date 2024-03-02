@@ -21,19 +21,19 @@ DataDiriEntity _$DataDiriEntityFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DataDiriEntity {
   @JsonKey(name: 'ktp')
-  String get nik => throw _privateConstructorUsedError;
+  String? get nik => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
-  String get nama => throw _privateConstructorUsedError;
+  String? get nama => throw _privateConstructorUsedError;
   @JsonKey(name: 'alamat')
-  String get alamat => throw _privateConstructorUsedError;
+  String? get alamat => throw _privateConstructorUsedError;
   @JsonKey(name: 'tmp_lahir')
-  String get tempatLahir => throw _privateConstructorUsedError;
+  String? get tempatLahir => throw _privateConstructorUsedError;
   @JsonKey(name: 'tgl_lahir')
-  String get tanggalLahir => throw _privateConstructorUsedError;
+  String? get tanggalLahir => throw _privateConstructorUsedError;
   @JsonKey(name: 'kelamin')
   int get jenisKelamin => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_pernikahan')
-  String get statusPernikahan => throw _privateConstructorUsedError;
+  String? get statusPernikahan => throw _privateConstructorUsedError;
   @JsonKey(name: 'tanggungan')
   dynamic get jumlahTanggungan => throw _privateConstructorUsedError;
   @JsonKey(name: 'biaya_tanggungan')
@@ -43,7 +43,7 @@ mixin _$DataDiriEntity {
   @JsonKey(name: 'b_gaji')
   dynamic get biayaRumahTangga => throw _privateConstructorUsedError;
   @JsonKey(name: 'status_tempat_tinggal')
-  String get statusTempatTinggal => throw _privateConstructorUsedError;
+  String? get statusTempatTinggal => throw _privateConstructorUsedError;
   @JsonKey(name: 'hubungan_bank')
   dynamic get hubunganPerbankan => throw _privateConstructorUsedError;
 
@@ -60,18 +60,18 @@ abstract class $DataDiriEntityCopyWith<$Res> {
       _$DataDiriEntityCopyWithImpl<$Res, DataDiriEntity>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'ktp') String nik,
-      @JsonKey(name: 'nama') String nama,
-      @JsonKey(name: 'alamat') String alamat,
-      @JsonKey(name: 'tmp_lahir') String tempatLahir,
-      @JsonKey(name: 'tgl_lahir') String tanggalLahir,
+      {@JsonKey(name: 'ktp') String? nik,
+      @JsonKey(name: 'nama') String? nama,
+      @JsonKey(name: 'alamat') String? alamat,
+      @JsonKey(name: 'tmp_lahir') String? tempatLahir,
+      @JsonKey(name: 'tgl_lahir') String? tanggalLahir,
       @JsonKey(name: 'kelamin') int jenisKelamin,
-      @JsonKey(name: 'status_pernikahan') String statusPernikahan,
+      @JsonKey(name: 'status_pernikahan') String? statusPernikahan,
       @JsonKey(name: 'tanggungan') dynamic jumlahTanggungan,
       @JsonKey(name: 'biaya_tanggungan') dynamic kewajiban,
       @JsonKey(name: 'b_operasional') dynamic biayaOperasional,
       @JsonKey(name: 'b_gaji') dynamic biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal') String statusTempatTinggal,
+      @JsonKey(name: 'status_tempat_tinggal') String? statusTempatTinggal,
       @JsonKey(name: 'hubungan_bank') dynamic hubunganPerbankan});
 }
 
@@ -88,49 +88,49 @@ class _$DataDiriEntityCopyWithImpl<$Res, $Val extends DataDiriEntity>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nik = null,
-    Object? nama = null,
-    Object? alamat = null,
-    Object? tempatLahir = null,
-    Object? tanggalLahir = null,
+    Object? nik = freezed,
+    Object? nama = freezed,
+    Object? alamat = freezed,
+    Object? tempatLahir = freezed,
+    Object? tanggalLahir = freezed,
     Object? jenisKelamin = null,
-    Object? statusPernikahan = null,
+    Object? statusPernikahan = freezed,
     Object? jumlahTanggungan = freezed,
     Object? kewajiban = freezed,
     Object? biayaOperasional = freezed,
     Object? biayaRumahTangga = freezed,
-    Object? statusTempatTinggal = null,
+    Object? statusTempatTinggal = freezed,
     Object? hubunganPerbankan = freezed,
   }) {
     return _then(_value.copyWith(
-      nik: null == nik
+      nik: freezed == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
-              as String,
-      nama: null == nama
+              as String?,
+      nama: freezed == nama
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
-              as String,
-      alamat: null == alamat
+              as String?,
+      alamat: freezed == alamat
           ? _value.alamat
           : alamat // ignore: cast_nullable_to_non_nullable
-              as String,
-      tempatLahir: null == tempatLahir
+              as String?,
+      tempatLahir: freezed == tempatLahir
           ? _value.tempatLahir
           : tempatLahir // ignore: cast_nullable_to_non_nullable
-              as String,
-      tanggalLahir: null == tanggalLahir
+              as String?,
+      tanggalLahir: freezed == tanggalLahir
           ? _value.tanggalLahir
           : tanggalLahir // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jenisKelamin: null == jenisKelamin
           ? _value.jenisKelamin
           : jenisKelamin // ignore: cast_nullable_to_non_nullable
               as int,
-      statusPernikahan: null == statusPernikahan
+      statusPernikahan: freezed == statusPernikahan
           ? _value.statusPernikahan
           : statusPernikahan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jumlahTanggungan: freezed == jumlahTanggungan
           ? _value.jumlahTanggungan
           : jumlahTanggungan // ignore: cast_nullable_to_non_nullable
@@ -147,10 +147,10 @@ class _$DataDiriEntityCopyWithImpl<$Res, $Val extends DataDiriEntity>
           ? _value.biayaRumahTangga
           : biayaRumahTangga // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      statusTempatTinggal: null == statusTempatTinggal
+      statusTempatTinggal: freezed == statusTempatTinggal
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       hubunganPerbankan: freezed == hubunganPerbankan
           ? _value.hubunganPerbankan
           : hubunganPerbankan // ignore: cast_nullable_to_non_nullable
@@ -168,18 +168,18 @@ abstract class _$$DataDiriEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'ktp') String nik,
-      @JsonKey(name: 'nama') String nama,
-      @JsonKey(name: 'alamat') String alamat,
-      @JsonKey(name: 'tmp_lahir') String tempatLahir,
-      @JsonKey(name: 'tgl_lahir') String tanggalLahir,
+      {@JsonKey(name: 'ktp') String? nik,
+      @JsonKey(name: 'nama') String? nama,
+      @JsonKey(name: 'alamat') String? alamat,
+      @JsonKey(name: 'tmp_lahir') String? tempatLahir,
+      @JsonKey(name: 'tgl_lahir') String? tanggalLahir,
       @JsonKey(name: 'kelamin') int jenisKelamin,
-      @JsonKey(name: 'status_pernikahan') String statusPernikahan,
+      @JsonKey(name: 'status_pernikahan') String? statusPernikahan,
       @JsonKey(name: 'tanggungan') dynamic jumlahTanggungan,
       @JsonKey(name: 'biaya_tanggungan') dynamic kewajiban,
       @JsonKey(name: 'b_operasional') dynamic biayaOperasional,
       @JsonKey(name: 'b_gaji') dynamic biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal') String statusTempatTinggal,
+      @JsonKey(name: 'status_tempat_tinggal') String? statusTempatTinggal,
       @JsonKey(name: 'hubungan_bank') dynamic hubunganPerbankan});
 }
 
@@ -194,49 +194,49 @@ class __$$DataDiriEntityImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? nik = null,
-    Object? nama = null,
-    Object? alamat = null,
-    Object? tempatLahir = null,
-    Object? tanggalLahir = null,
+    Object? nik = freezed,
+    Object? nama = freezed,
+    Object? alamat = freezed,
+    Object? tempatLahir = freezed,
+    Object? tanggalLahir = freezed,
     Object? jenisKelamin = null,
-    Object? statusPernikahan = null,
+    Object? statusPernikahan = freezed,
     Object? jumlahTanggungan = freezed,
     Object? kewajiban = freezed,
     Object? biayaOperasional = freezed,
     Object? biayaRumahTangga = freezed,
-    Object? statusTempatTinggal = null,
+    Object? statusTempatTinggal = freezed,
     Object? hubunganPerbankan = freezed,
   }) {
     return _then(_$DataDiriEntityImpl(
-      nik: null == nik
+      nik: freezed == nik
           ? _value.nik
           : nik // ignore: cast_nullable_to_non_nullable
-              as String,
-      nama: null == nama
+              as String?,
+      nama: freezed == nama
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
-              as String,
-      alamat: null == alamat
+              as String?,
+      alamat: freezed == alamat
           ? _value.alamat
           : alamat // ignore: cast_nullable_to_non_nullable
-              as String,
-      tempatLahir: null == tempatLahir
+              as String?,
+      tempatLahir: freezed == tempatLahir
           ? _value.tempatLahir
           : tempatLahir // ignore: cast_nullable_to_non_nullable
-              as String,
-      tanggalLahir: null == tanggalLahir
+              as String?,
+      tanggalLahir: freezed == tanggalLahir
           ? _value.tanggalLahir
           : tanggalLahir // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jenisKelamin: null == jenisKelamin
           ? _value.jenisKelamin
           : jenisKelamin // ignore: cast_nullable_to_non_nullable
               as int,
-      statusPernikahan: null == statusPernikahan
+      statusPernikahan: freezed == statusPernikahan
           ? _value.statusPernikahan
           : statusPernikahan // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       jumlahTanggungan: freezed == jumlahTanggungan
           ? _value.jumlahTanggungan
           : jumlahTanggungan // ignore: cast_nullable_to_non_nullable
@@ -253,10 +253,10 @@ class __$$DataDiriEntityImplCopyWithImpl<$Res>
           ? _value.biayaRumahTangga
           : biayaRumahTangga // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      statusTempatTinggal: null == statusTempatTinggal
+      statusTempatTinggal: freezed == statusTempatTinggal
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       hubunganPerbankan: freezed == hubunganPerbankan
           ? _value.hubunganPerbankan
           : hubunganPerbankan // ignore: cast_nullable_to_non_nullable
@@ -269,18 +269,18 @@ class __$$DataDiriEntityImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$DataDiriEntityImpl extends _DataDiriEntity {
   const _$DataDiriEntityImpl(
-      {@JsonKey(name: 'ktp') required this.nik,
-      @JsonKey(name: 'nama') required this.nama,
-      @JsonKey(name: 'alamat') required this.alamat,
-      @JsonKey(name: 'tmp_lahir') required this.tempatLahir,
-      @JsonKey(name: 'tgl_lahir') required this.tanggalLahir,
+      {@JsonKey(name: 'ktp') this.nik,
+      @JsonKey(name: 'nama') this.nama,
+      @JsonKey(name: 'alamat') this.alamat,
+      @JsonKey(name: 'tmp_lahir') this.tempatLahir,
+      @JsonKey(name: 'tgl_lahir') this.tanggalLahir,
       @JsonKey(name: 'kelamin') required this.jenisKelamin,
-      @JsonKey(name: 'status_pernikahan') required this.statusPernikahan,
+      @JsonKey(name: 'status_pernikahan') this.statusPernikahan,
       @JsonKey(name: 'tanggungan') required this.jumlahTanggungan,
       @JsonKey(name: 'biaya_tanggungan') required this.kewajiban,
       @JsonKey(name: 'b_operasional') required this.biayaOperasional,
       @JsonKey(name: 'b_gaji') required this.biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal') required this.statusTempatTinggal,
+      @JsonKey(name: 'status_tempat_tinggal') this.statusTempatTinggal,
       @JsonKey(name: 'hubungan_bank') required this.hubunganPerbankan})
       : super._();
 
@@ -289,25 +289,25 @@ class _$DataDiriEntityImpl extends _DataDiriEntity {
 
   @override
   @JsonKey(name: 'ktp')
-  final String nik;
+  final String? nik;
   @override
   @JsonKey(name: 'nama')
-  final String nama;
+  final String? nama;
   @override
   @JsonKey(name: 'alamat')
-  final String alamat;
+  final String? alamat;
   @override
   @JsonKey(name: 'tmp_lahir')
-  final String tempatLahir;
+  final String? tempatLahir;
   @override
   @JsonKey(name: 'tgl_lahir')
-  final String tanggalLahir;
+  final String? tanggalLahir;
   @override
   @JsonKey(name: 'kelamin')
   final int jenisKelamin;
   @override
   @JsonKey(name: 'status_pernikahan')
-  final String statusPernikahan;
+  final String? statusPernikahan;
   @override
   @JsonKey(name: 'tanggungan')
   final dynamic jumlahTanggungan;
@@ -322,7 +322,7 @@ class _$DataDiriEntityImpl extends _DataDiriEntity {
   final dynamic biayaRumahTangga;
   @override
   @JsonKey(name: 'status_tempat_tinggal')
-  final String statusTempatTinggal;
+  final String? statusTempatTinggal;
   @override
   @JsonKey(name: 'hubungan_bank')
   final dynamic hubunganPerbankan;
@@ -396,20 +396,18 @@ class _$DataDiriEntityImpl extends _DataDiriEntity {
 
 abstract class _DataDiriEntity extends DataDiriEntity {
   const factory _DataDiriEntity(
-      {@JsonKey(name: 'ktp') required final String nik,
-      @JsonKey(name: 'nama') required final String nama,
-      @JsonKey(name: 'alamat') required final String alamat,
-      @JsonKey(name: 'tmp_lahir') required final String tempatLahir,
-      @JsonKey(name: 'tgl_lahir') required final String tanggalLahir,
+      {@JsonKey(name: 'ktp') final String? nik,
+      @JsonKey(name: 'nama') final String? nama,
+      @JsonKey(name: 'alamat') final String? alamat,
+      @JsonKey(name: 'tmp_lahir') final String? tempatLahir,
+      @JsonKey(name: 'tgl_lahir') final String? tanggalLahir,
       @JsonKey(name: 'kelamin') required final int jenisKelamin,
-      @JsonKey(name: 'status_pernikahan')
-      required final String statusPernikahan,
+      @JsonKey(name: 'status_pernikahan') final String? statusPernikahan,
       @JsonKey(name: 'tanggungan') required final dynamic jumlahTanggungan,
       @JsonKey(name: 'biaya_tanggungan') required final dynamic kewajiban,
       @JsonKey(name: 'b_operasional') required final dynamic biayaOperasional,
       @JsonKey(name: 'b_gaji') required final dynamic biayaRumahTangga,
-      @JsonKey(name: 'status_tempat_tinggal')
-      required final String statusTempatTinggal,
+      @JsonKey(name: 'status_tempat_tinggal') final String? statusTempatTinggal,
       @JsonKey(name: 'hubungan_bank')
       required final dynamic hubunganPerbankan}) = _$DataDiriEntityImpl;
   const _DataDiriEntity._() : super._();
@@ -419,25 +417,25 @@ abstract class _DataDiriEntity extends DataDiriEntity {
 
   @override
   @JsonKey(name: 'ktp')
-  String get nik;
+  String? get nik;
   @override
   @JsonKey(name: 'nama')
-  String get nama;
+  String? get nama;
   @override
   @JsonKey(name: 'alamat')
-  String get alamat;
+  String? get alamat;
   @override
   @JsonKey(name: 'tmp_lahir')
-  String get tempatLahir;
+  String? get tempatLahir;
   @override
   @JsonKey(name: 'tgl_lahir')
-  String get tanggalLahir;
+  String? get tanggalLahir;
   @override
   @JsonKey(name: 'kelamin')
   int get jenisKelamin;
   @override
   @JsonKey(name: 'status_pernikahan')
-  String get statusPernikahan;
+  String? get statusPernikahan;
   @override
   @JsonKey(name: 'tanggungan')
   dynamic get jumlahTanggungan;
@@ -452,7 +450,7 @@ abstract class _DataDiriEntity extends DataDiriEntity {
   dynamic get biayaRumahTangga;
   @override
   @JsonKey(name: 'status_tempat_tinggal')
-  String get statusTempatTinggal;
+  String? get statusTempatTinggal;
   @override
   @JsonKey(name: 'hubungan_bank')
   dynamic get hubunganPerbankan;

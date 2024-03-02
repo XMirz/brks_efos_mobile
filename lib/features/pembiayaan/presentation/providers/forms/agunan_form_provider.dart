@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:efosm/app/domain/entities/field.dart';
-import 'package:efosm/app/domain/entities/file_field.dart';
 import 'package:efosm/app/domain/entities/location.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/storage_utils.dart';
+import 'package:efosm/app/presentation/utils/validator.dart';
 import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/agunan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -17,20 +17,23 @@ import 'package:image_picker/image_picker.dart';
 class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   AgunanFormProvider() : super(AgunanFormState.empty());
   void setJenisJaminan(String value, String shownValue) {
+    final message = state.isJaminan.isRequired ? Validator.notEmpty(l10n.jenisJaminan, value) : null;
+    final isJaminan = value == AppString.isJaminanValue;
     state = state.copyWith(
-      isJaminan: Field(
-        value: value,
-        showValue: shownValue,
-      ),
-    );
+        isJaminan: state.isJaminan.copyWith(value: value, showValue: shownValue, errorMessage: message),
+        alamat: state.alamat.copyWith(isRequired: !isJaminan),
+        provinsi: state.provinsi.copyWith(isRequired: !isJaminan),
+        kabupaten: state.kabupaten.copyWith(isRequired: !isJaminan),
+        kecamatan: state.kecamatan.copyWith(isRequired: !isJaminan),
+        kelurahan: state.kelurahan.copyWith(isRequired: !isJaminan),
+        image: state.image.copyWith(isRequired: !isJaminan));
   }
 
   void setJenis(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.jenis.isRequired ? Validator.notEmpty(l10n.jenisAgunan, value) : null;
     state = state.copyWith(
-      jenis: Field(
-        isValid: isValid,
+      jenis: state.jenis.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -39,11 +42,10 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setDeskripsi(String value, String shownValue) {
-    final isValid = value.length > 12;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.deskripsi.isRequired ? Validator.minLength(l10n.deskripsiAgunan, value, 4) : null;
     state = state.copyWith(
-      deskripsi: Field(
-        isValid: isValid,
+      deskripsi: state.deskripsi.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -53,7 +55,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   void setDeskripsi2(String value) {
     state = state.copyWith(
-      deskripsi2: Field(
+      deskripsi2: state.deskripsi2.copyWith(
         value: value,
       ),
     );
@@ -61,7 +63,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   void setDeskripsi3(String value) {
     state = state.copyWith(
-      deskripsi3: Field(
+      deskripsi3: state.deskripsi3.copyWith(
         value: value,
       ),
     );
@@ -69,7 +71,7 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   void setDeskripsi4(String value) {
     state = state.copyWith(
-      deskripsi4: Field(
+      deskripsi4: state.deskripsi4.copyWith(
         value: value,
       ),
     );
@@ -77,18 +79,17 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   void setDeskripsi5(String value) {
     state = state.copyWith(
-      deskripsi5: Field(
+      deskripsi5: state.deskripsi5.copyWith(
         value: value,
       ),
     );
   }
 
   void setAlamat(String value, String shownValue) {
-    final isValid = value.length > 8;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.alamat.isRequired ? Validator.minLength(l10n.alamat, value, 2) : null;
     state = state.copyWith(
-      alamat: Field(
-        isValid: isValid,
+      alamat: state.alamat.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -97,24 +98,23 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setProvinsi(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.provinsi.isRequired ? Validator.notEmpty(l10n.provinsi, value) : null;
     state = state.copyWith(
-      provinsi: Field(
-        isValid: isValid,
+      provinsi: state.provinsi.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
-      kabupaten: Field(
+      kabupaten: state.kabupaten.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kabupaten}',
       ),
-      kecamatan: Field(
+      kecamatan: state.kecamatan.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kecamatan}',
       ),
-      kelurahan: Field(
+      kelurahan: state.kelurahan.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kelurahan}',
       ),
@@ -122,20 +122,19 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setKabupaten(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.kabupaten.isRequired ? Validator.notEmpty(l10n.kabupaten, value) : null;
     state = state.copyWith(
-      kabupaten: Field(
-        isValid: isValid,
+      kabupaten: state.kabupaten.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
-      kecamatan: Field(
+      kecamatan: state.kecamatan.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kecamatan}',
       ),
-      kelurahan: Field(
+      kelurahan: state.kelurahan.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kelurahan}',
       ),
@@ -143,16 +142,15 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setKecamatan(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.kecamatan.isRequired ? Validator.notEmpty(l10n.kecamatan, value) : null;
     state = state.copyWith(
-      kecamatan: Field(
-        isValid: isValid,
+      kecamatan: state.kecamatan.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
-      kelurahan: Field(
+      kelurahan: state.kelurahan.copyWith(
         value: '',
         showValue: '${l10n.select} ${l10n.kelurahan}',
       ),
@@ -160,11 +158,10 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
   }
 
   void setKelurahan(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+    final message = state.kelurahan.isRequired ? Validator.notEmpty(l10n.kelurahan, value) : null;
     state = state.copyWith(
-      kelurahan: Field(
-        isValid: isValid,
+      kelurahan: state.kelurahan.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -174,33 +171,26 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
 
   void setFile(XFile value, String shownValue, OurLocation loc, {bool isUpdate = false}) {
     final file = File(value.path);
-    // print(file.absolute);
     final isValid = isUpdate || file.existsSync();
-    final message = isValid ? '' : l10n.pickAgunan;
+    final message = isValid ? null : l10n.pickAgunan;
     state = state.copyWith(
-      image: FileField(
+      image: state.image.copyWith(
         value: file,
-        isValid: isValid,
+        isValid: message == null,
         showValue: value.name,
         errorMessage: message,
       ),
-      latitude: Field(
+      latitude: state.latitude.copyWith(
         value: loc.latitude,
-        showValue: loc.latitude,
-        isValid: isValid,
-        errorMessage: message,
+        isValid: message == null,
       ),
-      longitude: Field(
+      longitude: state.longitude.copyWith(
         value: loc.longitude,
-        showValue: loc.longitude,
-        isValid: isValid,
-        errorMessage: message,
+        isValid: message == null,
       ),
-      captureLoc: Field(
+      captureLoc: state.captureLoc.copyWith(
         value: loc.locationName ?? '',
-        showValue: loc.longitude,
         isValid: true,
-        errorMessage: message,
       ),
     );
   }

@@ -5,7 +5,9 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/date_field.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -106,7 +108,11 @@ class DataDiriForm extends ConsumerWidget {
                 capitalizeFirst: true,
                 hint: context.l10n.statusPernikahan,
                 value: formState.statusPernikahan.value,
-                onChanged: (value, label) => ref.read(dataDiriFormProvider.notifier).setStatusPernikahan(value, label),
+                onChanged: (value, label) {
+                  final isMarried = value == AppString.isMarriedValue;
+                  ref.read(pasanganFormProvider.notifier).setMaritalStatus(status: isMarried);
+                  ref.read(dataDiriFormProvider.notifier).setStatusPernikahan(value, label);
+                },
               ),
 
               spaceY(4),
@@ -159,7 +165,6 @@ class DataDiriForm extends ConsumerWidget {
                 onChanged: (value, label) =>
                     ref.read(dataDiriFormProvider.notifier).setStatusTempatTinggal(value, label),
               ),
-
               spaceY(4),
               OurDropDownField(
                 items: buildDropDownItem(initialParameters.parHubunganPerbankan),

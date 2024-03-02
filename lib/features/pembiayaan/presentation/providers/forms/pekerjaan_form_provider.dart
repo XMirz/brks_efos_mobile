@@ -1,8 +1,7 @@
 import 'package:collection/collection.dart';
-import 'package:efosm/app/domain/entities/field.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
+import 'package:efosm/app/presentation/utils/validator.dart';
 import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pekerjaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -12,67 +11,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
   PerkerjaanFormProvider() : super(PekerjaanFormState.empty());
 
-  void setProfesi(String profesi, String shownValue) {
-    print(state);
-    const isValid = true;
-    // final isValid = profesi.isNotEmpty;
-    // final message = isValid ? '' : l10n.invalidInput;
+  void setProfesi(String? value, String shownValue) {
+    final message = state.profesi.isRequired ? Validator.notEmpty(l10n.profesi, value) : null;
     state = state.copyWith(
-      profesi: Field(
-        isValid: isValid,
-        value: profesi,
-        showValue: shownValue,
-        // errorMessage: message,
-      ),
-    );
-  }
-
-  void setNamaInstansi(String namaInstansi) {
-    final isValid = namaInstansi.isNotEmpty;
-    // final isValid = namaInstansi.length > 7;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      namaInstansi: Field(
-        isValid: isValid,
-        value: namaInstansi,
-        showValue: namaInstansi,
-        errorMessage: message,
-      ),
-    );
-  }
-
-  void setStatusPerusahaan(String statusPerusahaan, String shownValue) {
-    final isValid = statusPerusahaan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      statusPerusahaan: Field(
-        isValid: isValid,
-        value: statusPerusahaan,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
-
-  void setJabatan(String jabatan, String shownValue) {
-    final isValid = jabatan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      jabatan: Field(
-        isValid: isValid,
-        value: jabatan,
-        showValue: shownValue,
-        errorMessage: message,
-      ),
-    );
-  }
-
-  void setBidangUsaha(String value, String shownValue) {
-    final isValid = value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
-    state = state.copyWith(
-      bidangUsaha: Field(
-        isValid: isValid,
+      profesi: state.profesi.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -80,12 +23,22 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setTahunBekerja(String value, String shownValue, {bool isNotRequired = false}) {
-    final isValid = isNotRequired ? true : value.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNamaInstansi(String? value) {
+    final message = state.namaInstansi.isRequired ? Validator.notEmpty(l10n.namaInstansi, value) : null;
     state = state.copyWith(
-      tahunBekerja: Field(
-        isValid: isValid,
+      namaInstansi: state.namaInstansi.copyWith(
+        isValid: message == null,
+        value: value,
+        errorMessage: message,
+      ),
+    );
+  }
+
+  void setStatusPerusahaan(String? value, String shownValue) {
+    final message = state.statusPerusahaan.isRequired ? Validator.notEmpty(l10n.statusPerusahaan, value) : null;
+    state = state.copyWith(
+      statusPerusahaan: state.statusPerusahaan.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -93,81 +46,108 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     );
   }
 
-  void setStatusPekerjaan(String statusPekerjaan, String shownValue, {bool isNotRequired = false}) {
-    final isValid = isNotRequired ? true : statusPekerjaan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setJabatan(String? value, String shownValue) {
+    final message = state.jabatan.isRequired ? Validator.notEmpty(l10n.jabatan, value) : null;
     state = state.copyWith(
-      statusPekerjaan: Field(
-        isValid: isValid,
-        value: statusPekerjaan,
+      jabatan: state.jabatan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setSistemAngsuran(
-    String sistemAngsuran,
-    String shownValue,
-  ) {
-    final isValid = sistemAngsuran.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setBidangUsaha(String? value, String shownValue) {
+    final message = state.bidangUsaha.isRequired ? Validator.notEmpty(l10n.bidangUsaha, value) : null;
     state = state.copyWith(
-      sistemAngsuran: Field(
-        isValid: isValid,
-        value: sistemAngsuran,
+      bidangUsaha: state.bidangUsaha.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setGajiAmprah(String gajiAmprah, String shownValue) {
-    final isValid = gajiAmprah.isNotEmpty && int.tryParse(gajiAmprah) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setTahunBekerja(String? value, String shownValue) {
+    final message = state.tahunBekerja.isRequired ? Validator.notEmpty(l10n.tahunMulaiBekerja, value) : null;
     state = state.copyWith(
-      gajiAmprah: Field(
-        isValid: isValid,
-        value: gajiAmprah,
+      tahunBekerja: state.tahunBekerja.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setTunjangan(String tunjangan, String shownValue) {
-    final isValid = tunjangan.isNotEmpty && int.tryParse(tunjangan) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setStatusPekerjaan(String? value, String shownValue) {
+    final message = state.statusPekerjaan.isRequired ? Validator.notEmpty(l10n.statusPekerjaan, value) : null;
     state = state.copyWith(
-      tunjangan: Field(
-        isValid: isValid,
-        value: tunjangan,
+      statusPekerjaan: state.statusPekerjaan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setPotongan(String potongan, String shownValue) {
-    final isValid = potongan.isNotEmpty && int.tryParse(potongan) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setSistemAngsuran(String? value, String shownValue) {
+    final message = state.sistemAngsuran.isRequired ? Validator.notEmpty(l10n.sistemAngsuran, value) : null;
     state = state.copyWith(
-      potongan: Field(
-        isValid: isValid,
-        value: potongan,
+      sistemAngsuran: state.sistemAngsuran.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setGajiBersih(String gajiBersih, String shownValue) {
-    final isValid = gajiBersih.isNotEmpty && int.tryParse(gajiBersih) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setGajiAmprah(String? value, String shownValue) {
+    final message = state.gajiAmprah.isRequired ? Validator.notEmpty(l10n.gajiAmprah, value) : null;
     state = state.copyWith(
-      gajiBersih: Field(
-        isValid: isValid,
-        value: gajiBersih,
+      gajiAmprah: state.gajiAmprah.copyWith(
+        isValid: message == null,
+        value: value,
+        showValue: shownValue,
+        errorMessage: message,
+      ),
+    );
+  }
+
+  void setTunjangan(String? value, String shownValue) {
+    final message = state.tunjangan.isRequired ? Validator.notEmpty(l10n.tunjangan, value) : null;
+    state = state.copyWith(
+      tunjangan: state.tunjangan.copyWith(
+        isValid: message == null,
+        value: value,
+        showValue: shownValue,
+        errorMessage: message,
+      ),
+    );
+  }
+
+  void setPotongan(String? value, String shownValue) {
+    final message = state.potongan.isRequired ? Validator.notEmpty(l10n.potongan, value) : null;
+    state = state.copyWith(
+      potongan: state.potongan.copyWith(
+        isValid: message == null,
+        value: value,
+        showValue: shownValue,
+        errorMessage: message,
+      ),
+    );
+  }
+
+  void setGajiBersih(String? value, String shownValue) {
+    final message = state.gajiBersih.isRequired ? Validator.notEmpty(l10n.gajiBersih, value) : null;
+    state = state.copyWith(
+      gajiBersih: state.gajiBersih.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
@@ -178,6 +158,7 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     final data = pembiayaanEntity.pekerjaan;
     final isProduktif =
         pembiayaanEntity.produkPembiayaan.idKategoriProduk.toString() == ProductCategory.produktif.typeName;
+
     final profesi = parameter.parProfesi.firstWhereOrNull((element) => element.id.toString() == (data.profesi ?? ''));
     final statusPerusahaan = parameter.parStatusPerusahaan
         .firstWhereOrNull((element) => element.id.toString() == (data.statusPerusahaan ?? ''));
@@ -194,8 +175,8 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     setStatusPerusahaan(data.statusPerusahaan ?? '', statusPerusahaan?.label ?? '');
     setJabatan(data.jabatan ?? '', data.jabatan ?? '');
     final tahunBekerja = data.tahunBekerja != null ? data.tahunBekerja.toString() : '';
-    setTahunBekerja(tahunBekerja, tahunBekerja, isNotRequired: isProduktif);
-    setStatusPekerjaan(data.statusPekerjaan ?? '', statusPekerjaan?.label ?? '', isNotRequired: isProduktif);
+    setTahunBekerja(tahunBekerja, tahunBekerja);
+    setStatusPekerjaan(data.statusPekerjaan ?? '', statusPekerjaan?.label ?? '');
     setSistemAngsuran(data.sistemPembayaranAngsuran ?? '', sistemAngsuran?.label ?? '');
     final gajiAmprah = data.gajiAmprah != null ? data.gajiAmprah.toString() : '';
     final tunjangan = data.tunjangan != null ? data.tunjangan.toString() : '';
@@ -205,7 +186,15 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     setTunjangan(tunjangan, tunjangan);
     setPotongan(potongan, potongan);
     setGajiBersih(gajiBersih, gajiBersih);
-    state = state.copyWith(isUpdate: true);
+    state = state.copyWith(
+      isUpdate: true,
+      statusPekerjaan: state.statusPekerjaan.copyWith(
+        isRequired: !isProduktif,
+      ),
+      tahunBekerja: state.tahunBekerja.copyWith(
+        isRequired: !isProduktif,
+      ),
+    );
   }
 }
 

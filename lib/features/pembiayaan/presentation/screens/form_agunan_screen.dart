@@ -79,8 +79,6 @@ class FormAgunanScreen extends ConsumerWidget {
                 );
                 return ListView(
                   children: [
-                    Text(formState.toString()),
-                    Text(formState.isJaminan.value),
                     spaceY(24),
                     FormHeader(
                       title: l10n.agunan,
@@ -181,7 +179,7 @@ class FormAgunanScreen extends ConsumerWidget {
                               .watch(
                                 fetchKabupatenProvider(
                                   ref.read(
-                                    agunanFormProvider.select((value) => value.provinsi.value),
+                                    agunanFormProvider.select((value) => value.provinsi.value ?? ''),
                                   ),
                                 ),
                               )
@@ -204,7 +202,7 @@ class FormAgunanScreen extends ConsumerWidget {
                               .watch(
                                 fetchKecamatanProvider(
                                   ref.read(
-                                    agunanFormProvider.select((value) => value.kabupaten.value),
+                                    agunanFormProvider.select((value) => value.kabupaten.value ?? ''),
                                   ),
                                 ),
                               )
@@ -227,7 +225,7 @@ class FormAgunanScreen extends ConsumerWidget {
                               .watch(
                                 fetchKelurahanProvider(
                                   ref.read(
-                                    agunanFormProvider.select((value) => value.kecamatan.value),
+                                    agunanFormProvider.select((value) => value.kecamatan.value ?? ''),
                                   ),
                                 ),
                               )
@@ -421,28 +419,28 @@ class FormAgunanScreen extends ConsumerWidget {
       strImage = base64Encode(imageBytes);
     }
 
-    var deskripsi = formState.deskripsi.value;
+    var deskripsi = formState.deskripsi.value ?? '';
     if (formState.isJaminan.value == AppString.isJaminanValue) {
       deskripsi = deskripsi.padRight(50);
-      deskripsi = deskripsi + formState.deskripsi2.value.padRight(50);
-      deskripsi = deskripsi + formState.deskripsi3.value.padRight(50);
-      deskripsi = deskripsi + formState.deskripsi4.value.padRight(50);
-      deskripsi = deskripsi + formState.deskripsi5.value.padRight(50);
+      deskripsi = deskripsi + (formState.deskripsi2.value ?? '').padRight(50);
+      deskripsi = deskripsi + (formState.deskripsi3.value ?? '').padRight(50);
+      deskripsi = deskripsi + (formState.deskripsi4.value ?? '').padRight(50);
+      deskripsi = deskripsi + (formState.deskripsi5.value ?? '').padRight(50);
     }
 
     final agunan = AgunanEntity(
-      isJaminan: formState.isJaminan.value,
-      jenis: formState.jenis.value,
+      isJaminan: formState.isJaminan.value!,
+      jenis: formState.jenis.value ?? '',
       deskripsi: deskripsi,
-      alamat: formState.alamat.value,
+      alamat: formState.alamat.value ?? '',
       image: strImage,
-      latitude: formState.latitude.value,
-      longitude: formState.longitude.value,
-      captureLoc: formState.captureLoc.value,
-      provinsi: formState.provinsi.value,
-      kabupaten: formState.kabupaten.value,
-      kecamatan: formState.kecamatan.value,
-      kelurahan: formState.kelurahan.value,
+      latitude: formState.latitude.value ?? '',
+      longitude: formState.longitude.value ?? '',
+      captureLoc: formState.captureLoc.value ?? '',
+      provinsi: formState.provinsi.value ?? '',
+      kabupaten: formState.kabupaten.value ?? '',
+      kecamatan: formState.kecamatan.value ?? '',
+      kelurahan: formState.kelurahan.value ?? '',
       id: currentAgunan?.id.toString() ?? '',
     );
 

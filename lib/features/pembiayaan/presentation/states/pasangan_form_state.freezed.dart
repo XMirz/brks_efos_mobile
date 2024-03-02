@@ -265,29 +265,36 @@ class __$$PasanganFormStateImplCopyWithImpl<$Res>
 
 class _$PasanganFormStateImpl extends _PasanganFormState {
   const _$PasanganFormStateImpl(
-      {required this.nik,
-      required this.nama,
-      required this.penghasilan,
-      required this.gajiAmprah,
-      required this.tunjangan,
-      required this.potongan,
-      required this.gajiBersih,
+      {this.nik = const Field(),
+      this.nama = const Field(),
+      this.penghasilan = const Field(),
+      this.gajiAmprah = const Field(isRequired: false),
+      this.tunjangan = const Field(isRequired: false),
+      this.potongan = const Field(isRequired: false),
+      this.gajiBersih = const Field(isRequired: false),
       this.isUpdate = false})
       : super._();
 
   @override
+  @JsonKey()
   final Field nik;
   @override
+  @JsonKey()
   final Field nama;
   @override
+  @JsonKey()
   final Field penghasilan;
   @override
+  @JsonKey()
   final Field gajiAmprah;
   @override
+  @JsonKey()
   final Field tunjangan;
   @override
+  @JsonKey()
   final Field potongan;
   @override
+  @JsonKey()
   final Field gajiBersih;
   @override
   @JsonKey()
@@ -333,13 +340,13 @@ class _$PasanganFormStateImpl extends _PasanganFormState {
 
 abstract class _PasanganFormState extends PasanganFormState {
   const factory _PasanganFormState(
-      {required final Field nik,
-      required final Field nama,
-      required final Field penghasilan,
-      required final Field gajiAmprah,
-      required final Field tunjangan,
-      required final Field potongan,
-      required final Field gajiBersih,
+      {final Field nik,
+      final Field nama,
+      final Field penghasilan,
+      final Field gajiAmprah,
+      final Field tunjangan,
+      final Field potongan,
+      final Field gajiBersih,
       final bool isUpdate}) = _$PasanganFormStateImpl;
   const _PasanganFormState._() : super._();
 

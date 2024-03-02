@@ -17,20 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProdukPembiayaanFormState {
   Field get idPlan => throw _privateConstructorUsedError;
-  Field get tujuanPembiayaan =>
-      throw _privateConstructorUsedError; // required Field gracePeriod,
-// required Field barang,
-// required Field hargaPerolehan,
-// required Field pajak,
-// required Field diskon,
-// required Field uangMuka,
+  Field get tujuanPembiayaan => throw _privateConstructorUsedError;
   Field get plafonPengajuan => throw _privateConstructorUsedError;
-  Field get tenorPengajuan =>
-      throw _privateConstructorUsedError; // required DropDownField kodeMargin,
-// required Field basiPointMargin,
-// required Field marginPengajuan,
-// required Field totalMargin,
-// required Field angsuranPengajuan,
+  Field get tenorPengajuan => throw _privateConstructorUsedError;
   Field get idKategoriProduk => throw _privateConstructorUsedError;
   Field get idJenisPengajuan => throw _privateConstructorUsedError;
   Field get idProduk => throw _privateConstructorUsedError;
@@ -304,43 +293,40 @@ class __$$ProdukPembiayaanFormStateImplCopyWithImpl<$Res>
 
 class _$ProdukPembiayaanFormStateImpl extends _ProdukPembiayaanFormState {
   const _$ProdukPembiayaanFormStateImpl(
-      {required this.idPlan,
-      required this.tujuanPembiayaan,
-      required this.plafonPengajuan,
-      required this.tenorPengajuan,
-      required this.idKategoriProduk,
-      required this.idJenisPengajuan,
-      required this.idProduk,
-      required this.idSubProduk,
+      {this.idPlan = const Field(),
+      this.tujuanPembiayaan = const Field(),
+      this.plafonPengajuan = const Field(),
+      this.tenorPengajuan = const Field(),
+      this.idKategoriProduk = const Field(),
+      this.idJenisPengajuan = const Field(),
+      this.idProduk = const Field(),
+      this.idSubProduk = const Field(),
       this.isUpdate = false})
       : super._();
 
   @override
+  @JsonKey()
   final Field idPlan;
   @override
+  @JsonKey()
   final Field tujuanPembiayaan;
-// required Field gracePeriod,
-// required Field barang,
-// required Field hargaPerolehan,
-// required Field pajak,
-// required Field diskon,
-// required Field uangMuka,
   @override
+  @JsonKey()
   final Field plafonPengajuan;
   @override
+  @JsonKey()
   final Field tenorPengajuan;
-// required DropDownField kodeMargin,
-// required Field basiPointMargin,
-// required Field marginPengajuan,
-// required Field totalMargin,
-// required Field angsuranPengajuan,
   @override
+  @JsonKey()
   final Field idKategoriProduk;
   @override
+  @JsonKey()
   final Field idJenisPengajuan;
   @override
+  @JsonKey()
   final Field idProduk;
   @override
+  @JsonKey()
   final Field idSubProduk;
   @override
   @JsonKey()
@@ -398,14 +384,14 @@ class _$ProdukPembiayaanFormStateImpl extends _ProdukPembiayaanFormState {
 
 abstract class _ProdukPembiayaanFormState extends ProdukPembiayaanFormState {
   const factory _ProdukPembiayaanFormState(
-      {required final Field idPlan,
-      required final Field tujuanPembiayaan,
-      required final Field plafonPengajuan,
-      required final Field tenorPengajuan,
-      required final Field idKategoriProduk,
-      required final Field idJenisPengajuan,
-      required final Field idProduk,
-      required final Field idSubProduk,
+      {final Field idPlan,
+      final Field tujuanPembiayaan,
+      final Field plafonPengajuan,
+      final Field tenorPengajuan,
+      final Field idKategoriProduk,
+      final Field idJenisPengajuan,
+      final Field idProduk,
+      final Field idSubProduk,
       final bool isUpdate}) = _$ProdukPembiayaanFormStateImpl;
   const _ProdukPembiayaanFormState._() : super._();
 
@@ -413,20 +399,11 @@ abstract class _ProdukPembiayaanFormState extends ProdukPembiayaanFormState {
   Field get idPlan;
   @override
   Field get tujuanPembiayaan;
-  @override // required Field gracePeriod,
-// required Field barang,
-// required Field hargaPerolehan,
-// required Field pajak,
-// required Field diskon,
-// required Field uangMuka,
+  @override
   Field get plafonPengajuan;
   @override
   Field get tenorPengajuan;
-  @override // required DropDownField kodeMargin,
-// required Field basiPointMargin,
-// required Field marginPengajuan,
-// required Field totalMargin,
-// required Field angsuranPengajuan,
+  @override
   Field get idKategoriProduk;
   @override
   Field get idJenisPengajuan;

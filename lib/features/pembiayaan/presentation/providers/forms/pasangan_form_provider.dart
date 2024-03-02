@@ -1,4 +1,4 @@
-import 'package:efosm/app/domain/entities/field.dart';
+import 'package:efosm/app/presentation/utils/validator.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pasangan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -8,39 +8,33 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class PasanganFormProvider extends StateNotifier<PasanganFormState> {
   PasanganFormProvider() : super(PasanganFormState.empty());
 
-  void setNik(String nik) {
-    print(state);
-    final isValid = nik.length == 16 && int.tryParse(nik) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNik(String? value) {
+    final message = state.nik.isRequired ? Validator.length(l10n.nik, value, 16) : null;
     state = state.copyWith(
-      nik: Field(
-        isValid: isValid,
-        value: nik,
-        showValue: nik,
+      nik: state.nik.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setNama(String nama) {
-    final isValid = nama.length > 2;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNama(String? value) {
+    final message = state.nama.isRequired ? Validator.minLength(l10n.nama, value, 2) : null;
     state = state.copyWith(
-      nama: Field(
-        isValid: isValid,
-        value: nama,
-        showValue: nama,
+      nama: state.nama.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setPenghasilan(String value, String shownValue) {
-    final isValid = value.isNotEmpty && int.tryParse(value) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setPenghasilan(String? value, String shownValue) {
+    final message = state.penghasilan.isRequired ? Validator.numeric(l10n.penghasilan, value) : null;
     state = state.copyWith(
-      penghasilan: Field(
-        isValid: isValid,
+      penghasilan: state.penghasilan.copyWith(
+        isValid: message == null,
         value: value,
         showValue: shownValue,
         errorMessage: message,
@@ -48,52 +42,48 @@ class PasanganFormProvider extends StateNotifier<PasanganFormState> {
     );
   }
 
-  void setGajiAmprah(String gajiAmprah, String shownValue) {
-    final isValid = gajiAmprah.isNotEmpty && int.tryParse(gajiAmprah) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setGajiAmprah(String? value, String shownValue) {
+    final message = state.gajiAmprah.isRequired ? Validator.numeric(l10n.gajiAmprah, value) : null;
     state = state.copyWith(
-      gajiAmprah: Field(
-        isValid: isValid,
-        value: gajiAmprah,
+      gajiAmprah: state.gajiAmprah.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setTunjangan(String tunjangan, String shownValue) {
-    final isValid = tunjangan.isNotEmpty && int.tryParse(tunjangan) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setTunjangan(String? value, String shownValue) {
+    final message = state.tunjangan.isRequired ? Validator.numeric(l10n.tunjangan, value) : null;
     state = state.copyWith(
-      tunjangan: Field(
-        isValid: isValid,
-        value: tunjangan,
+      tunjangan: state.tunjangan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setPotongan(String potongan, String shownValue) {
-    final isValid = potongan.isNotEmpty && int.tryParse(potongan) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setPotongan(String? value, String shownValue) {
+    final message = state.potongan.isRequired ? Validator.numeric(l10n.potongan, value) : null;
     state = state.copyWith(
-      potongan: Field(
-        isValid: isValid,
-        value: potongan,
+      potongan: state.potongan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setGajiBersih(String gajiBersih, String shownValue) {
-    final isValid = gajiBersih.isNotEmpty && int.tryParse(gajiBersih) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setGajiBersih(String? value, String shownValue) {
+    final message = state.gajiBersih.isRequired ? Validator.numeric(l10n.gajiBersih, value) : null;
     state = state.copyWith(
-      gajiBersih: Field(
-        isValid: isValid,
-        value: gajiBersih,
+      gajiBersih: state.gajiBersih.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
@@ -109,6 +99,18 @@ class PasanganFormProvider extends StateNotifier<PasanganFormState> {
     setPotongan(data.potongan.toString(), data.potongan.toString());
     setGajiBersih(data.gajiBersih.toString(), data.gajiBersih.toString());
     state = state.copyWith(isUpdate: true);
+  }
+
+  void setMaritalStatus({required bool status}) {
+    state = state.copyWith(
+      nama: state.nama.copyWith(isRequired: status),
+      nik: state.nik.copyWith(isRequired: status),
+      penghasilan: state.penghasilan.copyWith(isRequired: status),
+      gajiAmprah: state.gajiAmprah.copyWith(isRequired: status),
+      tunjangan: state.tunjangan.copyWith(isRequired: status),
+      potongan: state.potongan.copyWith(isRequired: status),
+      gajiBersih: state.gajiBersih.copyWith(isRequired: status),
+    );
   }
 }
 
@@ -132,39 +134,27 @@ class ListPasanganProvider extends StateNotifier<List<PasanganFormState>> {
   }
 }
 
-final pasanganFormProvider =
-    StateNotifierProvider<PasanganFormProvider, PasanganFormState>(
+final pasanganFormProvider = StateNotifierProvider<PasanganFormProvider, PasanganFormState>(
   (ref) => PasanganFormProvider(),
 );
-
-// final listPasanganProvider =
-//     StateNotifierProvider<ListPasanganProvider, List<PasanganFormState>>(
-//   (ref) => ListPasanganProvider(),
-// );
 
 final pasanganIndexProvider = StateProvider((ref) => 0);
 
 final nikPasanganController = Provider(
-  (ref) =>
-      TextEditingController(text: ref.read(pasanganFormProvider).nik.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).nik.value),
 );
 final namaPasanganController = Provider(
-  (ref) =>
-      TextEditingController(text: ref.read(pasanganFormProvider).nama.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).nama.value),
 );
 final gajiAmprahPasanganController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pasanganFormProvider).gajiAmprah.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).gajiAmprah.value),
 );
 final tunjanganPasanganController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pasanganFormProvider).tunjangan.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).tunjangan.value),
 );
 final potonganPasanganController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pasanganFormProvider).potongan.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).potongan.value),
 );
 final gajiBersihPasanganController = Provider(
-  (ref) => TextEditingController(
-      text: ref.read(pasanganFormProvider).gajiBersih.value),
+  (ref) => TextEditingController(text: ref.read(pasanganFormProvider).gajiBersih.value),
 );

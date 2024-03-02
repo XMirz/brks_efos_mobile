@@ -14,6 +14,10 @@ class ApiPath {
   static const reviewKonsumtif = '/efos/calondebitur/review';
   static const reviewProduktif = '/mkm/pembiayaan/review';
 
+// Review document
+  static const dokumenKonsumtif = '/efos/ceklist/inquiry';
+  static const dokumenProduktif = '/mkm/pembiayaan/getdokumenpersyaratan';
+
 // Approve Notisi
   static const approvalOneKonsumtif = '/efos/notisi/approve1';
   static const approvalTwoKonsumtif = '/efos/notisi/approve2';

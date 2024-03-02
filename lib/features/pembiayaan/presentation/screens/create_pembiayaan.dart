@@ -147,7 +147,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         alamat: dataDiriFormState.alamat.value,
         tempatLahir: dataDiriFormState.tempatLahir.value,
         tanggalLahir: dataDiriFormState.tanggalLahir.value,
-        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value),
+        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value ?? ''),
         statusPernikahan: dataDiriFormState.statusPernikahan.value,
         jumlahTanggungan: dataDiriFormState.jumlahTanggungan.value,
         kewajiban: dataDiriFormState.kewajiban.value,
@@ -188,22 +188,9 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
         idJenisPengajuan: pembiayaanFormState.idJenisPengajuan.value,
         idSubProduk: pembiayaanFormState.idSubProduk.value,
         idPlan: pembiayaanFormState.idPlan.value,
-        tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value,
-        // barang: pembiayaanFormState.barang.value,
-        // hargaPerolehan: pembiayaanFormState.hargaPerolehan.value,
-        // pajak: pembiayaanFormState.pajak.value,
-        // diskon: pembiayaanFormState.diskon.value,
-        // uangMuka: pembiayaanFormState.uangMuka.value,
+        tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value ?? '',
         plafonPengajuan: pembiayaanFormState.plafonPengajuan.value,
         tenorPengajuan: pembiayaanFormState.tenorPengajuan.value,
-        // gracePeriod: pembiayaanFormState.gracePeriod.value,
-        // kodeMargin: pembiayaanFormState.kodeMargin.value,
-        // basiPointMargin: pembiayaanFormState.basiPointMargin.value,
-        // basiPointMarginMark:
-        //     pembiayaanFormState.basiPointMargin.value.contains('-') ? '-' : '+',
-        // marginPengajuan: pembiayaanFormState.marginPengajuan.value,
-        // totalMargin: pembiayaanFormState.totalMargin.value,
-        // angsuranPengajuan: pembiayaanFormState.angsuranPengajuan.value,
       );
 
       final listAgunan = listAgunanState.map((agunan) {
@@ -228,27 +215,27 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
           strImage = base64Encode(imageBytes);
         }
 
-        var deskripsi = agunan.deskripsi.value;
-        if (agunan.deskripsi.value == '1') {
+        var deskripsi = agunan.deskripsi.value ?? '';
+        if (agunan.deskripsi.value == AppString.isJaminanValue) {
           deskripsi = deskripsi.padRight(50);
-          deskripsi = deskripsi + agunan.deskripsi2.value.padRight(50);
-          deskripsi = deskripsi + agunan.deskripsi3.value.padRight(50);
-          deskripsi = deskripsi + agunan.deskripsi4.value.padRight(50);
-          deskripsi = deskripsi + agunan.deskripsi5.value.padRight(50);
+          deskripsi = deskripsi + (agunan.deskripsi2.value ?? '').padRight(50);
+          deskripsi = deskripsi + (agunan.deskripsi3.value ?? '').padRight(50);
+          deskripsi = deskripsi + (agunan.deskripsi4.value ?? '').padRight(50);
+          deskripsi = deskripsi + (agunan.deskripsi5.value ?? '').padRight(50);
         }
         return AgunanEntity(
-          isJaminan: agunan.isJaminan.value,
-          jenis: agunan.jenis.value,
-          deskripsi: agunan.deskripsi.value,
-          alamat: agunan.alamat.value,
+          isJaminan: agunan.isJaminan.value!,
+          jenis: agunan.jenis.value ?? '',
+          deskripsi: deskripsi,
+          alamat: agunan.alamat.value ?? '',
           image: strImage,
-          latitude: agunan.latitude.value,
-          longitude: agunan.longitude.value,
-          captureLoc: agunan.captureLoc.value,
-          provinsi: agunan.provinsi.value,
-          kabupaten: agunan.kabupaten.value,
-          kecamatan: agunan.kecamatan.value,
-          kelurahan: agunan.kelurahan.value,
+          latitude: agunan.latitude.value ?? '',
+          longitude: agunan.longitude.value ?? '',
+          captureLoc: agunan.captureLoc.value ?? '',
+          provinsi: agunan.provinsi.value ?? '',
+          kabupaten: agunan.kabupaten.value ?? '',
+          kecamatan: agunan.kecamatan.value ?? '',
+          kelurahan: agunan.kelurahan.value ?? '',
         );
       }).toList();
 

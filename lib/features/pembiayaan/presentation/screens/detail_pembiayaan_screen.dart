@@ -37,6 +37,7 @@ import 'package:efosm/features/pembiayaan/presentation/providers/forms/pekerjaan
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/produk_pembiayaan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/parameter_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_agunan.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/detail_lampiran_pembiayaan.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_value.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/expandable_card.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/forms/approval_form.dart';
@@ -68,7 +69,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     );
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Builder(
         builder: (context) {
           final tabController = DefaultTabController.of(context);
@@ -82,7 +83,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
               borderRadius: BorderRadius.zero,
               title: l10n.detailPembiayaan,
             ),
-            floatingActionButton: (ref.watch(tabBarIndexProvider) != 0 && loanState.canUpdate == true)
+            floatingActionButton: (ref.watch(tabBarIndexProvider) == 1 && loanState.canUpdate == true)
                 ? FloatingActionButton(
                     backgroundColor: AppColor.primary,
                     onPressed: () async {
@@ -179,6 +180,9 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                             Tab(
                               text: l10n.jaminan,
                             ),
+                            Tab(
+                              text: l10n.lampiran,
+                            ),
                           ],
                         ),
                       ),
@@ -210,15 +214,21 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                       left: AppInteger.horizontalPagePadding,
                                       right: AppInteger.horizontalPagePadding,
                                     ),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                    child: Wrap(
+                                      alignment: WrapAlignment.spaceBetween,
+                                      crossAxisAlignment: WrapCrossAlignment.center,
+                                      // crossAxisAlignment: CrossAxisAlignment.center,
+                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
                                           '${l10n.pembiayaan} #${data.produkPembiayaan.id}',
-                                          style: AppTextStyle.titleMedium,
+                                          style: AppTextStyle.titleSmall,
                                           textAlign: TextAlign.start,
                                         ),
-                                        spaceY(4),
+                                        const SizedBox(
+                                          height: 8,
+                                          width: 8,
+                                        ),
                                         Container(
                                           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                                           decoration: BoxDecoration(
@@ -362,6 +372,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                 listAgunan: data.agunan,
                               ),
                             ),
+                          DetailLampiranPembiayaan(loanState: loanState),
                         ],
                       ),
                     ),

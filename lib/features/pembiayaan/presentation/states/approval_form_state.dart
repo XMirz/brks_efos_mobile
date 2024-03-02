@@ -6,21 +6,21 @@ part 'approval_form_state.freezed.dart';
 @freezed
 class ApprovalFormEntity with _$ApprovalFormEntity {
   factory ApprovalFormEntity({
-    @Default(false) bool isUpdate,
-    @Default(Field(value: '')) Field nik,
-    @Default(Field(value: '')) Field nama,
-    @Default(Field(value: '')) Field tanggalLahir,
-    @Default(Field(value: '')) Field keterangan,
-    @Default(Field(value: '')) Field rekomendasi,
-    @Default(Field(value: '')) Field arahanCall,
-    @Default(Field(value: '')) Field keputusan,
-    @Default(Field(value: '')) Field username,
-    @Default(Field(value: '')) Field password,
+    @Default(Field()) Field nik,
+    @Default(Field()) Field nama,
+    @Default(Field()) Field tanggalLahir,
+    @Default(Field()) Field keterangan,
+    @Default(Field()) Field rekomendasi,
+    @Default(Field()) Field arahanCall,
+    @Default(Field()) Field keputusan,
+    @Default(Field()) Field username,
+    @Default(Field()) Field password,
   }) = _ApprovalFormEntity;
 
   const ApprovalFormEntity._();
 
   factory ApprovalFormEntity.empty() => ApprovalFormEntity();
+
   bool get isValid =>
       (!nik.isRequired || nik.isValid) &&
       (!nama.isRequired || nama.isValid) &&

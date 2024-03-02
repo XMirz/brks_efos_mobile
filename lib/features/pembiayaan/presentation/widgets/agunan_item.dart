@@ -55,10 +55,8 @@ class AgunanItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              if (isJaminan)
-                TextValue(title: l10n.jenisJaminan, value: l10n.jaminan),
-              if (!isJaminan)
-                TextValue(title: l10n.jenisAgunan, value: agunan.jenis.value),
+              if (isJaminan) TextValue(title: l10n.jenisJaminan, value: l10n.jaminan),
+              if (!isJaminan) TextValue(title: l10n.jenisAgunan, value: agunan.jenis.value),
               if (!isJaminan)
                 TextValue(
                   title: l10n.deskripsiAgunan,
@@ -69,39 +67,39 @@ class AgunanItem extends StatelessWidget {
                   title: l10n.deskripsi(''),
                   values: [
                     Text(
-                      agunan.deskripsi.value,
+                      agunan.deskripsi.value ?? '',
                       style: AppTextStyle.subtitleMedium.copyWith(
                         color: AppColor.textPrimary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    if (agunan.deskripsi2.value.isNotEmpty)
+                    if (agunan.deskripsi2.value != null)
                       Text(
-                        agunan.deskripsi2.value,
+                        agunan.deskripsi2.value ?? '',
                         style: AppTextStyle.subtitleMedium.copyWith(
                           color: AppColor.textPrimary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    if (agunan.deskripsi3.value.isNotEmpty)
+                    if (agunan.deskripsi3.value != null)
                       Text(
-                        agunan.deskripsi3.value,
+                        agunan.deskripsi3.value ?? '',
                         style: AppTextStyle.subtitleMedium.copyWith(
                           color: AppColor.textPrimary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    if (agunan.deskripsi4.value.isNotEmpty)
+                    if (agunan.deskripsi4.value != null)
                       Text(
-                        agunan.deskripsi4.value,
+                        agunan.deskripsi4.value ?? '',
                         style: AppTextStyle.subtitleMedium.copyWith(
                           color: AppColor.textPrimary,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                    if (agunan.deskripsi5.value.isNotEmpty)
+                    if (agunan.deskripsi5.value != '')
                       Text(
-                        agunan.deskripsi5.value,
+                        agunan.deskripsi5.value ?? '',
                         style: AppTextStyle.subtitleMedium.copyWith(
                           color: AppColor.textPrimary,
                           fontWeight: FontWeight.w500,
@@ -115,8 +113,7 @@ class AgunanItem extends StatelessWidget {
                   value:
                       '${agunan.alamat.showValue}\n${agunan.kelurahan.showValue}, ${agunan.kecamatan.showValue}, ${agunan.kabupaten.showValue}, ${agunan.provinsi.showValue}',
                 ),
-              if (agunan.image.value != null &&
-                  agunan.image.value!.existsSync())
+              if (agunan.image.value != null && agunan.image.value!.existsSync())
                 Align(
                   alignment: Alignment.centerRight,
                   child: PrimaryButton(
@@ -125,8 +122,7 @@ class AgunanItem extends StatelessWidget {
                     size: const Size(double.minPositive, 36),
                     text: l10n.see,
                     backgroundColor: AppColor.accent,
-                    textStyle: AppTextStyle.bodyMedium
-                        .copyWith(color: AppColor.textPrimaryInverse),
+                    textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                     onPressed: () {
                       showGeneralDialog(
                         barrierDismissible: false,

@@ -116,11 +116,8 @@ class AgunanForm extends ConsumerWidget {
                         size: const Size(double.minPositive, 36),
                         text: l10n.add,
                         backgroundColor: AppColor.primary,
-                        textStyle: AppTextStyle.bodyMedium
-                            .copyWith(color: AppColor.textPrimaryInverse),
-                        onPressed: () => ref
-                            .read(showAgunanFormProvider.notifier)
-                            .state = true,
+                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+                        onPressed: () => ref.read(showAgunanFormProvider.notifier).state = true,
                       ),
                     ),
                 ],
@@ -134,9 +131,7 @@ class AgunanForm extends ConsumerWidget {
                   value: formState.isJaminan.value,
                   backgroundColor: AppColor.success.withOpacity(0.2),
                   onChanged: (value, label) {
-                    ref
-                        .read(agunanFormProvider.notifier)
-                        .setJenisJaminan(value, label);
+                    ref.read(agunanFormProvider.notifier).setJenisJaminan(value, label);
                   },
                 ),
               spaceY(4),
@@ -149,42 +144,32 @@ class AgunanForm extends ConsumerWidget {
                       controller: ref.read(deskripsiController),
                       hint: context.l10n.deskripsiAgunan,
                       error: formState.deskripsi.errorMessage,
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi(value, value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi(value, value),
                     ),
                     //2
                     OurTextField(
                       label: context.l10n.deskripsi('2'),
                       controller: ref.read(deskripsi2Controller),
                       hint: context.l10n.deskripsi('2'),
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi2(value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi2(value),
                     ),
                     OurTextField(
                       label: context.l10n.deskripsi('3'),
                       controller: ref.read(deskripsi3Controller),
                       hint: context.l10n.deskripsi('3'),
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi3(value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi3(value),
                     ),
                     OurTextField(
                       label: context.l10n.deskripsi('4'),
                       controller: ref.read(deskripsi4Controller),
                       hint: context.l10n.deskripsi('4'),
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi4(value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi4(value),
                     ),
                     OurTextField(
                       label: context.l10n.deskripsi('5'),
                       controller: ref.read(deskripsi5Controller),
                       hint: context.l10n.deskripsi('5'),
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi5(value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi5(value),
                     ),
                   ],
                 ),
@@ -193,15 +178,12 @@ class AgunanForm extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     OurDropDownField(
-                      items:
-                          buildDropDownItem(initialParameters.parJenisAgunan),
+                      items: buildDropDownItem(initialParameters.parJenisAgunan),
                       label: context.l10n.jenisAgunan,
                       hint: context.l10n.jenisAgunan,
                       value: formState.jenis.value,
                       onChanged: (value, label) {
-                        ref
-                            .read(agunanFormProvider.notifier)
-                            .setJenis(value, label);
+                        ref.read(agunanFormProvider.notifier).setJenis(value, label);
                       },
                     ),
                     OurTextField(
@@ -209,9 +191,7 @@ class AgunanForm extends ConsumerWidget {
                       controller: ref.read(deskripsiController),
                       hint: context.l10n.deskripsiAgunan,
                       error: formState.deskripsi.errorMessage,
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setDeskripsi(value, value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi(value, value),
                     ),
                     spaceY(4),
                     OurTextField(
@@ -219,9 +199,7 @@ class AgunanForm extends ConsumerWidget {
                       controller: ref.read(alamatAgunanController),
                       hint: context.l10n.alamat,
                       error: formState.alamat.errorMessage,
-                      onChanged: (value) => ref
-                          .read(agunanFormProvider.notifier)
-                          .setAlamat(value, value),
+                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setAlamat(value, value),
                     ),
                     spaceY(4),
                     OurDropDownField(
@@ -230,9 +208,7 @@ class AgunanForm extends ConsumerWidget {
                       hint: context.l10n.provinsi,
                       value: formState.provinsi.value,
                       onChanged: (value, label) {
-                        ref
-                            .read(agunanFormProvider.notifier)
-                            .setProvinsi(value, label);
+                        ref.read(agunanFormProvider.notifier).setProvinsi(value, label);
                       },
                     ),
                     spaceY(4),
@@ -240,8 +216,7 @@ class AgunanForm extends ConsumerWidget {
                         .watch(
                           fetchKabupatenProvider(
                             ref.read(
-                              agunanFormProvider
-                                  .select((value) => value.provinsi.value),
+                              agunanFormProvider.select((value) => value.provinsi.value ?? ''),
                             ),
                           ),
                         )
@@ -252,9 +227,8 @@ class AgunanForm extends ConsumerWidget {
                               label: context.l10n.kabupaten,
                               hint: context.l10n.kabupaten,
                               value: formState.kabupaten.value,
-                              onChanged: (value, label) => ref
-                                  .read(agunanFormProvider.notifier)
-                                  .setKabupaten(value, label),
+                              onChanged: (value, label) =>
+                                  ref.read(agunanFormProvider.notifier).setKabupaten(value, label),
                             );
                           },
                           error: (error, stackTrace) => Container(),
@@ -265,8 +239,7 @@ class AgunanForm extends ConsumerWidget {
                         .watch(
                           fetchKecamatanProvider(
                             ref.read(
-                              agunanFormProvider
-                                  .select((value) => value.kabupaten.value),
+                              agunanFormProvider.select((value) => value.kabupaten.value ?? ''),
                             ),
                           ),
                         )
@@ -277,9 +250,8 @@ class AgunanForm extends ConsumerWidget {
                               label: context.l10n.kecamatan,
                               hint: context.l10n.kecamatan,
                               value: formState.kecamatan.value,
-                              onChanged: (value, label) => ref
-                                  .read(agunanFormProvider.notifier)
-                                  .setKecamatan(value, label),
+                              onChanged: (value, label) =>
+                                  ref.read(agunanFormProvider.notifier).setKecamatan(value, label),
                             );
                           },
                           error: (error, stackTrace) => Container(),
@@ -290,8 +262,7 @@ class AgunanForm extends ConsumerWidget {
                         .watch(
                           fetchKelurahanProvider(
                             ref.read(
-                              agunanFormProvider
-                                  .select((value) => value.kecamatan.value),
+                              agunanFormProvider.select((value) => value.kecamatan.value ?? ''),
                             ),
                           ),
                         )
@@ -302,9 +273,8 @@ class AgunanForm extends ConsumerWidget {
                               label: context.l10n.kelurahan,
                               hint: context.l10n.kelurahan,
                               value: formState.kelurahan.value,
-                              onChanged: (value, label) => ref
-                                  .read(agunanFormProvider.notifier)
-                                  .setKelurahan(value, label),
+                              onChanged: (value, label) =>
+                                  ref.read(agunanFormProvider.notifier).setKelurahan(value, label),
                             );
                           },
                           error: (error, stackTrace) => Container(),
@@ -327,8 +297,7 @@ class AgunanForm extends ConsumerWidget {
                             },
                           ),
                         );
-                        final locationAccess =
-                            await LocationService.getLocation();
+                        final locationAccess = await LocationService.getLocation();
                         if (context.mounted) context.pop('dialog');
                         print(locationAccess);
                         await locationAccess.fold((l) async {
@@ -362,9 +331,7 @@ class AgunanForm extends ConsumerWidget {
                           if (photo == null) {
                             return;
                           }
-                          ref
-                              .read(agunanFormProvider.notifier)
-                              .setFile(photo, photo.name, r);
+                          ref.read(agunanFormProvider.notifier).setFile(photo, photo.name, r);
                         });
                       },
                       child: Container(
@@ -418,8 +385,7 @@ class AgunanForm extends ConsumerWidget {
                     size: const Size(double.minPositive, 36),
                     text: '${l10n.save} ${l10n.agunan.toLowerCase()}',
                     backgroundColor: AppColor.primary,
-                    textStyle: AppTextStyle.bodyMedium
-                        .copyWith(color: AppColor.textPrimaryInverse),
+                    textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
                     onPressed: handleAddAgunan,
                   ),
                 ),

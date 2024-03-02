@@ -8,14 +8,14 @@ part of 'agunan_entity.dart';
 
 _$AgunanEntityImpl _$$AgunanEntityImplFromJson(Map<String, dynamic> json) =>
     _$AgunanEntityImpl(
-      isJaminan: json['is_sk'] as String?,
-      jenis: json['jenis'] as String?,
-      deskripsi: json['deskripsi_agunan'] as String?,
-      alamat: json['alamat'] as String?,
-      image: json['image'] as String?,
-      latitude: json['latitude'] as String?,
-      longitude: json['longitude'] as String?,
-      captureLoc: json['capture_loc'] as String?,
+      isJaminan: json['is_sk'] as String,
+      deskripsi: json['deskripsi_agunan'] as String,
+      jenis: json['jenis'] as String? ?? '',
+      alamat: json['alamat'] as String? ?? '',
+      image: json['image'] as String? ?? '',
+      latitude: json['latitude'] as String? ?? '',
+      longitude: json['longitude'] as String? ?? '',
+      captureLoc: json['capture_loc'] as String? ?? '',
       provinsi: json['provinsi'],
       kabupaten: json['dati2'],
       kecamatan: json['kec'],
@@ -27,8 +27,8 @@ _$AgunanEntityImpl _$$AgunanEntityImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AgunanEntityImplToJson(_$AgunanEntityImpl instance) =>
     <String, dynamic>{
       'is_sk': instance.isJaminan,
-      'jenis': instance.jenis,
       'deskripsi_agunan': instance.deskripsi,
+      'jenis': instance.jenis,
       'alamat': instance.alamat,
       'image': instance.image,
       'latitude': instance.latitude,

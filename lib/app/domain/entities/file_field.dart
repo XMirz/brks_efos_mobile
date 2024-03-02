@@ -7,9 +7,12 @@ part 'file_field.freezed.dart';
 @freezed
 class FileField with _$FileField {
   const factory FileField({
-    required String showValue,
     File? value,
-    @Default('') String errorMessage,
+    String? showValue,
+    String? errorMessage,
+    String? calculatedValue,
     @Default(false) bool isValid,
+    @Default(true) bool isRequired,
+    @Default(false) bool showError,
   }) = $_FileField;
 }

@@ -8,8 +8,8 @@ part of 'pasangan_entity.dart';
 
 _$PasanganEntityImpl _$$PasanganEntityImplFromJson(Map<String, dynamic> json) =>
     _$PasanganEntityImpl(
-      nik: json['ktp'] as String,
-      nama: json['nama'] as String,
+      nik: json['ktp'] as String?,
+      nama: json['nama'] as String?,
       penghasilan: json['penghasilan'],
       gajiAmprah: json['gaji'],
       tunjangan: json['tunjangan'],

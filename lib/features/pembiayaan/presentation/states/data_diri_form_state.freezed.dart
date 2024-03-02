@@ -409,47 +409,60 @@ class __$$DataDiriFormStateImplCopyWithImpl<$Res>
 
 class _$DataDiriFormStateImpl extends _DataDiriFormState {
   const _$DataDiriFormStateImpl(
-      {required this.nik,
-      required this.nama,
-      required this.alamat,
-      required this.tempatLahir,
-      required this.tanggalLahir,
-      required this.jenisKelamin,
-      required this.statusPernikahan,
-      required this.jumlahTanggungan,
-      required this.kewajiban,
-      required this.biayaOperasional,
-      required this.biayaRumahTangga,
-      required this.statusTempatTinggal,
-      required this.hubunganPerbankan,
+      {this.nik = const Field(),
+      this.nama = const Field(),
+      this.alamat = const Field(),
+      this.tempatLahir = const Field(),
+      this.tanggalLahir = const Field(),
+      this.jenisKelamin = const Field(),
+      this.statusPernikahan = const Field(),
+      this.jumlahTanggungan = const Field(isRequired: false),
+      this.kewajiban = const Field(isRequired: false),
+      this.biayaOperasional = const Field(isRequired: false),
+      this.biayaRumahTangga = const Field(isRequired: false),
+      this.statusTempatTinggal = const Field(),
+      this.hubunganPerbankan = const Field(),
       this.isUpdate = false})
       : super._();
 
   @override
+  @JsonKey()
   final Field nik;
   @override
+  @JsonKey()
   final Field nama;
   @override
+  @JsonKey()
   final Field alamat;
   @override
+  @JsonKey()
   final Field tempatLahir;
   @override
+  @JsonKey()
   final Field tanggalLahir;
   @override
+  @JsonKey()
   final Field jenisKelamin;
   @override
+  @JsonKey()
   final Field statusPernikahan;
   @override
+  @JsonKey()
   final Field jumlahTanggungan;
   @override
+  @JsonKey()
   final Field kewajiban;
   @override
+  @JsonKey()
   final Field biayaOperasional;
   @override
+  @JsonKey()
   final Field biayaRumahTangga;
   @override
+  @JsonKey()
   final Field statusTempatTinggal;
   @override
+  @JsonKey()
   final Field hubunganPerbankan;
   @override
   @JsonKey()
@@ -520,19 +533,19 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
 
 abstract class _DataDiriFormState extends DataDiriFormState {
   const factory _DataDiriFormState(
-      {required final Field nik,
-      required final Field nama,
-      required final Field alamat,
-      required final Field tempatLahir,
-      required final Field tanggalLahir,
-      required final Field jenisKelamin,
-      required final Field statusPernikahan,
-      required final Field jumlahTanggungan,
-      required final Field kewajiban,
-      required final Field biayaOperasional,
-      required final Field biayaRumahTangga,
-      required final Field statusTempatTinggal,
-      required final Field hubunganPerbankan,
+      {final Field nik,
+      final Field nama,
+      final Field alamat,
+      final Field tempatLahir,
+      final Field tanggalLahir,
+      final Field jenisKelamin,
+      final Field statusPernikahan,
+      final Field jumlahTanggungan,
+      final Field kewajiban,
+      final Field biayaOperasional,
+      final Field biayaRumahTangga,
+      final Field statusTempatTinggal,
+      final Field hubunganPerbankan,
       final bool isUpdate}) = _$DataDiriFormStateImpl;
   const _DataDiriFormState._() : super._();
 

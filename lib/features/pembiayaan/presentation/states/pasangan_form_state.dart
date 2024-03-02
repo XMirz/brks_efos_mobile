@@ -7,27 +7,18 @@ part 'pasangan_form_state.freezed.dart';
 @freezed
 class PasanganFormState with _$PasanganFormState {
   const factory PasanganFormState({
-    required Field nik,
-    required Field nama,
-    required Field penghasilan,
-    required Field gajiAmprah,
-    required Field tunjangan,
-    required Field potongan,
-    required Field gajiBersih,
+    @Default(Field()) Field nik,
+    @Default(Field()) Field nama,
+    @Default(Field()) Field penghasilan,
+    @Default(Field(isRequired: false)) Field gajiAmprah,
+    @Default(Field(isRequired: false)) Field tunjangan,
+    @Default(Field(isRequired: false)) Field potongan,
+    @Default(Field(isRequired: false)) Field gajiBersih,
     @Default(false) bool isUpdate,
   }) = _PasanganFormState;
   const PasanganFormState._();
 
-  factory PasanganFormState.empty() => const PasanganFormState(
-        isUpdate: false,
-        nik: Field(value: ''),
-        nama: Field(value: ''),
-        penghasilan: Field(value: ''),
-        gajiAmprah: Field(value: ''),
-        tunjangan: Field(value: ''),
-        potongan: Field(value: ''),
-        gajiBersih: Field(value: ''),
-      );
+  factory PasanganFormState.empty() => PasanganFormState();
   bool get isValid =>
       nik.isValid &&
       nama.isValid &&
@@ -40,6 +31,5 @@ class PasanganFormState with _$PasanganFormState {
 
 @freezed
 class PasanganListFormState with _$PasanganListFormState {
-  const factory PasanganListFormState(List<PasanganFormState> pasangan) =
-      _PasanganListFormState;
+  const factory PasanganListFormState(List<PasanganFormState> pasangan) = _PasanganListFormState;
 }

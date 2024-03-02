@@ -1,4 +1,4 @@
-import 'package:efosm/app/domain/entities/field.dart';
+import 'package:efosm/app/presentation/utils/validator.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
@@ -11,169 +11,147 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
   DataDiriFormProvider() : super(DataDiriFormState.empty());
 
-  void setNik(String nik) {
-    final isValid = nik.length == 16 && double.tryParse(nik) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNik(String? value) {
+    final message = state.nik.isRequired ? Validator.length(l10n.nik, value, 16) : null;
     state = state.copyWith(
-      nik: Field(
-        isValid: isValid,
-        value: nik,
-        showValue: nik,
+      nik: state.nik.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setNama(String nama) {
-    final isValid = nama.length > 2;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNama(String? value) {
+    final message = state.nama.isRequired ? Validator.minLength(l10n.nama, value, 2) : null;
     state = state.copyWith(
-      nama: Field(
-        isValid: isValid,
-        value: nama,
-        showValue: nama,
+      nama: state.nama.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setJenisKelamin(String jenisKelamin, String shownValue) {
-    final isValid = jenisKelamin.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setJenisKelamin(String? value, String shownValue) {
+    final message = state.jenisKelamin.isRequired ? Validator.notEmpty(l10n.jenisKelamin, value) : null;
     state = state.copyWith(
-      jenisKelamin: Field(
-        isValid: isValid,
-        value: jenisKelamin,
+      jenisKelamin: state.jenisKelamin.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setAlamat(String alamat) {
-    final isValid = alamat.length > 10;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setAlamat(String? value) {
+    final message = state.alamat.isRequired ? Validator.minLength(l10n.alamat, value, 2) : null;
     state = state.copyWith(
-      alamat: Field(
-        isValid: isValid,
-        value: alamat,
-        showValue: alamat,
+      alamat: state.alamat.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setTempatLahir(String tempatLahir) {
-    final isValid = tempatLahir.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setTempatLahir(String? value) {
+    final message = state.tempatLahir.isRequired ? Validator.minLength(l10n.tempatLahir, value, 2) : null;
     state = state.copyWith(
-      tempatLahir: Field(
-        isValid: isValid,
-        value: tempatLahir,
-        showValue: tempatLahir,
+      tempatLahir: state.tempatLahir.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setTanggalLahir(String tanggalLahir) {
-    final isValid = tanggalLahir.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setTanggalLahir(String? value) {
+    final message = state.tanggalLahir.isRequired ? Validator.notEmpty(l10n.tanggalLahir, value) : null;
     state = state.copyWith(
-      tanggalLahir: Field(
-        isValid: isValid,
-        value: tanggalLahir,
-        showValue: tanggalLahir,
+      tanggalLahir: state.tanggalLahir.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setStatusPernikahan(String statusPernikahan, String shownValue) {
-    final isValid = statusPernikahan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setStatusPernikahan(String? value, String shownValue) {
+    final message = state.statusPernikahan.isRequired ? Validator.notEmpty(l10n.statusPernikahan, value) : null;
     state = state.copyWith(
-      statusPernikahan: Field(
-        isValid: isValid,
-        value: statusPernikahan,
+      statusPernikahan: state.statusPernikahan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setJumlahTanggungan(String jumlahTanggungan) {
-    final isValid = jumlahTanggungan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setJumlahTanggungan(String? value) {
+    final message = state.jumlahTanggungan.isRequired ? Validator.notEmpty(l10n.jumlahTanggungan, value) : null;
     state = state.copyWith(
-      jumlahTanggungan: Field(
-        isValid: isValid,
-        value: jumlahTanggungan,
-        showValue: jumlahTanggungan,
+      jumlahTanggungan: state.jumlahTanggungan.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setKewajiban(String kewajiban) {
-    final isValid = kewajiban.isNotEmpty && double.tryParse(kewajiban) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setKewajiban(String? value) {
+    final message = state.kewajiban.isRequired ? Validator.numeric(l10n.kewajiban, value) : null;
     state = state.copyWith(
-      kewajiban: Field(
-        isValid: isValid,
-        value: kewajiban,
-        showValue: kewajiban,
+      kewajiban: state.kewajiban.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setBiayaOperasional(String biayaOperasional, {bool isNotRequired = false}) {
-    final isValid = isNotRequired ? true : (biayaOperasional.isNotEmpty && double.tryParse(biayaOperasional) != null);
-    final message = isValid ? '' : l10n.invalidInput;
+  void setBiayaOperasional(String? value) {
+    final message = state.biayaOperasional.isRequired ? Validator.numeric(l10n.biayaOperasional, value) : null;
     state = state.copyWith(
-      biayaOperasional: Field(
-        isValid: isValid,
-        value: biayaOperasional,
-        showValue: biayaOperasional,
+      biayaOperasional: state.biayaOperasional.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setBiayaRumahTangga(String biayaRumahTangga, {bool isNotRequired = false}) {
-    final isValid = isNotRequired ? true : biayaRumahTangga.isNotEmpty && double.tryParse(biayaRumahTangga) != null;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setBiayaRumahTangga(String? value) {
+    final message = state.biayaRumahTangga.isRequired ? Validator.numeric(l10n.biayaRumahTangga, value) : null;
     state = state.copyWith(
-      biayaRumahTangga: Field(
-        isValid: isValid,
-        value: biayaRumahTangga,
-        showValue: biayaRumahTangga,
+      biayaRumahTangga: state.biayaRumahTangga.copyWith(
+        isValid: message == null,
+        value: value,
         errorMessage: message,
       ),
     );
   }
 
-  void setStatusTempatTinggal(String statusTempatTinggal, String shownValue) {
-    final isValid = statusTempatTinggal.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setStatusTempatTinggal(String? value, String shownValue) {
+    final message = state.statusTempatTinggal.isRequired ? Validator.notEmpty(l10n.statusTempatTinggal, value) : null;
     state = state.copyWith(
-      statusTempatTinggal: Field(
-        isValid: isValid,
-        value: statusTempatTinggal,
+      statusTempatTinggal: state.statusTempatTinggal.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
     );
   }
 
-  void setHubunganPerbankan(String hubunganPerbankan, String shownValue) {
-    final isValid = hubunganPerbankan.isNotEmpty;
-    final message = isValid ? '' : l10n.invalidInput;
+  void setHubunganPerbankan(String? value, String shownValue) {
+    final message = state.hubunganPerbankan.isRequired ? Validator.notEmpty(l10n.hubunganPerbankan, value) : null;
     state = state.copyWith(
-      hubunganPerbankan: Field(
-        isValid: isValid,
-        value: hubunganPerbankan,
+      hubunganPerbankan: state.hubunganPerbankan.copyWith(
+        isValid: message == null,
+        value: value,
         showValue: shownValue,
         errorMessage: message,
       ),
@@ -193,12 +171,26 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     setStatusPernikahan(data.statusPernikahan, '');
     setJumlahTanggungan(data.jumlahTanggungan.toString());
     setKewajiban(data.kewajiban.toString());
-    setBiayaOperasional(data.biayaOperasional.toString(), isNotRequired: isProduktif);
-    setBiayaRumahTangga(data.biayaRumahTangga.toString(), isNotRequired: isProduktif);
+    setBiayaOperasional(data.biayaOperasional.toString());
+    setBiayaRumahTangga(data.biayaRumahTangga.toString());
     setStatusTempatTinggal(data.statusTempatTinggal, '');
     setHubunganPerbankan(data.hubunganPerbankan.toString(), '');
     debugPrint(data.toString());
-    state = state.copyWith(isUpdate: true);
+    state = state.copyWith(
+      isUpdate: true,
+      kewajiban: state.kewajiban.copyWith(
+        isRequired: !isProduktif,
+      ),
+      jumlahTanggungan: state.jumlahTanggungan.copyWith(
+        isRequired: !isProduktif,
+      ),
+      biayaRumahTangga: state.biayaRumahTangga.copyWith(
+        isRequired: !isProduktif,
+      ),
+      biayaOperasional: state.biayaOperasional.copyWith(
+        isRequired: !isProduktif,
+      ),
+    );
   }
 }
 

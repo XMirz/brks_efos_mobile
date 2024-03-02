@@ -16,11 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Field {
-  String get value => throw _privateConstructorUsedError;
-  String get showValue => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
+  String? get value => throw _privateConstructorUsedError;
+  String? get showValue => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get calculatedValue => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
   bool get isRequired => throw _privateConstructorUsedError;
+  bool get showError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FieldCopyWith<Field> get copyWith => throw _privateConstructorUsedError;
@@ -32,11 +34,13 @@ abstract class $FieldCopyWith<$Res> {
       _$FieldCopyWithImpl<$Res, Field>;
   @useResult
   $Res call(
-      {String value,
-      String showValue,
-      String errorMessage,
+      {String? value,
+      String? showValue,
+      String? errorMessage,
+      String? calculatedValue,
       bool isValid,
-      bool isRequired});
+      bool isRequired,
+      bool showError});
 }
 
 /// @nodoc
@@ -52,25 +56,31 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = null,
-    Object? showValue = null,
-    Object? errorMessage = null,
+    Object? value = freezed,
+    Object? showValue = freezed,
+    Object? errorMessage = freezed,
+    Object? calculatedValue = freezed,
     Object? isValid = null,
     Object? isRequired = null,
+    Object? showError = null,
   }) {
     return _then(_value.copyWith(
-      value: null == value
+      value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      showValue: null == showValue
+              as String?,
+      showValue: freezed == showValue
           ? _value.showValue
           : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
+              as String?,
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      calculatedValue: freezed == calculatedValue
+          ? _value.calculatedValue
+          : calculatedValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -78,6 +88,10 @@ class _$FieldCopyWithImpl<$Res, $Val extends Field>
       isRequired: null == isRequired
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: null == showError
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -91,11 +105,13 @@ abstract class _$$$_FieldImplCopyWith<$Res> implements $FieldCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String value,
-      String showValue,
-      String errorMessage,
+      {String? value,
+      String? showValue,
+      String? errorMessage,
+      String? calculatedValue,
       bool isValid,
-      bool isRequired});
+      bool isRequired,
+      bool showError});
 }
 
 /// @nodoc
@@ -109,25 +125,31 @@ class __$$$_FieldImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = null,
-    Object? showValue = null,
-    Object? errorMessage = null,
+    Object? value = freezed,
+    Object? showValue = freezed,
+    Object? errorMessage = freezed,
+    Object? calculatedValue = freezed,
     Object? isValid = null,
     Object? isRequired = null,
+    Object? showError = null,
   }) {
     return _then(_$$_FieldImpl(
-      value: null == value
+      value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      showValue: null == showValue
+              as String?,
+      showValue: freezed == showValue
           ? _value.showValue
           : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
+              as String?,
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      calculatedValue: freezed == calculatedValue
+          ? _value.calculatedValue
+          : calculatedValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
@@ -135,6 +157,10 @@ class __$$$_FieldImplCopyWithImpl<$Res>
       isRequired: null == isRequired
           ? _value.isRequired
           : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: null == showError
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -144,30 +170,35 @@ class __$$$_FieldImplCopyWithImpl<$Res>
 
 class _$$_FieldImpl implements $_Field {
   const _$$_FieldImpl(
-      {required this.value,
-      this.showValue = '',
-      this.errorMessage = '',
+      {this.value,
+      this.showValue,
+      this.errorMessage,
+      this.calculatedValue,
       this.isValid = false,
-      this.isRequired = false});
+      this.isRequired = true,
+      this.showError = false});
 
   @override
-  final String value;
+  final String? value;
   @override
-  @JsonKey()
-  final String showValue;
+  final String? showValue;
   @override
-  @JsonKey()
-  final String errorMessage;
+  final String? errorMessage;
+  @override
+  final String? calculatedValue;
   @override
   @JsonKey()
   final bool isValid;
   @override
   @JsonKey()
   final bool isRequired;
+  @override
+  @JsonKey()
+  final bool showError;
 
   @override
   String toString() {
-    return 'Field(value: $value, showValue: $showValue, errorMessage: $errorMessage, isValid: $isValid, isRequired: $isRequired)';
+    return 'Field(value: $value, showValue: $showValue, errorMessage: $errorMessage, calculatedValue: $calculatedValue, isValid: $isValid, isRequired: $isRequired, showError: $showError)';
   }
 
   @override
@@ -180,14 +211,18 @@ class _$$_FieldImpl implements $_Field {
                 other.showValue == showValue) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            (identical(other.calculatedValue, calculatedValue) ||
+                other.calculatedValue == calculatedValue) &&
             (identical(other.isValid, isValid) || other.isValid == isValid) &&
             (identical(other.isRequired, isRequired) ||
-                other.isRequired == isRequired));
+                other.isRequired == isRequired) &&
+            (identical(other.showError, showError) ||
+                other.showError == showError));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, value, showValue, errorMessage, isValid, isRequired);
+  int get hashCode => Object.hash(runtimeType, value, showValue, errorMessage,
+      calculatedValue, isValid, isRequired, showError);
 
   @JsonKey(ignore: true)
   @override
@@ -198,232 +233,30 @@ class _$$_FieldImpl implements $_Field {
 
 abstract class $_Field implements Field {
   const factory $_Field(
-      {required final String value,
-      final String showValue,
-      final String errorMessage,
+      {final String? value,
+      final String? showValue,
+      final String? errorMessage,
+      final String? calculatedValue,
       final bool isValid,
-      final bool isRequired}) = _$$_FieldImpl;
+      final bool isRequired,
+      final bool showError}) = _$$_FieldImpl;
 
   @override
-  String get value;
+  String? get value;
   @override
-  String get showValue;
+  String? get showValue;
   @override
-  String get errorMessage;
+  String? get errorMessage;
+  @override
+  String? get calculatedValue;
   @override
   bool get isValid;
   @override
   bool get isRequired;
   @override
+  bool get showError;
+  @override
   @JsonKey(ignore: true)
   _$$$_FieldImplCopyWith<_$$_FieldImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$DropDownField {
-  String get value => throw _privateConstructorUsedError;
-  String get showValue => throw _privateConstructorUsedError;
-  String get actualValue => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  bool get isValid => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $DropDownFieldCopyWith<DropDownField> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DropDownFieldCopyWith<$Res> {
-  factory $DropDownFieldCopyWith(
-          DropDownField value, $Res Function(DropDownField) then) =
-      _$DropDownFieldCopyWithImpl<$Res, DropDownField>;
-  @useResult
-  $Res call(
-      {String value,
-      String showValue,
-      String actualValue,
-      String errorMessage,
-      bool isValid});
-}
-
-/// @nodoc
-class _$DropDownFieldCopyWithImpl<$Res, $Val extends DropDownField>
-    implements $DropDownFieldCopyWith<$Res> {
-  _$DropDownFieldCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-    Object? showValue = null,
-    Object? actualValue = null,
-    Object? errorMessage = null,
-    Object? isValid = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      showValue: null == showValue
-          ? _value.showValue
-          : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      actualValue: null == actualValue
-          ? _value.actualValue
-          : actualValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$$_DropDownFieldImplCopyWith<$Res>
-    implements $DropDownFieldCopyWith<$Res> {
-  factory _$$$_DropDownFieldImplCopyWith(_$$_DropDownFieldImpl value,
-          $Res Function(_$$_DropDownFieldImpl) then) =
-      __$$$_DropDownFieldImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String value,
-      String showValue,
-      String actualValue,
-      String errorMessage,
-      bool isValid});
-}
-
-/// @nodoc
-class __$$$_DropDownFieldImplCopyWithImpl<$Res>
-    extends _$DropDownFieldCopyWithImpl<$Res, _$$_DropDownFieldImpl>
-    implements _$$$_DropDownFieldImplCopyWith<$Res> {
-  __$$$_DropDownFieldImplCopyWithImpl(
-      _$$_DropDownFieldImpl _value, $Res Function(_$$_DropDownFieldImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-    Object? showValue = null,
-    Object? actualValue = null,
-    Object? errorMessage = null,
-    Object? isValid = null,
-  }) {
-    return _then(_$$_DropDownFieldImpl(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-      showValue: null == showValue
-          ? _value.showValue
-          : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      actualValue: null == actualValue
-          ? _value.actualValue
-          : actualValue // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      isValid: null == isValid
-          ? _value.isValid
-          : isValid // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$$_DropDownFieldImpl implements $_DropDownField {
-  const _$$_DropDownFieldImpl(
-      {required this.value,
-      required this.showValue,
-      required this.actualValue,
-      this.errorMessage = '',
-      this.isValid = false});
-
-  @override
-  final String value;
-  @override
-  final String showValue;
-  @override
-  final String actualValue;
-  @override
-  @JsonKey()
-  final String errorMessage;
-  @override
-  @JsonKey()
-  final bool isValid;
-
-  @override
-  String toString() {
-    return 'DropDownField(value: $value, showValue: $showValue, actualValue: $actualValue, errorMessage: $errorMessage, isValid: $isValid)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$$_DropDownFieldImpl &&
-            (identical(other.value, value) || other.value == value) &&
-            (identical(other.showValue, showValue) ||
-                other.showValue == showValue) &&
-            (identical(other.actualValue, actualValue) ||
-                other.actualValue == actualValue) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, value, showValue, actualValue, errorMessage, isValid);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$$_DropDownFieldImplCopyWith<_$$_DropDownFieldImpl> get copyWith =>
-      __$$$_DropDownFieldImplCopyWithImpl<_$$_DropDownFieldImpl>(
-          this, _$identity);
-}
-
-abstract class $_DropDownField implements DropDownField {
-  const factory $_DropDownField(
-      {required final String value,
-      required final String showValue,
-      required final String actualValue,
-      final String errorMessage,
-      final bool isValid}) = _$$_DropDownFieldImpl;
-
-  @override
-  String get value;
-  @override
-  String get showValue;
-  @override
-  String get actualValue;
-  @override
-  String get errorMessage;
-  @override
-  bool get isValid;
-  @override
-  @JsonKey(ignore: true)
-  _$$$_DropDownFieldImplCopyWith<_$$_DropDownFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

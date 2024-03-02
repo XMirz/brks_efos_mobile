@@ -14,7 +14,7 @@ _$ProdukPembiayaanEntityImpl _$$ProdukPembiayaanEntityImplFromJson(
       idJenisPengajuan: json['id_template_dokumen'],
       idSubProduk: json['id_sub_produk'],
       idPlan: json['id_plan'],
-      tujuanPembiayaan: json['tujuan_pembiayaan'] as String,
+      tujuanPembiayaan: json['tujuan_pembiayaan'] as String?,
       plafonPengajuan: json['plafon_pengajuan'],
       tenorPengajuan: json['tenor_pengajuan'],
       id: json['id'] as String? ?? '',

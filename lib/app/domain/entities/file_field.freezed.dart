@@ -16,10 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$FileField {
-  String get showValue => throw _privateConstructorUsedError;
   File? get value => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
+  String? get showValue => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get calculatedValue => throw _privateConstructorUsedError;
   bool get isValid => throw _privateConstructorUsedError;
+  bool get isRequired => throw _privateConstructorUsedError;
+  bool get showError => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FileFieldCopyWith<FileField> get copyWith =>
@@ -31,7 +34,14 @@ abstract class $FileFieldCopyWith<$Res> {
   factory $FileFieldCopyWith(FileField value, $Res Function(FileField) then) =
       _$FileFieldCopyWithImpl<$Res, FileField>;
   @useResult
-  $Res call({String showValue, File? value, String errorMessage, bool isValid});
+  $Res call(
+      {File? value,
+      String? showValue,
+      String? errorMessage,
+      String? calculatedValue,
+      bool isValid,
+      bool isRequired,
+      bool showError});
 }
 
 /// @nodoc
@@ -47,27 +57,42 @@ class _$FileFieldCopyWithImpl<$Res, $Val extends FileField>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showValue = null,
     Object? value = freezed,
-    Object? errorMessage = null,
+    Object? showValue = freezed,
+    Object? errorMessage = freezed,
+    Object? calculatedValue = freezed,
     Object? isValid = null,
+    Object? isRequired = null,
+    Object? showError = null,
   }) {
     return _then(_value.copyWith(
-      showValue: null == showValue
-          ? _value.showValue
-          : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as File?,
-      errorMessage: null == errorMessage
+      showValue: freezed == showValue
+          ? _value.showValue
+          : showValue // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      calculatedValue: freezed == calculatedValue
+          ? _value.calculatedValue
+          : calculatedValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: null == showError
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -81,7 +106,14 @@ abstract class _$$$_FileFieldImplCopyWith<$Res>
       __$$$_FileFieldImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String showValue, File? value, String errorMessage, bool isValid});
+  $Res call(
+      {File? value,
+      String? showValue,
+      String? errorMessage,
+      String? calculatedValue,
+      bool isValid,
+      bool isRequired,
+      bool showError});
 }
 
 /// @nodoc
@@ -95,27 +127,42 @@ class __$$$_FileFieldImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? showValue = null,
     Object? value = freezed,
-    Object? errorMessage = null,
+    Object? showValue = freezed,
+    Object? errorMessage = freezed,
+    Object? calculatedValue = freezed,
     Object? isValid = null,
+    Object? isRequired = null,
+    Object? showError = null,
   }) {
     return _then(_$$_FileFieldImpl(
-      showValue: null == showValue
-          ? _value.showValue
-          : showValue // ignore: cast_nullable_to_non_nullable
-              as String,
       value: freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as File?,
-      errorMessage: null == errorMessage
+      showValue: freezed == showValue
+          ? _value.showValue
+          : showValue // ignore: cast_nullable_to_non_nullable
+              as String?,
+      errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      calculatedValue: freezed == calculatedValue
+          ? _value.calculatedValue
+          : calculatedValue // ignore: cast_nullable_to_non_nullable
+              as String?,
       isValid: null == isValid
           ? _value.isValid
           : isValid // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showError: null == showError
+          ? _value.showError
+          : showError // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -125,25 +172,35 @@ class __$$$_FileFieldImplCopyWithImpl<$Res>
 
 class _$$_FileFieldImpl implements $_FileField {
   const _$$_FileFieldImpl(
-      {required this.showValue,
-      this.value,
-      this.errorMessage = '',
-      this.isValid = false});
+      {this.value,
+      this.showValue,
+      this.errorMessage,
+      this.calculatedValue,
+      this.isValid = false,
+      this.isRequired = true,
+      this.showError = false});
 
-  @override
-  final String showValue;
   @override
   final File? value;
   @override
-  @JsonKey()
-  final String errorMessage;
+  final String? showValue;
+  @override
+  final String? errorMessage;
+  @override
+  final String? calculatedValue;
   @override
   @JsonKey()
   final bool isValid;
+  @override
+  @JsonKey()
+  final bool isRequired;
+  @override
+  @JsonKey()
+  final bool showError;
 
   @override
   String toString() {
-    return 'FileField(showValue: $showValue, value: $value, errorMessage: $errorMessage, isValid: $isValid)';
+    return 'FileField(value: $value, showValue: $showValue, errorMessage: $errorMessage, calculatedValue: $calculatedValue, isValid: $isValid, isRequired: $isRequired, showError: $showError)';
   }
 
   @override
@@ -151,17 +208,23 @@ class _$$_FileFieldImpl implements $_FileField {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$$_FileFieldImpl &&
+            (identical(other.value, value) || other.value == value) &&
             (identical(other.showValue, showValue) ||
                 other.showValue == showValue) &&
-            (identical(other.value, value) || other.value == value) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.isValid, isValid) || other.isValid == isValid));
+            (identical(other.calculatedValue, calculatedValue) ||
+                other.calculatedValue == calculatedValue) &&
+            (identical(other.isValid, isValid) || other.isValid == isValid) &&
+            (identical(other.isRequired, isRequired) ||
+                other.isRequired == isRequired) &&
+            (identical(other.showError, showError) ||
+                other.showError == showError));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, showValue, value, errorMessage, isValid);
+  int get hashCode => Object.hash(runtimeType, value, showValue, errorMessage,
+      calculatedValue, isValid, isRequired, showError);
 
   @JsonKey(ignore: true)
   @override
@@ -172,19 +235,28 @@ class _$$_FileFieldImpl implements $_FileField {
 
 abstract class $_FileField implements FileField {
   const factory $_FileField(
-      {required final String showValue,
-      final File? value,
-      final String errorMessage,
-      final bool isValid}) = _$$_FileFieldImpl;
+      {final File? value,
+      final String? showValue,
+      final String? errorMessage,
+      final String? calculatedValue,
+      final bool isValid,
+      final bool isRequired,
+      final bool showError}) = _$$_FileFieldImpl;
 
-  @override
-  String get showValue;
   @override
   File? get value;
   @override
-  String get errorMessage;
+  String? get showValue;
+  @override
+  String? get errorMessage;
+  @override
+  String? get calculatedValue;
   @override
   bool get isValid;
+  @override
+  bool get isRequired;
+  @override
+  bool get showError;
   @override
   @JsonKey(ignore: true)
   _$$$_FileFieldImplCopyWith<_$$_FileFieldImpl> get copyWith =>
