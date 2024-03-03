@@ -1,4 +1,5 @@
 import 'package:efosm/app/domain/entities/loan_state.dart';
+import 'package:efosm/features/auth/presentation/screens/error_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/landing_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:efosm/features/home/presentations/screen/home_screen.dart';
@@ -32,6 +33,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             builder: (BuildContext context, GoRouterState state) => const LandingScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        path: AppRoutes.errorPage,
+        name: AppRoutes.errorPage,
+        builder: (BuildContext context, GoRouterState state) => const ErrorScreen(),
       ),
       GoRoute(
         path: AppRoutes.homePage,
@@ -114,4 +120,5 @@ class AppRoutes {
   static const formJaminanPage = 'form-jaminan/:id';
   static const editPembiayaanPage = 'edit-pembiayaan/:id';
   static const detailPembiayaan = 'detail-pembiayaan/:idKategoriProduk/:id';
+  static const errorPage = '/error-page';
 }

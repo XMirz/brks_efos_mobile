@@ -385,5 +385,7 @@
   "identityNotMatch": "Data debitur yang anda masukkan tidak cocok!",
   "usernameNotMatch": "Username yang anda masukkan tidak cocok!",
   "authenticationNotMatch": "Kata sandi/username yang anda masukkan tidak cocok!",
+  "whoops": "Whoops, sesuatu telah terjadi mohon dicoba beberapa saat lagi!",
+  "serviceInactive" : "Whoops, layanan EFOS saat ini sedang tidak tersedia. Silahkan coba beberapa saat lagi!.",
   "a": "a"
 }

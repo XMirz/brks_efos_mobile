@@ -21,6 +21,22 @@ final authRepositoryProvider = AutoDisposeProvider<AuthRepository>.internal(
 );
 
 typedef AuthRepositoryRef = AutoDisposeProviderRef<AuthRepository>;
+String _$initialRequestHash() => r'd6084b6a45a340f90256ad0191e3231bf18097f9';
+
+/// See also [initialRequest].
+@ProviderFor(initialRequest)
+final initialRequestProvider =
+    AutoDisposeFutureProvider<Either<Failure, void>>.internal(
+  initialRequest,
+  name: r'initialRequestProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$initialRequestHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef InitialRequestRef = AutoDisposeFutureProviderRef<Either<Failure, void>>;
 String _$createAuthenticationHash() =>
     r'ae7773fa55bcf3008e100cac8109251a3361d9e1';
 

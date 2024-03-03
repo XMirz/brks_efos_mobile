@@ -1,4 +1,6 @@
 class ApiPath {
+  static const init = '/mobile/efos/init';
+
   static const listPembiayaanProduktif = '/mobile/efos/listcalondebiturproduktif';
   static const listPembiayaanKonsumtif = '/mobile/efos/listcalondebitur';
   static const detailPembiayaanKonsumtif = '/mobile/konsumtif/detail';
