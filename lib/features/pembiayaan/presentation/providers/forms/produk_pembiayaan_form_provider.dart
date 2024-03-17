@@ -1,6 +1,6 @@
-import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/utils/validator.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/produk_pembiayaan_entity.dart';
+import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/produk_pembiayaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +9,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
   PembiayaanFormProvider() : super(ProdukPembiayaanFormState.empty());
 
-  void setKategoriProduk(String? value, String shownValue) {
+  void setKategoriProduk(String? value, {bool showError = false}) {
     final message = state.idKategoriProduk.isRequired ? Validator.notEmpty(l10n.kategoriProduk, value) : null;
     state = state.copyWith(
       idKategoriProduk: state.idKategoriProduk.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
       idProduk: state.idProduk.copyWith(
         value: '',
@@ -37,14 +37,14 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
     );
   }
 
-  void setProduk(String? value, String shownValue) {
+  void setProduk(String? value, {bool showError = false}) {
     final message = state.idProduk.isRequired ? Validator.notEmpty(l10n.produk, value) : null;
     state = state.copyWith(
       idProduk: state.idProduk.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
       idJenisPengajuan: state.idJenisPengajuan.copyWith(
         value: '',
@@ -61,14 +61,14 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
     );
   }
 
-  void setJenisPengajuan(String? value, String shownValue) {
+  void setJenisPengajuan(String? value, {bool showError = false}) {
     final message = state.idJenisPengajuan.isRequired ? Validator.notEmpty(l10n.jenisPengajuan, value) : null;
     state = state.copyWith(
       idJenisPengajuan: state.idJenisPengajuan.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
       idSubProduk: state.idSubProduk.copyWith(
         value: '',
@@ -81,14 +81,14 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
     );
   }
 
-  void setSubProduk(String? value, String shownValue) {
+  void setSubProduk(String? value, {bool showError = false}) {
     final message = state.idSubProduk.isRequired ? Validator.notEmpty(l10n.subProduk, value) : null;
     state = state.copyWith(
       idSubProduk: state.idSubProduk.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
       idPlan: state.idPlan.copyWith(
         value: '',
@@ -97,76 +97,92 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
     );
   }
 
-  void setPlan(String? value, String shownValue) {
+  void setPlan(String? value, {bool showError = false}) {
     final message = state.idPlan.isRequired ? Validator.notEmpty(l10n.plan, value) : null;
     state = state.copyWith(
       idPlan: state.idPlan.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setTujuanPembiayaan(String? value) {
+  void setTujuanPembiayaan(String? value, {bool showError = false}) {
     final message = state.tujuanPembiayaan.isRequired ? Validator.notEmpty(l10n.tujuanPembiayaan, value) : null;
     state = state.copyWith(
       tujuanPembiayaan: state.tujuanPembiayaan.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setPlafonPengajuan(String? value, String shownValue) {
+  void setPlafonPengajuan(String? value, {bool showError = false}) {
     final message = state.plafonPengajuan.isRequired ? Validator.numeric(l10n.plafon, value) : null;
     state = state.copyWith(
       plafonPengajuan: state.plafonPengajuan.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
     // handleMarginUpdate();
   }
 
-  void setTenor(String? value) {
+  void setTenor(String? value, {bool showError = false}) {
     final message = state.tenorPengajuan.isRequired ? Validator.numeric(l10n.tenor, value) : null;
     state = state.copyWith(
       tenorPengajuan: state.tenorPengajuan.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setProdukPembiayaanForm(ProdukPembiayaanEntity data, AppParameter parameter) {
-    final kategoriProdukLabel =
-        parameter.parKategoriProduk.firstWhere((element) => element.id == data.idKategoriProduk).label;
-    // final produkLabel = parameter.
-    //     .firstWhere((element) => element.id == data.idKategoriProduk)
-    //     .label;
-    setKategoriProduk(data.idKategoriProduk.toString(), kategoriProdukLabel ?? '');
-    setProduk(data.idProduk.toString(), '');
-    setJenisPengajuan(data.idJenisPengajuan.toString(), '');
-    setSubProduk(data.idSubProduk.toString(), '');
-    setPlan(data.idPlan.toString(), '');
-    setTujuanPembiayaan(data.tujuanPembiayaan);
-    setPlafonPengajuan(data.plafonPengajuan.toString(), '');
-    setTenor(
-      data.tenorPengajuan.toString(),
+  bool validate() {
+    setKategoriProduk(state.idKategoriProduk.value, showError: true);
+    setProduk(state.idProduk.value, showError: true);
+    setJenisPengajuan(state.idJenisPengajuan.value, showError: true);
+    setSubProduk(state.idSubProduk.value, showError: true);
+    setPlan(state.idPlan.value, showError: true);
+    setTujuanPembiayaan(state.tujuanPembiayaan.value, showError: true);
+    setPlafonPengajuan(state.plafonPengajuan.value, showError: true);
+    setTenor(state.tenorPengajuan.value, showError: true);
+    return state.isValid;
+  }
+
+  void setFormRequirementByCategory(ProductCategory productCategory) {
+    final isProduktif = productCategory == ProductCategory.produktif;
+    state = state.copyWith(
+      idKategoriProduk: state.idKategoriProduk.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+      idJenisPengajuan: state.idJenisPengajuan.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
     );
-    state = state.copyWith(isUpdate: true);
+  }
+
+  void setFormValue(PembiayaanEntity data) {
+    setKategoriProduk(data.produkPembiayaan.idKategoriProduk.toString());
+    setProduk(data.produkPembiayaan.idProduk.toString());
+    setJenisPengajuan(data.produkPembiayaan.idJenisPengajuan.toString());
+    setSubProduk(data.produkPembiayaan.idSubProduk.toString());
+    setPlan(data.produkPembiayaan.idPlan.toString());
+    setTujuanPembiayaan(data.produkPembiayaan.tujuanPembiayaan);
+    setPlafonPengajuan(data.produkPembiayaan.plafonPengajuan.toString());
+    setTenor(data.produkPembiayaan.tenorPengajuan.toString());
   }
 }
-
-final pembiayaanFormProvider = StateNotifierProvider<PembiayaanFormProvider, ProdukPembiayaanFormState>(
-  (ref) => PembiayaanFormProvider(),
-);
 
 final tujuanPembiayaanController = Provider(
   (ref) => TextEditingController(text: ref.read(pembiayaanFormProvider).tujuanPembiayaan.value),
@@ -176,4 +192,8 @@ final plafonController = Provider(
 );
 final tenorController = Provider(
   (ref) => TextEditingController(text: ref.read(pembiayaanFormProvider).tenorPengajuan.value),
+);
+
+final pembiayaanFormProvider = StateNotifierProvider<PembiayaanFormProvider, ProdukPembiayaanFormState>(
+  (ref) => PembiayaanFormProvider(),
 );

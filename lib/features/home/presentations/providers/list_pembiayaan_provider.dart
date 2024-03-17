@@ -5,26 +5,8 @@ import 'package:efosm/features/home/presentations/states/pagination_state.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-// part 'list_pembiayaan_provider.g.dart';
-
 final tabBarIndexProvider = StateProvider<int>((ref) => 1);
 final searchKeywordProvider = StateProvider<String>((ref) => '');
-
-// @riverpod
-// Future<Either<Failure, PaginatedEntity>> fetchPaginatedProduktif(
-//   FetchPaginatedProduktifRef ref,
-//   PaginationRequest request,
-// ) async {
-//   return ref.read(pembiayaanRepositoryProvider).fetchPaginatedPembiayaan(ApiPath.listPembiayaanProduktif, request);
-// }
-
-// @riverpod
-// Future<Either<Failure, PaginatedEntity>> fetchPaginatedKonsumtif(
-//   FetchPaginatedKonsumtifRef ref,
-//   PaginationRequest request,
-// ) async {
-//   return ref.read(pembiayaanRepositoryProvider).fetchPaginatedPembiayaan(ApiPath.listPembiayaanKonsumtif, request);
-// }
 
 final paginationProvider = StateNotifierProvider.family.autoDispose<PaginationNotifier<List<PembiayaanListItemEntiy>>,
     PaginationState<List<PembiayaanListItemEntiy>>, String>((ref, enpoint) {

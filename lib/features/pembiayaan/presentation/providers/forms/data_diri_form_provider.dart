@@ -1,6 +1,5 @@
 import 'package:efosm/app/presentation/utils/validator.dart';
 import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/data_diri_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -11,186 +10,240 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
   DataDiriFormProvider() : super(DataDiriFormState.empty());
 
-  void setNik(String? value) {
+  void setNik(String? value, {bool showError = false}) {
     final message = state.nik.isRequired ? Validator.length(l10n.nik, value, 16) : null;
     state = state.copyWith(
       nik: state.nik.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setNama(String? value) {
+  void setNama(String? value, {bool showError = false}) {
     final message = state.nama.isRequired ? Validator.minLength(l10n.nama, value, 2) : null;
     state = state.copyWith(
       nama: state.nama.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setJenisKelamin(String? value, String shownValue) {
+  void setJenisKelamin(String? value, {bool showError = false}) {
     final message = state.jenisKelamin.isRequired ? Validator.notEmpty(l10n.jenisKelamin, value) : null;
     state = state.copyWith(
       jenisKelamin: state.jenisKelamin.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setAlamat(String? value) {
+  void setAlamat(String? value, {bool showError = false}) {
     final message = state.alamat.isRequired ? Validator.minLength(l10n.alamat, value, 2) : null;
     state = state.copyWith(
       alamat: state.alamat.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setTempatLahir(String? value) {
+  void setTempatLahir(String? value, {bool showError = false}) {
     final message = state.tempatLahir.isRequired ? Validator.minLength(l10n.tempatLahir, value, 2) : null;
     state = state.copyWith(
       tempatLahir: state.tempatLahir.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setTanggalLahir(String? value) {
+  void setTanggalLahir(String? value, {bool showError = false}) {
     final message = state.tanggalLahir.isRequired ? Validator.notEmpty(l10n.tanggalLahir, value) : null;
     state = state.copyWith(
       tanggalLahir: state.tanggalLahir.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setStatusPernikahan(String? value, String shownValue) {
+  void setStatusPernikahan(String? value, {bool showError = false}) {
     final message = state.statusPernikahan.isRequired ? Validator.notEmpty(l10n.statusPernikahan, value) : null;
     state = state.copyWith(
       statusPernikahan: state.statusPernikahan.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setJumlahTanggungan(String? value) {
+  void setJumlahTanggungan(String? value, {bool showError = false}) {
     final message = state.jumlahTanggungan.isRequired ? Validator.notEmpty(l10n.jumlahTanggungan, value) : null;
     state = state.copyWith(
       jumlahTanggungan: state.jumlahTanggungan.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setKewajiban(String? value) {
+  void setKewajiban(String? value, {bool showError = false}) {
     final message = state.kewajiban.isRequired ? Validator.numeric(l10n.kewajiban, value) : null;
     state = state.copyWith(
       kewajiban: state.kewajiban.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setBiayaOperasional(String? value) {
+  void setBiayaOperasional(String? value, {bool showError = false}) {
     final message = state.biayaOperasional.isRequired ? Validator.numeric(l10n.biayaOperasional, value) : null;
     state = state.copyWith(
       biayaOperasional: state.biayaOperasional.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setBiayaRumahTangga(String? value) {
+  void setBiayaRumahTangga(String? value, {bool showError = false}) {
     final message = state.biayaRumahTangga.isRequired ? Validator.numeric(l10n.biayaRumahTangga, value) : null;
     state = state.copyWith(
       biayaRumahTangga: state.biayaRumahTangga.copyWith(
         isValid: message == null,
         value: value,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setStatusTempatTinggal(String? value, String shownValue) {
+  void setStatusTempatTinggal(String? value, {bool showError = false}) {
     final message = state.statusTempatTinggal.isRequired ? Validator.notEmpty(l10n.statusTempatTinggal, value) : null;
     state = state.copyWith(
       statusTempatTinggal: state.statusTempatTinggal.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setHubunganPerbankan(String? value, String shownValue) {
+  void setGolonganDebitur(String? value, {bool showError = false}) {
+    final message = state.golonganDebitur.isRequired ? Validator.notEmpty(l10n.golonganDebitur, value) : null;
+    state = state.copyWith(
+      golonganDebitur: state.golonganDebitur.copyWith(
+        isValid: message == null,
+        value: value,
+        errorMessage: message,
+        showError: showError,
+      ),
+    );
+  }
+
+  void setHubunganPerbankan(String? value, {bool showError = false}) {
     final message = state.hubunganPerbankan.isRequired ? Validator.notEmpty(l10n.hubunganPerbankan, value) : null;
     state = state.copyWith(
       hubunganPerbankan: state.hubunganPerbankan.copyWith(
         isValid: message == null,
         value: value,
-        showValue: shownValue,
         errorMessage: message,
+        showError: showError,
       ),
     );
   }
 
-  void setDataDiri(PembiayaanEntity pembiayaanEntity) {
+  bool validate() {
+    setNik(state.nik.value, showError: true);
+    setNama(state.nama.value, showError: true);
+    setJenisKelamin(state.jenisKelamin.value, showError: true);
+    setAlamat(state.alamat.value, showError: true);
+    setTempatLahir(state.tempatLahir.value, showError: true);
+    setTanggalLahir(state.tanggalLahir.value, showError: true);
+    setStatusPernikahan(state.statusPernikahan.value, showError: true);
+    setJumlahTanggungan(state.jumlahTanggungan.value, showError: true);
+    setKewajiban(state.kewajiban.value, showError: true);
+    setBiayaOperasional(state.biayaOperasional.value, showError: true);
+    setBiayaRumahTangga(state.biayaRumahTangga.value, showError: true);
+    setStatusTempatTinggal(state.statusTempatTinggal.value, showError: true);
+    setGolonganDebitur(state.golonganDebitur.value, showError: true);
+    setHubunganPerbankan(state.hubunganPerbankan.value, showError: true);
+    return state.isValid;
+  }
+
+  void setFormRequirementByCategory(ProductCategory productCategory) {
+    final isProduktif = productCategory == ProductCategory.produktif;
+
+    state = state.copyWith(
+      kewajiban: state.kewajiban.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+      jumlahTanggungan: state.jumlahTanggungan.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+      biayaRumahTangga: state.biayaRumahTangga.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+      biayaOperasional: state.biayaOperasional.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+    );
+  }
+
+  void setFormRequirementByUpdate({bool isUpdate = false}) {
+    state = state.copyWith(
+      nik: state.kewajiban.copyWith(
+        isRequired: true,
+        disabled: isUpdate,
+      ),
+    );
+  }
+
+  void setFormValue(PembiayaanEntity pembiayaanEntity) {
     final data = pembiayaanEntity.dataDiri;
-    final isProduktif =
-        pembiayaanEntity.produkPembiayaan.idKategoriProduk.toString() == ProductCategory.produktif.typeName;
     setNik(data.nik);
     setNama(data.nama);
-    setJenisKelamin(data.jenisKelamin.toString(), '');
+    setJenisKelamin(data.jenisKelamin.toString());
     setAlamat(data.alamat);
     setTempatLahir(data.tempatLahir);
     setTanggalLahir(data.tanggalLahir);
-    setStatusPernikahan(data.statusPernikahan, '');
+    setStatusPernikahan(data.statusPernikahan);
     setJumlahTanggungan(data.jumlahTanggungan.toString());
     setKewajiban(data.kewajiban.toString());
     setBiayaOperasional(data.biayaOperasional.toString());
     setBiayaRumahTangga(data.biayaRumahTangga.toString());
-    setStatusTempatTinggal(data.statusTempatTinggal, '');
-    setHubunganPerbankan(data.hubunganPerbankan.toString(), '');
-    debugPrint(data.toString());
-    state = state.copyWith(
-      isUpdate: true,
-      kewajiban: state.kewajiban.copyWith(
-        isRequired: !isProduktif,
-      ),
-      jumlahTanggungan: state.jumlahTanggungan.copyWith(
-        isRequired: !isProduktif,
-      ),
-      biayaRumahTangga: state.biayaRumahTangga.copyWith(
-        isRequired: !isProduktif,
-      ),
-      biayaOperasional: state.biayaOperasional.copyWith(
-        isRequired: !isProduktif,
-      ),
-    );
+    setStatusTempatTinggal(data.statusTempatTinggal);
+    setGolonganDebitur(data.golonganDebitur.toString());
+    setHubunganPerbankan(data.hubunganPerbankan.toString());
   }
 }
 

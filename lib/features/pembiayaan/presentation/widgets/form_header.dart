@@ -12,24 +12,21 @@ class FormHeader extends StatelessWidget {
   final Color? actionColor;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: AppTextStyle.titleSmall,
-            textAlign: TextAlign.left,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: AppTextStyle.titleSmall,
+          textAlign: TextAlign.left,
+        ),
+        if (onPressed != null)
+          SmallButton(
+            text: actionText ?? l10n.add,
+            onPressed: onPressed ?? () {},
+            textStyle: AppTextStyle.bodyMediumBold.copyWith(color: actionColor),
           ),
-          if (onPressed != null)
-            SmallButton(
-              text: actionText ?? l10n.add,
-              onPressed: onPressed ?? () {},
-              textStyle: AppTextStyle.bodyMediumBold.copyWith(color: actionColor),
-            ),
-        ],
-      ),
+      ],
     );
   }
 }

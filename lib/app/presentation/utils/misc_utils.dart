@@ -12,14 +12,14 @@ import 'package:path_provider/path_provider.dart';
 
 List<DropDownItem> buildDropDownItem(List<Parameter> items) {
   return items.map((e) {
-    return DropDownItem(value: e.value.toString(), label: e.label ?? '');
+    return DropDownItem(value: e.id.toString(), label: e.label ?? '');
   }).toList();
 }
 
 Color getStepBackgroundColor(int index, int activeIndex) {
   if (index < activeIndex) return AppColor.success;
   if (index == activeIndex) {
-    return AppColor.success;
+    return AppColor.successHighlight;
   } else {
     return AppColor.highlightSecondary;
   }

@@ -18,6 +18,7 @@ class DataDiriEntity with _$DataDiriEntity {
     @JsonKey(name: 'b_operasional') required dynamic biayaOperasional,
     @JsonKey(name: 'b_gaji') required dynamic biayaRumahTangga,
     @JsonKey(name: 'status_tempat_tinggal') String? statusTempatTinggal,
+    @JsonKey(name: 'golongan_deb') required String? golonganDebitur,
     @JsonKey(name: 'hubungan_bank') required dynamic hubunganPerbankan,
   }) = _DataDiriEntity;
   const DataDiriEntity._();

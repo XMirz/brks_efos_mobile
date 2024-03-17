@@ -1,4 +1,5 @@
 import 'package:efosm/app/domain/entities/field.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/data_diri_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'data_diri_form_state.freezed.dart';
@@ -18,6 +19,7 @@ class DataDiriFormState with _$DataDiriFormState {
     @Default(Field(isRequired: false)) Field biayaOperasional,
     @Default(Field(isRequired: false)) Field biayaRumahTangga,
     @Default(Field()) Field statusTempatTinggal,
+    @Default(Field()) Field golonganDebitur,
     @Default(Field()) Field hubunganPerbankan,
     @Default(false) bool isUpdate,
   }) = _DataDiriFormState;
@@ -38,5 +40,25 @@ class DataDiriFormState with _$DataDiriFormState {
       biayaOperasional.isValid &&
       biayaRumahTangga.isValid &&
       statusTempatTinggal.isValid &&
+      golonganDebitur.isValid &&
       hubunganPerbankan.isValid;
+
+  DataDiriEntity toEntity() {
+    return DataDiriEntity(
+      nik: nik.value,
+      nama: nama.value,
+      alamat: alamat.value,
+      tempatLahir: tempatLahir.value,
+      tanggalLahir: tanggalLahir.value,
+      jenisKelamin: int.parse(jenisKelamin.value ?? '1'),
+      statusPernikahan: statusPernikahan.value,
+      jumlahTanggungan: jumlahTanggungan.value,
+      kewajiban: kewajiban.value,
+      biayaOperasional: biayaOperasional.value,
+      biayaRumahTangga: biayaRumahTangga.value,
+      statusTempatTinggal: statusTempatTinggal.value,
+      golonganDebitur: golonganDebitur.value,
+      hubunganPerbankan: hubunganPerbankan.value,
+    );
+  }
 }

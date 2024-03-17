@@ -1,19 +1,18 @@
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
-import 'package:efosm/app/presentation/widgets/primary_button.dart';
+import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lottie/lottie.dart';
-import 'package:efosm/app/presentation/providers/auth_provider.dart';
+
+const duration = Duration(milliseconds: 2500);
 
 class SplashScreen extends HookConsumerWidget {
   const SplashScreen({super.key});
 
-  final duration = const Duration(milliseconds: 300);
-  // final duration = const Duration(milliseconds: 5000);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
@@ -27,14 +26,7 @@ class SplashScreen extends HookConsumerWidget {
             return OurAlertDialog(
               title: l10n.failed,
               description: l.message,
-              actions: [
-                SmallButton(
-                  text: l10n.ok,
-                  onPressed: () {
-                    context.pop('dialog');
-                  },
-                ),
-              ],
+              onPressed: () => context.pop('dialog'),
             );
           },
         );

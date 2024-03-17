@@ -1,11 +1,12 @@
 import 'package:efosm/app/domain/entities/loan_state.dart';
+import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/features/auth/presentation/screens/error_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/landing_screen.dart';
 import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
 import 'package:efosm/features/home/presentations/screen/home_screen.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
-import 'package:efosm/features/pembiayaan/presentation/screens/create_pembiayaan.dart';
+import 'package:efosm/features/pembiayaan/presentation/screens/create_pembiayaan_screen.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/detail_pembiayaan_screen.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/edit_pembiayaan.dart';
 import 'package:efosm/features/pembiayaan/presentation/screens/form_agunan_screen.dart';
@@ -47,7 +48,12 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(
             path: AppRoutes.createPembiayaanPage,
             name: AppRoutes.createPembiayaanPage,
-            builder: (BuildContext context, GoRouterState state) => const CreatePembiayaanScreen(),
+            builder: (BuildContext context, GoRouterState state) {
+              final parameter = state.extra! as LoanParameter;
+              return CreatePembiayaanScreen(
+                parameter: parameter,
+              );
+            },
           ),
           GoRoute(
             path: AppRoutes.indexUsulanPage,
@@ -58,11 +64,11 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: AppRoutes.formJaminanPage,
             name: AppRoutes.formJaminanPage,
             builder: (BuildContext context, GoRouterState state) {
-              final idLoan = state.pathParameters['id'];
-              final agunan = state.extra as AgunanEntity?;
+              final extra = state.extra! as FormAgunanScreenData;
               return FormAgunanScreen(
-                idLoan: idLoan.toString(),
-                currentAgunan: agunan,
+                idLoan: extra.$1,
+                parameter: extra.$2,
+                currentAgunan: extra.$3,
               );
             },
           ),
@@ -117,8 +123,10 @@ class AppRoutes {
   static const homePage = '/home';
   static const indexUsulanPage = 'index-usulan';
   static const createPembiayaanPage = 'create-pembiayaan';
-  static const formJaminanPage = 'form-jaminan/:id';
+  static const formJaminanPage = 'form-jaminan';
   static const editPembiayaanPage = 'edit-pembiayaan/:id';
   static const detailPembiayaan = 'detail-pembiayaan/:idKategoriProduk/:id';
   static const errorPage = '/error-page';
 }
+
+typedef FormAgunanScreenData = (String idLoan, LoanParameter parameter, AgunanEntity? agunanEntit);

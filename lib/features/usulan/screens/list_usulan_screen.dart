@@ -308,7 +308,7 @@ class SliverItems extends ConsumerWidget {
                         ),
                         Text(
                           item.nik,
-                          style: AppTextStyle.titleExtraSmall,
+                          style: AppTextStyle.bodySmall,
                         ),
                       ],
                     ),

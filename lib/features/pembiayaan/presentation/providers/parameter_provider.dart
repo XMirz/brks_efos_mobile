@@ -11,7 +11,7 @@ part 'parameter_provider.g.dart';
 ParameterRepository parameterRepository(ParameterRepositoryRef ref) => ParameterRepository();
 
 @Riverpod(keepAlive: true)
-Future<Either<Failure, AppParameter>> fetchInitialParameter(
+Future<Either<Failure, LoanParameter>> fetchInitialParameter(
   FetchInitialParameterRef ref,
 ) {
   return ref.watch(parameterRepositoryProvider).fetchInitialParameter();

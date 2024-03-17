@@ -5,167 +5,215 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ApprovalFormProvider extends StateNotifier<ApprovalFormState> {
-  ApprovalFormProvider() : super(ApprovalFormState(ApprovalFormEntity.empty(), showErrors: false));
-  void setNik({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  ApprovalFormProvider() : super(ApprovalFormState.empty());
+  void setNik(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.nik.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        nik: Field(value: value, isValid: isValid, errorMessage: message),
+      nik: state.nik.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.nik) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setNama({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setNama(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.nama.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        nama: Field(value: value, isValid: isValid, errorMessage: message),
+      nama: state.nama.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.nama) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setTanggalLahir({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setTanggalLahir(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.tanggalLahir.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        tanggalLahir: Field(value: value, isValid: isValid, errorMessage: message),
+      tanggalLahir: state.tanggalLahir.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.tanggalLahir) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setKeterangan({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setKeterangan(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.keterangan.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        keterangan: Field(value: value, isValid: isValid, errorMessage: message),
+      keterangan: state.keterangan.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.keterangan) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setRekomendasi({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setRekomendasi(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.rekomendasi.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        rekomendasi: Field(value: value, isValid: isValid, errorMessage: message),
+      rekomendasi: state.rekomendasi.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.rekomendasi) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setArahanCall({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setArahanCall(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.arahanCall.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        arahanCall: Field(value: value, isValid: isValid, errorMessage: message),
+      arahanCall: state.arahanCall.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.arahanCall) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setKeputusan({required String value, bool isRequired = false}) {
-    final isValid = !isRequired || (value.isNotEmpty && value != '');
-    final message = isValid ? '' : l10n.invalidInput;
+  void setKeputusan(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.keputusan.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        keputusan: Field(value: value, isValid: isValid, errorMessage: message),
+      keputusan: state.keputusan.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.keputusan) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setUsername({required String value, bool isRequired = false}) {
-    final isValid = value.length >= 9;
-    final message = isValid ? '' : 'Ups, username tidak valid';
+  void setUsername(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.username.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        username: Field(value: value, isValid: isValid, errorMessage: message),
+      username: state.username.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.username) : null,
+        showError: showError,
       ),
     );
   }
 
-  void setPassword({required String value, bool isRequired = false}) {
-    final isValid = value.length >= 4;
-    final message = isValid ? '' : 'Ups, password tidak valid';
+  void setPassword(String? value, {bool showError = false}) {
+    final validator = value != null && value != '';
+    final isValid = !state.password.isRequired || validator;
     state = state.copyWith(
-      form: state.form.copyWith(
-        password: Field(value: value, isValid: isValid, errorMessage: message),
+      password: state.password.copyWith(
+        value: value,
+        isValid: isValid,
+        errorMessage: !isValid ? l10n.xNotValid(l10n.password) : null,
+        showError: showError,
       ),
     );
   }
 
-  // bool validate({
-  //   bool? isIdentityRequired,
-  //   bool? isKeteranganRequired,
-  //   bool? isRekomendasiRequired,
-  //   bool? isArahanCallRequired,
-  //   bool? isKeputusanRequired,
-  //   bool? isAccountRequired,
-  // }) {
-  //   setNik(value: state.form.nik.value, isRequired: isIdentityRequired ?? false);
-  //   setNama(value: state.form.nama.value, isRequired: isIdentityRequired ?? false);
-  //   setTanggalLahir(value: state.form.tanggalLahir.value, isRequired: isIdentityRequired ?? false);
-  //   setKeterangan(value: state.form.keterangan.value, isRequired: isKeteranganRequired ?? false);
-  //   setRekomendasi(value: state.form.rekomendasi.value, isRequired: isRekomendasiRequired ?? false);
-  //   setArahanCall(value: state.form.arahanCall.value, isRequired: isArahanCallRequired ?? false);
-  //   setKeputusan(value: state.form.keputusan.value, isRequired: isKeputusanRequired ?? false);
-  //   setUsername(value: state.form.username.value, isRequired: isAccountRequired ?? false);
-  //   setPassword(value: state.form.password.value, isRequired: isAccountRequired ?? false);
-  //   return state.form.isValid;
-  // }
+  bool validate() {
+    setNik(state.nik.value, showError: true);
+    setNama(state.nama.value, showError: true);
+    setTanggalLahir(state.tanggalLahir.value, showError: true);
+    setKeterangan(state.keterangan.value, showError: true);
+    setRekomendasi(state.rekomendasi.value, showError: true);
+    setArahanCall(state.arahanCall.value, showError: true);
+    setKeputusan(state.keputusan.value, showError: true);
+    setUsername(state.username.value, showError: true);
+    setPassword(state.password.value, showError: true);
+    print(state);
+    return state.isValid;
+  }
+
+  void setIdentityRequirement({bool isRequired = false}) {
+    state = state.copyWith(
+      nik: state.nik.copyWith(
+        disabled: !isRequired,
+        isRequired: isRequired,
+      ),
+      nama: state.nama.copyWith(
+        disabled: !isRequired,
+        isRequired: isRequired,
+      ),
+      tanggalLahir: state.tanggalLahir.copyWith(
+        disabled: !isRequired,
+        isRequired: isRequired,
+      ),
+    );
+  }
+
+  void setAccountRequirement({bool isRequired = false}) {
+    state = state.copyWith(
+      username: state.username.copyWith(
+        disabled: !isRequired,
+        isRequired: isRequired,
+      ),
+      password: state.password.copyWith(
+        disabled: !isRequired,
+        isRequired: isRequired,
+      ),
+    );
+  }
+
+  void setApprovalRequirement({
+    bool keputusan = false,
+    bool keterangan = false,
+    bool rekomendasi = false,
+    bool arahanCall = false,
+  }) {
+    state = state.copyWith(
+      keputusan: state.keputusan.copyWith(
+        disabled: !keputusan,
+        isRequired: keputusan,
+      ),
+      keterangan: state.keterangan.copyWith(
+        disabled: !keterangan,
+        isRequired: keterangan,
+      ),
+      rekomendasi: state.rekomendasi.copyWith(
+        disabled: !rekomendasi,
+        isRequired: rekomendasi,
+      ),
+      arahanCall: state.arahanCall.copyWith(
+        disabled: !arahanCall,
+        isRequired: arahanCall,
+      ),
+    );
+  }
+
+  void setState(ApprovalFormState Function(ApprovalFormState) callback) {
+    state = callback(state);
+  }
 }
 
-final approvalFormProvider = StateNotifierProvider<ApprovalFormProvider, ApprovalFormState>(
-  (ref) => ApprovalFormProvider(),
-);
-
-final nikController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.nik.value,
-  ),
-);
-final namaController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.nama.value,
-  ),
-);
-final tanggalLahirController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.tanggalLahir.value,
-  ),
-);
-final keteranganController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.keterangan.value,
-  ),
-);
-final rekomendasiController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.rekomendasi.value,
-  ),
-);
-final arahanCallController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.arahanCall.value,
-  ),
-);
-final keputusanController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.keputusan.value,
-  ),
-);
-final usernameController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.username.value,
-  ),
-);
-final passwordController = Provider(
-  (ref) => TextEditingController(
-    text: ref.read(approvalFormProvider).form.password.value,
-  ),
-);
+final nikController = Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).nik.value));
+final namaController = Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).nama.value));
+final tanggalLahirController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).tanggalLahir.value));
+final keteranganController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).keterangan.value));
+final rekomendasiController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).rekomendasi.value));
+final arahanCallController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).arahanCall.value));
+final keputusanController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).keputusan.value));
+final usernameController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).username.value));
+final passwordController =
+    Provider((ref) => TextEditingController(text: ref.read(approvalFormProvider).password.value));
 
 void invalidateApprovalForm(WidgetRef ref) {
   ref
@@ -179,3 +227,9 @@ void invalidateApprovalForm(WidgetRef ref) {
     ..invalidate(usernameController)
     ..invalidate(passwordController);
 }
+
+final approvalFormProvider = StateNotifierProvider<ApprovalFormProvider, ApprovalFormState>(
+  (ref) => ApprovalFormProvider(),
+);
+
+final verifyAccountProvider = StateProvider((ref) => false);

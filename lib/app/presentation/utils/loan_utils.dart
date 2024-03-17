@@ -263,10 +263,10 @@ LoanState buildProduktifLoanState({
       approvalType = ApprovalType.notisi3;
       approveErrorMessage = !canAuth ? 'Maaf, anda tidak dapat melakukan aksi ini!.' : null;
     } else if (typeCabang == 2 || typeCabang == 3 || typeCabang == 4) {
-      final canAuth = canAuthorizeAll(authorities, [
+      final canAuth = canAuthorize(
+        authorities,
         ApprovalType.notisi1.typeName,
-        ApprovalType.notisi2.typeName,
-      ]);
+      );
       statusDescription = 'Menunggu Approval Team Leader';
       canApprove = canAuth;
       nextStatus = '8';
@@ -400,14 +400,10 @@ LoanState buildProduktifLoanState({
   );
 }
 
-ProductCategory getProductCategory(String idKategoriProduk) {
-  if (idKategoriProduk == ProductCategory.konsumtif.typeName) {
-    return ProductCategory.konsumtif;
-  } else if (idKategoriProduk == ProductCategory.produktif.typeName) {
-    return ProductCategory.produktif;
-  } else {
-    return ProductCategory.komersil;
-  }
+ProductCategory getProductCategory(String idProduct) {
+  if (idProduct == ProductCategory.produktif.typeName) return ProductCategory.produktif;
+  if (idProduct == ProductCategory.komersil.typeName) return ProductCategory.komersil;
+  return ProductCategory.konsumtif;
 }
 
 LoanState buildLoanState({

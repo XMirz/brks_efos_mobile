@@ -12,7 +12,6 @@ import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/app_bar.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
@@ -30,13 +29,13 @@ class ProfileScreen extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final random = Random();
     final user = ref.read(authenticatedUserProvider).user!;
-    return Scaffold(
-      appBar: const AppBarLeft(
-        tint: Colors.white,
-        backgroundColor: AppColor.primary,
-      ),
-      body: ListView(
+    return SafeArea(
+      child: Column(
         children: [
+          const AppBarLeft(
+            tint: Colors.white,
+            backgroundColor: AppColor.primary,
+          ),
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: AppInteger.horizontalPagePadding,
@@ -87,59 +86,60 @@ class ProfileScreen extends HookConsumerWidget {
               ],
             ),
           ),
-          Container(
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(
-              horizontal: AppInteger.horizontalPagePadding,
-              vertical: AppInteger.verticalPagePadding,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DetailValue(
-                  label: l10n.nama,
-                  value: user.name,
-                  // large: true,
-                ),
-                DetailValue(
-                  label: l10n.username,
-                  value: user.username,
-                  // large: true,
-                ),
-                DetailValue(
-                  label: l10n.role,
-                  value: user.role,
-                  // large: true,
-                ),
-                DetailValue(
-                  label: l10n.cabang,
-                  value: '${user.idCabang} - ${user.cabang}',
-                  // large: true,
-                ),
-                DetailValue(
-                  label: l10n.limitKonsumtif,
-                  value: toRupiahString(user.limitKonsumtifCabang.toString()),
-                  // large: true,
-                ),
-                DetailValue(
-                  label: l10n.limitProduktif,
-                  value: toRupiahString(user.limitProduktifCabang.toString()),
-                  // large: true,
-                ),
-                spaceY(4),
-                buildDivider,
-                spaceY(8),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () => handleLogout(context, ref),
-                  child: Text(
-                    l10n.exit,
-                    style: AppTextStyle.bodyLarge.copyWith(color: AppColor.error),
+          Expanded(
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.symmetric(
+                horizontal: AppInteger.horizontalPagePadding,
+                vertical: AppInteger.verticalPagePadding,
+              ),
+              child: ListView(
+                children: [
+                  DetailValue(
+                    label: l10n.nama,
+                    value: user.name,
+                    // large: true,
                   ),
-                ),
-                spaceY(8),
-              ],
+                  DetailValue(
+                    label: l10n.username,
+                    value: user.username,
+                    // large: true,
+                  ),
+                  DetailValue(
+                    label: l10n.role,
+                    value: user.role,
+                    // large: true,
+                  ),
+                  DetailValue(
+                    label: l10n.cabang,
+                    value: '${user.idCabang} - ${user.cabang}',
+                    // large: true,
+                  ),
+                  DetailValue(
+                    label: l10n.limitKonsumtif,
+                    value: toRupiahString(user.limitKonsumtifCabang.toString()),
+                    // large: true,
+                  ),
+                  DetailValue(
+                    label: l10n.limitProduktif,
+                    value: toRupiahString(user.limitProduktifCabang.toString()),
+                    // large: true,
+                  ),
+                  spaceY(4),
+                  buildDivider,
+                  spaceY(8),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () => handleLogout(context, ref),
+                    child: Text(
+                      l10n.exit,
+                      style: AppTextStyle.bodyLarge.copyWith(color: AppColor.error),
+                    ),
+                  ),
+                  spaceY(8),
+                ],
+              ),
             ),
           ),
         ],
@@ -188,18 +188,7 @@ Future<void> handleLogout(BuildContext context, WidgetRef ref) async {
     showDialog<void>(
       context: context,
       builder: (context) {
-        return OurAlertDialog(
-          title: l10n.failed,
-          description: l.message,
-          actions: [
-            SmallButton(
-              text: l10n.back,
-              onPressed: () {
-                context.pop('dialog');
-              },
-            ),
-          ],
-        );
+        return OurAlertDialog(title: l10n.failed, description: l.message, onPressed: () => context.pop('dialog'));
       },
     );
   }, (r) {

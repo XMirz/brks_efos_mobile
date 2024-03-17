@@ -1,20 +1,16 @@
-// ignore_for_file: cascade_invocations
-
 import 'dart:async';
-import 'dart:convert';
+import 'dart:io';
 
 import 'package:efosm/app/data/dto/our_request.dart';
-import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/loan_utils.dart';
+import 'package:efosm/app/presentation/utils/misc_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/dropdown_field.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
-import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
@@ -34,356 +30,303 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heroicons/heroicons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 
 class FormAgunanScreen extends ConsumerWidget {
   const FormAgunanScreen({
     required this.idLoan,
+    required this.parameter,
     this.currentAgunan,
     super.key,
   });
 
   final String idLoan;
+  final LoanParameter parameter;
   final AgunanEntity? currentAgunan;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final initialParametersAsyncData = ref.read(fetchInitialParameterProvider);
     final formState = ref.watch(agunanFormProvider);
-    final isJaminan = ref.watch(agunanFormProvider).isJaminan.value == '1';
-
-    final isUpdate = currentAgunan != null;
-
+    final formStateNotifier = ref.watch(agunanFormProvider.notifier);
     return WillPopScope(
-      onWillPop: () {
-        return onBackPressed(context, ref);
-      },
+      onWillPop: () => onBackPressed(
+        context,
+        ref,
+        title: l10n.confirmation,
+        description: l10n.confirmCancelEdit,
+        callback: () {
+          ref.invalidate(agunanFormProvider);
+          invalidateAgunanFormController(ref);
+        },
+      ),
       child: Scaffold(
         appBar: InnerAppBar(
           centerTitle: true,
           height: 48,
           borderRadius: BorderRadius.zero,
           title: currentAgunan != null ? l10n.editAgunan : l10n.tambahAgunan,
-          onBackPressed: () {
-            onBackPressed(context, ref);
-          },
+          onBackPressed: () => onBackPressed(
+            context,
+            ref,
+            title: l10n.confirmation,
+            description: l10n.confirmCancelEdit,
+            callback: () {
+              ref.invalidate(agunanFormProvider);
+              invalidateAgunanFormController(ref);
+            },
+          ),
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(horizontal: AppInteger.verticalPagePadding),
-          child: initialParametersAsyncData.when(
-            data: (data) => Builder(
-              builder: (context) {
-                final initialParameters = data.getOrElse(
-                  () => AppParameter.fromJson({}),
-                );
-                return ListView(
+          padding: EdgeInsets.symmetric(horizontal: AppInteger.horizontalPagePadding),
+          child: ListView(
+            children: [
+              spaceY(24),
+              FormHeader(title: l10n.agunan),
+              OurDropDownField(
+                items: jenisJaminan,
+                label: context.l10n.jenisJaminan,
+                hint: context.l10n.jenisJaminan,
+                value: formState.isJaminan.value,
+                error: formState.isJaminan.showError ? formState.isJaminan.errorMessage : null,
+                isRequired: formState.isJaminan.isRequired,
+                disabled: formState.isJaminan.disabled,
+                onChanged: (value) {
+                  final isJaminan = value.value == AppString.isJaminanValue;
+                  formStateNotifier
+                    ..setJenisJaminan(value.value)
+                    ..setFormRequirement(isJaminan: isJaminan);
+                },
+              ),
+              OurTextField(
+                label: context.l10n.deskripsiAgunan,
+                controller: ref.read(deskripsiController),
+                hint: context.l10n.deskripsiAgunan,
+                forceUpperCase: true,
+                error: formState.deskripsi.showError ? formState.deskripsi.errorMessage : null,
+                isRequired: formState.deskripsi.isRequired,
+                disabled: formState.deskripsi.disabled,
+                onChanged: formStateNotifier.setDeskripsi,
+              ),
+              // Jaminan
+              OurTextField(
+                label: context.l10n.deskripsi('2'),
+                controller: ref.read(deskripsi2Controller),
+                forceUpperCase: true,
+                error: formState.deskripsi2.showError ? formState.deskripsi2.errorMessage : null,
+                isRequired: formState.deskripsi2.isRequired,
+                disabled: formState.deskripsi2.disabled,
+                onChanged: formStateNotifier.setDeskripsi2,
+              ),
+              OurTextField(
+                label: context.l10n.deskripsi('3'),
+                controller: ref.read(deskripsi3Controller),
+                forceUpperCase: true,
+                error: formState.deskripsi3.showError ? formState.deskripsi3.errorMessage : null,
+                isRequired: formState.deskripsi3.isRequired,
+                disabled: formState.deskripsi3.disabled,
+                onChanged: formStateNotifier.setDeskripsi3,
+              ),
+              OurTextField(
+                label: context.l10n.deskripsi('4'),
+                controller: ref.read(deskripsi4Controller),
+                hint: context.l10n.deskripsi('4'),
+                forceUpperCase: true,
+                error: formState.deskripsi4.showError ? formState.deskripsi4.errorMessage : null,
+                isRequired: formState.deskripsi4.isRequired,
+                disabled: formState.deskripsi4.disabled,
+                onChanged: formStateNotifier.setDeskripsi4,
+              ),
+              OurTextField(
+                label: context.l10n.deskripsi('5'),
+                controller: ref.read(deskripsi5Controller),
+                hint: context.l10n.deskripsi('5'),
+                forceUpperCase: true,
+                error: formState.deskripsi5.showError ? formState.deskripsi5.errorMessage : null,
+                isRequired: formState.deskripsi5.isRequired,
+                disabled: formState.deskripsi5.disabled,
+                onChanged: formStateNotifier.setDeskripsi5,
+              ),
+              // Agunan
+              OurDropDownField(
+                items: buildDropDownItem(parameter.parJenisAgunan),
+                label: context.l10n.jenisAgunan,
+                hint: context.l10n.jenisAgunan,
+                value: formState.jenis.value,
+                error: formState.jenis.showError ? formState.jenis.errorMessage : null,
+                isRequired: formState.jenis.isRequired,
+                disabled: formState.jenis.disabled,
+                onChanged: (value) => formStateNotifier.setJenis(value.value),
+              ),
+              OurTextField(
+                label: context.l10n.alamat,
+                controller: ref.read(alamatAgunanController),
+                hint: context.l10n.alamat,
+                forceUpperCase: true,
+                error: formState.alamat.showError ? formState.alamat.errorMessage : null,
+                isRequired: formState.alamat.isRequired,
+                disabled: formState.alamat.disabled,
+                onChanged: formStateNotifier.setAlamat,
+              ),
+              OurDropDownField(
+                items: buildDropDownItem(parameter.parProvinsi),
+                label: context.l10n.provinsi,
+                hint: context.l10n.provinsi,
+                value: formState.provinsi.value,
+                error: formState.provinsi.showError ? formState.provinsi.errorMessage : null,
+                isRequired: formState.provinsi.isRequired,
+                disabled: formState.provinsi.disabled,
+                onChanged: (value) => formStateNotifier.setProvinsi(value.value),
+              ),
+              OurDropDownField(
+                items: buildDropDownItem(ref
+                    .watch(fetchKabupatenProvider(formState.provinsi.value ?? ''))
+                    .maybeWhen(data: (data) => data, orElse: () => [])),
+                isLoading: ref.watch(fetchKabupatenProvider(formState.provinsi.value ?? '')).isLoading,
+                label: context.l10n.kabupaten,
+                hint: context.l10n.kabupaten,
+                value: formState.kabupaten.value,
+                error: formState.kabupaten.showError ? formState.kabupaten.errorMessage : null,
+                isRequired: formState.kabupaten.isRequired,
+                disabled: formState.kabupaten.disabled,
+                onChanged: (value) => formStateNotifier.setKabupaten(value.value),
+              ),
+              OurDropDownField(
+                items: buildDropDownItem(ref
+                    .watch(fetchKecamatanProvider(formState.kabupaten.value ?? ''))
+                    .maybeWhen(data: (data) => data, orElse: () => [])),
+                isLoading: ref.watch(fetchKecamatanProvider(formState.kabupaten.value ?? '')).isLoading,
+                label: context.l10n.kecamatan,
+                hint: context.l10n.kecamatan,
+                value: formState.kecamatan.value,
+                error: formState.kecamatan.showError ? formState.kecamatan.errorMessage : null,
+                isRequired: formState.kecamatan.isRequired,
+                disabled: formState.kecamatan.disabled,
+                onChanged: (value) => formStateNotifier.setKecamatan(value.value),
+              ),
+              OurDropDownField(
+                items: buildDropDownItem(ref
+                    .watch(fetchKelurahanProvider(formState.kecamatan.value ?? ''))
+                    .maybeWhen(data: (data) => data, orElse: () => [])),
+                isLoading: ref.watch(fetchKelurahanProvider(formState.kecamatan.value ?? '')).isLoading,
+                label: context.l10n.kelurahan,
+                hint: context.l10n.kelurahan,
+                value: formState.kelurahan.value,
+                error: formState.kelurahan.showError ? formState.kelurahan.errorMessage : null,
+                isRequired: formState.kelurahan.isRequired,
+                disabled: formState.kelurahan.disabled,
+                onChanged: (value) => formStateNotifier.setKelurahan(value.value),
+              ),
+              if (!formState.image.disabled && formState.image.isRequired)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    spaceY(24),
-                    FormHeader(
-                      title: l10n.agunan,
-                      actionText: l10n.save,
-                      onPressed: () {
-                        handleSavegunan(context, ref);
-                      },
-                      actionColor: AppColor.primary,
+                    Text(
+                      l10n.agunanImage,
+                      textAlign: TextAlign.left,
+                      style: AppTextStyle.bodySmall,
                     ),
-                    spaceY(14),
-                    OurDropDownField(
-                      items: jenisJaminan,
-                      label: context.l10n.jenisJaminan,
-                      hint: context.l10n.jenisJaminan,
-                      value: formState.isJaminan.value,
-                      enabled: currentAgunan == null,
-                      backgroundColor: !isUpdate ? null : AppColor.highlightSecondary,
-                      onChanged: (value, label) {
-                        ref.read(agunanFormProvider.notifier).setJenisJaminan(value, label);
-                      },
-                    ),
-                    spaceY(8),
-                    OurTextField(
-                      label: context.l10n.deskripsiAgunan,
-                      controller: ref.read(deskripsiController),
-                      hint: context.l10n.deskripsiAgunan,
-                      error: formState.deskripsi.errorMessage,
-                      onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi(value, value),
-                    ),
-                    spaceY(8),
-                    if (isJaminan)
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          OurTextField(
-                            label: context.l10n.deskripsi('2'),
-                            controller: ref.read(deskripsi2Controller),
-                            hint: context.l10n.deskripsi('2'),
-                            onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi2(value),
-                          ),
-                          spaceY(8),
-                          OurTextField(
-                            label: context.l10n.deskripsi('3'),
-                            controller: ref.read(deskripsi3Controller),
-                            hint: context.l10n.deskripsi('3'),
-                            onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi3(value),
-                          ),
-                          spaceY(8),
-                          OurTextField(
-                            label: context.l10n.deskripsi('4'),
-                            controller: ref.read(deskripsi4Controller),
-                            hint: context.l10n.deskripsi('4'),
-                            onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi4(value),
-                          ),
-                          spaceY(8),
-                          OurTextField(
-                            label: context.l10n.deskripsi('5'),
-                            controller: ref.read(deskripsi5Controller),
-                            hint: context.l10n.deskripsi('5'),
-                            onChanged: (value) => ref.read(agunanFormProvider.notifier).setDeskripsi5(value),
-                          ),
-                        ],
-                      ),
-                    if (!isJaminan)
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          OurDropDownField(
-                            items: buildDropDownItem(initialParameters.parJenisAgunan),
-                            label: context.l10n.jenisAgunan,
-                            hint: context.l10n.jenisAgunan,
-                            value: formState.jenis.value,
-                            onChanged: (value, label) {
-                              ref.read(agunanFormProvider.notifier).setJenis(value, label);
+                    spaceY(4),
+                    InkWell(
+                      onTap: () async {
+                        unawaited(
+                          showDialog<void>(
+                            context: context,
+                            builder: (context) {
+                              return const LoadingDialog();
                             },
                           ),
-                          spaceY(8),
-                          OurTextField(
-                            label: context.l10n.alamat,
-                            controller: ref.read(alamatAgunanController),
-                            hint: context.l10n.alamat,
-                            error: formState.alamat.errorMessage,
-                            onChanged: (value) => ref.read(agunanFormProvider.notifier).setAlamat(value, value),
-                          ),
-                          spaceY(8),
-                          OurDropDownField(
-                            items: buildDropDownItem(initialParameters.parProvinsi),
-                            label: context.l10n.provinsi,
-                            hint: context.l10n.provinsi,
-                            value: formState.provinsi.value,
-                            onChanged: (value, label) {
-                              ref.read(agunanFormProvider.notifier).setProvinsi(value, label);
-                            },
-                          ),
-                          spaceY(8),
-                          ref
-                              .watch(
-                                fetchKabupatenProvider(
-                                  ref.read(
-                                    agunanFormProvider.select((value) => value.provinsi.value ?? ''),
-                                  ),
-                                ),
-                              )
-                              .when(
-                                data: (data) {
-                                  return OurDropDownField(
-                                    items: buildDropDownItem(data),
-                                    label: context.l10n.kabupaten,
-                                    hint: context.l10n.kabupaten,
-                                    value: formState.kabupaten.value,
-                                    onChanged: (value, label) =>
-                                        ref.read(agunanFormProvider.notifier).setKabupaten(value, label),
-                                  );
-                                },
-                                error: (error, stackTrace) => Container(),
-                                loading: () => const OurLoading(),
-                              ),
-                          spaceY(8),
-                          ref
-                              .watch(
-                                fetchKecamatanProvider(
-                                  ref.read(
-                                    agunanFormProvider.select((value) => value.kabupaten.value ?? ''),
-                                  ),
-                                ),
-                              )
-                              .when(
-                                data: (data) {
-                                  return OurDropDownField(
-                                    items: buildDropDownItem(data),
-                                    label: context.l10n.kecamatan,
-                                    hint: context.l10n.kecamatan,
-                                    value: formState.kecamatan.value,
-                                    onChanged: (value, label) =>
-                                        ref.read(agunanFormProvider.notifier).setKecamatan(value, label),
-                                  );
-                                },
-                                error: (error, stackTrace) => Container(),
-                                loading: () => const OurLoading(),
-                              ),
-                          spaceY(8),
-                          ref
-                              .watch(
-                                fetchKelurahanProvider(
-                                  ref.read(
-                                    agunanFormProvider.select((value) => value.kecamatan.value ?? ''),
-                                  ),
-                                ),
-                              )
-                              .when(
-                                data: (data) {
-                                  return OurDropDownField(
-                                    items: buildDropDownItem(data),
-                                    label: context.l10n.kelurahan,
-                                    hint: context.l10n.kelurahan,
-                                    value: formState.kelurahan.value,
-                                    onChanged: (value, label) =>
-                                        ref.read(agunanFormProvider.notifier).setKelurahan(value, label),
-                                  );
-                                },
-                                error: (error, stackTrace) => Container(),
-                                loading: () => const OurLoading(),
-                              ),
-                          spaceY(8),
-                          Text(
-                            l10n.agunanImage,
-                            textAlign: TextAlign.left,
-                            style: AppTextStyle.subtitleLarge,
-                          ),
-                          spaceY(8),
-                          InkWell(
-                            onTap: () async {
-                              unawaited(
-                                showDialog<void>(
-                                  context: context,
-                                  builder: (context) {
-                                    return const LoadingDialog();
-                                  },
-                                ),
-                              );
-                              final locationAccess = await LocationService.getLocation();
-                              if (context.mounted) context.pop('dialog');
-                              print(locationAccess);
-                              await locationAccess.fold((l) async {
-                                if (context.mounted) {
-                                  await showDialog<void>(
-                                    barrierDismissible: false,
-                                    context: context,
-                                    builder: (context) {
-                                      return OurAlertDialog(
-                                        title: l10n.failed,
-                                        description: l.message,
-                                        actions: [
-                                          SmallButton(
-                                            text: l10n.ok,
-                                            onPressed: () {
-                                              if (context.mounted) {
-                                                context.pop('dialog');
-                                              }
-                                            },
-                                          ),
-                                        ],
-                                      );
-                                    },
-                                  );
-                                }
-                              }, (r) async {
-                                final picker = ImagePicker();
-                                final photo = await picker.pickImage(
-                                  source: ImageSource.camera,
+                        );
+                        final locationAccess = await LocationService.getLocation();
+                        if (context.mounted) context.pop('dialog');
+                        await locationAccess.fold((l) async {
+                          if (context.mounted) {
+                            await showDialog<void>(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return OurAlertDialog(
+                                  title: l10n.failed,
+                                  description: l.message,
+                                  onPressed: () => context.pop('dialog'),
                                 );
-                                if (photo == null) {
-                                  return;
-                                }
-                                ref.read(agunanFormProvider.notifier).setFile(photo, photo.name, r);
-                              });
-                            },
-                            child: Container(
-                              clipBehavior: Clip.hardEdge,
-                              alignment: Alignment.center,
-                              height: 300,
-                              // padding: const EdgeInsets.symmetric(horizontal: 12),
-                              decoration: BoxDecoration(
-                                color: AppColor.backgroundSecondary,
-                                border: Border.all(
-                                  color: AppColor.highlight,
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: ref.watch(agunanFormProvider).image.value == null
-                                  ? Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        const IconTheme(
-                                          data: IconThemeData(weight: 600, size: 96),
-                                          child: HeroIcon(
-                                            HeroIcons.photo,
-                                            color: AppColor.textSecondary,
-                                          ),
-                                        ),
-                                        spaceY(8),
-                                        Text(
-                                          l10n.pickAgunan,
-                                          style: AppTextStyle.bodyMedium,
-                                        ),
-                                      ],
-                                    )
-                                  : SizedBox(
-                                      width: double.infinity,
-                                      child: Image.file(
-                                        ref.read(agunanFormProvider).image.value!,
-                                        errorBuilder: (context, error, stackTrace) {
-                                          return ErrorPlaceholder(message: l10n.xInvalid(l10n.agunanImage));
-                                        },
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
-                            ),
+                              },
+                            );
+                          }
+                        }, (r) async {
+                          final picker = ImagePicker();
+                          final photo = await picker.pickImage(
+                            source: ImageSource.camera,
+                          );
+                          if (photo == null) return;
+                          formStateNotifier.setFile(File(photo.path), loc: r);
+                        });
+                      },
+                      child: Container(
+                        clipBehavior: Clip.hardEdge,
+                        alignment: Alignment.center,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          color: AppColor.backgroundSecondary,
+                          border: Border.all(
+                            color: AppColor.highlight,
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: ref.watch(agunanFormProvider).image.value == null
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const IconTheme(
+                                    data: IconThemeData(weight: 600, size: 96),
+                                    child: HeroIcon(
+                                      HeroIcons.photo,
+                                      color: AppColor.textSecondary,
+                                    ),
+                                  ),
+                                  Text(
+                                    l10n.pickAgunan,
+                                    style: AppTextStyle.bodyMedium,
+                                  ),
+                                ],
+                              )
+                            : SizedBox(
+                                width: double.infinity,
+                                child: Image.file(
+                                  ref.read(agunanFormProvider).image.value!,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return ErrorPlaceholder(message: l10n.xInvalid(l10n.agunanImage));
+                                  },
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                       ),
-                    spaceY(12),
-                    spaceY(24),
+                    ),
                   ],
-                );
-              },
-            ),
-            error: (object, stackTrace) => Container(),
-            loading: Container.new,
+                ),
+              spaceY(12),
+              PrimaryButton(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                backgroundColor: AppColor.successHighlight,
+                color: AppColor.success,
+                radius: 8,
+                text: l10n.save,
+                onPressed: () => handleSubmit(context, ref, idJaminan: currentAgunan?.id.toString()),
+              ),
+              spaceY(24),
+            ],
           ),
         ),
       ),
     );
   }
 
-  Future<bool> onBackPressed(BuildContext context, WidgetRef ref) async {
-    var willPop = false;
-    await showDialog<void>(
-      barrierDismissible: false,
-      context: context,
-      builder: (context) {
-        return OurConfirmDialog(
-          title: l10n.confirmation,
-          description: l10n.confirmCancelEdit,
-          onCancel: () => context.pop('dialog'),
-          onSubmit: () async {
-            willPop = true;
-            invalidateAgunanForm(ref);
-            invalidateAgunanFormController(ref);
-            context.pop('dialog');
-            context.pop();
-          },
-        );
-      },
-    );
-    return willPop;
-  }
-
-  Future<void> handleSavegunan(BuildContext context, WidgetRef ref) async {
+  Future<void> handleSubmit(BuildContext context, WidgetRef ref, {String? idJaminan}) async {
     final formState = ref.watch(agunanFormProvider);
-    if (!formState.isValid) {
+    final formStateNotifier = ref.watch(agunanFormProvider.notifier);
+    if (!formStateNotifier.validate()) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(l10n.pleaseFullfillInputs),
+          content: Text(l10n.pleaseCheckInputs),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -398,54 +341,9 @@ class FormAgunanScreen extends ConsumerWidget {
       ),
     );
 
-    var strImage = '';
-    if (formState.image.value != null && formState.image.value!.existsSync()) {
-      var image = img.decodeImage(formState.image.value!.readAsBytesSync());
-      if (image != null) {
-        //  Resize sehingga tidak melebih 800 px
-        int width;
-        int height;
-        if (image.width > image.height) {
-          width = 800;
-          height = (image.height / image.width * 800).round();
-        } else {
-          height = 800;
-          width = (image.width / image.height * 800).round();
-        }
-        image = img.copyResize(image, width: width, height: height);
-      }
+    final agunanImage = formState.image.value != null ? await getResizedBase64Async(image: formState.image.value!) : '';
+    final agunan = formState.toEntity(agunanImage, idJaminan: idJaminan);
 
-      final imageBytes = image != null ? img.encodeJpg(image, quality: 85) : <int>[];
-      strImage = base64Encode(imageBytes);
-    }
-
-    var deskripsi = formState.deskripsi.value ?? '';
-    if (formState.isJaminan.value == AppString.isJaminanValue) {
-      deskripsi = deskripsi.padRight(50);
-      deskripsi = deskripsi + (formState.deskripsi2.value ?? '').padRight(50);
-      deskripsi = deskripsi + (formState.deskripsi3.value ?? '').padRight(50);
-      deskripsi = deskripsi + (formState.deskripsi4.value ?? '').padRight(50);
-      deskripsi = deskripsi + (formState.deskripsi5.value ?? '').padRight(50);
-    }
-
-    final agunan = AgunanEntity(
-      isJaminan: formState.isJaminan.value!,
-      jenis: formState.jenis.value ?? '',
-      deskripsi: deskripsi,
-      alamat: formState.alamat.value ?? '',
-      image: strImage,
-      latitude: formState.latitude.value ?? '',
-      longitude: formState.longitude.value ?? '',
-      captureLoc: formState.captureLoc.value ?? '',
-      provinsi: formState.provinsi.value ?? '',
-      kabupaten: formState.kabupaten.value ?? '',
-      kecamatan: formState.kecamatan.value ?? '',
-      kelurahan: formState.kelurahan.value ?? '',
-      id: currentAgunan?.id.toString() ?? '',
-    );
-
-    // print(agunan);
-    // return;
     final request = OurRequest(
       idCabang: ref.read(authenticatedUserProvider).user!.idCabang,
       username: ref.read(authenticatedUserProvider).user!.username,
@@ -458,7 +356,6 @@ class FormAgunanScreen extends ConsumerWidget {
         ? await ref.read(insertAgunanProvider(request).future)
         : await ref.read(updateAgunanProvider(request).future);
     if (context.mounted) context.pop('dialog');
-    print(saveReponse);
     await saveReponse.fold((l) {
       showDialog<void>(
         context: context,
@@ -466,14 +363,7 @@ class FormAgunanScreen extends ConsumerWidget {
           return OurAlertDialog(
             title: l10n.failed,
             description: l.message,
-            actions: [
-              SmallButton(
-                text: l10n.back,
-                onPressed: () {
-                  context.pop('dialog');
-                },
-              ),
-            ],
+            onPressed: () => context.pop('dialog'),
           );
         },
       );
@@ -486,21 +376,15 @@ class FormAgunanScreen extends ConsumerWidget {
             title: l10n.success,
             icon: const HeroIcon(HeroIcons.check),
             description: l10n.saveXSuccess(l10n.jaminan),
-            actions: [
-              SmallButton(
-                text: l10n.ok,
-                onPressed: () {
-                  context.pop('dialog');
-                },
-              ),
-            ],
+            onPressed: () => context.pop('dialog'),
           );
         },
       );
-      invalidateAgunanForm(ref);
+      ref
+        ..invalidate(agunanFormProvider)
+        ..invalidate(detailKonsumtifProvider(idLoan))
+        ..invalidate(detailProduktifProvider(idLoan));
       invalidateAgunanFormController(ref);
-      ref.invalidate(detailKonsumtifProvider(idLoan));
-      ref.invalidate(detailProduktifProvider(idLoan));
       if (context.mounted) context.pop();
     });
   }

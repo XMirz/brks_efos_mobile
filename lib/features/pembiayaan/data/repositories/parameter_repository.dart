@@ -10,14 +10,13 @@ import 'package:get_it/get_it.dart';
 class ParameterRepository {
   final DioClient _dioClient = GetIt.I.get();
 
-  Future<Either<Failure, AppParameter>> fetchInitialParameter() async {
-    final response = await _dioClient
-        .get<Map<String, dynamic>>('/mobile/parameter/inquiryall');
+  Future<Either<Failure, LoanParameter>> fetchInitialParameter() async {
+    final response = await _dioClient.get<Map<String, dynamic>>('/mobile/parameter/inquiryall');
     return response.fold(
       left,
       (r) {
         try {
-          return right(AppParameter.fromJson(r));
+          return right(LoanParameter.fromJson(r));
         } catch (e) {
           debugPrint(e.toString());
           return left(

@@ -51,14 +51,14 @@ void invalidatePembiayaanFormController(WidgetRef ref) {
     ..invalidate(tenorController);
 }
 
-void invalidateAgunanForm(WidgetRef ref) {
-  ref
-    ..invalidate(showAgunanFormProvider)
-    ..invalidate(agunanFormProvider)
-    ..invalidate(listAgunanProvider)
-    ..invalidate(agunanIndexProvider)
-    ..invalidate(agunanIndexProvider);
-}
+// void invalidateAgunanForm(WidgetRef ref) {
+//   ref
+//     ..invalidate(showAgunanFormProvider)
+//     ..invalidate(agunanFormProvider)
+//     ..invalidate(listAgunanProvider)
+//     ..invalidate(agunanIndexProvider)
+//     ..invalidate(agunanIndexProvider);
+// }
 
 void invalidateAgunanFormController(WidgetRef ref) {
   ref
@@ -83,7 +83,7 @@ void invalidateForms(WidgetRef ref) {
   ref.invalidate(pembiayaanFormProvider);
   invalidatePembiayaanFormController(ref);
 
-  invalidateAgunanForm(ref);
-  invalidateAgunanFormController(ref);
-  ref.invalidate(listAgunanProvider);
+  // invalidateAgunanForm(ref);
+  // invalidateAgunanFormController(ref);
+  // ref.invalidate(listAgunanProvider);
 }

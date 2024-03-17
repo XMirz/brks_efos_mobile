@@ -5,7 +5,6 @@ import 'dart:async';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
@@ -44,7 +43,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isMarried = ref.watch(dataDiriFormProvider).statusPernikahan.value == AppString.isMarriedValue;
-    final stepIndex = ref.watch(stepIndexProvider);
+    final formIndex = ref.watch(formIndexProvider);
 
     final stepValid = [
       ref.watch(dataDiriFormProvider).isValid,
@@ -90,6 +89,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         biayaRumahTangga: dataDiriFormState.biayaRumahTangga.value,
         statusTempatTinggal: dataDiriFormState.statusTempatTinggal.value,
         hubunganPerbankan: dataDiriFormState.hubunganPerbankan.value,
+        golonganDebitur: dataDiriFormState.golonganDebitur.value,
       );
 
       final pekerjaan = PekerjaanEntity(
@@ -154,14 +154,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
             return OurAlertDialog(
               title: l10n.failed,
               description: l.message,
-              actions: [
-                SmallButton(
-                  text: l10n.back,
-                  onPressed: () {
-                    context.pop('dialog');
-                  },
-                ),
-              ],
+              onPressed: () => context.pop('dialog'),
             );
           },
         );
@@ -174,14 +167,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
               title: l10n.success,
               icon: const HeroIcon(HeroIcons.check),
               description: l10n.saveLoanSuccess,
-              actions: [
-                SmallButton(
-                  text: l10n.ok,
-                  onPressed: () {
-                    context.pop('dialog');
-                  },
-                ),
-              ],
+              onPressed: () => context.pop('dialog'),
             );
           },
         );
@@ -193,8 +179,8 @@ class EditPembiayaanScreen extends HookConsumerWidget {
     }
 
     void handleNextButton() {
-      // debugPrint(formStates[stepIndex].toString());
-      final isValid = stepValid[stepIndex];
+      // debugPrint(formStates[formIndex].toString());
+      final isValid = stepValid[formIndex];
       // debugPrint(isValid.toString());
       if (!isValid) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -205,7 +191,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         );
         return;
       }
-      ref.read(stepIndexProvider.notifier).state = ref.read(stepIndexProvider) + 1;
+      ref.read(formIndexProvider.notifier).state = ref.read(formIndexProvider) + 1;
     }
 
     Future<void> handleFinishButton() async {
@@ -258,167 +244,167 @@ class EditPembiayaanScreen extends HookConsumerWidget {
           title: l10n.edit,
           onBackPressed: onBackPressed,
         ),
-        body: Theme(
-          data: Theme.of(context).copyWith(
-            canvasColor: AppColor.backgroundPrimary,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            focusColor: Colors.transparent,
-          ),
-          child: SafeArea(
-            child: Stepper(
-              elevation: 0,
-              connectorThickness: 4,
-              stepIconBuilder: (stepIndex, stepState) {
-                return Container(
-                  height: 56,
-                  width: 56,
-                  alignment: Alignment.center,
-                  child: switch (stepState) {
-                    StepState.complete => const Icon(
-                        Icons.check_sharp,
-                        color: AppColor.textPrimaryInverse,
-                      ),
-                    StepState.indexed => Text(
-                        (stepIndex + 1).toString(),
-                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
-                      ),
-                    StepState.editing => null,
-                    StepState.disabled => null,
-                    StepState.error => Text(
-                        stepIndex.toString(),
-                        style: AppTextStyle.bodyMedium.copyWith(color: AppColor.error),
-                      ),
-                  },
-                );
-              },
-              type: StepperType.horizontal,
-              connectorColor: MaterialStateProperty.resolveWith(
-                (states) {
-                  if (states.contains(MaterialState.disabled)) {
-                    return AppColor.disabled;
-                  } else if (states.contains(MaterialState.selected) || states.contains(MaterialState.pressed)) {
-                    return AppColor.primary;
-                  }
-                  return AppColor.highlightSecondary;
-                },
-              ),
-              currentStep: stepIndex,
-              onStepTapped: (step) {
-                if (step > stepIndex && !stepValid[stepIndex]) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(l10n.pleaseFullfillInputs),
-                      behavior: SnackBarBehavior.floating,
-                    ),
-                  );
-                  return;
-                }
-                ref.read(stepIndexProvider.notifier).state = step;
-              },
-              controlsBuilder: (context, details) {
-                return Row(
-                  mainAxisAlignment: stepIndex == 0 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    if (stepIndex > 0)
-                      PrimaryButton(
-                        radius: 8,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        size: const Size(double.minPositive, 36),
-                        text: l10n.prev,
-                        backgroundColor: AppColor.accent,
-                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
-                        onPressed: () {
-                          if (stepIndex > 0) {
-                            ref.read(stepIndexProvider.notifier).state = stepIndex - 1;
-                          }
-                        },
-                      ),
-                    if (stepIndex < 5)
-                      PrimaryButton(
-                        radius: 8,
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
-                        size: const Size(double.minPositive, 36),
-                        text: stepIndex != 3 ? l10n.next : l10n.send,
-                        disabled: !stepValid[stepIndex],
-                        backgroundColor: AppColor.primary,
-                        textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
-                        onPressed: () async {
-                          if (stepIndex == 3) {
-                            await handleFinishButton();
-                          } else {
-                            handleNextButton();
-                          }
-                        },
-                      ),
-                  ],
-                );
-              },
-              steps: [
-                Step(
-                  title: const Text(''),
-                  label: Text(
-                    l10n.debiturProfile,
-                    style: AppTextStyle.bodySmall.copyWith(
-                      color: stepIndex == 0 ? AppColor.primary : null,
-                    ),
-                  ),
-                  isActive: stepIndex == 0,
-                  state: stepIndex > 0 ? StepState.complete : StepState.indexed,
-                  content: const DataDiriForm(),
-                ),
-                Step(
-                  title: const Text(''),
-                  label: Text(
-                    l10n.pekerjaan,
-                    style: AppTextStyle.caption.copyWith(
-                      color: stepIndex == 1 ? AppColor.primary : null,
-                    ),
-                  ),
-                  isActive: stepIndex == 1,
-                  state: stepIndex > 1 ? StepState.complete : StepState.indexed,
-                  content: const PekerjaanForm(),
-                ),
-                Step(
-                  title: const Text(''),
-                  label: Text(
-                    l10n.pasangan,
-                    style: AppTextStyle.caption.copyWith(
-                      color: stepIndex == 2 ? AppColor.primary : null,
-                    ),
-                  ),
-                  isActive: stepIndex == 2,
-                  state: stepIndex > 2 ? StepState.complete : StepState.indexed,
-                  content: const PasanganForm(),
-                ),
-                Step(
-                  title: const Text(''),
-                  label: Text(
-                    l10n.produk,
-                    style: AppTextStyle.caption.copyWith(
-                      color: stepIndex == 3 ? AppColor.primary : null,
-                    ),
-                  ),
-                  isActive: stepIndex == 3,
-                  state: stepIndex > 3 ? StepState.complete : StepState.indexed,
-                  content: const ProdukPembiayaanForm(),
-                ),
-                // Step(
-                //   title: const Text(''),
-                //   label: Text(
-                //     l10n.agunan,
-                //     style: AppTextStyle.caption.copyWith(
-                //       color: stepIndex == 4 ? AppColor.primary : null,
-                //     ),
-                //   ),
-                //   isActive: stepIndex == 4,
-                //   state: stepIndex > 4 ? StepState.complete : StepState.indexed,
-                //   content: const AgunanForm(),
-                // ),
-              ],
-            ),
-          ),
-        ),
+        // body: Theme(
+        //   data: Theme.of(context).copyWith(
+        //     canvasColor: AppColor.backgroundPrimary,
+        //     splashColor: Colors.transparent,
+        //     highlightColor: Colors.transparent,
+        //     focusColor: Colors.transparent,
+        //   ),
+        //   child: SafeArea(
+        //     child: Stepper(
+        //       elevation: 0,
+        //       connectorThickness: 4,
+        //       stepIconBuilder: (formIndex, stepState) {
+        //         return Container(
+        //           height: 56,
+        //           width: 56,
+        //           alignment: Alignment.center,
+        //           child: switch (stepState) {
+        //             StepState.complete => const Icon(
+        //                 Icons.check_sharp,
+        //                 color: AppColor.textPrimaryInverse,
+        //               ),
+        //             StepState.indexed => Text(
+        //                 (formIndex + 1).toString(),
+        //                 style: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+        //               ),
+        //             StepState.editing => null,
+        //             StepState.disabled => null,
+        //             StepState.error => Text(
+        //                 formIndex.toString(),
+        //                 style: AppTextStyle.bodyMedium.copyWith(color: AppColor.error),
+        //               ),
+        //           },
+        //         );
+        //       },
+        //       type: StepperType.horizontal,
+        //       connectorColor: MaterialStateProperty.resolveWith(
+        //         (states) {
+        //           if (states.contains(MaterialState.disabled)) {
+        //             return AppColor.disabled;
+        //           } else if (states.contains(MaterialState.selected) || states.contains(MaterialState.pressed)) {
+        //             return AppColor.primary;
+        //           }
+        //           return AppColor.highlightSecondary;
+        //         },
+        //       ),
+        //       currentStep: formIndex,
+        //       onStepTapped: (step) {
+        //         if (step > formIndex && !stepValid[formIndex]) {
+        //           ScaffoldMessenger.of(context).showSnackBar(
+        //             SnackBar(
+        //               content: Text(l10n.pleaseFullfillInputs),
+        //               behavior: SnackBarBehavior.floating,
+        //             ),
+        //           );
+        //           return;
+        //         }
+        //         ref.read(formIndexProvider.notifier).state = step;
+        //       },
+        //       controlsBuilder: (context, details) {
+        //         return Row(
+        //           mainAxisAlignment: formIndex == 0 ? MainAxisAlignment.end : MainAxisAlignment.spaceBetween,
+        //           children: <Widget>[
+        //             if (formIndex > 0)
+        //               PrimaryButton(
+        //                 radius: 8,
+        //                 padding: const EdgeInsets.symmetric(horizontal: 12),
+        //                 size: const Size(double.minPositive, 36),
+        //                 text: l10n.prev,
+        //                 backgroundColor: AppColor.accent,
+        //                 textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+        //                 onPressed: () {
+        //                   if (formIndex > 0) {
+        //                     ref.read(formIndexProvider.notifier).state = formIndex - 1;
+        //                   }
+        //                 },
+        //               ),
+        //             if (formIndex < 5)
+        //               PrimaryButton(
+        //                 radius: 8,
+        //                 padding: const EdgeInsets.symmetric(horizontal: 12),
+        //                 size: const Size(double.minPositive, 36),
+        //                 text: formIndex != 3 ? l10n.next : l10n.send,
+        //                 disabled: !stepValid[formIndex],
+        //                 backgroundColor: AppColor.primary,
+        //                 textStyle: AppTextStyle.bodyMedium.copyWith(color: AppColor.textPrimaryInverse),
+        //                 onPressed: () async {
+        //                   if (formIndex == 3) {
+        //                     await handleFinishButton();
+        //                   } else {
+        //                     handleNextButton();
+        //                   }
+        //                 },
+        //               ),
+        //           ],
+        //         );
+        //       },
+        //       steps: [
+        //         Step(
+        //           title: const Text(''),
+        //           label: Text(
+        //             l10n.debiturIdentity,
+        //             style: AppTextStyle.bodySmall.copyWith(
+        //               color: formIndex == 0 ? AppColor.primary : null,
+        //             ),
+        //           ),
+        //           isActive: formIndex == 0,
+        //           state: formIndex > 0 ? StepState.complete : StepState.indexed,
+        //           content: const DataDiriForm(),
+        //         ),
+        //         Step(
+        //           title: const Text(''),
+        //           label: Text(
+        //             l10n.pekerjaan,
+        //             style: AppTextStyle.bodySmallBold.copyWith(
+        //               color: formIndex == 1 ? AppColor.primary : null,
+        //             ),
+        //           ),
+        //           isActive: formIndex == 1,
+        //           state: formIndex > 1 ? StepState.complete : StepState.indexed,
+        //           content: const PekerjaanForm(),
+        //         ),
+        //         Step(
+        //           title: const Text(''),
+        //           label: Text(
+        //             l10n.pasangan,
+        //             style: AppTextStyle.bodySmallBold.copyWith(
+        //               color: formIndex == 2 ? AppColor.primary : null,
+        //             ),
+        //           ),
+        //           isActive: formIndex == 2,
+        //           state: formIndex > 2 ? StepState.complete : StepState.indexed,
+        //           content: const PasanganForm(),
+        //         ),
+        //         Step(
+        //           title: const Text(''),
+        //           label: Text(
+        //             l10n.produk,
+        //             style: AppTextStyle.bodySmallBold.copyWith(
+        //               color: formIndex == 3 ? AppColor.primary : null,
+        //             ),
+        //           ),
+        //           isActive: formIndex == 3,
+        //           state: formIndex > 3 ? StepState.complete : StepState.indexed,
+        //           content: const ProdukPembiayaanForm(),
+        //         ),
+        //         // Step(
+        //         //   title: const Text(''),
+        //         //   label: Text(
+        //         //     l10n.agunan,
+        //         //     style: AppTextStyle.bodySmallBold.copyWith(
+        //         //       color: formIndex == 4 ? AppColor.primary : null,
+        //         //     ),
+        //         //   ),
+        //         //   isActive: formIndex == 4,
+        //         //   state: formIndex > 4 ? StepState.complete : StepState.indexed,
+        //         //   content: const AgunanForm(),
+        //         // ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

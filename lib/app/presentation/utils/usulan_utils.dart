@@ -1,6 +1,4 @@
 import 'package:efosm/app/domain/entities/loan_state.dart';
-import 'package:efosm/app/presentation/utils/auth_utils.dart';
-import 'package:efosm/core/constants/approval_type.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/strings.dart';
 

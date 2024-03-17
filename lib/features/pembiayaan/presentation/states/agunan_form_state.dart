@@ -1,5 +1,6 @@
 import 'package:efosm/app/domain/entities/field.dart';
-import 'package:efosm/app/domain/entities/file_field.dart';
+import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/agunan_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'agunan_form_state.freezed.dart';
@@ -10,10 +11,10 @@ class AgunanFormState with _$AgunanFormState {
     @Default(Field()) Field isJaminan,
     @Default(Field()) Field jenis,
     @Default(Field()) Field deskripsi,
-    @Default(Field()) Field deskripsi2,
-    @Default(Field()) Field deskripsi3,
-    @Default(Field()) Field deskripsi4,
-    @Default(Field()) Field deskripsi5,
+    @Default(Field(isRequired: false)) Field deskripsi2,
+    @Default(Field(isRequired: false)) Field deskripsi3,
+    @Default(Field(isRequired: false)) Field deskripsi4,
+    @Default(Field(isRequired: false)) Field deskripsi5,
     @Default(Field()) Field alamat,
     @Default(FileField()) FileField image,
     @Default(Field()) Field latitude,
@@ -30,7 +31,7 @@ class AgunanFormState with _$AgunanFormState {
 
   factory AgunanFormState.empty() => AgunanFormState();
   bool get isValid =>
-      (isJaminan.value == '1' && deskripsi.isValid) ||
+      (isJaminan.value == AppString.isJaminanValue && deskripsi.isValid) ||
       (jenis.isValid &&
           deskripsi.isValid &&
           alamat.isValid &&
@@ -41,6 +42,32 @@ class AgunanFormState with _$AgunanFormState {
           kabupaten.isValid &&
           kecamatan.isValid &&
           kelurahan.isValid);
+
+  AgunanEntity toEntity(String image, {String? idJaminan}) {
+    var strDeskripsi = deskripsi.value ?? '';
+    if (deskripsi.value == AppString.isJaminanValue) {
+      strDeskripsi = strDeskripsi.padRight(50);
+      strDeskripsi = strDeskripsi + (deskripsi2.value ?? '').padRight(50);
+      strDeskripsi = strDeskripsi + (deskripsi3.value ?? '').padRight(50);
+      strDeskripsi = strDeskripsi + (deskripsi4.value ?? '').padRight(50);
+      strDeskripsi = strDeskripsi + (deskripsi5.value ?? '').padRight(50);
+    }
+    return AgunanEntity(
+      id: idJaminan,
+      isJaminan: isJaminan.value!,
+      jenis: jenis.value ?? '',
+      deskripsi: strDeskripsi,
+      alamat: alamat.value ?? '',
+      image: image,
+      latitude: latitude.value ?? '',
+      longitude: longitude.value ?? '',
+      captureLoc: captureLoc.value ?? '',
+      provinsi: provinsi.value ?? '',
+      kabupaten: kabupaten.value ?? '',
+      kecamatan: kecamatan.value ?? '',
+      kelurahan: kelurahan.value ?? '',
+    );
+  }
 }
 
 @freezed

@@ -22,8 +22,8 @@ class Parameter with _$Parameter, CustomDropdownListFilter {
 }
 
 @freezed
-class AppParameter with _$AppParameter {
-  const factory AppParameter({
+class LoanParameter with _$LoanParameter {
+  const factory LoanParameter({
     @JsonKey(name: 'par_kode_margin') required List<Parameter> parKodeMargin,
     @JsonKey(name: 'par_status_pekerjaan') required List<Parameter> parStatusPekerjaan,
     @JsonKey(name: 'par_status') required List<Parameter> parStatusPernikahan,
@@ -39,9 +39,10 @@ class AppParameter with _$AppParameter {
     @JsonKey(name: 'par_tempat_tinggal') required List<Parameter> parTempatTinggal,
     @JsonKey(name: 'par_provinsi') required List<Parameter> parProvinsi,
     @JsonKey(name: 'par_hubungan_perbankan') required List<Parameter> parHubunganPerbankan,
-  }) = _AppParameter;
+    @JsonKey(name: 'par_golongan_deb') required List<Parameter> parGolonganDeb,
+  }) = _LoanParameter;
 
-  const AppParameter._();
+  const LoanParameter._();
 
-  factory AppParameter.fromJson(Map<String, dynamic> json) => _$AppParameterFromJson(json);
+  factory LoanParameter.fromJson(Map<String, dynamic> json) => _$LoanParameterFromJson(json);
 }

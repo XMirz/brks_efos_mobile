@@ -13,8 +13,8 @@ class DioClient {
     final baseOption = BaseOptions(
       baseUrl: AppString.baseUrlLogin,
       contentType: Headers.jsonContentType,
-      connectTimeout: const Duration(seconds: 20),
-      receiveTimeout: const Duration(seconds: 20),
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
     );
     dio = Dio(baseOption);
     dio.interceptors.add(LoggingInterceptor());
@@ -23,8 +23,8 @@ class DioClient {
     final baseOption = BaseOptions(
       baseUrl: AppString.baseUrl,
       contentType: Headers.jsonContentType,
-      connectTimeout: const Duration(seconds: 20),
-      receiveTimeout: const Duration(seconds: 20),
+      connectTimeout: const Duration(seconds: 60),
+      receiveTimeout: const Duration(seconds: 60),
       headers: {
         HttpHeaders.authorizationHeader: 'Bearer $bearerToken',
       },
@@ -218,7 +218,7 @@ class LoggingInterceptor extends Interceptor {
     debugPrint('\n\n');
     debugPrint('<--- RESPONSE --->');
     debugPrint('Status : ${response.statusCode}');
-    // printWrapped('Response : ${jsonEncode(response.data)}');
+    printWrapped('Response : ${jsonEncode(response.data)}');
     debugPrint('<--- RESPONSE --->');
     debugPrint('\n\n');
   }

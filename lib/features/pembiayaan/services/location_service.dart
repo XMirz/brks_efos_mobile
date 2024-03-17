@@ -34,9 +34,8 @@ class LocationService {
               locationData.latitude!,
               locationData.latitude!,
             )
-            .timeout(const Duration(seconds: 15));
-        locationName =
-            '${placemarks.first.subLocality}, ${placemarks.first.locality}, ${placemarks.first.country}';
+            .timeout(const Duration(seconds: 5));
+        locationName = '${placemarks.first.subLocality}, ${placemarks.first.locality}, ${placemarks.first.country}';
       } catch (e) {
         print(e);
       }

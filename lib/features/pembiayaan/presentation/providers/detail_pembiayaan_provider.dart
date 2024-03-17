@@ -1,9 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:efosm/app/data/dto/our_request.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/constants/strings.dart';
-import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pembiayaan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/lampiran_pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/detail_pembiayaan_notifier.dart';

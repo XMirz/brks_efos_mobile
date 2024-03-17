@@ -34,6 +34,7 @@ class AppColor {
   // Feedback Colors
   static const Color disabled = Color.fromARGB(255, 203, 205, 206);
   static const Color success = primary; // Green
+  static const Color successHighlight = Color(0xFFCCE9D9); // Green
   static const Color info = Color(0xFF0ea5e9); // Green
   static const Color error = Color(0xFFdc2626); // Red
   static const Color warning = Color(0xFFf59e0b); // Orange

@@ -208,12 +208,12 @@ abstract class _Parameter extends Parameter {
       throw _privateConstructorUsedError;
 }
 
-AppParameter _$AppParameterFromJson(Map<String, dynamic> json) {
-  return _AppParameter.fromJson(json);
+LoanParameter _$LoanParameterFromJson(Map<String, dynamic> json) {
+  return _LoanParameter.fromJson(json);
 }
 
 /// @nodoc
-mixin _$AppParameter {
+mixin _$LoanParameter {
   @JsonKey(name: 'par_kode_margin')
   List<Parameter> get parKodeMargin => throw _privateConstructorUsedError;
   @JsonKey(name: 'par_status_pekerjaan')
@@ -245,18 +245,20 @@ mixin _$AppParameter {
   @JsonKey(name: 'par_hubungan_perbankan')
   List<Parameter> get parHubunganPerbankan =>
       throw _privateConstructorUsedError;
+  @JsonKey(name: 'par_golongan_deb')
+  List<Parameter> get parGolonganDeb => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AppParameterCopyWith<AppParameter> get copyWith =>
+  $LoanParameterCopyWith<LoanParameter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AppParameterCopyWith<$Res> {
-  factory $AppParameterCopyWith(
-          AppParameter value, $Res Function(AppParameter) then) =
-      _$AppParameterCopyWithImpl<$Res, AppParameter>;
+abstract class $LoanParameterCopyWith<$Res> {
+  factory $LoanParameterCopyWith(
+          LoanParameter value, $Res Function(LoanParameter) then) =
+      _$LoanParameterCopyWithImpl<$Res, LoanParameter>;
   @useResult
   $Res call(
       {@JsonKey(name: 'par_kode_margin') List<Parameter> parKodeMargin,
@@ -275,13 +277,14 @@ abstract class $AppParameterCopyWith<$Res> {
       @JsonKey(name: 'par_tempat_tinggal') List<Parameter> parTempatTinggal,
       @JsonKey(name: 'par_provinsi') List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      List<Parameter> parHubunganPerbankan});
+      List<Parameter> parHubunganPerbankan,
+      @JsonKey(name: 'par_golongan_deb') List<Parameter> parGolonganDeb});
 }
 
 /// @nodoc
-class _$AppParameterCopyWithImpl<$Res, $Val extends AppParameter>
-    implements $AppParameterCopyWith<$Res> {
-  _$AppParameterCopyWithImpl(this._value, this._then);
+class _$LoanParameterCopyWithImpl<$Res, $Val extends LoanParameter>
+    implements $LoanParameterCopyWith<$Res> {
+  _$LoanParameterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -306,6 +309,7 @@ class _$AppParameterCopyWithImpl<$Res, $Val extends AppParameter>
     Object? parTempatTinggal = null,
     Object? parProvinsi = null,
     Object? parHubunganPerbankan = null,
+    Object? parGolonganDeb = null,
   }) {
     return _then(_value.copyWith(
       parKodeMargin: null == parKodeMargin
@@ -368,16 +372,20 @@ class _$AppParameterCopyWithImpl<$Res, $Val extends AppParameter>
           ? _value.parHubunganPerbankan
           : parHubunganPerbankan // ignore: cast_nullable_to_non_nullable
               as List<Parameter>,
+      parGolonganDeb: null == parGolonganDeb
+          ? _value.parGolonganDeb
+          : parGolonganDeb // ignore: cast_nullable_to_non_nullable
+              as List<Parameter>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$AppParameterImplCopyWith<$Res>
-    implements $AppParameterCopyWith<$Res> {
-  factory _$$AppParameterImplCopyWith(
-          _$AppParameterImpl value, $Res Function(_$AppParameterImpl) then) =
-      __$$AppParameterImplCopyWithImpl<$Res>;
+abstract class _$$LoanParameterImplCopyWith<$Res>
+    implements $LoanParameterCopyWith<$Res> {
+  factory _$$LoanParameterImplCopyWith(
+          _$LoanParameterImpl value, $Res Function(_$LoanParameterImpl) then) =
+      __$$LoanParameterImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -397,15 +405,16 @@ abstract class _$$AppParameterImplCopyWith<$Res>
       @JsonKey(name: 'par_tempat_tinggal') List<Parameter> parTempatTinggal,
       @JsonKey(name: 'par_provinsi') List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      List<Parameter> parHubunganPerbankan});
+      List<Parameter> parHubunganPerbankan,
+      @JsonKey(name: 'par_golongan_deb') List<Parameter> parGolonganDeb});
 }
 
 /// @nodoc
-class __$$AppParameterImplCopyWithImpl<$Res>
-    extends _$AppParameterCopyWithImpl<$Res, _$AppParameterImpl>
-    implements _$$AppParameterImplCopyWith<$Res> {
-  __$$AppParameterImplCopyWithImpl(
-      _$AppParameterImpl _value, $Res Function(_$AppParameterImpl) _then)
+class __$$LoanParameterImplCopyWithImpl<$Res>
+    extends _$LoanParameterCopyWithImpl<$Res, _$LoanParameterImpl>
+    implements _$$LoanParameterImplCopyWith<$Res> {
+  __$$LoanParameterImplCopyWithImpl(
+      _$LoanParameterImpl _value, $Res Function(_$LoanParameterImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -426,8 +435,9 @@ class __$$AppParameterImplCopyWithImpl<$Res>
     Object? parTempatTinggal = null,
     Object? parProvinsi = null,
     Object? parHubunganPerbankan = null,
+    Object? parGolonganDeb = null,
   }) {
-    return _then(_$AppParameterImpl(
+    return _then(_$LoanParameterImpl(
       parKodeMargin: null == parKodeMargin
           ? _value._parKodeMargin
           : parKodeMargin // ignore: cast_nullable_to_non_nullable
@@ -488,14 +498,18 @@ class __$$AppParameterImplCopyWithImpl<$Res>
           ? _value._parHubunganPerbankan
           : parHubunganPerbankan // ignore: cast_nullable_to_non_nullable
               as List<Parameter>,
+      parGolonganDeb: null == parGolonganDeb
+          ? _value._parGolonganDeb
+          : parGolonganDeb // ignore: cast_nullable_to_non_nullable
+              as List<Parameter>,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$AppParameterImpl extends _AppParameter {
-  const _$AppParameterImpl(
+class _$LoanParameterImpl extends _LoanParameter {
+  const _$LoanParameterImpl(
       {@JsonKey(name: 'par_kode_margin')
       required final List<Parameter> parKodeMargin,
       @JsonKey(name: 'par_status_pekerjaan')
@@ -520,7 +534,9 @@ class _$AppParameterImpl extends _AppParameter {
       required final List<Parameter> parTempatTinggal,
       @JsonKey(name: 'par_provinsi') required final List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      required final List<Parameter> parHubunganPerbankan})
+      required final List<Parameter> parHubunganPerbankan,
+      @JsonKey(name: 'par_golongan_deb')
+      required final List<Parameter> parGolonganDeb})
       : _parKodeMargin = parKodeMargin,
         _parStatusPekerjaan = parStatusPekerjaan,
         _parStatusPernikahan = parStatusPernikahan,
@@ -536,10 +552,11 @@ class _$AppParameterImpl extends _AppParameter {
         _parTempatTinggal = parTempatTinggal,
         _parProvinsi = parProvinsi,
         _parHubunganPerbankan = parHubunganPerbankan,
+        _parGolonganDeb = parGolonganDeb,
         super._();
 
-  factory _$AppParameterImpl.fromJson(Map<String, dynamic> json) =>
-      _$$AppParameterImplFromJson(json);
+  factory _$LoanParameterImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoanParameterImplFromJson(json);
 
   final List<Parameter> _parKodeMargin;
   @override
@@ -682,16 +699,25 @@ class _$AppParameterImpl extends _AppParameter {
     return EqualUnmodifiableListView(_parHubunganPerbankan);
   }
 
+  final List<Parameter> _parGolonganDeb;
+  @override
+  @JsonKey(name: 'par_golongan_deb')
+  List<Parameter> get parGolonganDeb {
+    if (_parGolonganDeb is EqualUnmodifiableListView) return _parGolonganDeb;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parGolonganDeb);
+  }
+
   @override
   String toString() {
-    return 'AppParameter(parKodeMargin: $parKodeMargin, parStatusPekerjaan: $parStatusPekerjaan, parStatusPernikahan: $parStatusPernikahan, parStatusPerusahaan: $parStatusPerusahaan, parPendidikan: $parPendidikan, parKategoriProduk: $parKategoriProduk, parJenisAgunan: $parJenisAgunan, parBidangUsaha: $parBidangUsaha, parKolektif: $parKolektif, parKelamin: $parKelamin, parAgama: $parAgama, parProfesi: $parProfesi, parTempatTinggal: $parTempatTinggal, parProvinsi: $parProvinsi, parHubunganPerbankan: $parHubunganPerbankan)';
+    return 'LoanParameter(parKodeMargin: $parKodeMargin, parStatusPekerjaan: $parStatusPekerjaan, parStatusPernikahan: $parStatusPernikahan, parStatusPerusahaan: $parStatusPerusahaan, parPendidikan: $parPendidikan, parKategoriProduk: $parKategoriProduk, parJenisAgunan: $parJenisAgunan, parBidangUsaha: $parBidangUsaha, parKolektif: $parKolektif, parKelamin: $parKelamin, parAgama: $parAgama, parProfesi: $parProfesi, parTempatTinggal: $parTempatTinggal, parProvinsi: $parProvinsi, parHubunganPerbankan: $parHubunganPerbankan, parGolonganDeb: $parGolonganDeb)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AppParameterImpl &&
+            other is _$LoanParameterImpl &&
             const DeepCollectionEquality()
                 .equals(other._parKodeMargin, _parKodeMargin) &&
             const DeepCollectionEquality()
@@ -720,7 +746,9 @@ class _$AppParameterImpl extends _AppParameter {
             const DeepCollectionEquality()
                 .equals(other._parProvinsi, _parProvinsi) &&
             const DeepCollectionEquality()
-                .equals(other._parHubunganPerbankan, _parHubunganPerbankan));
+                .equals(other._parHubunganPerbankan, _parHubunganPerbankan) &&
+            const DeepCollectionEquality()
+                .equals(other._parGolonganDeb, _parGolonganDeb));
   }
 
   @JsonKey(ignore: true)
@@ -741,24 +769,25 @@ class _$AppParameterImpl extends _AppParameter {
       const DeepCollectionEquality().hash(_parProfesi),
       const DeepCollectionEquality().hash(_parTempatTinggal),
       const DeepCollectionEquality().hash(_parProvinsi),
-      const DeepCollectionEquality().hash(_parHubunganPerbankan));
+      const DeepCollectionEquality().hash(_parHubunganPerbankan),
+      const DeepCollectionEquality().hash(_parGolonganDeb));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AppParameterImplCopyWith<_$AppParameterImpl> get copyWith =>
-      __$$AppParameterImplCopyWithImpl<_$AppParameterImpl>(this, _$identity);
+  _$$LoanParameterImplCopyWith<_$LoanParameterImpl> get copyWith =>
+      __$$LoanParameterImplCopyWithImpl<_$LoanParameterImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$AppParameterImplToJson(
+    return _$$LoanParameterImplToJson(
       this,
     );
   }
 }
 
-abstract class _AppParameter extends AppParameter {
-  const factory _AppParameter(
+abstract class _LoanParameter extends LoanParameter {
+  const factory _LoanParameter(
       {@JsonKey(name: 'par_kode_margin')
       required final List<Parameter> parKodeMargin,
       @JsonKey(name: 'par_status_pekerjaan')
@@ -783,12 +812,13 @@ abstract class _AppParameter extends AppParameter {
       required final List<Parameter> parTempatTinggal,
       @JsonKey(name: 'par_provinsi') required final List<Parameter> parProvinsi,
       @JsonKey(name: 'par_hubungan_perbankan')
-      required final List<Parameter>
-          parHubunganPerbankan}) = _$AppParameterImpl;
-  const _AppParameter._() : super._();
+      required final List<Parameter> parHubunganPerbankan,
+      @JsonKey(name: 'par_golongan_deb')
+      required final List<Parameter> parGolonganDeb}) = _$LoanParameterImpl;
+  const _LoanParameter._() : super._();
 
-  factory _AppParameter.fromJson(Map<String, dynamic> json) =
-      _$AppParameterImpl.fromJson;
+  factory _LoanParameter.fromJson(Map<String, dynamic> json) =
+      _$LoanParameterImpl.fromJson;
 
   @override
   @JsonKey(name: 'par_kode_margin')
@@ -836,7 +866,10 @@ abstract class _AppParameter extends AppParameter {
   @JsonKey(name: 'par_hubungan_perbankan')
   List<Parameter> get parHubunganPerbankan;
   @override
+  @JsonKey(name: 'par_golongan_deb')
+  List<Parameter> get parGolonganDeb;
+  @override
   @JsonKey(ignore: true)
-  _$$AppParameterImplCopyWith<_$AppParameterImpl> get copyWith =>
+  _$$LoanParameterImplCopyWith<_$LoanParameterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

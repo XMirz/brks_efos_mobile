@@ -6,6 +6,7 @@ import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/paginated_entity.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/request/create_loan_request.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/detail/pembiayaan_detail_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/lampiran_pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
@@ -16,10 +17,10 @@ import 'package:get_it/get_it.dart';
 class PembiayaanRepository {
   final DioClient _dioClient = GetIt.I.get();
 
-  Future<Either<Failure, bool>> saveLoan(Map<String, Object> data) async {
+  Future<Either<Failure, bool>> saveLoan(CreateLoanRequest data) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
       '/mobile/efos/insertcalondebitur',
-      data: data,
+      data: data.toJson(),
     );
     return response.fold(
       left,

@@ -20,8 +20,8 @@ Map<String, dynamic> _$$ParameterImplToJson(_$ParameterImpl instance) =>
       'nilai': instance.value,
     };
 
-_$AppParameterImpl _$$AppParameterImplFromJson(Map<String, dynamic> json) =>
-    _$AppParameterImpl(
+_$LoanParameterImpl _$$LoanParameterImplFromJson(Map<String, dynamic> json) =>
+    _$LoanParameterImpl(
       parKodeMargin: (json['par_kode_margin'] as List<dynamic>)
           .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -67,9 +67,12 @@ _$AppParameterImpl _$$AppParameterImplFromJson(Map<String, dynamic> json) =>
       parHubunganPerbankan: (json['par_hubungan_perbankan'] as List<dynamic>)
           .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
           .toList(),
+      parGolonganDeb: (json['par_golongan_deb'] as List<dynamic>)
+          .map((e) => Parameter.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
-Map<String, dynamic> _$$AppParameterImplToJson(_$AppParameterImpl instance) =>
+Map<String, dynamic> _$$LoanParameterImplToJson(_$LoanParameterImpl instance) =>
     <String, dynamic>{
       'par_kode_margin': instance.parKodeMargin,
       'par_status_pekerjaan': instance.parStatusPekerjaan,
@@ -86,4 +89,5 @@ Map<String, dynamic> _$$AppParameterImplToJson(_$AppParameterImpl instance) =>
       'par_tempat_tinggal': instance.parTempatTinggal,
       'par_provinsi': instance.parProvinsi,
       'par_hubungan_perbankan': instance.parHubunganPerbankan,
+      'par_golongan_deb': instance.parGolonganDeb,
     };

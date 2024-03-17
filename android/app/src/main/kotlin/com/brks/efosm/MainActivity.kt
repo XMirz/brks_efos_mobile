@@ -1,4 +1,4 @@
-package com.brks.efosm.efosm
+package com.brks.efosm
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

@@ -111,7 +111,7 @@ class SmallButton extends StatelessWidget {
       onPressed: onPressed,
       radius: 8,
       backgroundColor: backgroundColor ?? Colors.transparent,
-      textStyle: textStyle ?? AppTextStyle.titleExtraSmall,
+      textStyle: textStyle ?? AppTextStyle.titleSmall,
     );
   }
 }

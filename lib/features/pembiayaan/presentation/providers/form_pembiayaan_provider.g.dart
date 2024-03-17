@@ -22,7 +22,7 @@ final pembiayaanRepositoryProvider = Provider<PembiayaanRepository>.internal(
 );
 
 typedef PembiayaanRepositoryRef = ProviderRef<PembiayaanRepository>;
-String _$saveLoanHash() => r'4465e3b10f8207979f94d3bb5b845e34f996ba4e';
+String _$saveLoanHash() => r'd3fb84000122d918f1d82f4b2c237ee4f13d7b53';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -56,10 +56,10 @@ class SaveLoanFamily extends Family<AsyncValue<Either<Failure, bool>>> {
 
   /// See also [saveLoan].
   SaveLoanProvider call(
-    Map<String, Object> dataPembiayaan,
+    CreateLoanRequest request,
   ) {
     return SaveLoanProvider(
-      dataPembiayaan,
+      request,
     );
   }
 
@@ -68,7 +68,7 @@ class SaveLoanFamily extends Family<AsyncValue<Either<Failure, bool>>> {
     covariant SaveLoanProvider provider,
   ) {
     return call(
-      provider.dataPembiayaan,
+      provider.request,
     );
   }
 
@@ -92,11 +92,11 @@ class SaveLoanProvider
     extends AutoDisposeFutureProvider<Either<Failure, bool>> {
   /// See also [saveLoan].
   SaveLoanProvider(
-    Map<String, Object> dataPembiayaan,
+    CreateLoanRequest request,
   ) : this._internal(
           (ref) => saveLoan(
             ref as SaveLoanRef,
-            dataPembiayaan,
+            request,
           ),
           from: saveLoanProvider,
           name: r'saveLoanProvider',
@@ -106,7 +106,7 @@ class SaveLoanProvider
                   : _$saveLoanHash,
           dependencies: SaveLoanFamily._dependencies,
           allTransitiveDependencies: SaveLoanFamily._allTransitiveDependencies,
-          dataPembiayaan: dataPembiayaan,
+          request: request,
         );
 
   SaveLoanProvider._internal(
@@ -116,10 +116,10 @@ class SaveLoanProvider
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.dataPembiayaan,
+    required this.request,
   }) : super.internal();
 
-  final Map<String, Object> dataPembiayaan;
+  final CreateLoanRequest request;
 
   @override
   Override overrideWith(
@@ -134,7 +134,7 @@ class SaveLoanProvider
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        dataPembiayaan: dataPembiayaan,
+        request: request,
       ),
     );
   }
@@ -146,21 +146,21 @@ class SaveLoanProvider
 
   @override
   bool operator ==(Object other) {
-    return other is SaveLoanProvider && other.dataPembiayaan == dataPembiayaan;
+    return other is SaveLoanProvider && other.request == request;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, dataPembiayaan.hashCode);
+    hash = _SystemHash.combine(hash, request.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
 mixin SaveLoanRef on AutoDisposeFutureProviderRef<Either<Failure, bool>> {
-  /// The parameter `dataPembiayaan` of this provider.
-  Map<String, Object> get dataPembiayaan;
+  /// The parameter `request` of this provider.
+  CreateLoanRequest get request;
 }
 
 class _SaveLoanProviderElement
@@ -169,8 +169,7 @@ class _SaveLoanProviderElement
   _SaveLoanProviderElement(super.provider);
 
   @override
-  Map<String, Object> get dataPembiayaan =>
-      (origin as SaveLoanProvider).dataPembiayaan;
+  CreateLoanRequest get request => (origin as SaveLoanProvider).request;
 }
 
 String _$updateLoanHash() => r'bade93e0b8d474f974bca0180bd73244d71af048';

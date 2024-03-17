@@ -1,7 +1,5 @@
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
-// ignore: unused_import
-import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
@@ -32,74 +30,73 @@ class PembiayaanSreen extends HookConsumerWidget {
 
     return DefaultTabController(
       length: 2,
-      child: Scaffold(
-        appBar: InnerAppBar(
-          centerTitle: true,
-          height: 56,
-          borderRadius: BorderRadius.zero,
-          title: l10n.pembiayaan,
-          actions: [
-            IconButton(
+      child: Column(
+        children: [
+          InnerAppBar(
+            centerTitle: true,
+            height: 56,
+            borderRadius: BorderRadius.zero,
+            title: l10n.pembiayaan,
+            actions: [
+              IconButton(
                 onPressed: () {
                   context.pushNamed(AppRoutes.indexUsulanPage);
                 },
-                icon: const HeroIcon(HeroIcons.documentArrowUp)),
-          ],
-        ),
-        body: Column(
-          children: [
-            Container(
-              alignment: Alignment.center,
-              height: kToolbarHeight,
-              clipBehavior: Clip.hardEdge,
-              decoration: const BoxDecoration(
-                color: AppColor.backgroundPrimary,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.elliptical(24, 24),
-                  bottomRight: Radius.elliptical(24, 24),
-                ),
+                icon: const HeroIcon(HeroIcons.documentArrowUp),
               ),
-              child: Theme(
-                data: Theme.of(context).copyWith(
-                  colorScheme: Theme.of(context).colorScheme.copyWith(surfaceVariant: Colors.transparent),
-                ),
-                child: TabBar(
-                  onTap: (value) => ref.read(tabBarIndexProvider.notifier).state = value,
-                  labelColor: AppColor.primary,
-                  splashFactory: NoSplash.splashFactory,
-                  overlayColor: const MaterialStatePropertyAll(Colors.transparent),
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorWeight: 4,
-                  labelStyle: AppTextStyle.bodyMedium,
-                  indicatorColor: AppColor.primary,
-                  padding: EdgeInsets.zero,
-                  tabs: [
-                    Tab(
-                      text: l10n.konsumtif,
-                    ),
-                    Tab(
-                      text: l10n.produktif,
-                    ),
-                  ],
-                ),
+            ],
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: kToolbarHeight,
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              color: AppColor.backgroundPrimary,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.elliptical(24, 24),
+                bottomRight: Radius.elliptical(24, 24),
               ),
             ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  ListPembiayaan(
-                    searchKey: searchKeyword,
-                    endPoint: ApiPath.listPembiayaanProduktif,
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: Theme.of(context).colorScheme.copyWith(surfaceVariant: Colors.transparent),
+              ),
+              child: TabBar(
+                onTap: (value) => ref.read(tabBarIndexProvider.notifier).state = value,
+                labelColor: AppColor.primary,
+                splashFactory: NoSplash.splashFactory,
+                overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+                indicatorSize: TabBarIndicatorSize.label,
+                indicatorWeight: 4,
+                labelStyle: AppTextStyle.bodyMedium,
+                indicatorColor: AppColor.primary,
+                padding: EdgeInsets.zero,
+                tabs: [
+                  Tab(
+                    text: l10n.konsumtif,
                   ),
-                  ListPembiayaan(
-                    searchKey: searchKeyword,
-                    endPoint: ApiPath.listPembiayaanKonsumtif,
+                  Tab(
+                    text: l10n.produktif,
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: TabBarView(
+              children: [
+                ListPembiayaan(
+                  searchKey: searchKeyword,
+                  endPoint: ApiPath.listPembiayaanProduktif,
+                ),
+                ListPembiayaan(
+                  searchKey: searchKeyword,
+                  endPoint: ApiPath.listPembiayaanKonsumtif,
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -313,7 +310,7 @@ class SliverItems extends ConsumerWidget {
                         ),
                         Text(
                           item.nik,
-                          style: AppTextStyle.titleExtraSmall,
+                          style: AppTextStyle.bodySmall,
                         ),
                       ],
                     ),

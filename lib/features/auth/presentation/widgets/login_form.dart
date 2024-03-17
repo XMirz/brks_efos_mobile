@@ -7,9 +7,7 @@ import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/states/user_state.dart';
-import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/di/injector.dart';
@@ -73,12 +71,7 @@ class LoginForm extends ConsumerWidget {
             return OurAlertDialog(
               title: l10n.failed,
               description: l.message,
-              actions: [
-                SmallButton(
-                  text: l10n.ok,
-                  onPressed: () => context.pop('dialog'),
-                ),
-              ],
+              onPressed: () => context.pop('dialog'),
             );
           },
         );
@@ -108,7 +101,6 @@ class LoginForm extends ConsumerWidget {
           error: formState.form.username.errorMessage,
           onChanged: (value) => ref.read(loginFormProvider.notifier).setUsername(value),
         ),
-        spaceY(16),
         OurTextField(
           label: context.l10n.password,
           hint: context.l10n.password,
@@ -117,7 +109,6 @@ class LoginForm extends ConsumerWidget {
           error: formState.form.password.errorMessage,
           onChanged: (value) => ref.read(loginFormProvider.notifier).setPassword(value),
         ),
-        spaceY(16),
         Container(
           alignment: Alignment.centerRight,
           child: PrimaryButton(

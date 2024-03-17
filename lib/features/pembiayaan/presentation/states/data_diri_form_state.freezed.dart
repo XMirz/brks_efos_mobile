@@ -28,6 +28,7 @@ mixin _$DataDiriFormState {
   Field get biayaOperasional => throw _privateConstructorUsedError;
   Field get biayaRumahTangga => throw _privateConstructorUsedError;
   Field get statusTempatTinggal => throw _privateConstructorUsedError;
+  Field get golonganDebitur => throw _privateConstructorUsedError;
   Field get hubunganPerbankan => throw _privateConstructorUsedError;
   bool get isUpdate => throw _privateConstructorUsedError;
 
@@ -55,6 +56,7 @@ abstract class $DataDiriFormStateCopyWith<$Res> {
       Field biayaOperasional,
       Field biayaRumahTangga,
       Field statusTempatTinggal,
+      Field golonganDebitur,
       Field hubunganPerbankan,
       bool isUpdate});
 
@@ -70,6 +72,7 @@ abstract class $DataDiriFormStateCopyWith<$Res> {
   $FieldCopyWith<$Res> get biayaOperasional;
   $FieldCopyWith<$Res> get biayaRumahTangga;
   $FieldCopyWith<$Res> get statusTempatTinggal;
+  $FieldCopyWith<$Res> get golonganDebitur;
   $FieldCopyWith<$Res> get hubunganPerbankan;
 }
 
@@ -98,6 +101,7 @@ class _$DataDiriFormStateCopyWithImpl<$Res, $Val extends DataDiriFormState>
     Object? biayaOperasional = null,
     Object? biayaRumahTangga = null,
     Object? statusTempatTinggal = null,
+    Object? golonganDebitur = null,
     Object? hubunganPerbankan = null,
     Object? isUpdate = null,
   }) {
@@ -149,6 +153,10 @@ class _$DataDiriFormStateCopyWithImpl<$Res, $Val extends DataDiriFormState>
       statusTempatTinggal: null == statusTempatTinggal
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
+              as Field,
+      golonganDebitur: null == golonganDebitur
+          ? _value.golonganDebitur
+          : golonganDebitur // ignore: cast_nullable_to_non_nullable
               as Field,
       hubunganPerbankan: null == hubunganPerbankan
           ? _value.hubunganPerbankan
@@ -259,6 +267,14 @@ class _$DataDiriFormStateCopyWithImpl<$Res, $Val extends DataDiriFormState>
 
   @override
   @pragma('vm:prefer-inline')
+  $FieldCopyWith<$Res> get golonganDebitur {
+    return $FieldCopyWith<$Res>(_value.golonganDebitur, (value) {
+      return _then(_value.copyWith(golonganDebitur: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $FieldCopyWith<$Res> get hubunganPerbankan {
     return $FieldCopyWith<$Res>(_value.hubunganPerbankan, (value) {
       return _then(_value.copyWith(hubunganPerbankan: value) as $Val);
@@ -287,6 +303,7 @@ abstract class _$$DataDiriFormStateImplCopyWith<$Res>
       Field biayaOperasional,
       Field biayaRumahTangga,
       Field statusTempatTinggal,
+      Field golonganDebitur,
       Field hubunganPerbankan,
       bool isUpdate});
 
@@ -315,6 +332,8 @@ abstract class _$$DataDiriFormStateImplCopyWith<$Res>
   @override
   $FieldCopyWith<$Res> get statusTempatTinggal;
   @override
+  $FieldCopyWith<$Res> get golonganDebitur;
+  @override
   $FieldCopyWith<$Res> get hubunganPerbankan;
 }
 
@@ -341,6 +360,7 @@ class __$$DataDiriFormStateImplCopyWithImpl<$Res>
     Object? biayaOperasional = null,
     Object? biayaRumahTangga = null,
     Object? statusTempatTinggal = null,
+    Object? golonganDebitur = null,
     Object? hubunganPerbankan = null,
     Object? isUpdate = null,
   }) {
@@ -393,6 +413,10 @@ class __$$DataDiriFormStateImplCopyWithImpl<$Res>
           ? _value.statusTempatTinggal
           : statusTempatTinggal // ignore: cast_nullable_to_non_nullable
               as Field,
+      golonganDebitur: null == golonganDebitur
+          ? _value.golonganDebitur
+          : golonganDebitur // ignore: cast_nullable_to_non_nullable
+              as Field,
       hubunganPerbankan: null == hubunganPerbankan
           ? _value.hubunganPerbankan
           : hubunganPerbankan // ignore: cast_nullable_to_non_nullable
@@ -421,6 +445,7 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
       this.biayaOperasional = const Field(isRequired: false),
       this.biayaRumahTangga = const Field(isRequired: false),
       this.statusTempatTinggal = const Field(),
+      this.golonganDebitur = const Field(),
       this.hubunganPerbankan = const Field(),
       this.isUpdate = false})
       : super._();
@@ -463,6 +488,9 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
   final Field statusTempatTinggal;
   @override
   @JsonKey()
+  final Field golonganDebitur;
+  @override
+  @JsonKey()
   final Field hubunganPerbankan;
   @override
   @JsonKey()
@@ -470,7 +498,7 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
 
   @override
   String toString() {
-    return 'DataDiriFormState(nik: $nik, nama: $nama, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, hubunganPerbankan: $hubunganPerbankan, isUpdate: $isUpdate)';
+    return 'DataDiriFormState(nik: $nik, nama: $nama, alamat: $alamat, tempatLahir: $tempatLahir, tanggalLahir: $tanggalLahir, jenisKelamin: $jenisKelamin, statusPernikahan: $statusPernikahan, jumlahTanggungan: $jumlahTanggungan, kewajiban: $kewajiban, biayaOperasional: $biayaOperasional, biayaRumahTangga: $biayaRumahTangga, statusTempatTinggal: $statusTempatTinggal, golonganDebitur: $golonganDebitur, hubunganPerbankan: $hubunganPerbankan, isUpdate: $isUpdate)';
   }
 
   @override
@@ -499,6 +527,8 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
                 other.biayaRumahTangga == biayaRumahTangga) &&
             (identical(other.statusTempatTinggal, statusTempatTinggal) ||
                 other.statusTempatTinggal == statusTempatTinggal) &&
+            (identical(other.golonganDebitur, golonganDebitur) ||
+                other.golonganDebitur == golonganDebitur) &&
             (identical(other.hubunganPerbankan, hubunganPerbankan) ||
                 other.hubunganPerbankan == hubunganPerbankan) &&
             (identical(other.isUpdate, isUpdate) ||
@@ -520,6 +550,7 @@ class _$DataDiriFormStateImpl extends _DataDiriFormState {
       biayaOperasional,
       biayaRumahTangga,
       statusTempatTinggal,
+      golonganDebitur,
       hubunganPerbankan,
       isUpdate);
 
@@ -545,6 +576,7 @@ abstract class _DataDiriFormState extends DataDiriFormState {
       final Field biayaOperasional,
       final Field biayaRumahTangga,
       final Field statusTempatTinggal,
+      final Field golonganDebitur,
       final Field hubunganPerbankan,
       final bool isUpdate}) = _$DataDiriFormStateImpl;
   const _DataDiriFormState._() : super._();
@@ -573,6 +605,8 @@ abstract class _DataDiriFormState extends DataDiriFormState {
   Field get biayaRumahTangga;
   @override
   Field get statusTempatTinggal;
+  @override
+  Field get golonganDebitur;
   @override
   Field get hubunganPerbankan;
   @override

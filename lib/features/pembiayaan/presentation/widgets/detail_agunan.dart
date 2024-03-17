@@ -6,7 +6,6 @@ import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
-import 'package:efosm/app/presentation/widgets/info_dialog.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
@@ -39,8 +38,8 @@ class DetailAgunan extends ConsumerWidget {
       itemBuilder: (context, index) {
         final isJaminan = listAgunan[index].isJaminan == AppString.isJaminanValue;
         final deskripsiJaminan = isJaminan
-            ? (listAgunan[index].deskripsi ?? '').padRight(AppInteger.jaminanDescriptionLength)
-            : (listAgunan[index].deskripsi ?? '');
+            ? listAgunan[index].deskripsi.padRight(AppInteger.jaminanDescriptionLength)
+            : listAgunan[index].deskripsi;
         final chunkSize = AppInteger.jaminanDescriptionItemLength;
         final deskripsi1 = isJaminan ? deskripsiJaminan.substring(0, chunkSize).trimRight() : '';
         final deskripsi2 = isJaminan ? deskripsiJaminan.substring(chunkSize, 2 * chunkSize).trimRight() : '';
@@ -69,22 +68,26 @@ class DetailAgunan extends ConsumerWidget {
                   label: l10n.deskripsi('1'),
                   value: deskripsi1,
                 ),
-                DetailValue(
-                  label: l10n.deskripsi('2'),
-                  value: deskripsi2,
-                ),
-                DetailValue(
-                  label: l10n.deskripsi('3'),
-                  value: deskripsi3,
-                ),
-                DetailValue(
-                  label: l10n.deskripsi('4'),
-                  value: deskripsi4,
-                ),
-                DetailValue(
-                  label: l10n.deskripsi('5'),
-                  value: deskripsi5,
-                ),
+                if (deskripsi2 != '')
+                  DetailValue(
+                    label: l10n.deskripsi('2'),
+                    value: deskripsi2,
+                  ),
+                if (deskripsi3 != '')
+                  DetailValue(
+                    label: l10n.deskripsi('3'),
+                    value: deskripsi3,
+                  ),
+                if (deskripsi4 != '')
+                  DetailValue(
+                    label: l10n.deskripsi('4'),
+                    value: deskripsi4,
+                  ),
+                if (deskripsi5 != '')
+                  DetailValue(
+                    label: l10n.deskripsi('5'),
+                    value: deskripsi5,
+                  ),
               ],
               if (!isJaminan) ...[
                 DetailValue(
@@ -112,7 +115,7 @@ class DetailAgunan extends ConsumerWidget {
                         barrierColor: Colors.black.withOpacity(0.4),
                         context: context,
                         pageBuilder: (context, animation, secondaryAnimation) {
-                          final bytes = base64Decode(listAgunan[index].image!);
+                          final bytes = base64Decode(listAgunan[index].image);
                           return SizedBox(
                             width: double.infinity,
                             child: Image.memory(
@@ -142,41 +145,31 @@ class DetailAgunan extends ConsumerWidget {
         },
       ),
     );
-    final resParameter = await ref.read(fetchInitialParameterProvider.future);
+    final response = await ref.read(fetchInitialParameterProvider.future);
     if (context.mounted) context.pop('dialog');
-    resParameter.fold((l) {
+    response.fold((l) {
       ref.invalidate(fetchInitialParameterProvider);
-      if (context.mounted) {
-        showDialog<void>(
-          context: context,
-          builder: (context) {
-            return OurAlertDialog(
-              title: l10n.failed,
-              description: l.message,
-              actions: [
-                SmallButton(
-                  text: l10n.ok,
-                  onPressed: () => context.pop('dialog'),
-                ),
-              ],
-            );
-          },
-        );
-      }
+      showDialog<void>(
+        context: context,
+        builder: (context) {
+          return OurAlertDialog(
+            title: l10n.failed,
+            description: l.message,
+            onPressed: () => context.pop('dialog'),
+          );
+        },
+      );
     }, (r) {
-      // Clear the crontroller before assign new variables
-      invalidateAgunanForm(ref);
+      final isJaminan = agunan.isJaminan == AppString.isJaminanValue;
+      // ref.invalidate(agunanFormProvider);
+      ref.read(agunanFormProvider.notifier).setFormValue(agunan);
+      ref.read(agunanFormProvider.notifier).setFormRequirement(isJaminan: isJaminan);
+      ref.read(agunanFormProvider.notifier).setFormRequirementUpdate();
       invalidateAgunanFormController(ref);
-      ref.read(agunanFormProvider.notifier).setAgunanForm(agunan, r);
-      if (context.mounted) {
-        context.pushNamed(
-          AppRoutes.formJaminanPage,
-          extra: agunan,
-          pathParameters: {
-            'id': agunan.idLoan,
-          },
-        );
-      }
+      context.pushNamed(
+        AppRoutes.formJaminanPage,
+        extra: (agunan.idLoan, r, agunan),
+      );
     });
   }
 }

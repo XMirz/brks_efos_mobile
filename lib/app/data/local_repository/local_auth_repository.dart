@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:efosm/app/domain/entities/session_entity.dart';
 import 'package:efosm/app/domain/hive_entities/user_hive.dart';
 import 'package:efosm/core/constants/strings.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:crypto/crypto.dart';
 
 class LocalAuthRepository {
   final HiveClient hiveClient = GetIt.I.get();

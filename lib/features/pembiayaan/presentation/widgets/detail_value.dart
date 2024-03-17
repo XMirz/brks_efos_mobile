@@ -23,7 +23,7 @@ class DetailValue extends StatelessWidget {
           label,
           style: large ?? false ? AppTextStyle.bodyMedium : AppTextStyle.bodySmall,
         ),
-        Text(
+        SelectableText(
           value ?? '-',
           style: large ?? false ? AppTextStyle.bodyMediumBold : AppTextStyle.bodySmallBold,
         ),

@@ -9,9 +9,16 @@ class Fonts {
 
 class AppTextStyle {
   // Titles
+  static const TextStyle titleExtraLarge = TextStyle(
+    fontFamily: Fonts.poppins,
+    letterSpacing: 0.2,
+    fontSize: 28,
+    fontWeight: FontWeight.w600,
+    color: AppColor.textPrimary,
+  );
   static const TextStyle titleLarge = TextStyle(
     fontFamily: Fonts.poppins,
-    // letterSpacing: 0.2,
+    letterSpacing: 0.2,
     fontSize: 24,
     fontWeight: FontWeight.w600,
     color: AppColor.textPrimary,
@@ -32,37 +39,29 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     color: AppColor.textPrimary,
   );
-  static const TextStyle titleExtraSmall = TextStyle(
-    letterSpacing: 0.2,
-    fontFamily: Fonts.poppins,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    color: AppColor.textPrimary,
-  );
 
   // Subtitles
   static const TextStyle subtitleLarge = TextStyle(
-    fontFamily: Fonts.nunito,
-    fontSize: 18,
+    fontFamily: Fonts.poppins,
+    fontSize: 16,
     fontWeight: FontWeight.w500,
     color: AppColor.textPrimary,
   );
 
   static const TextStyle subtitleMedium = TextStyle(
-    fontFamily: Fonts.nunito,
-    fontSize: 16,
-    fontWeight: FontWeight.normal,
-    color: AppColor.textPrimary,
-  );
-
-  static const TextStyle subtitleSmall = TextStyle(
-    fontFamily: Fonts.nunito,
+    fontFamily: Fonts.poppins,
     fontSize: 14,
     fontWeight: FontWeight.normal,
     color: AppColor.textPrimary,
   );
 
   // Body Text
+  static const TextStyle bodyExtraLarge = TextStyle(
+    fontFamily: Fonts.nunito,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: AppColor.textPrimary,
+  );
   static const TextStyle bodyLarge = TextStyle(
     fontFamily: Fonts.nunito,
     fontSize: 20,
@@ -71,8 +70,8 @@ class AppTextStyle {
   );
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: Fonts.nunito,
-    fontSize: 17,
-    fontWeight: FontWeight.normal,
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
     color: AppColor.textPrimary,
   );
   static const TextStyle bodyMediumBold = TextStyle(
@@ -86,21 +85,20 @@ class AppTextStyle {
     fontFamily: Fonts.nunito,
     fontWeight: FontWeight.w500,
     color: AppColor.textSecondary,
-    fontSize: 15,
+    fontSize: 16,
   );
   static const TextStyle bodySmallBold = TextStyle(
     fontFamily: Fonts.nunito,
     fontWeight: FontWeight.w600,
     color: AppColor.textSecondary,
-    fontSize: 15,
+    fontSize: 16,
   );
-
-  // Caption Text
-  static const TextStyle caption = TextStyle(
+  static const TextStyle bodyExtraSmall = TextStyle(
     fontFamily: Fonts.nunito,
-    fontSize: 12,
     fontWeight: FontWeight.normal,
     color: AppColor.textSecondary,
+    fontSize: 14,
   );
-  static TextStyle errorText = bodyMedium.copyWith(color: AppColor.error);
+
+  static TextStyle errorText = bodySmall.copyWith(color: AppColor.error);
 }

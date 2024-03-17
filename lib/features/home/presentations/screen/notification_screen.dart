@@ -9,16 +9,20 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: InnerAppBar(
-        centerTitle: true,
-        borderRadius: BorderRadius.zero,
-        title: l10n.notification,
-      ),
-      body: ErrorPlaceholder(
-        heroIcons: HeroIcons.bellSlash,
-        message: l10n.noX(l10n.notification),
-      ),
+    return Column(
+      children: [
+        InnerAppBar(
+          centerTitle: true,
+          borderRadius: BorderRadius.zero,
+          title: l10n.notification,
+        ),
+        Expanded(
+          child: ErrorPlaceholder(
+            heroIcons: HeroIcons.bellSlash,
+            message: l10n.noX(l10n.notification),
+          ),
+        ),
+      ],
     );
   }
 }

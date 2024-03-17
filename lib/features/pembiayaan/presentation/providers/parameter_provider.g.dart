@@ -23,12 +23,12 @@ final parameterRepositoryProvider = Provider<ParameterRepository>.internal(
 
 typedef ParameterRepositoryRef = ProviderRef<ParameterRepository>;
 String _$fetchInitialParameterHash() =>
-    r'587ae64c96cc88508ae5eddba6ff0823306d2875';
+    r'749bbf8184c5f8718460fa342c255a01bdde1bc0';
 
 /// See also [fetchInitialParameter].
 @ProviderFor(fetchInitialParameter)
 final fetchInitialParameterProvider =
-    FutureProvider<Either<Failure, AppParameter>>.internal(
+    FutureProvider<Either<Failure, LoanParameter>>.internal(
   fetchInitialParameter,
   name: r'fetchInitialParameterProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -39,7 +39,7 @@ final fetchInitialParameterProvider =
 );
 
 typedef FetchInitialParameterRef
-    = FutureProviderRef<Either<Failure, AppParameter>>;
+    = FutureProviderRef<Either<Failure, LoanParameter>>;
 String _$fetchProdukHash() => r'af17ebb28b3a5c2503e47918530792bceebfb6af';
 
 /// Copied from Dart SDK

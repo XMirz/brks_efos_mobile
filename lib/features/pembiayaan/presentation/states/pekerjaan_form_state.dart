@@ -1,4 +1,5 @@
 import 'package:efosm/app/domain/entities/field.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pekerjaan_entity.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'pekerjaan_form_state.freezed.dart';
@@ -37,4 +38,21 @@ class PekerjaanFormState with _$PekerjaanFormState {
       tunjangan.isValid &&
       potongan.isValid &&
       gajiBersih.isValid;
+
+  PekerjaanEntity toEntity() {
+    return PekerjaanEntity(
+      profesi: profesi.value,
+      namaInstansi: namaInstansi.value,
+      statusPerusahaan: statusPerusahaan.value,
+      jabatan: jabatan.value,
+      bidangUsaha: bidangUsaha.value,
+      tahunBekerja: tahunBekerja.value,
+      statusPekerjaan: statusPekerjaan.value,
+      sistemPembayaranAngsuran: sistemAngsuran.value,
+      gajiAmprah: gajiAmprah.value,
+      tunjangan: tunjangan.value,
+      potongan: potongan.value,
+      gajiBersih: gajiBersih.value,
+    );
+  }
 }

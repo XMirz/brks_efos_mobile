@@ -20,6 +20,7 @@ _$DataDiriEntityImpl _$$DataDiriEntityImplFromJson(Map<String, dynamic> json) =>
       biayaOperasional: json['b_operasional'],
       biayaRumahTangga: json['b_gaji'],
       statusTempatTinggal: json['status_tempat_tinggal'] as String?,
+      golonganDebitur: json['golongan_deb'] as String?,
       hubunganPerbankan: json['hubungan_bank'],
     );
 
@@ -38,5 +39,6 @@ Map<String, dynamic> _$$DataDiriEntityImplToJson(
       'b_operasional': instance.biayaOperasional,
       'b_gaji': instance.biayaRumahTangga,
       'status_tempat_tinggal': instance.statusTempatTinggal,
+      'golongan_deb': instance.golonganDebitur,
       'hubungan_bank': instance.hubunganPerbankan,
     };

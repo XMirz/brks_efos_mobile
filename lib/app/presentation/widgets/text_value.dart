@@ -27,7 +27,7 @@ class TextValue extends StatelessWidget {
           flex: titleFlex ?? 4,
           child: Text(
             title,
-            style: AppTextStyle.subtitleSmall.copyWith(
+            style: AppTextStyle.bodySmall.copyWith(
               color: AppColor.textPrimary,
               fontWeight: FontWeight.w500,
             ),
