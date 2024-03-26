@@ -14,14 +14,14 @@ _$PekerjaanEntityImpl _$$PekerjaanEntityImplFromJson(
       statusPerusahaan: json['status_perusahaan'] as String?,
       jabatan: json['jabatan'] as String?,
       bidangUsaha: json['bidang_usaha'] as String?,
-      tahunBekerja: json['tahun_bekerja'],
-      statusPekerjaan: json['status'] as String?,
+      tahunBekerja: json['tahun_bekerja'] ?? 0,
+      statusPekerjaan: json['status'] as String? ?? '',
       sistemPembayaranAngsuran: json['kolektif'] as String?,
       gajiAmprah: json['gaji'],
       tunjangan: json['tunjangan'],
       potongan: json['potongan'],
       gajiBersih: json['netto'],
-      id: json['id'] as int?,
+      id: json['id'],
       idDebitur: json['id_debitur'] as String? ?? '',
     );
 

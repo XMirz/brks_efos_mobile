@@ -19,6 +19,8 @@ class LoanState with _$LoanState {
     @Default(false) bool? showUpdate,
     @Default(false) bool? canForward,
     @Default(false) bool? showForward,
+    @Default(false) bool? canReview,
+    @Default(false) bool? showReview,
     @Default(false) bool? canReject,
     @Default(false) bool? showReject,
     @Default(null) String? approveErrorMessage,

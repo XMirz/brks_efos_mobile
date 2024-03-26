@@ -16,16 +16,13 @@ class SessionEntity with _$SessionEntity {
     // required bool isSupervisorAO,
     required String token,
     @JsonKey(name: 'level_apv_cabang') required String levelApproveCabang,
-    @JsonKey(name: 'limit_produktif_cabang')
-    required double limitProduktifCabang,
-    @JsonKey(name: 'limit_konsumtif_cabang')
-    required double limitKonsumtifCabang,
-    // required List<String> permissions,
+    @JsonKey(name: 'limit_produktif_cabang') required double limitProduktifCabang,
+    @JsonKey(name: 'limit_konsumtif_cabang') required double limitKonsumtifCabang,
+    required List<String> permissions,
     required List<String> authorities,
     @Default('SINGLE') String authorizationType,
   }) = _SessionEntity;
 
   const SessionEntity._();
-  factory SessionEntity.fromJson(Map<String, dynamic> json) =>
-      _$SessionEntityFromJson(json);
+  factory SessionEntity.fromJson(Map<String, dynamic> json) => _$SessionEntityFromJson(json);
 }

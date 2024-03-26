@@ -7,6 +7,7 @@ import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart
 import 'package:efosm/features/pembiayaan/presentation/states/pekerjaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
@@ -165,9 +166,9 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     setTahunBekerja(state.tahunBekerja.value, showError: true);
     setStatusPekerjaan(state.statusPekerjaan.value, showError: true);
     setSistemAngsuran(state.sistemAngsuran.value, showError: true);
-    setGajiAmprah(state.gajiAmprah.value, showError: true);
-    setTunjangan(state.tunjangan.value, showError: true);
-    setPotongan(state.potongan.value, showError: true);
+    setGajiAmprah(toNumericString(state.gajiAmprah.value), showError: true);
+    setTunjangan(toNumericString(state.tunjangan.value), showError: true);
+    setPotongan(toNumericString(state.potongan.value), showError: true);
     setGajiBersih(state.gajiBersih.value, showError: true);
     return state.isValid;
   }
@@ -192,13 +193,13 @@ class PerkerjaanFormProvider extends StateNotifier<PekerjaanFormState> {
     setBidangUsaha(data.bidangUsaha);
     setStatusPerusahaan(data.statusPerusahaan);
     setJabatan(data.jabatan);
-    setTahunBekerja(data.tahunBekerja.toString());
+    setTahunBekerja(data.tahunBekerja != null ? data.tahunBekerja.toString() : null);
     setStatusPekerjaan(data.statusPekerjaan);
     setSistemAngsuran(data.sistemPembayaranAngsuran);
-    setGajiAmprah(data.gajiAmprah.toString());
-    setTunjangan(data.tunjangan.toString());
-    setPotongan(data.potongan.toString());
-    setGajiBersih(data.gajiBersih.toString());
+    setGajiAmprah(toNumericString(double.tryParse(data.gajiAmprah.toString())?.toInt().toString()));
+    setTunjangan(toNumericString(double.tryParse(data.tunjangan.toString())?.toInt().toString()));
+    setPotongan(toNumericString(double.tryParse(data.potongan.toString())?.toInt().toString()));
+    setGajiBersih(toNumericString(double.tryParse(data.gajiBersih.toString())?.toInt().toString()));
   }
 
   // void setPekerjaan(PembiayaanEntity pembiayaanEntity, LoanParameter parameter) {

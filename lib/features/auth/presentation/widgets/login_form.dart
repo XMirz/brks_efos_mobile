@@ -12,6 +12,7 @@ import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/di/injector.dart';
 import 'package:efosm/features/auth/presentation/providers/login_form_provider.dart';
+import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -82,6 +83,7 @@ class LoginForm extends ConsumerWidget {
         await ref.read(localAuthRepositoryProvider).savedeviceId(deviceId);
         ref.read(authenticatedUserProvider.notifier).state = UserState(token: r.token, user: r);
         ref
+          ..invalidate(pageIndexProvider)
           ..invalidate(loginFormProvider)
           ..invalidate(usernameControllerProvider)
           ..invalidate(passwordControllerProvider);

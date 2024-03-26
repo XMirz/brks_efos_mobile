@@ -272,6 +272,16 @@ class AgunanFormProvider extends StateNotifier<AgunanFormState> {
     );
   }
 
+  void setFormRequirementByCategory(ProductCategory productCategory) {
+    final isProduktif = productCategory == ProductCategory.produktif;
+    state = state.copyWith(
+      isJaminan: state.isJaminan.copyWith(
+        isRequired: !isProduktif,
+        disabled: isProduktif,
+      ),
+    );
+  }
+
   Future<void> setFormValue(AgunanEntity data) async {
     final isJaminan = data.isJaminan == AppString.isJaminanValue;
     var deskripsi = data.deskripsi;

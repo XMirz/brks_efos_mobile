@@ -1,9 +1,11 @@
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/router_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/loan_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
+import 'package:efosm/app/presentation/widgets/can.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/app/presentation/widgets/placeholders.dart';
@@ -11,6 +13,7 @@ import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/api_path.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/core/constants/permissions.dart';
 import 'package:efosm/features/home/presentations/data/entitiy/pembiayaan_list_item_entity.dart';
 import 'package:efosm/features/home/presentations/providers/list_pembiayaan_provider.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -85,13 +88,21 @@ class PembiayaanSreen extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               children: [
-                ListPembiayaan(
-                  searchKey: searchKeyword,
-                  endPoint: ApiPath.listPembiayaanProduktif,
+                Can(
+                  can: ref.read(canProvider(Permission.indexPembiayaanProduktif)),
+                  onCannot: ErrorPlaceholder(message: l10n.noAccess),
+                  onCan: ListPembiayaan(
+                    searchKey: searchKeyword,
+                    endPoint: ApiPath.listPembiayaanProduktif,
+                  ),
                 ),
-                ListPembiayaan(
-                  searchKey: searchKeyword,
-                  endPoint: ApiPath.listPembiayaanKonsumtif,
+                Can(
+                  can: ref.read(canProvider(Permission.indexPembiayaanKonsumtif)),
+                  onCannot: ErrorPlaceholder(message: l10n.noAccess),
+                  onCan: ListPembiayaan(
+                    searchKey: searchKeyword,
+                    endPoint: ApiPath.listPembiayaanKonsumtif,
+                  ),
                 ),
               ],
             ),

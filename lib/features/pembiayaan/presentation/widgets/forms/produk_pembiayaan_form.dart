@@ -24,12 +24,11 @@ class ProdukPembiayaanForm extends ConsumerWidget {
     final formState = ref.watch(pembiayaanFormProvider);
     final formStateNotifier = ref.watch(pembiayaanFormProvider.notifier);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
+        spaceY(8),
         FormHeader(title: l10n.pembiayaan),
-        spaceY(16),
+        spaceY(8),
         OurDropDownField(
           items: buildDropDownItem(parameter.parKategoriProduk),
           capitalizeFirst: true,
@@ -56,9 +55,9 @@ class ProdukPembiayaanForm extends ConsumerWidget {
         ),
         OurDropDownField(
           items: buildDropDownItem(ref
-              .watch(fetchProdukProvider(formState.idKategoriProduk.value ?? ''))
+              .watch(fetchJenisPengajuanProvider(formState.idKategoriProduk.value ?? ''))
               .maybeWhen(data: (data) => data, orElse: () => [])),
-          isLoading: ref.watch(fetchProdukProvider(formState.idKategoriProduk.value ?? '')).isLoading,
+          isLoading: ref.watch(fetchJenisPengajuanProvider(formState.idKategoriProduk.value ?? '')).isLoading,
           label: context.l10n.jenisPengajuan,
           hint: context.l10n.jenisPengajuan,
           value: formState.idJenisPengajuan.value,
@@ -130,7 +129,7 @@ class ProdukPembiayaanForm extends ConsumerWidget {
           disabled: formState.tenorPengajuan.disabled,
           onChanged: formStateNotifier.setTenor,
         ),
-        spaceY(12),
+        spaceY(24),
       ],
     );
   }

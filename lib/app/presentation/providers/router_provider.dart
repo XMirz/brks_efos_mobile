@@ -49,9 +49,12 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: AppRoutes.createPembiayaanPage,
             name: AppRoutes.createPembiayaanPage,
             builder: (BuildContext context, GoRouterState state) {
-              final parameter = state.extra! as LoanParameter;
+              final extra = state.extra! as FormPembiayaanScreenData;
+              print(extra);
               return CreatePembiayaanScreen(
-                parameter: parameter,
+                parameter: extra.$1,
+                idLoan: extra.$2,
+                pembiayaanEntity: extra.$3,
               );
             },
           ),
@@ -129,4 +132,5 @@ class AppRoutes {
   static const errorPage = '/error-page';
 }
 
+typedef FormPembiayaanScreenData = (LoanParameter parameter, String? idLoan, PembiayaanEntity? pembiayaan);
 typedef FormAgunanScreenData = (String idLoan, LoanParameter parameter, AgunanEntity? agunanEntit);

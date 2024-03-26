@@ -45,7 +45,7 @@ class AgunanFormState with _$AgunanFormState {
 
   AgunanEntity toEntity(String image, {String? idJaminan}) {
     var strDeskripsi = deskripsi.value ?? '';
-    if (deskripsi.value == AppString.isJaminanValue) {
+    if (isJaminan.value == AppString.isJaminanValue) {
       strDeskripsi = strDeskripsi.padRight(50);
       strDeskripsi = strDeskripsi + (deskripsi2.value ?? '').padRight(50);
       strDeskripsi = strDeskripsi + (deskripsi3.value ?? '').padRight(50);

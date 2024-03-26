@@ -60,122 +60,122 @@ class EditPembiayaanScreen extends HookConsumerWidget {
     // ];
 
     Future<void> saveDataPembiayaan() async {
-      unawaited(
-        showDialog<void>(
-          context: context,
-          builder: (context) {
-            return const LoadingDialog();
-          },
-        ),
-      );
+      // unawaited(
+      //   showDialog<void>(
+      //     context: context,
+      //     builder: (context) {
+      //       return const LoadingDialog();
+      //     },
+      //   ),
+      // );
 
-      final dataDiriFormState = ref.read(dataDiriFormProvider);
-      final pekerjaanFormState = ref.read(pekerjaanFormProvider);
-      final pembiayaanFormState = ref.read(pembiayaanFormProvider);
-      final pasanganState = ref.read(pasanganFormProvider);
-      // final listAgunanState = ref.read(listAgunanProvider);
+      // final dataDiriFormState = ref.read(dataDiriFormProvider);
+      // final pekerjaanFormState = ref.read(pekerjaanFormProvider);
+      // final pembiayaanFormState = ref.read(pembiayaanFormProvider);
+      // final pasanganState = ref.read(pasanganFormProvider);
+      // // final listAgunanState = ref.read(listAgunanProvider);
 
-      final dataDiri = DataDiriEntity(
-        nik: dataDiriFormState.nik.value,
-        nama: dataDiriFormState.nama.value,
-        alamat: dataDiriFormState.alamat.value,
-        tempatLahir: dataDiriFormState.tempatLahir.value,
-        tanggalLahir: dataDiriFormState.tanggalLahir.value,
-        jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value ?? ''),
-        statusPernikahan: dataDiriFormState.statusPernikahan.value,
-        jumlahTanggungan: dataDiriFormState.jumlahTanggungan.value,
-        kewajiban: dataDiriFormState.kewajiban.value,
-        biayaOperasional: dataDiriFormState.biayaOperasional.value,
-        biayaRumahTangga: dataDiriFormState.biayaRumahTangga.value,
-        statusTempatTinggal: dataDiriFormState.statusTempatTinggal.value,
-        hubunganPerbankan: dataDiriFormState.hubunganPerbankan.value,
-        golonganDebitur: dataDiriFormState.golonganDebitur.value,
-      );
+      // final dataDiri = DataDiriEntity(
+      //   nik: dataDiriFormState.nik.value,
+      //   nama: dataDiriFormState.nama.value,
+      //   alamat: dataDiriFormState.alamat.value,
+      //   tempatLahir: dataDiriFormState.tempatLahir.value,
+      //   tanggalLahir: dataDiriFormState.tanggalLahir.value,
+      //   jenisKelamin: int.parse(dataDiriFormState.jenisKelamin.value ?? ''),
+      //   statusPernikahan: dataDiriFormState.statusPernikahan.value,
+      //   jumlahTanggungan: dataDiriFormState.jumlahTanggungan.value,
+      //   kewajiban: dataDiriFormState.kewajiban.value,
+      //   biayaOperasional: dataDiriFormState.biayaOperasional.value,
+      //   biayaRumahTangga: dataDiriFormState.biayaRumahTangga.value,
+      //   statusTempatTinggal: dataDiriFormState.statusTempatTinggal.value,
+      //   hubunganPerbankan: dataDiriFormState.hubunganPerbankan.value,
+      //   golonganDebitur: dataDiriFormState.golonganDebitur.value,
+      // );
 
-      final pekerjaan = PekerjaanEntity(
-        id: this.pembiayaan.pekerjaan.id,
-        profesi: pekerjaanFormState.profesi.value,
-        namaInstansi: pekerjaanFormState.namaInstansi.value,
-        statusPerusahaan: pekerjaanFormState.statusPerusahaan.value,
-        jabatan: pekerjaanFormState.jabatan.value,
-        bidangUsaha: pekerjaanFormState.bidangUsaha.value,
-        tahunBekerja: pekerjaanFormState.tahunBekerja.value,
-        statusPekerjaan: pekerjaanFormState.statusPekerjaan.value,
-        sistemPembayaranAngsuran: pekerjaanFormState.sistemAngsuran.value,
-        gajiAmprah: pekerjaanFormState.gajiAmprah.value,
-        tunjangan: pekerjaanFormState.tunjangan.value,
-        potongan: pekerjaanFormState.potongan.value,
-        gajiBersih: pekerjaanFormState.gajiBersih.value,
-      );
+      // final pekerjaan = PekerjaanEntity(
+      //   id: this.pembiayaan.pekerjaan.id,
+      //   profesi: pekerjaanFormState.profesi.value,
+      //   namaInstansi: pekerjaanFormState.namaInstansi.value,
+      //   statusPerusahaan: pekerjaanFormState.statusPerusahaan.value,
+      //   jabatan: pekerjaanFormState.jabatan.value,
+      //   bidangUsaha: pekerjaanFormState.bidangUsaha.value,
+      //   tahunBekerja: pekerjaanFormState.tahunBekerja.value,
+      //   statusPekerjaan: pekerjaanFormState.statusPekerjaan.value,
+      //   sistemPembayaranAngsuran: pekerjaanFormState.sistemAngsuran.value,
+      //   gajiAmprah: pekerjaanFormState.gajiAmprah.value,
+      //   tunjangan: pekerjaanFormState.tunjangan.value,
+      //   potongan: pekerjaanFormState.potongan.value,
+      //   gajiBersih: pekerjaanFormState.gajiBersih.value,
+      // );
 
-      final pasangan = dataDiri.statusPernikahan != AppString.isMarriedValue
-          ? null
-          : PasanganEntity(
-              idDebitur: this.pembiayaan.dataDiri.nik,
-              nik: pasanganState.nik.value,
-              nama: pasanganState.nama.value,
-              penghasilan: pasanganState.penghasilan.value,
-              gajiAmprah: pasanganState.gajiAmprah.value,
-              tunjangan: pasanganState.tunjangan.value,
-              potongan: pasanganState.potongan.value,
-              gajiBersih: pasanganState.gajiBersih.value,
-            );
+      // final pasangan = dataDiri.statusPernikahan != AppString.isMarriedValue
+      //     ? null
+      //     : PasanganEntity(
+      //         idDebitur: this.pembiayaan.dataDiri.nik,
+      //         nik: pasanganState.nik.value,
+      //         nama: pasanganState.nama.value,
+      //         penghasilan: pasanganState.penghasilan.value,
+      //         gajiAmprah: pasanganState.gajiAmprah.value,
+      //         tunjangan: pasanganState.tunjangan.value,
+      //         potongan: pasanganState.potongan.value,
+      //         gajiBersih: pasanganState.gajiBersih.value,
+      //       );
 
-      final produkPembiayaan = ProdukPembiayaanEntity(
-        id: this.pembiayaan.produkPembiayaan.id,
-        idKategoriProduk: pembiayaanFormState.idKategoriProduk.value,
-        idProduk: pembiayaanFormState.idProduk.value,
-        idJenisPengajuan: pembiayaanFormState.idJenisPengajuan.value,
-        idSubProduk: pembiayaanFormState.idSubProduk.value,
-        idPlan: pembiayaanFormState.idPlan.value,
-        tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value,
-        plafonPengajuan: pembiayaanFormState.plafonPengajuan.value,
-        tenorPengajuan: pembiayaanFormState.tenorPengajuan.value,
-      );
+      // final produkPembiayaan = ProdukPembiayaanEntity(
+      //   id: this.pembiayaan.produkPembiayaan.id,
+      //   idKategoriProduk: pembiayaanFormState.idKategoriProduk.value,
+      //   idProduk: pembiayaanFormState.idProduk.value,
+      //   idJenisPengajuan: pembiayaanFormState.idJenisPengajuan.value,
+      //   idSubProduk: pembiayaanFormState.idSubProduk.value,
+      //   idPlan: pembiayaanFormState.idPlan.value,
+      //   tujuanPembiayaan: pembiayaanFormState.tujuanPembiayaan.value,
+      //   plafonPengajuan: pembiayaanFormState.plafonPengajuan.value,
+      //   tenorPengajuan: pembiayaanFormState.tenorPengajuan.value,
+      // );
 
-      // Pembiayaan
-      final pembiayaan = {
-        'cabang': ref.read(authenticatedUserProvider).user!.idCabang,
-        'username': ref.read(authenticatedUserProvider).user!.username,
-        'nama': ref.read(authenticatedUserProvider).user!.name,
-        'id_loan': idLoan,
-        'data_diri': dataDiri,
-        'pekerjaan': pekerjaan,
-        'pasangan': pasangan ?? {},
-        'produk_pembiayaan': produkPembiayaan,
-      };
+      // // Pembiayaan
+      // // final pembiayaan = {
+      // //   'cabang': ref.read(authenticatedUserProvider).user!.idCabang,
+      // //   'username': ref.read(authenticatedUserProvider).user!.username,
+      // //   'nama': ref.read(authenticatedUserProvider).user!.name,
+      // //   'id_loan': idLoan,
+      // //   'data_diri': dataDiri,
+      // //   'pekerjaan': pekerjaan,
+      // //   'pasangan': pasangan ?? {},
+      // //   'produk_pembiayaan': produkPembiayaan,
+      // // };
 
-      final editResponse = await ref.read(updateLoanProvider(pembiayaan).future);
-      if (context.mounted) context.pop('dialog');
-      await editResponse.fold((l) {
-        showDialog<void>(
-          context: context,
-          builder: (context) {
-            return OurAlertDialog(
-              title: l10n.failed,
-              description: l.message,
-              onPressed: () => context.pop('dialog'),
-            );
-          },
-        );
-      }, (r) async {
-        await showDialog<void>(
-          barrierDismissible: false,
-          context: context,
-          builder: (context) {
-            return OurAlertDialog(
-              title: l10n.success,
-              icon: const HeroIcon(HeroIcons.check),
-              description: l10n.saveLoanSuccess,
-              onPressed: () => context.pop('dialog'),
-            );
-          },
-        );
-        invalidateForms(ref);
-        ref.invalidate(detailKonsumtifProvider(idLoan));
-        ref.invalidate(detailProduktifProvider(idLoan));
-        if (context.mounted) context.pop();
-      });
+      // // // final editResponse = await ref.read(updateLoanProvider(pembiayaan).future);
+      // // // if (context.mounted) context.pop('dialog');
+      // // // await editResponse.fold((l) {
+      // // //   showDialog<void>(
+      // // //     context: context,
+      // // //     builder: (context) {
+      // // //       return OurAlertDialog(
+      // // //         title: l10n.failed,
+      // // //         description: l.message,
+      // // //         onPressed: () => context.pop('dialog'),
+      // // //       );
+      // // //     },
+      // // //   );
+      // // // }, (r) async {
+      // // //   await showDialog<void>(
+      // // //     barrierDismissible: false,
+      // // //     context: context,
+      // // //     builder: (context) {
+      // // //       return OurAlertDialog(
+      // // //         title: l10n.success,
+      // // //         icon: const HeroIcon(HeroIcons.check),
+      // // //         description: l10n.saveLoanSuccess,
+      // // //         onPressed: () => context.pop('dialog'),
+      // // //       );
+      // // //     },
+      // // //   );
+      // // //   invalidateForms(ref);
+      // // //   ref.invalidate(detailKonsumtifProvider(idLoan));
+      // // //   ref.invalidate(detailProduktifProvider(idLoan));
+      // // //   if (context.mounted) context.pop();
+      // // // });
     }
 
     void handleNextButton() {

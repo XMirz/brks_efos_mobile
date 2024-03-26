@@ -221,6 +221,7 @@ void invalidateApprovalForm(WidgetRef ref) {
     ..invalidate(nikController)
     ..invalidate(namaController)
     ..invalidate(tanggalLahirController)
+    ..invalidate(keteranganController)
     ..invalidate(rekomendasiController)
     ..invalidate(arahanCallController)
     ..invalidate(keputusanController)

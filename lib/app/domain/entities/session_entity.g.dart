@@ -19,6 +19,9 @@ _$SessionEntityImpl _$$SessionEntityImplFromJson(Map<String, dynamic> json) =>
       levelApproveCabang: json['level_apv_cabang'] as String,
       limitProduktifCabang: (json['limit_produktif_cabang'] as num).toDouble(),
       limitKonsumtifCabang: (json['limit_konsumtif_cabang'] as num).toDouble(),
+      permissions: (json['permissions'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
       authorities: (json['authorities'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -38,6 +41,7 @@ Map<String, dynamic> _$$SessionEntityImplToJson(_$SessionEntityImpl instance) =>
       'level_apv_cabang': instance.levelApproveCabang,
       'limit_produktif_cabang': instance.limitProduktifCabang,
       'limit_konsumtif_cabang': instance.limitKonsumtifCabang,
+      'permissions': instance.permissions,
       'authorities': instance.authorities,
       'authorizationType': instance.authorizationType,
     };

@@ -293,7 +293,6 @@ class SliverItems extends ConsumerWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(item.status.toString()),
                         Text(
                           capitalizeEachWord(item.idUsulan.toString()),
                           style: AppTextStyle.bodyMediumBold.copyWith(color: AppColor.textPrimary),
@@ -400,6 +399,7 @@ class SliverItems extends ConsumerWidget {
                     // ),
                   ],
                 ),
+                spaceY(4),
               ],
             ),
           );

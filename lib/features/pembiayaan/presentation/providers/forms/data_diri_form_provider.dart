@@ -3,7 +3,9 @@ import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/data_diri_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
+import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -107,6 +109,7 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
   }
 
   void setKewajiban(String? value, {bool showError = false}) {
+    print(value);
     final message = state.kewajiban.isRequired ? Validator.numeric(l10n.kewajiban, value) : null;
     state = state.copyWith(
       kewajiban: state.kewajiban.copyWith(
@@ -187,9 +190,9 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     setTanggalLahir(state.tanggalLahir.value, showError: true);
     setStatusPernikahan(state.statusPernikahan.value, showError: true);
     setJumlahTanggungan(state.jumlahTanggungan.value, showError: true);
-    setKewajiban(state.kewajiban.value, showError: true);
-    setBiayaOperasional(state.biayaOperasional.value, showError: true);
-    setBiayaRumahTangga(state.biayaRumahTangga.value, showError: true);
+    setKewajiban(toNumericString(state.kewajiban.value), showError: true);
+    setBiayaOperasional(toNumericString(state.biayaOperasional.value), showError: true);
+    setBiayaRumahTangga(toNumericString(state.biayaRumahTangga.value), showError: true);
     setStatusTempatTinggal(state.statusTempatTinggal.value, showError: true);
     setGolonganDebitur(state.golonganDebitur.value, showError: true);
     setHubunganPerbankan(state.hubunganPerbankan.value, showError: true);
@@ -219,16 +222,16 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     );
   }
 
-  void setFormRequirementByUpdate({bool isUpdate = false}) {
+  void setFormRequirementUpdate({bool isUpdate = false}) {
     state = state.copyWith(
-      nik: state.kewajiban.copyWith(
+      nik: state.nik.copyWith(
         isRequired: true,
         disabled: isUpdate,
       ),
     );
   }
 
-  void setFormValue(PembiayaanEntity pembiayaanEntity) {
+  void setFormValue(WidgetRef ref, PembiayaanEntity pembiayaanEntity) {
     final data = pembiayaanEntity.dataDiri;
     setNik(data.nik);
     setNama(data.nama);
@@ -237,12 +240,14 @@ class DataDiriFormProvider extends StateNotifier<DataDiriFormState> {
     setTempatLahir(data.tempatLahir);
     setTanggalLahir(data.tanggalLahir);
     setStatusPernikahan(data.statusPernikahan);
-    setJumlahTanggungan(data.jumlahTanggungan.toString());
-    setKewajiban(data.kewajiban.toString());
-    setBiayaOperasional(data.biayaOperasional.toString());
-    setBiayaRumahTangga(data.biayaRumahTangga.toString());
+    setJumlahTanggungan(data.jumlahTanggungan != null ? data.jumlahTanggungan.toString() : null);
+    setKewajiban(toNumericString(double.tryParse(data.kewajiban.toString())?.toInt().toString(), allowPeriod: true));
+    setBiayaOperasional(
+        toNumericString(double.tryParse(data.biayaOperasional.toString())?.toInt().toString(), allowPeriod: true));
+    setBiayaRumahTangga(
+        toNumericString(double.tryParse(data.biayaRumahTangga.toString())?.toInt().toString(), allowPeriod: true));
     setStatusTempatTinggal(data.statusTempatTinggal);
-    setGolonganDebitur(data.golonganDebitur.toString());
+    setGolonganDebitur(data.golonganDebitur != null ? data.golonganDebitur.toString() : null);
     setHubunganPerbankan(data.hubunganPerbankan.toString());
   }
 }

@@ -3,6 +3,9 @@ import 'package:efosm/app/data/dto/user_login_dto.dart';
 import 'package:efosm/app/data/local_repository/local_auth_repository.dart';
 import 'package:efosm/app/data/repositories/auth_repository.dart';
 import 'package:efosm/app/domain/entities/session_entity.dart';
+import 'package:efosm/app/presentation/providers/user_provider.dart';
+import 'package:efosm/app/presentation/utils/auth_utils.dart';
+import 'package:efosm/core/constants/permissions.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/auth/domain/entities/initial_request.dart';
 import 'package:efosm/features/pembiayaan/services/auth_service.dart';
@@ -50,3 +53,23 @@ LocalAuthRepository localAuthRepository(LocalAuthRepositoryRef ref) {
 
 @riverpod
 AuthService authService(AuthServiceRef ref) => AuthService();
+
+// @Riverpod()
+// bool can(
+//   CanRef ref,
+//   Permission permission,
+// ) {
+//   final userPermissions = ref.read(authenticatedUserProvider).user!.permissions;
+//   if (userPermissions.contains(permission.name)) return true;
+//   return false;
+// }
+
+final canProvider = Provider.family.autoDispose<bool, Permission>((ref, permission) {
+  final userPermissions = ref.read(authenticatedUserProvider).user!.permissions;
+  return can(userPermissions, permission);
+});
+
+final canAllProvider = Provider.family.autoDispose<bool, List<Permission>>((ref, permissions) {
+  final userPermissions = ref.read(authenticatedUserProvider).user!.permissions;
+  return canAll(userPermissions, permissions);
+});

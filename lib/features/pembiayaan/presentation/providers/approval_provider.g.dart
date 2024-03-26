@@ -951,7 +951,7 @@ class _ApprovalThreeProduktifProviderElement
   String get keputusan => (origin as ApprovalThreeProduktifProvider).keputusan;
 }
 
-String _$reviewKonsumtifHash() => r'2d38675ab25d117ecd89d4bdd699f08601d1233b';
+String _$reviewKonsumtifHash() => r'172e9f4bdda05914ca24551bd3d8fad1848db21b';
 
 /// See also [reviewKonsumtif].
 @ProviderFor(reviewKonsumtif)
@@ -1100,7 +1100,7 @@ class _ReviewKonsumtifProviderElement
   String get keterangan => (origin as ReviewKonsumtifProvider).keterangan;
 }
 
-String _$reviewProduktifHash() => r'4b854d7cec4286151c2d7b958b76bf16d3dd296f';
+String _$reviewProduktifHash() => r'0b87e3e95b17d48db19cc9a8c7c41e938d4f1f87';
 
 /// See also [reviewProduktif].
 @ProviderFor(reviewProduktif)
@@ -1247,6 +1247,304 @@ class _ReviewProduktifProviderElement
   String get idLoan => (origin as ReviewProduktifProvider).idLoan;
   @override
   String get keterangan => (origin as ReviewProduktifProvider).keterangan;
+}
+
+String _$rejectKonsumtifHash() => r'aef436014ea02e60d1e2ceee6674fcfe5a326900';
+
+/// See also [rejectKonsumtif].
+@ProviderFor(rejectKonsumtif)
+const rejectKonsumtifProvider = RejectKonsumtifFamily();
+
+/// See also [rejectKonsumtif].
+class RejectKonsumtifFamily extends Family<AsyncValue<Either<Failure, void>>> {
+  /// See also [rejectKonsumtif].
+  const RejectKonsumtifFamily();
+
+  /// See also [rejectKonsumtif].
+  RejectKonsumtifProvider call({
+    required String idLoan,
+    required String keterangan,
+  }) {
+    return RejectKonsumtifProvider(
+      idLoan: idLoan,
+      keterangan: keterangan,
+    );
+  }
+
+  @override
+  RejectKonsumtifProvider getProviderOverride(
+    covariant RejectKonsumtifProvider provider,
+  ) {
+    return call(
+      idLoan: provider.idLoan,
+      keterangan: provider.keterangan,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'rejectKonsumtifProvider';
+}
+
+/// See also [rejectKonsumtif].
+class RejectKonsumtifProvider
+    extends AutoDisposeFutureProvider<Either<Failure, void>> {
+  /// See also [rejectKonsumtif].
+  RejectKonsumtifProvider({
+    required String idLoan,
+    required String keterangan,
+  }) : this._internal(
+          (ref) => rejectKonsumtif(
+            ref as RejectKonsumtifRef,
+            idLoan: idLoan,
+            keterangan: keterangan,
+          ),
+          from: rejectKonsumtifProvider,
+          name: r'rejectKonsumtifProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$rejectKonsumtifHash,
+          dependencies: RejectKonsumtifFamily._dependencies,
+          allTransitiveDependencies:
+              RejectKonsumtifFamily._allTransitiveDependencies,
+          idLoan: idLoan,
+          keterangan: keterangan,
+        );
+
+  RejectKonsumtifProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.idLoan,
+    required this.keterangan,
+  }) : super.internal();
+
+  final String idLoan;
+  final String keterangan;
+
+  @override
+  Override overrideWith(
+    FutureOr<Either<Failure, void>> Function(RejectKonsumtifRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: RejectKonsumtifProvider._internal(
+        (ref) => create(ref as RejectKonsumtifRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        idLoan: idLoan,
+        keterangan: keterangan,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Either<Failure, void>> createElement() {
+    return _RejectKonsumtifProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is RejectKonsumtifProvider &&
+        other.idLoan == idLoan &&
+        other.keterangan == keterangan;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, idLoan.hashCode);
+    hash = _SystemHash.combine(hash, keterangan.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin RejectKonsumtifRef
+    on AutoDisposeFutureProviderRef<Either<Failure, void>> {
+  /// The parameter `idLoan` of this provider.
+  String get idLoan;
+
+  /// The parameter `keterangan` of this provider.
+  String get keterangan;
+}
+
+class _RejectKonsumtifProviderElement
+    extends AutoDisposeFutureProviderElement<Either<Failure, void>>
+    with RejectKonsumtifRef {
+  _RejectKonsumtifProviderElement(super.provider);
+
+  @override
+  String get idLoan => (origin as RejectKonsumtifProvider).idLoan;
+  @override
+  String get keterangan => (origin as RejectKonsumtifProvider).keterangan;
+}
+
+String _$rejectProduktifHash() => r'f8a90ebcf6064eb7a7fd47a80b923ff0bafd1978';
+
+/// See also [rejectProduktif].
+@ProviderFor(rejectProduktif)
+const rejectProduktifProvider = RejectProduktifFamily();
+
+/// See also [rejectProduktif].
+class RejectProduktifFamily extends Family<AsyncValue<Either<Failure, void>>> {
+  /// See also [rejectProduktif].
+  const RejectProduktifFamily();
+
+  /// See also [rejectProduktif].
+  RejectProduktifProvider call({
+    required String idLoan,
+    required String keterangan,
+  }) {
+    return RejectProduktifProvider(
+      idLoan: idLoan,
+      keterangan: keterangan,
+    );
+  }
+
+  @override
+  RejectProduktifProvider getProviderOverride(
+    covariant RejectProduktifProvider provider,
+  ) {
+    return call(
+      idLoan: provider.idLoan,
+      keterangan: provider.keterangan,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'rejectProduktifProvider';
+}
+
+/// See also [rejectProduktif].
+class RejectProduktifProvider
+    extends AutoDisposeFutureProvider<Either<Failure, void>> {
+  /// See also [rejectProduktif].
+  RejectProduktifProvider({
+    required String idLoan,
+    required String keterangan,
+  }) : this._internal(
+          (ref) => rejectProduktif(
+            ref as RejectProduktifRef,
+            idLoan: idLoan,
+            keterangan: keterangan,
+          ),
+          from: rejectProduktifProvider,
+          name: r'rejectProduktifProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$rejectProduktifHash,
+          dependencies: RejectProduktifFamily._dependencies,
+          allTransitiveDependencies:
+              RejectProduktifFamily._allTransitiveDependencies,
+          idLoan: idLoan,
+          keterangan: keterangan,
+        );
+
+  RejectProduktifProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.idLoan,
+    required this.keterangan,
+  }) : super.internal();
+
+  final String idLoan;
+  final String keterangan;
+
+  @override
+  Override overrideWith(
+    FutureOr<Either<Failure, void>> Function(RejectProduktifRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: RejectProduktifProvider._internal(
+        (ref) => create(ref as RejectProduktifRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        idLoan: idLoan,
+        keterangan: keterangan,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeFutureProviderElement<Either<Failure, void>> createElement() {
+    return _RejectProduktifProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is RejectProduktifProvider &&
+        other.idLoan == idLoan &&
+        other.keterangan == keterangan;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, idLoan.hashCode);
+    hash = _SystemHash.combine(hash, keterangan.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin RejectProduktifRef
+    on AutoDisposeFutureProviderRef<Either<Failure, void>> {
+  /// The parameter `idLoan` of this provider.
+  String get idLoan;
+
+  /// The parameter `keterangan` of this provider.
+  String get keterangan;
+}
+
+class _RejectProduktifProviderElement
+    extends AutoDisposeFutureProviderElement<Either<Failure, void>>
+    with RejectProduktifRef {
+  _RejectProduktifProviderElement(super.provider);
+
+  @override
+  String get idLoan => (origin as RejectProduktifProvider).idLoan;
+  @override
+  String get keterangan => (origin as RejectProduktifProvider).keterangan;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

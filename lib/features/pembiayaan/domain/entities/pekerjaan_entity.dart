@@ -11,18 +11,17 @@ class PekerjaanEntity with _$PekerjaanEntity {
     @JsonKey(name: 'status_perusahaan') String? statusPerusahaan,
     @JsonKey(name: 'jabatan') String? jabatan,
     @JsonKey(name: 'bidang_usaha') String? bidangUsaha,
-    @JsonKey(name: 'tahun_bekerja') dynamic tahunBekerja,
-    @JsonKey(name: 'status') String? statusPekerjaan,
+    @Default(0) @JsonKey(name: 'tahun_bekerja') dynamic tahunBekerja,
+    @Default('') @JsonKey(name: 'status') String? statusPekerjaan,
     @JsonKey(name: 'kolektif') String? sistemPembayaranAngsuran,
     @JsonKey(name: 'gaji') dynamic gajiAmprah,
     @JsonKey(name: 'tunjangan') dynamic tunjangan,
     @JsonKey(name: 'potongan') dynamic potongan,
     @JsonKey(name: 'netto') dynamic gajiBersih,
-    @JsonKey(name: 'id') int? id,
+    @JsonKey(name: 'id') dynamic id,
     @Default('') @JsonKey(name: 'id_debitur') String idDebitur,
   }) = _PekerjaanEntity;
   const PekerjaanEntity._();
 
-  factory PekerjaanEntity.fromJson(Map<String, dynamic> json) =>
-      _$PekerjaanEntityFromJson(json);
+  factory PekerjaanEntity.fromJson(Map<String, dynamic> json) => _$PekerjaanEntityFromJson(json);
 }

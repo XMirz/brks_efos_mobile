@@ -52,7 +52,7 @@ class DataDiriFormState with _$DataDiriFormState {
       tanggalLahir: tanggalLahir.value,
       jenisKelamin: int.parse(jenisKelamin.value ?? '1'),
       statusPernikahan: statusPernikahan.value,
-      jumlahTanggungan: jumlahTanggungan.value,
+      jumlahTanggungan: jumlahTanggungan.value ?? '0',
       kewajiban: kewajiban.value,
       biayaOperasional: biayaOperasional.value,
       biayaRumahTangga: biayaRumahTangga.value,

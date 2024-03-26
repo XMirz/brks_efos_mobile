@@ -28,9 +28,9 @@ Future<Either<Failure, bool>> saveLoan(
 @riverpod
 Future<Either<Failure, bool>> updateLoan(
   UpdateLoanRef ref,
-  Map<String, Object> dataPembiayaan,
+  CreateLoanRequest request,
 ) async {
-  return ref.read(pembiayaanRepositoryProvider).updateLoan(dataPembiayaan);
+  return ref.read(pembiayaanRepositoryProvider).updateLoan(request);
 }
 
 @riverpod

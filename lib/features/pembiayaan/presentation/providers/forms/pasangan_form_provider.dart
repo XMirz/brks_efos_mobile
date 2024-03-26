@@ -5,6 +5,7 @@ import 'package:efosm/features/pembiayaan/domain/entities/pasangan_entity.dart';
 import 'package:efosm/features/pembiayaan/presentation/states/pasangan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PasanganFormProvider extends StateNotifier<PasanganFormState> {
@@ -98,10 +99,10 @@ class PasanganFormProvider extends StateNotifier<PasanganFormState> {
     setNik(state.nik.value);
     setNama(state.nama.value);
     setPenghasilan(state.penghasilan.value);
-    setGajiAmprah(state.gajiAmprah.value);
-    setTunjangan(state.tunjangan.value);
-    setPotongan(state.potongan.value);
-    setGajiBersih(state.gajiBersih.value);
+    setGajiAmprah(toNumericString(state.gajiAmprah.value));
+    setTunjangan(toNumericString(state.tunjangan.value));
+    setPotongan(toNumericString(state.potongan.value));
+    setGajiBersih(toNumericString(state.gajiBersih.value));
     return state.isValid;
   }
 
@@ -142,10 +143,10 @@ class PasanganFormProvider extends StateNotifier<PasanganFormState> {
     setNik(data.nik);
     setNama(data.nama);
     setPenghasilan(data.penghasilan.toString());
-    setGajiAmprah(data.gajiAmprah.toString());
-    setTunjangan(data.tunjangan.toString());
-    setPotongan(data.potongan.toString());
-    setGajiBersih(data.gajiBersih.toString());
+    setGajiAmprah(toNumericString(double.parse(data.gajiAmprah.toString()).toInt().toString()));
+    setTunjangan(toNumericString(double.parse(data.tunjangan.toString()).toInt().toString()));
+    setPotongan(toNumericString(double.parse(data.potongan.toString()).toInt().toString()));
+    setGajiBersih(toNumericString(double.parse(data.gajiBersih.toString()).toInt().toString()));
   }
 }
 

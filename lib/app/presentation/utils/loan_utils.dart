@@ -3,6 +3,7 @@ import 'package:efosm/app/domain/entities/loan_state.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/core/constants/approval_type.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/constants/permissions.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/l10n/l10n.dart';
 
@@ -18,6 +19,7 @@ LoanState buildKonsumtifLoanState({
   required String role,
   required String levelCabang,
   required List<String> authorities,
+  required List<String> userPermissions,
   required double limit,
   required double plafon,
   bool isUsulan = false,
@@ -30,6 +32,8 @@ LoanState buildKonsumtifLoanState({
   var showUpdate = false;
   var canApprove = false;
   var showApprove = false;
+  var canReview = false;
+  var showReview = false;
   var canReject = false;
   var showReject = false;
   var canForward = false;
@@ -41,27 +45,27 @@ LoanState buildKonsumtifLoanState({
   String? approveErrorMessage;
   if (status == '0') {
     statusDescription = 'Draft';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     showUpdate = true;
   } else if (status == '1') {
     statusDescription = 'Ditolak';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     showUpdate = true;
     statusColor = AppColor.error;
   } else if (status == '2') {
     statusDescription = 'Lolos Skoring';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     showUpdate = true;
     statusColor = AppColor.info;
   } else if (status == '3') {
     statusDescription = 'Data Lengkap';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     showUpdate = true;
     statusColor = AppColor.info;
   } else if (status == '4') {
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
     showApprove = true;
-    showReject = true;
+    showReview = true;
     statusColor = AppColor.warning;
 
     if (typeCabang == 1) {
@@ -89,22 +93,27 @@ LoanState buildKonsumtifLoanState({
       nextStatus = '6';
     }
   } else if (status == '5') {
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     statusDescription = 'Review Data Nasabah';
     statusColor = AppColor.info;
     identityValidation = true;
   } else if (status == '6') {
     statusDescription = 'Menunggu Apv Manager Bisnis';
     canApprove = authorities.contains(ApprovalType.notisi2.typeName);
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
     approvalType = ApprovalType.notisi2;
     statusColor = AppColor.warning;
     nextStatus = '7';
   } else if (status == '7') {
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
+    canReject = canAuthorizeAll(authorities, [
+      ApprovalType.reject.typeName,
+      ApprovalType.notisi3.typeName,
+    ]);
     canApprove = authorities.contains(ApprovalType.notisi3.typeName) && plafon <= limit;
     canForward = plafon > limit;
     showForward = true;
+    showReject = true;
     approvalType = ApprovalType.notisi3;
     statusColor = AppColor.warning;
     nextStatus = '13';
@@ -180,9 +189,11 @@ LoanState buildKonsumtifLoanState({
     showForward: showForward,
     canUpdate: canUpdate,
     showUpdate: showUpdate,
+    canReview: canReview,
+    showReview: showReview,
+    canApprove: canApprove,
     canReject: canReject,
     showReject: showReject,
-    canApprove: canApprove,
     showApprove: showApprove,
     identityValidation: identityValidation,
     approvalType: approvalType,
@@ -198,6 +209,7 @@ LoanState buildProduktifLoanState({
   required String role,
   required String levelCabang,
   required List<String> authorities,
+  required List<String> userPermissions,
   required double limit,
   required double plafon,
   bool isUsulan = false,
@@ -210,6 +222,8 @@ LoanState buildProduktifLoanState({
   var showUpdate = false;
   var canApprove = false;
   var showApprove = false;
+  var canReview = false;
+  var showReview = false;
   var canReject = false;
   var showReject = false;
   var canForward = false;
@@ -221,32 +235,32 @@ LoanState buildProduktifLoanState({
   String? approveErrorMessage;
   if (status == '0') {
     statusDescription = 'Draft';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     showUpdate = true;
   } else if (status == '1') {
     statusDescription = 'Lolos Wallet Analysis';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     showUpdate = true;
     statusColor = AppColor.info;
   } else if (status == '2') {
     statusDescription = 'Ditolak';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     showUpdate = true;
     statusColor = AppColor.error;
   } else if (status == '3') {
     statusDescription = 'Lolos Skoring';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     showUpdate = true;
     statusColor = AppColor.info;
   } else if (status == '4') {
     statusDescription = 'Data Lengkap';
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     showUpdate = true;
     statusColor = AppColor.info;
   } else if (status == '5') {
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
     showApprove = true;
-    showReject = true;
+    showReview = true;
     statusColor = AppColor.warning;
     identityValidation = true;
     if (typeCabang == 1) {
@@ -280,13 +294,13 @@ LoanState buildProduktifLoanState({
     //   approvalType = ApprovalType.notisi1;
     // }
   } else if (status == '6') {
-    canUpdate = isAO(roleId);
+    canUpdate = can(userPermissions, Permission.editPembiayaanProduktif);
     statusDescription = 'Review Data Nasabah';
     statusColor = AppColor.info;
   } else if (status == '7') {
     statusDescription = 'Menunggu Apv Manager Bisnis';
     canApprove = authorities.contains(ApprovalType.notisi2.typeName);
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
     approvalType = ApprovalType.notisi2;
     nextStatus = '8';
     approveErrorMessage =
@@ -296,8 +310,13 @@ LoanState buildProduktifLoanState({
     final canAuth = authorities.contains(ApprovalType.notisi3.typeName);
     canApprove = canAuth && plafon <= limit;
     canForward = canAuth && plafon > limit;
-    canReject = authorities.contains(ApprovalType.reject.typeName);
+    canReview = authorities.contains(ApprovalType.review.typeName);
+    canReject = canAuthorizeAll(authorities, [
+      ApprovalType.reject.typeName,
+      ApprovalType.notisi3.typeName,
+    ]);
     showForward = true;
+    showReject = true;
     approvalType = ApprovalType.notisi3;
     statusColor = AppColor.warning;
     nextStatus = '9';
@@ -389,6 +408,8 @@ LoanState buildProduktifLoanState({
     showForward: showForward,
     canUpdate: canUpdate,
     showUpdate: showUpdate,
+    canReview: canReview,
+    showReview: showReview,
     canReject: canReject,
     showReject: showReject,
     canApprove: canApprove,
@@ -413,6 +434,7 @@ LoanState buildLoanState({
   required String role,
   required String levelCabang,
   required List<String> authorities,
+  required List<String> userPermissions,
   required double limitKonsumtif,
   required double limitProduktif,
   required double plafon,
@@ -426,6 +448,7 @@ LoanState buildLoanState({
       role: role,
       levelCabang: levelCabang,
       authorities: authorities,
+      userPermissions: userPermissions,
       limit: limitKonsumtif,
       plafon: plafon,
     );
@@ -437,6 +460,7 @@ LoanState buildLoanState({
       role: role,
       levelCabang: levelCabang,
       authorities: authorities,
+      userPermissions: userPermissions,
       limit: limitProduktif,
       plafon: plafon,
     );

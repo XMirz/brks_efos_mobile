@@ -8,6 +8,7 @@ import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -27,12 +28,9 @@ class DataDiriForm extends ConsumerWidget {
     final formStateNotifier = ref.watch(dataDiriFormProvider.notifier);
     return ListView(
       children: [
-        Text(
-          l10n.dataDiri,
-          style: AppTextStyle.titleMedium,
-          textAlign: TextAlign.left,
-        ),
-        spaceY(14),
+        spaceY(8),
+        FormHeader(title: l10n.pekerjaan),
+        spaceY(8),
         OurTextField(
           maxLength: 16,
           keyboardType: TextInputType.number,
@@ -77,6 +75,7 @@ class DataDiriForm extends ConsumerWidget {
                 label: context.l10n.tempatLahir,
                 hint: context.l10n.tempatLahir,
                 controller: ref.read(tempatLahirController),
+                forceUpperCase: true,
                 error: formState.tempatLahir.showError ? formState.tempatLahir.errorMessage : null,
                 isRequired: formState.tempatLahir.isRequired,
                 disabled: formState.tempatLahir.disabled,
@@ -102,6 +101,7 @@ class DataDiriForm extends ConsumerWidget {
           label: context.l10n.alamat,
           controller: ref.read(alamatController),
           hint: context.l10n.alamat,
+          forceUpperCase: true,
           error: formState.alamat.showError ? formState.alamat.errorMessage : null,
           isRequired: formState.alamat.isRequired,
           disabled: formState.alamat.disabled,

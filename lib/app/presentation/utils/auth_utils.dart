@@ -1,12 +1,4 @@
-import 'package:efosm/core/constants/integer.dart';
-
-bool isSupervisorAO(int roleId) {
-  return AppInteger.idsRoleSupervisorAO.contains(roleId);
-}
-
-bool isAO(int roleId) {
-  return AppInteger.idsRoleAO.contains(roleId);
-}
+import 'package:efosm/core/constants/permissions.dart';
 
 bool canAuthorizeAll(List<String> userAuths, List<String> requiredAuths) {
   for (final element in requiredAuths) {
@@ -20,6 +12,19 @@ bool canAuthorizeAll(List<String> userAuths, List<String> requiredAuths) {
 bool canAuthorize(List<String> userAuths, String requiredAuth) {
   if (!userAuths.contains(requiredAuth)) {
     return false;
+  }
+  return true;
+}
+
+bool can(List<String> userPermissions, Permission permission) {
+  return userPermissions.contains(permission.name);
+}
+
+bool canAll(List<String> userPermissions, List<Permission> permissions) {
+  for (final element in permissions) {
+    if (!userPermissions.contains(element.name)) {
+      return false;
+    }
   }
   return true;
 }

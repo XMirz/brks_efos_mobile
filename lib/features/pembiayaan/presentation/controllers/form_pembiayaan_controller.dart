@@ -21,6 +21,7 @@ void invalidateDataDiriFormController(WidgetRef ref) {
 void invalidatePekerjaanFormController(WidgetRef ref) {
   ref
     ..invalidate(jabatanControllerProvider)
+    ..invalidate(namaInstansiControllerProvider)
     ..invalidate(tahunBekerjaControllerProvider)
     ..invalidate(gajiAmprahControllerProvider)
     ..invalidate(tunjanganControllerProvider)

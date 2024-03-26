@@ -393,10 +393,10 @@ class _$PekerjaanFormStateImpl extends _PekerjaanFormState {
       this.tahunBekerja = const Field(isRequired: false),
       this.statusPekerjaan = const Field(isRequired: false),
       this.sistemAngsuran = const Field(),
-      this.gajiAmprah = const Field(isRequired: false),
-      this.tunjangan = const Field(isRequired: false),
-      this.potongan = const Field(isRequired: false),
-      this.gajiBersih = const Field(isRequired: false),
+      this.gajiAmprah = const Field(),
+      this.tunjangan = const Field(),
+      this.potongan = const Field(),
+      this.gajiBersih = const Field(),
       this.isUpdate = false})
       : super._();
 

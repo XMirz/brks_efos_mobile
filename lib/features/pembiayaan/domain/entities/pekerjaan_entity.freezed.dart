@@ -45,7 +45,7 @@ mixin _$PekerjaanEntity {
   @JsonKey(name: 'netto')
   dynamic get gajiBersih => throw _privateConstructorUsedError;
   @JsonKey(name: 'id')
-  int? get id => throw _privateConstructorUsedError;
+  dynamic get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'id_debitur')
   String get idDebitur => throw _privateConstructorUsedError;
 
@@ -74,7 +74,7 @@ abstract class $PekerjaanEntityCopyWith<$Res> {
       @JsonKey(name: 'tunjangan') dynamic tunjangan,
       @JsonKey(name: 'potongan') dynamic potongan,
       @JsonKey(name: 'netto') dynamic gajiBersih,
-      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'id') dynamic id,
       @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
@@ -158,7 +158,7 @@ class _$PekerjaanEntityCopyWithImpl<$Res, $Val extends PekerjaanEntity>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
@@ -188,7 +188,7 @@ abstract class _$$PekerjaanEntityImplCopyWith<$Res>
       @JsonKey(name: 'tunjangan') dynamic tunjangan,
       @JsonKey(name: 'potongan') dynamic potongan,
       @JsonKey(name: 'netto') dynamic gajiBersih,
-      @JsonKey(name: 'id') int? id,
+      @JsonKey(name: 'id') dynamic id,
       @JsonKey(name: 'id_debitur') String idDebitur});
 }
 
@@ -270,7 +270,7 @@ class __$$PekerjaanEntityImplCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as dynamic,
       idDebitur: null == idDebitur
           ? _value.idDebitur
           : idDebitur // ignore: cast_nullable_to_non_nullable
@@ -288,8 +288,8 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
       @JsonKey(name: 'status_perusahaan') this.statusPerusahaan,
       @JsonKey(name: 'jabatan') this.jabatan,
       @JsonKey(name: 'bidang_usaha') this.bidangUsaha,
-      @JsonKey(name: 'tahun_bekerja') this.tahunBekerja,
-      @JsonKey(name: 'status') this.statusPekerjaan,
+      @JsonKey(name: 'tahun_bekerja') this.tahunBekerja = 0,
+      @JsonKey(name: 'status') this.statusPekerjaan = '',
       @JsonKey(name: 'kolektif') this.sistemPembayaranAngsuran,
       @JsonKey(name: 'gaji') this.gajiAmprah,
       @JsonKey(name: 'tunjangan') this.tunjangan,
@@ -340,7 +340,7 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
   final dynamic gajiBersih;
   @override
   @JsonKey(name: 'id')
-  final int? id;
+  final dynamic id;
   @override
   @JsonKey(name: 'id_debitur')
   final String idDebitur;
@@ -376,7 +376,7 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
             const DeepCollectionEquality().equals(other.potongan, potongan) &&
             const DeepCollectionEquality()
                 .equals(other.gajiBersih, gajiBersih) &&
-            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             (identical(other.idDebitur, idDebitur) ||
                 other.idDebitur == idDebitur));
   }
@@ -397,7 +397,7 @@ class _$PekerjaanEntityImpl extends _PekerjaanEntity {
       const DeepCollectionEquality().hash(tunjangan),
       const DeepCollectionEquality().hash(potongan),
       const DeepCollectionEquality().hash(gajiBersih),
-      id,
+      const DeepCollectionEquality().hash(id),
       idDebitur);
 
   @JsonKey(ignore: true)
@@ -429,7 +429,7 @@ abstract class _PekerjaanEntity extends PekerjaanEntity {
           @JsonKey(name: 'tunjangan') final dynamic tunjangan,
           @JsonKey(name: 'potongan') final dynamic potongan,
           @JsonKey(name: 'netto') final dynamic gajiBersih,
-          @JsonKey(name: 'id') final int? id,
+          @JsonKey(name: 'id') final dynamic id,
           @JsonKey(name: 'id_debitur') final String idDebitur}) =
       _$PekerjaanEntityImpl;
   const _PekerjaanEntity._() : super._();
@@ -475,7 +475,7 @@ abstract class _PekerjaanEntity extends PekerjaanEntity {
   dynamic get gajiBersih;
   @override
   @JsonKey(name: 'id')
-  int? get id;
+  dynamic get id;
   @override
   @JsonKey(name: 'id_debitur')
   String get idDebitur;

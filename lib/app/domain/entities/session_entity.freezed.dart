@@ -36,8 +36,8 @@ mixin _$SessionEntity {
   @JsonKey(name: 'limit_produktif_cabang')
   double get limitProduktifCabang => throw _privateConstructorUsedError;
   @JsonKey(name: 'limit_konsumtif_cabang')
-  double get limitKonsumtifCabang =>
-      throw _privateConstructorUsedError; // required List<String> permissions,
+  double get limitKonsumtifCabang => throw _privateConstructorUsedError;
+  List<String> get permissions => throw _privateConstructorUsedError;
   List<String> get authorities => throw _privateConstructorUsedError;
   String get authorizationType => throw _privateConstructorUsedError;
 
@@ -65,6 +65,7 @@ abstract class $SessionEntityCopyWith<$Res> {
       @JsonKey(name: 'level_apv_cabang') String levelApproveCabang,
       @JsonKey(name: 'limit_produktif_cabang') double limitProduktifCabang,
       @JsonKey(name: 'limit_konsumtif_cabang') double limitKonsumtifCabang,
+      List<String> permissions,
       List<String> authorities,
       String authorizationType});
 }
@@ -93,6 +94,7 @@ class _$SessionEntityCopyWithImpl<$Res, $Val extends SessionEntity>
     Object? levelApproveCabang = null,
     Object? limitProduktifCabang = null,
     Object? limitKonsumtifCabang = null,
+    Object? permissions = null,
     Object? authorities = null,
     Object? authorizationType = null,
   }) {
@@ -141,6 +143,10 @@ class _$SessionEntityCopyWithImpl<$Res, $Val extends SessionEntity>
           ? _value.limitKonsumtifCabang
           : limitKonsumtifCabang // ignore: cast_nullable_to_non_nullable
               as double,
+      permissions: null == permissions
+          ? _value.permissions
+          : permissions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       authorities: null == authorities
           ? _value.authorities
           : authorities // ignore: cast_nullable_to_non_nullable
@@ -173,6 +179,7 @@ abstract class _$$SessionEntityImplCopyWith<$Res>
       @JsonKey(name: 'level_apv_cabang') String levelApproveCabang,
       @JsonKey(name: 'limit_produktif_cabang') double limitProduktifCabang,
       @JsonKey(name: 'limit_konsumtif_cabang') double limitKonsumtifCabang,
+      List<String> permissions,
       List<String> authorities,
       String authorizationType});
 }
@@ -199,6 +206,7 @@ class __$$SessionEntityImplCopyWithImpl<$Res>
     Object? levelApproveCabang = null,
     Object? limitProduktifCabang = null,
     Object? limitKonsumtifCabang = null,
+    Object? permissions = null,
     Object? authorities = null,
     Object? authorizationType = null,
   }) {
@@ -247,6 +255,10 @@ class __$$SessionEntityImplCopyWithImpl<$Res>
           ? _value.limitKonsumtifCabang
           : limitKonsumtifCabang // ignore: cast_nullable_to_non_nullable
               as double,
+      permissions: null == permissions
+          ? _value._permissions
+          : permissions // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       authorities: null == authorities
           ? _value._authorities
           : authorities // ignore: cast_nullable_to_non_nullable
@@ -276,9 +288,11 @@ class _$SessionEntityImpl extends _SessionEntity {
       required this.limitProduktifCabang,
       @JsonKey(name: 'limit_konsumtif_cabang')
       required this.limitKonsumtifCabang,
+      required final List<String> permissions,
       required final List<String> authorities,
       this.authorizationType = 'SINGLE'})
-      : _authorities = authorities,
+      : _permissions = permissions,
+        _authorities = authorities,
         super._();
 
   factory _$SessionEntityImpl.fromJson(Map<String, dynamic> json) =>
@@ -312,9 +326,15 @@ class _$SessionEntityImpl extends _SessionEntity {
   @override
   @JsonKey(name: 'limit_konsumtif_cabang')
   final double limitKonsumtifCabang;
-// required List<String> permissions,
+  final List<String> _permissions;
+  @override
+  List<String> get permissions {
+    if (_permissions is EqualUnmodifiableListView) return _permissions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_permissions);
+  }
+
   final List<String> _authorities;
-// required List<String> permissions,
   @override
   List<String> get authorities {
     if (_authorities is EqualUnmodifiableListView) return _authorities;
@@ -328,7 +348,7 @@ class _$SessionEntityImpl extends _SessionEntity {
 
   @override
   String toString() {
-    return 'SessionEntity(username: $username, name: $name, nik: $nik, idRole: $idRole, role: $role, idCabang: $idCabang, cabang: $cabang, token: $token, levelApproveCabang: $levelApproveCabang, limitProduktifCabang: $limitProduktifCabang, limitKonsumtifCabang: $limitKonsumtifCabang, authorities: $authorities, authorizationType: $authorizationType)';
+    return 'SessionEntity(username: $username, name: $name, nik: $nik, idRole: $idRole, role: $role, idCabang: $idCabang, cabang: $cabang, token: $token, levelApproveCabang: $levelApproveCabang, limitProduktifCabang: $limitProduktifCabang, limitKonsumtifCabang: $limitKonsumtifCabang, permissions: $permissions, authorities: $authorities, authorizationType: $authorizationType)';
   }
 
   @override
@@ -353,6 +373,8 @@ class _$SessionEntityImpl extends _SessionEntity {
             (identical(other.limitKonsumtifCabang, limitKonsumtifCabang) ||
                 other.limitKonsumtifCabang == limitKonsumtifCabang) &&
             const DeepCollectionEquality()
+                .equals(other._permissions, _permissions) &&
+            const DeepCollectionEquality()
                 .equals(other._authorities, _authorities) &&
             (identical(other.authorizationType, authorizationType) ||
                 other.authorizationType == authorizationType));
@@ -373,6 +395,7 @@ class _$SessionEntityImpl extends _SessionEntity {
       levelApproveCabang,
       limitProduktifCabang,
       limitKonsumtifCabang,
+      const DeepCollectionEquality().hash(_permissions),
       const DeepCollectionEquality().hash(_authorities),
       authorizationType);
 
@@ -406,6 +429,7 @@ abstract class _SessionEntity extends SessionEntity {
       required final double limitProduktifCabang,
       @JsonKey(name: 'limit_konsumtif_cabang')
       required final double limitKonsumtifCabang,
+      required final List<String> permissions,
       required final List<String> authorities,
       final String authorizationType}) = _$SessionEntityImpl;
   const _SessionEntity._() : super._();
@@ -440,7 +464,9 @@ abstract class _SessionEntity extends SessionEntity {
   @override
   @JsonKey(name: 'limit_konsumtif_cabang')
   double get limitKonsumtifCabang;
-  @override // required List<String> permissions,
+  @override
+  List<String> get permissions;
+  @override
   List<String> get authorities;
   @override
   String get authorizationType;

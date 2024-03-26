@@ -9,10 +9,10 @@ class PasanganEntity with _$PasanganEntity {
     @JsonKey(name: 'ktp') String? nik,
     @JsonKey(name: 'nama') String? nama,
     @JsonKey(name: 'penghasilan') dynamic penghasilan,
-    @JsonKey(name: 'gaji') dynamic gajiAmprah,
-    @JsonKey(name: 'tunjangan') dynamic tunjangan,
-    @JsonKey(name: 'potongan') dynamic potongan,
-    @JsonKey(name: 'netto') dynamic gajiBersih,
+    @Default(0) @JsonKey(name: 'gaji') dynamic gajiAmprah,
+    @Default(0) @JsonKey(name: 'tunjangan') dynamic tunjangan,
+    @Default(0) @JsonKey(name: 'potongan') dynamic potongan,
+    @Default(0) @JsonKey(name: 'netto') dynamic gajiBersih,
     @Default('') @JsonKey(name: 'id_debitur') String? idDebitur,
 
     // @JsonKey(name: 'profesi') required String profesi

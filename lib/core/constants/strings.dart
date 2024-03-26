@@ -2,17 +2,15 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
 class AppString {
-  // static const baseUrl = 'http://172.100.200.46:8041';
-  // static const baseUrlLogin = 'http://192.168.126.246:8049';
-  // static const baseUrl = baseUrlLogin;
-  // static const baseUrl = 'http://192.168.1.5:8041';
-  // static const baseUrlLogin = 'http://192.168.1.5:8049';
-  static const baseUrl = 'http://202.152.22.233:8041';
-  static const baseUrlLogin = 'http://202.152.22.233:8049';
-  // static const baseUrl = 'http://172.100.201.10:8041';
-  // static const baseUrlLogin = 'http://172.100.201.10:8049';
-  // static const token = '';
+  // PROD
+  // static const baseUrl = 'http://172.16.130.102:8040';
+  // static const baseUrlLogin = 'http://172.16.130.102:8049';
 
+  // DEV
+  static const baseUrl = 'http://202.152.22.233:8040';
+  static const baseUrlLogin = 'http://202.152.22.233:8049';
+
+  static const isAgunanValue = '0';
   static const isJaminanValue = '1';
   static const existValue = 'Ada';
   static const isMarriedValue = 'M';

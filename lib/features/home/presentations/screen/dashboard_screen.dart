@@ -1,13 +1,16 @@
 import 'package:efosm/app/domain/entities/session_entity.dart';
+import 'package:efosm/app/presentation/providers/auth_provider.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
 import 'package:efosm/app/presentation/utils/string_utils.dart';
 import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/app_bar.dart';
+import 'package:efosm/app/presentation/widgets/can.dart';
 import 'package:efosm/app/presentation/widgets/placeholders.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/core/constants/permissions.dart';
 import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/card.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/form_header.dart';
@@ -32,68 +35,77 @@ class DashboardScreen extends HookConsumerWidget {
             backgroundColor: AppColor.primary,
           ),
           UserCard(user: user),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: ListView(
-                // shrinkWrap: true,
-                children: [
-                  FormHeader(title: l10n.dashboard),
-                  dashboardContent.when(
-                    data: (data) {
-                      // return Column(
-                      return StaggeredGrid.count(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
-                        // mainAxisSize: MainAxisSize.min,
-                        children: [
-                          DashboardCard(
-                            heroIcons: HeroIcons.newspaper,
-                            backgroundColor: AppColor.placeholder5.withOpacity(0.2),
-                            titleColor: AppColor.primary,
-                            textColor: AppColor.primary,
-                            title: l10n.totalProspek,
-                            konsumtif: data.totalProspekKonsumtif.toString(),
-                            produktif: data.totalProspekProduktif.toString(),
-                          ),
-                          DashboardCard(
-                            heroIcons: HeroIcons.presentationChartLine,
-                            backgroundColor: AppColor.highlight.withOpacity(0.2),
-                            titleColor: AppColor.textSecondary,
-                            textColor: AppColor.textSecondary,
-                            title: l10n.prospekUnhandled,
-                            konsumtif: data.prospekKonsumtifBelumDiproses.toString(),
-                            produktif: data.prospekProduktifBelumDiproses.toString(),
-                          ),
-                          DashboardCard(
-                            heroIcons: HeroIcons.clipboardDocumentList,
-                            backgroundColor: AppColor.warning.withOpacity(0.2),
-                            titleColor: AppColor.warning,
-                            textColor: AppColor.warning,
-                            title: l10n.waitingApproval,
-                            konsumtif: data.menungguApprovalKonsumtif.toString(),
-                            produktif: data.menungguApprovalProduktif.toString(),
-                          ),
-                          DashboardCard(
-                            heroIcons: HeroIcons.xCircle,
-                            backgroundColor: AppColor.error.withOpacity(0.2),
-                            titleColor: AppColor.error,
-                            textColor: AppColor.error,
-                            title: l10n.cancelled,
-                            konsumtif: data.cancelKonsumtif.toString(),
-                            produktif: data.cancelProduktif.toString(),
-                          ),
-                          DashboardCard(
-                            heroIcons: HeroIcons.documentMagnifyingGlass,
-                            backgroundColor: AppColor.info.withOpacity(0.2),
-                            titleColor: AppColor.info,
-                            textColor: AppColor.info,
-                            title: l10n.review,
-                            konsumtif: data.reviewKonsumtif.toString(),
-                            produktif: data.reviewProduktif.toString(),
-                          ),
-                          if (isAO(int.parse(user.idRole)))
+          Can(
+            // can: false,
+            can: ref.read(canProvider(Permission.indexDashboard)) &&
+                (ref.read(canProvider(Permission.indexPembiayaanKonsumtif)) ||
+                    ref.read(canProvider(Permission.indexPembiayaanProduktif))),
+            onCannot: Expanded(
+              child: ErrorPlaceholder(message: l10n.noAccess),
+            ),
+            onCan: Expanded(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: ListView(
+                  // shrinkWrap: true,
+                  children: [
+                    spaceY(8),
+                    FormHeader(title: l10n.dashboard),
+                    spaceY(8),
+                    dashboardContent.when(
+                      data: (data) {
+                        // return Column(
+                        return StaggeredGrid.count(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 8,
+                          crossAxisSpacing: 8,
+                          // mainAxisSize: MainAxisSize.min,
+                          children: [
+                            DashboardCard(
+                              heroIcons: HeroIcons.newspaper,
+                              backgroundColor: AppColor.placeholder5.withOpacity(0.2),
+                              titleColor: AppColor.primary,
+                              textColor: AppColor.primary,
+                              title: l10n.totalProspek,
+                              konsumtif: data.totalProspekKonsumtif.toString(),
+                              produktif: data.totalProspekProduktif.toString(),
+                            ),
+                            DashboardCard(
+                              heroIcons: HeroIcons.presentationChartLine,
+                              backgroundColor: AppColor.highlight.withOpacity(0.2),
+                              titleColor: AppColor.textSecondary,
+                              textColor: AppColor.textSecondary,
+                              title: l10n.prospekUnhandled,
+                              konsumtif: data.prospekKonsumtifBelumDiproses.toString(),
+                              produktif: data.prospekProduktifBelumDiproses.toString(),
+                            ),
+                            DashboardCard(
+                              heroIcons: HeroIcons.clipboardDocumentList,
+                              backgroundColor: AppColor.warning.withOpacity(0.2),
+                              titleColor: AppColor.warning,
+                              textColor: AppColor.warning,
+                              title: l10n.waitingApproval,
+                              konsumtif: data.menungguApprovalKonsumtif.toString(),
+                              produktif: data.menungguApprovalProduktif.toString(),
+                            ),
+                            DashboardCard(
+                              heroIcons: HeroIcons.xCircle,
+                              backgroundColor: AppColor.error.withOpacity(0.2),
+                              titleColor: AppColor.error,
+                              textColor: AppColor.error,
+                              title: l10n.cancelled,
+                              konsumtif: data.cancelKonsumtif.toString(),
+                              produktif: data.cancelProduktif.toString(),
+                            ),
+                            DashboardCard(
+                              heroIcons: HeroIcons.documentMagnifyingGlass,
+                              backgroundColor: AppColor.info.withOpacity(0.2),
+                              titleColor: AppColor.info,
+                              textColor: AppColor.info,
+                              title: l10n.review,
+                              konsumtif: data.reviewKonsumtif.toString(),
+                              produktif: data.reviewProduktif.toString(),
+                            ),
                             DashboardCard(
                               heroIcons: HeroIcons.checkCircle,
                               backgroundColor: AppColor.primary.withOpacity(0.2),
@@ -103,16 +115,15 @@ class DashboardScreen extends HookConsumerWidget {
                               konsumtif: data.telahDisetujuiPimpinanKonsumtif.toString(),
                               produktif: data.telahDisetujuiPimpinanProduktif.toString(),
                             ),
-                          DashboardCard(
-                            heroIcons: HeroIcons.clipboardDocumentCheck,
-                            backgroundColor: AppColor.primary.withOpacity(0.2),
-                            titleColor: AppColor.primary,
-                            textColor: AppColor.primary,
-                            title: l10n.siapUntukAkad,
-                            konsumtif: data.siapUntukAkadKonsumtif.toString(),
-                            produktif: data.siapUntukAkadProduktif.toString(),
-                          ),
-                          if (isAO(int.parse(user.idRole)))
+                            DashboardCard(
+                              heroIcons: HeroIcons.clipboardDocumentCheck,
+                              backgroundColor: AppColor.primary.withOpacity(0.2),
+                              titleColor: AppColor.primary,
+                              textColor: AppColor.primary,
+                              title: l10n.siapUntukAkad,
+                              konsumtif: data.siapUntukAkadKonsumtif.toString(),
+                              produktif: data.siapUntukAkadProduktif.toString(),
+                            ),
                             DashboardCard(
                               heroIcons: HeroIcons.chartBarSquare,
                               backgroundColor: AppColor.dead.withOpacity(0.2),
@@ -122,7 +133,6 @@ class DashboardScreen extends HookConsumerWidget {
                               konsumtif: data.targetBulananKonsumtif.toString(),
                               produktif: data.targetBulananProduktif.toString(),
                             ),
-                          if (isAO(int.parse(user.idRole)))
                             DashboardCard(
                               heroIcons: HeroIcons.sparkles,
                               backgroundColor: AppColor.info.withOpacity(0.2),
@@ -132,7 +142,6 @@ class DashboardScreen extends HookConsumerWidget {
                               konsumtif: data.totalNoaKonsumtif.toString(),
                               produktif: data.totalNoaProduktif.toString(),
                             ),
-                          if (isAO(int.parse(user.idRole)))
                             DashboardCard(
                               heroIcons: HeroIcons.star,
                               backgroundColor: AppColor.highlight.withOpacity(0.2),
@@ -142,7 +151,6 @@ class DashboardScreen extends HookConsumerWidget {
                               konsumtif: toRupiahString(data.nominalNoaKonsumtif.toString()),
                               produktif: toRupiahString(data.nominalNoaProduktif.toString()),
                             ),
-                          if (isAO(int.parse(user.idRole)))
                             DashboardCard(
                               heroIcons: HeroIcons.documentChartBar,
                               backgroundColor: AppColor.highlight.withOpacity(0.2),
@@ -152,7 +160,6 @@ class DashboardScreen extends HookConsumerWidget {
                               konsumtif: toRupiahString(data.noaCairKonsumtif.toString()),
                               produktif: toRupiahString(data.noaCairProduktif.toString()),
                             ),
-                          if (isAO(int.parse(user.idRole)))
                             DashboardCard(
                               heroIcons: HeroIcons.sparkles,
                               backgroundColor: AppColor.dead.withOpacity(0.2),
@@ -166,16 +173,17 @@ class DashboardScreen extends HookConsumerWidget {
                                 data.realisasiBulananProduktif.toString(),
                               ),
                             ),
-                        ],
-                      );
-                    },
-                    error: (error, stackTrace) => ErrorPlaceholder(
-                      message: l10n.failedGetDataPembiayaan,
+                          ],
+                        );
+                      },
+                      error: (error, stackTrace) => ErrorPlaceholder(
+                        message: l10n.failedGetDataPembiayaan,
+                      ),
+                      loading: () => const LoadingPlaceholder(),
                     ),
-                    loading: () => const LoadingPlaceholder(),
-                  ),
-                  spaceY(24),
-                ],
+                    spaceY(24),
+                  ],
+                ),
               ),
             ),
           ),

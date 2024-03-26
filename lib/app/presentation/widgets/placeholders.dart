@@ -2,6 +2,8 @@ import 'package:efosm/app/presentation/utils/text_styles.dart';
 import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/loading.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
@@ -37,7 +39,8 @@ class ErrorPlaceholder extends StatelessWidget {
   final HeroIcons? heroIcons;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: AppInteger.horizontalPagePadding),
       width: double.infinity,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

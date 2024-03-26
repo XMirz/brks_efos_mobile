@@ -19,6 +19,8 @@ _$LoanStateImpl _$$LoanStateImplFromJson(Map<String, dynamic> json) =>
       showUpdate: json['showUpdate'] as bool? ?? false,
       canForward: json['canForward'] as bool? ?? false,
       showForward: json['showForward'] as bool? ?? false,
+      canReview: json['canReview'] as bool? ?? false,
+      showReview: json['showReview'] as bool? ?? false,
       canReject: json['canReject'] as bool? ?? false,
       showReject: json['showReject'] as bool? ?? false,
       approveErrorMessage: json['approveErrorMessage'] as String? ?? null,
@@ -43,6 +45,8 @@ Map<String, dynamic> _$$LoanStateImplToJson(_$LoanStateImpl instance) =>
       'showUpdate': instance.showUpdate,
       'canForward': instance.canForward,
       'showForward': instance.showForward,
+      'canReview': instance.canReview,
+      'showReview': instance.showReview,
       'canReject': instance.canReject,
       'showReject': instance.showReject,
       'approveErrorMessage': instance.approveErrorMessage,
@@ -61,6 +65,7 @@ const _$ProductCategoryEnumMap = {
 
 const _$ApprovalTypeEnumMap = {
   ApprovalType.none: 'none',
+  ApprovalType.review: 'review',
   ApprovalType.reject: 'reject',
   ApprovalType.submit: 'submit',
   ApprovalType.notisi1: 'notisi1',

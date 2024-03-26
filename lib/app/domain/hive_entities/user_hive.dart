@@ -18,6 +18,7 @@ class UserHiveEntity extends HiveObject {
     this.limitKonsumtifCabang,
     this.authorities,
     this.authorizationType,
+    this.permissions,
   });
 
   @HiveField(0)
@@ -46,4 +47,6 @@ class UserHiveEntity extends HiveObject {
   final List<String>? authorities;
   @HiveField(12)
   final String? authorizationType;
+  @HiveField(13)
+  final List<String>? permissions;
 }

@@ -47,7 +47,11 @@ class ApprovalFormModal extends ConsumerWidget {
       child: ListView(
         shrinkWrap: true,
         children: [
-          FormHeader(title: loanState.approvalType == ApprovalType.reject ? l10n.review : l10n.approval),
+          FormHeader(
+            title: loanState.approvalType == ApprovalType.review
+                ? l10n.review
+                : (loanState.approvalType == ApprovalType.reject ? l10n.rejection : l10n.approval),
+          ),
           OurTextField(
             label: l10n.nik,
             controller: ref.read(nikController),
@@ -180,8 +184,10 @@ class ApprovalFormModal extends ConsumerWidget {
                 context: context,
                 builder: (context) {
                   return OurConfirmDialog(
-                    title: loanState.approvalType == ApprovalType.reject ? l10n.confirmReview : l10n.confirmApproval,
-                    description: loanState.approvalType == ApprovalType.reject
+                    title: loanState.approvalType == ApprovalType.review
+                        ? l10n.confirmReview
+                        : (loanState.approvalType == ApprovalType.reject ? l10n.confirmReject : l10n.confirmApproval),
+                    description: loanState.approvalType == ApprovalType.review
                         ? l10n.confirmReviewDesription
                         : l10n.confirmApprovalDescription,
                     onCancel: () => context.pop('dialog'),
@@ -223,7 +229,6 @@ class ApprovalFormModal extends ConsumerWidget {
               }
 
               if (context.mounted) {
-                context.pop(); // Close modal bottom sheet
                 unawaited(
                   showDialog<void>(
                     barrierDismissible: false,
@@ -240,9 +245,16 @@ class ApprovalFormModal extends ConsumerWidget {
               if (loanState.kategoriProduk == ProductCategory.konsumtif) {
                 if (loanState.approvalType == ApprovalType.reject) {
                   approvalRes = await ref.read(
+                    rejectKonsumtifProvider(
+                      idLoan: loanState.id,
+                      keterangan: formState.keterangan.value ?? '',
+                    ).future,
+                  );
+                } else if (loanState.approvalType == ApprovalType.review) {
+                  approvalRes = await ref.read(
                     reviewKonsumtifProvider(
                       idLoan: loanState.id,
-                      keterangan: formState.arahanCall.value ?? '',
+                      keterangan: formState.keterangan.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi1) {
@@ -250,7 +262,7 @@ class ApprovalFormModal extends ConsumerWidget {
                     approvalOneKonsumtifProvider(
                       idLoan: loanState.id,
                       arahanCall: formState.arahanCall.value ?? '',
-                      rekomendasi: formState.keterangan.value ?? '',
+                      rekomendasi: formState.rekomendasi.value ?? '',
                     ).future,
                   );
                 } else if (loanState.approvalType == ApprovalType.notisi2) {
@@ -270,6 +282,13 @@ class ApprovalFormModal extends ConsumerWidget {
                 }
               } else if (loanState.kategoriProduk == ProductCategory.produktif) {
                 if (loanState.approvalType == ApprovalType.reject) {
+                  approvalRes = await ref.read(
+                    rejectProduktifProvider(
+                      idLoan: loanState.id,
+                      keterangan: formState.keterangan.value ?? '',
+                    ).future,
+                  );
+                } else if (loanState.approvalType == ApprovalType.review) {
                   approvalRes = await ref.read(
                     reviewProduktifProvider(
                       idLoan: loanState.id,
@@ -302,6 +321,7 @@ class ApprovalFormModal extends ConsumerWidget {
               if (parentContext.mounted) {
                 parentContext.pop('dialog');
               } // Close loading
+
               await approvalRes?.fold((l) async {
                 await showDialog<void>(
                   context: parentContext,
@@ -325,13 +345,18 @@ class ApprovalFormModal extends ConsumerWidget {
                   builder: (context) {
                     return OurAlertDialog(
                       title: l10n.success,
-                      description:
-                          loanState.approvalType == ApprovalType.reject ? l10n.successReview : l10n.successApprove,
+                      description: loanState.approvalType == ApprovalType.review
+                          ? l10n.successReview
+                          : (loanState.approvalType == ApprovalType.reject ? l10n.successReject : l10n.successApprove),
                       onPressed: () => context.pop('dialog'),
                     );
                   },
                 );
               });
+
+              if (context.mounted) {
+                context.pop(); // Close modal bottom sheet
+              }
             },
           ),
         ],

@@ -4,6 +4,7 @@ import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart
 import 'package:efosm/features/pembiayaan/presentation/states/produk_pembiayaan_form_state.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
@@ -147,27 +148,52 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
   }
 
   bool validate() {
+    final idProduk = state.idProduk.value;
+    final idJenisPengajuan = state.idJenisPengajuan.value;
+    final idSubProduk = state.idSubProduk.value;
+    final idPlan = state.idPlan.value;
     setKategoriProduk(state.idKategoriProduk.value, showError: true);
-    setProduk(state.idProduk.value, showError: true);
-    setJenisPengajuan(state.idJenisPengajuan.value, showError: true);
-    setSubProduk(state.idSubProduk.value, showError: true);
-    setPlan(state.idPlan.value, showError: true);
+    setProduk(idProduk, showError: true);
+    setJenisPengajuan(idJenisPengajuan, showError: true);
+    setSubProduk(idSubProduk, showError: true);
+    setPlan(idPlan, showError: true);
     setTujuanPembiayaan(state.tujuanPembiayaan.value, showError: true);
-    setPlafonPengajuan(state.plafonPengajuan.value, showError: true);
+    setPlafonPengajuan(toNumericString(state.plafonPengajuan.value), showError: true);
     setTenor(state.tenorPengajuan.value, showError: true);
     return state.isValid;
   }
 
   void setFormRequirementByCategory(ProductCategory productCategory) {
-    final isProduktif = productCategory == ProductCategory.produktif;
     state = state.copyWith(
       idKategoriProduk: state.idKategoriProduk.copyWith(
-        isRequired: !isProduktif,
-        disabled: isProduktif,
+        value: productCategory.typeName,
+        isRequired: true,
+        disabled: true,
+      ),
+    );
+  }
+
+  void setFormRequirementUpdate() {
+    state = state.copyWith(
+      idKategoriProduk: state.idKategoriProduk.copyWith(
+        isRequired: true,
+        disabled: true,
+      ),
+      idProduk: state.idProduk.copyWith(
+        isRequired: true,
+        disabled: true,
       ),
       idJenisPengajuan: state.idJenisPengajuan.copyWith(
-        isRequired: !isProduktif,
-        disabled: isProduktif,
+        isRequired: true,
+        disabled: true,
+      ),
+      idSubProduk: state.idSubProduk.copyWith(
+        isRequired: true,
+        disabled: true,
+      ),
+      idPlan: state.idPlan.copyWith(
+        isRequired: true,
+        disabled: true,
       ),
     );
   }
@@ -179,7 +205,8 @@ class PembiayaanFormProvider extends StateNotifier<ProdukPembiayaanFormState> {
     setSubProduk(data.produkPembiayaan.idSubProduk.toString());
     setPlan(data.produkPembiayaan.idPlan.toString());
     setTujuanPembiayaan(data.produkPembiayaan.tujuanPembiayaan);
-    setPlafonPengajuan(data.produkPembiayaan.plafonPengajuan.toString());
+    setPlafonPengajuan(
+        toNumericString(double.parse(data.produkPembiayaan.plafonPengajuan.toString()).toInt().toString()));
     setTenor(data.produkPembiayaan.tenorPengajuan.toString());
   }
 }

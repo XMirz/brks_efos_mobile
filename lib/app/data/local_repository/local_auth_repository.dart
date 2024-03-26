@@ -68,7 +68,8 @@ class LocalAuthRepository {
       token: hiveAuth.token!,
       limitKonsumtifCabang: hiveAuth.limitKonsumtifCabang!,
       limitProduktifCabang: hiveAuth.limitProduktifCabang!,
-      authorities: hiveAuth.authorities!,
+      authorities: hiveAuth.authorities ?? [],
+      permissions: hiveAuth.permissions ?? [],
     );
     return auth;
   }

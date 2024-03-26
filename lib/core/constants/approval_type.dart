@@ -1,5 +1,6 @@
 enum ApprovalType {
   none(''),
+  review('REJECT'),
   reject('REJECT'),
   submit('SUBMIT'),
   notisi1('APPROVENOTISI1'),

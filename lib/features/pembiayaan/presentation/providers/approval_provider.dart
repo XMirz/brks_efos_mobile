@@ -131,7 +131,7 @@ Future<Either<Failure, void>> reviewKonsumtif(
     nama: user.name,
     idCabang: user.idCabang,
     idLoan: idLoan,
-    keputusan: keterangan,
+    keterangan: keterangan,
   );
   const endPoint = ApiPath.reviewKonsumtif;
   return ref.read(approvalRepositoryProvider).reviewNotisi(endPoint, data);
@@ -149,25 +149,44 @@ Future<Either<Failure, void>> reviewProduktif(
     nama: user.name,
     idCabang: user.idCabang,
     idLoan: idLoan,
-    keputusan: keterangan,
+    keterangan: keterangan,
   );
   const endPoint = ApiPath.reviewProduktif;
   return ref.read(approvalRepositoryProvider).reviewNotisi(endPoint, data);
 }
 
+@Riverpod()
+Future<Either<Failure, void>> rejectKonsumtif(
+  RejectKonsumtifRef ref, {
+  required String idLoan,
+  required String keterangan,
+}) {
+  final user = ref.read(authenticatedUserProvider).user!;
+  final data = ApprovalRequest(
+    username: user.username,
+    nama: user.name,
+    idCabang: user.idCabang,
+    idLoan: idLoan,
+    keterangan: keterangan,
+  );
+  const endPoint = ApiPath.rejectKonsumtif;
+  return ref.read(approvalRepositoryProvider).reviewNotisi(endPoint, data);
+}
 
-// final approvalOne = FutureProvider.family
-//     .autoDispose<Either<Failure, void>, ApprovalRequest>((ref, data) async {
-//   final req = await ref.read(approvalRepositoryProvider).approveNotisiOne(data);
-//   return req;
-// });
-// final approvalTwo = FutureProvider.family
-//     .autoDispose<Either<Failure, void>, ApprovalRequest>((ref, data) async {
-//   final req = await ref.read(approvalRepositoryProvider).approveNotisiOne(data);
-//   return req;
-// });
-// final approvalThree = FutureProvider.family
-//     .autoDispose<Either<Failure, void>, ApprovalRequest>((ref, data) async {
-//   final req = await ref.read(approvalRepositoryProvider).approveNotisiOne(data);
-//   return req;
-// });
+@Riverpod()
+Future<Either<Failure, void>> rejectProduktif(
+  RejectProduktifRef ref, {
+  required String idLoan,
+  required String keterangan,
+}) {
+  final user = ref.read(authenticatedUserProvider).user!;
+  final data = ApprovalRequest(
+    username: user.username,
+    nama: user.name,
+    idCabang: user.idCabang,
+    idLoan: idLoan,
+    keterangan: keterangan,
+  );
+  const endPoint = ApiPath.rejectProduktif;
+  return ref.read(approvalRepositoryProvider).reviewNotisi(endPoint, data);
+}

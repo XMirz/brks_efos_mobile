@@ -30,13 +30,14 @@ class UserHiveEntityAdapter extends TypeAdapter<UserHiveEntity> {
       limitKonsumtifCabang: fields[10] as double?,
       authorities: (fields[11] as List?)?.cast<String>(),
       authorizationType: fields[12] as String?,
+      permissions: (fields[13] as List?)?.cast<String>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, UserHiveEntity obj) {
     writer
-      ..writeByte(13)
+      ..writeByte(14)
       ..writeByte(0)
       ..write(obj.username)
       ..writeByte(1)
@@ -62,7 +63,9 @@ class UserHiveEntityAdapter extends TypeAdapter<UserHiveEntity> {
       ..writeByte(11)
       ..write(obj.authorities)
       ..writeByte(12)
-      ..write(obj.authorizationType);
+      ..write(obj.authorizationType)
+      ..writeByte(13)
+      ..write(obj.permissions);
   }
 
   @override

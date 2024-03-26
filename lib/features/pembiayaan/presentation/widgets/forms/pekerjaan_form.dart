@@ -23,12 +23,11 @@ class PekerjaanForm extends ConsumerWidget {
     final formState = ref.watch(pekerjaanFormProvider);
     final formStateNotifier = ref.watch(pekerjaanFormProvider.notifier);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return ListView(
       children: [
+        spaceY(8),
         FormHeader(title: l10n.pekerjaan),
-        spaceY(16),
+        spaceY(8),
         OurDropDownField(
           items: buildDropDownItem(parameter.parProfesi),
           capitalizeFirst: true,

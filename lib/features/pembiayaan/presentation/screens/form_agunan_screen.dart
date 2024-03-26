@@ -64,7 +64,7 @@ class FormAgunanScreen extends ConsumerWidget {
           centerTitle: true,
           height: 48,
           borderRadius: BorderRadius.zero,
-          title: currentAgunan != null ? l10n.editAgunan : l10n.tambahAgunan,
+          title: currentAgunan != null ? l10n.editJaminan : l10n.tambahJaminan,
           onBackPressed: () => onBackPressed(
             context,
             ref,
@@ -81,11 +81,11 @@ class FormAgunanScreen extends ConsumerWidget {
           child: ListView(
             children: [
               spaceY(24),
-              FormHeader(title: l10n.agunan),
+              FormHeader(title: l10n.jaminanPembiayaan),
               OurDropDownField(
                 items: jenisJaminan,
-                label: context.l10n.jenisJaminan,
-                hint: context.l10n.jenisJaminan,
+                label: context.l10n.jenis,
+                hint: context.l10n.jenis,
                 value: formState.isJaminan.value,
                 error: formState.isJaminan.showError ? formState.isJaminan.errorMessage : null,
                 isRequired: formState.isJaminan.isRequired,
@@ -97,10 +97,20 @@ class FormAgunanScreen extends ConsumerWidget {
                     ..setFormRequirement(isJaminan: isJaminan);
                 },
               ),
+              OurDropDownField(
+                items: buildDropDownItem(parameter.parJenisAgunan),
+                label: context.l10n.jenisAgunan,
+                hint: context.l10n.jenisAgunan,
+                value: formState.jenis.value,
+                error: formState.jenis.showError ? formState.jenis.errorMessage : null,
+                isRequired: formState.jenis.isRequired,
+                disabled: formState.jenis.disabled,
+                onChanged: (value) => formStateNotifier.setJenis(value.value),
+              ),
               OurTextField(
-                label: context.l10n.deskripsiAgunan,
+                label: context.l10n.deskripsi(''),
                 controller: ref.read(deskripsiController),
-                hint: context.l10n.deskripsiAgunan,
+                hint: context.l10n.deskripsi(''),
                 forceUpperCase: true,
                 error: formState.deskripsi.showError ? formState.deskripsi.errorMessage : null,
                 isRequired: formState.deskripsi.isRequired,
@@ -147,16 +157,7 @@ class FormAgunanScreen extends ConsumerWidget {
                 onChanged: formStateNotifier.setDeskripsi5,
               ),
               // Agunan
-              OurDropDownField(
-                items: buildDropDownItem(parameter.parJenisAgunan),
-                label: context.l10n.jenisAgunan,
-                hint: context.l10n.jenisAgunan,
-                value: formState.jenis.value,
-                error: formState.jenis.showError ? formState.jenis.errorMessage : null,
-                isRequired: formState.jenis.isRequired,
-                disabled: formState.jenis.disabled,
-                onChanged: (value) => formStateNotifier.setJenis(value.value),
-              ),
+
               OurTextField(
                 label: context.l10n.alamat,
                 controller: ref.read(alamatAgunanController),

@@ -30,6 +30,7 @@ import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/detail_pembiayaan_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
+import 'package:efosm/features/pembiayaan/presentation/providers/forms/agunan_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/approval_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/data_diri_form_provider.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/forms/pasangan_form_provider.dart';
@@ -118,10 +119,19 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                               },
                             );
                           },
-                          (r) => context.pushNamed(
-                            AppRoutes.formJaminanPage,
-                            extra: (idLoan, r, null),
-                          ),
+                          (r) {
+                            final isJaminanValue =
+                                loanState.kategoriProduk == ProductCategory.produktif ? AppString.isAgunanValue : null;
+                            ref.read(agunanFormProvider.notifier).setJenisJaminan(isJaminanValue);
+                            ref
+                                .read(agunanFormProvider.notifier)
+                                .setFormRequirementByCategory(loanState.kategoriProduk);
+
+                            ref
+                                .read(agunanFormProvider.notifier)
+                                .setFormRequirement(isJaminan: isJaminanValue == AppString.isJaminanValue);
+                            context.pushNamed(AppRoutes.formJaminanPage, extra: (idLoan, r, null));
+                          },
                         );
                       },
                       child: const HeroIcon(
@@ -300,10 +310,29 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                               ),
                                               child: PrimarySmallButton(
                                                 text: l10n.edit,
-                                                color: AppColor.warning,
+                                                color: AppColor.info,
                                                 onPressed: () {
                                                   handleEdit(idLoan, context, ref);
                                                 },
+                                              ),
+                                            ),
+                                          if (loanState.canReview ?? false)
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(
+                                                horizontal: 4,
+                                              ),
+                                              child: PrimarySmallButton(
+                                                text: l10n.review,
+                                                color: AppColor.warning,
+                                                onPressed: () => showApprovalModal(
+                                                  context,
+                                                  ref,
+                                                  data.dataDiri,
+                                                  loanState.copyWith(
+                                                    approvalType: ApprovalType.review,
+                                                    identityValidation: false,
+                                                  ),
+                                                ),
                                               ),
                                             ),
                                           if (loanState.canReject ?? false)
@@ -312,7 +341,7 @@ class DetailPembiayaanScreen extends ConsumerWidget {
                                                 horizontal: 4,
                                               ),
                                               child: PrimarySmallButton(
-                                                text: l10n.review,
+                                                text: l10n.reject,
                                                 color: AppColor.error,
                                                 onPressed: () => showApprovalModal(
                                                   context,
@@ -442,22 +471,23 @@ class DetailPembiayaanScreen extends ConsumerWidget {
       invalidateForms(ref);
       // SetRequirement
       ref.read(dataDiriFormProvider.notifier).setFormRequirementByCategory(productCategory);
+      ref.read(dataDiriFormProvider.notifier).setFormRequirementUpdate();
       ref.read(pekerjaanFormProvider.notifier).setFormRequirementByCategory(productCategory);
       ref.read(pasanganFormProvider.notifier).setFormRequirement(status: isMarried);
-      ref.read(pembiayaanFormProvider.notifier).setFormRequirementByCategory(productCategory);
+      // ref.read(pembiayaanFormProvider.notifier).setFormRequirementByCategory(productCategory);
+      ref.read(pembiayaanFormProvider.notifier).setFormRequirementUpdate();
       // SetValue
-      ref.read(dataDiriFormProvider.notifier).setFormValue(pembiayaan!);
+      ref.read(dataDiriFormProvider.notifier).setFormValue(ref, pembiayaan!);
       ref.read(pekerjaanFormProvider.notifier).setFormValue(pembiayaan!.pekerjaan);
-      ref.read(pasanganFormProvider.notifier).setFormValue(pembiayaan!.pasangan.first);
+      if (pembiayaan!.pasangan.isNotEmpty) {
+        ref.read(pasanganFormProvider.notifier).setFormValue(pembiayaan!.pasangan.first);
+      }
       ref.read(pembiayaanFormProvider.notifier).setFormValue(pembiayaan!);
 
       if (context.mounted) {
         await context.pushNamed(
-          AppRoutes.editPembiayaanPage,
-          extra: pembiayaan,
-          pathParameters: {
-            'id': idLoan,
-          },
+          AppRoutes.createPembiayaanPage,
+          extra: (parameters, idLoan, pembiayaan),
         );
       }
     }
@@ -522,6 +552,8 @@ class DetailPembiayaanScreen extends ConsumerWidget {
     if (loanState.kategoriProduk == ProductCategory.produktif) {
       if (loanState.approvalType == ApprovalType.reject) {
         formStateNotifier.setApprovalRequirement(keterangan: true);
+      } else if (loanState.approvalType == ApprovalType.review) {
+        formStateNotifier.setApprovalRequirement(keterangan: true);
       } else if (loanState.approvalType == ApprovalType.notisi1) {
         formStateNotifier.setApprovalRequirement(rekomendasi: true);
       } else if (loanState.approvalType == ApprovalType.notisi3) {
@@ -531,6 +563,8 @@ class DetailPembiayaanScreen extends ConsumerWidget {
       }
     } else if (loanState.kategoriProduk == ProductCategory.konsumtif) {
       if (loanState.approvalType == ApprovalType.reject) {
+        formStateNotifier.setApprovalRequirement(keterangan: true);
+      } else if (loanState.approvalType == ApprovalType.review) {
         formStateNotifier.setApprovalRequirement(keterangan: true);
       } else if (loanState.approvalType == ApprovalType.notisi1) {
         formStateNotifier.setApprovalRequirement(arahanCall: true);

@@ -19,7 +19,7 @@ class PembiayaanRepository {
 
   Future<Either<Failure, bool>> saveLoan(CreateLoanRequest data) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
-      '/mobile/efos/insertcalondebitur',
+      ApiPath.createLoan,
       data: data.toJson(),
     );
     return response.fold(
@@ -28,10 +28,10 @@ class PembiayaanRepository {
     );
   }
 
-  Future<Either<Failure, bool>> updateLoan(Map<String, Object> data) async {
+  Future<Either<Failure, bool>> updateLoan(CreateLoanRequest data) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
       ApiPath.updateLoan,
-      data: data,
+      data: data.toJson(),
     );
     return response.fold(
       left,

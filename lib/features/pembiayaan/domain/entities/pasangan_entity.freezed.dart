@@ -202,10 +202,10 @@ class _$PasanganEntityImpl extends _PasanganEntity {
       {@JsonKey(name: 'ktp') this.nik,
       @JsonKey(name: 'nama') this.nama,
       @JsonKey(name: 'penghasilan') this.penghasilan,
-      @JsonKey(name: 'gaji') this.gajiAmprah,
-      @JsonKey(name: 'tunjangan') this.tunjangan,
-      @JsonKey(name: 'potongan') this.potongan,
-      @JsonKey(name: 'netto') this.gajiBersih,
+      @JsonKey(name: 'gaji') this.gajiAmprah = 0,
+      @JsonKey(name: 'tunjangan') this.tunjangan = 0,
+      @JsonKey(name: 'potongan') this.potongan = 0,
+      @JsonKey(name: 'netto') this.gajiBersih = 0,
       @JsonKey(name: 'id_debitur') this.idDebitur = ''})
       : super._();
 

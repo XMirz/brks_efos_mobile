@@ -7,6 +7,8 @@ import 'package:efosm/app/presentation/utils/widget_utils.dart';
 import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/inner_app_bar.dart';
 import 'package:efosm/app/presentation/widgets/step.dart';
+import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/features/pembiayaan/domain/entities/pembiayaan_entity.dart';
 import 'package:efosm/features/pembiayaan/domain/entities/request/create_loan_request.dart';
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
 import 'package:efosm/features/pembiayaan/presentation/providers/form_pembiayaan_provider.dart';
@@ -28,9 +30,16 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 const formPage = 4;
 
 class CreatePembiayaanScreen extends HookConsumerWidget {
-  const CreatePembiayaanScreen({required this.parameter, super.key});
+  const CreatePembiayaanScreen({
+    required this.parameter,
+    this.idLoan,
+    this.pembiayaanEntity,
+    super.key,
+  });
 
   final LoanParameter parameter;
+  final String? idLoan;
+  final PembiayaanEntity? pembiayaanEntity;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -48,9 +57,13 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
       child: Scaffold(
         appBar: InnerAppBar(
           title: l10n.createPembiayaan,
-          onBackPressed: () {
-            context.pop();
-          },
+          onBackPressed: () => onBackPressed(
+            context,
+            ref,
+            title: l10n.confirmation,
+            description: l10n.confirmCancelCreatePembiayaan,
+            callback: () => invalidateForms(ref),
+          ),
         ),
         body: OurStepPage(
           currentIndex: formIndex,
@@ -67,7 +80,7 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
             }
             ref.read(formIndexProvider.notifier).state = isLastStep ? formIndex : formIndex + 1;
             if (isLastStep) {
-              handleSubmit(context, ref);
+              handleSubmit(context, ref, pembiayaanEntity, idLoan: idLoan);
             }
           },
           steps: [
@@ -103,7 +116,8 @@ class CreatePembiayaanScreen extends HookConsumerWidget {
   }
 }
 
-Future<void> handleSubmit(BuildContext context, WidgetRef ref) async {
+Future<void> handleSubmit(BuildContext context, WidgetRef ref, PembiayaanEntity? pembiayaanEntity,
+    {String? idLoan}) async {
   var continueAction = false;
   await showDialog<void>(
     barrierDismissible: false,
@@ -111,8 +125,7 @@ Future<void> handleSubmit(BuildContext context, WidgetRef ref) async {
     builder: (context) {
       return OurConfirmDialog(
         title: l10n.confirmation,
-        // description: ref.read(listAgunanProvider).isEmpty ? l10n.confirmWithoutAgunan : l10n.confirmCreatePembiayaan,
-        description: l10n.confirmCreatePembiayaan,
+        description: idLoan == null ? l10n.confirmCreatePembiayaan : l10n.confirmUpdatePembiayaan,
         onCancel: () => context.pop('dialog'),
         onSubmit: () async {
           continueAction = true;
@@ -139,19 +152,37 @@ Future<void> handleSubmit(BuildContext context, WidgetRef ref) async {
   //   return agunan.toEntity(agunanImage);
   // }).toList();
 
+  final dataDiri = ref.read(dataDiriFormProvider).toEntity();
+  var pekerjaan = ref.read(pekerjaanFormProvider).toEntity();
+  var pasangan =
+      dataDiri.statusPernikahan == AppString.isMarriedValue ? ref.read(pasanganFormProvider).toEntity() : null;
+  var produkPembiayaan = ref.read(pembiayaanFormProvider).toEntity();
+
+  // Jika Update
+  if (idLoan != null) {
+    pekerjaan = pekerjaan.copyWith(id: pembiayaanEntity!.pekerjaan.id);
+    produkPembiayaan = produkPembiayaan.copyWith(id: pembiayaanEntity.id);
+    if (pasangan != null) {
+      pasangan = pasangan.copyWith(idDebitur: pembiayaanEntity.dataDiri.nik);
+    }
+  }
+
   final request = CreateLoanRequest(
+    idLoan: idLoan,
     cabang: ref.read(authenticatedUserProvider).user!.idCabang,
     username: ref.read(authenticatedUserProvider).user!.username,
     nama: ref.read(authenticatedUserProvider).user!.name,
-    dataDiri: ref.read(dataDiriFormProvider).toEntity(),
-    pekerjaan: ref.read(pekerjaanFormProvider).toEntity(),
-    pasangan: ref.read(pasanganFormProvider).toEntity(),
-    produkPembiayaan: ref.read(pembiayaanFormProvider).toEntity(),
+    dataDiri: dataDiri,
+    pekerjaan: pekerjaan,
+    pasangan: pasangan != null ? pasangan.toJson() : {},
+    produkPembiayaan: produkPembiayaan,
     listAgunan: [],
     // listAgunan: await Future.wait(listAgunan),
   );
 
-  final response = await ref.read(saveLoanProvider(request).future);
+  final response = idLoan == null
+      ? await ref.read(saveLoanProvider(request).future)
+      : await ref.read(updateLoanProvider(request).future);
   if (context.mounted) context.pop('dialog');
   await response.fold((l) {
     showDialog<void>(
@@ -187,10 +218,10 @@ bool validateForm(
   WidgetRef ref,
   int index,
 ) {
-  if (index == 0) return ref.watch(dataDiriFormProvider).isValid;
-  if (index == 1) return ref.watch(pekerjaanFormProvider).isValid;
-  if (index == 2) return ref.watch(pasanganFormProvider).isValid;
-  if (index == 3) return ref.watch(pembiayaanFormProvider).isValid;
+  if (index == 0) return ref.watch(dataDiriFormProvider.notifier).validate();
+  if (index == 1) return ref.watch(pekerjaanFormProvider.notifier).validate();
+  if (index == 2) return ref.watch(pasanganFormProvider.notifier).validate();
+  if (index == 3) return ref.watch(pembiayaanFormProvider.notifier).validate();
   // if (index == 4) return ref.watch(listAgunanProvider.notifier).isValid;
   return true;
 }

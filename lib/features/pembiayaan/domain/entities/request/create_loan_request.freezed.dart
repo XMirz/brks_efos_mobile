@@ -20,10 +20,12 @@ CreateLoanRequest _$CreateLoanRequestFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateLoanRequest {
-  @JsonKey(name: 'cab')
+  @JsonKey(name: 'cabang')
   String? get cabang => throw _privateConstructorUsedError;
   @JsonKey(name: 'username')
   String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id_loan')
+  String? get idLoan => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
   String? get nama => throw _privateConstructorUsedError;
   @JsonKey(name: 'data_diri')
@@ -31,7 +33,7 @@ mixin _$CreateLoanRequest {
   @JsonKey(name: 'pekerjaan')
   PekerjaanEntity get pekerjaan => throw _privateConstructorUsedError;
   @JsonKey(name: 'pasangan')
-  PasanganEntity get pasangan => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get pasangan => throw _privateConstructorUsedError;
   @JsonKey(name: 'produk_pembiayaan')
   ProdukPembiayaanEntity get produkPembiayaan =>
       throw _privateConstructorUsedError;
@@ -51,19 +53,19 @@ abstract class $CreateLoanRequestCopyWith<$Res> {
       _$CreateLoanRequestCopyWithImpl<$Res, CreateLoanRequest>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'cab') String? cabang,
+      {@JsonKey(name: 'cabang') String? cabang,
       @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'id_loan') String? idLoan,
       @JsonKey(name: 'nama') String? nama,
       @JsonKey(name: 'data_diri') DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') PekerjaanEntity pekerjaan,
-      @JsonKey(name: 'pasangan') PasanganEntity pasangan,
+      @JsonKey(name: 'pasangan') Map<String, dynamic>? pasangan,
       @JsonKey(name: 'produk_pembiayaan')
       ProdukPembiayaanEntity produkPembiayaan,
       @JsonKey(name: 'agunan') List<AgunanEntity> listAgunan});
 
   $DataDiriEntityCopyWith<$Res> get dataDiri;
   $PekerjaanEntityCopyWith<$Res> get pekerjaan;
-  $PasanganEntityCopyWith<$Res> get pasangan;
   $ProdukPembiayaanEntityCopyWith<$Res> get produkPembiayaan;
 }
 
@@ -82,10 +84,11 @@ class _$CreateLoanRequestCopyWithImpl<$Res, $Val extends CreateLoanRequest>
   $Res call({
     Object? cabang = freezed,
     Object? username = freezed,
+    Object? idLoan = freezed,
     Object? nama = freezed,
     Object? dataDiri = null,
     Object? pekerjaan = null,
-    Object? pasangan = null,
+    Object? pasangan = freezed,
     Object? produkPembiayaan = null,
     Object? listAgunan = null,
   }) {
@@ -97,6 +100,10 @@ class _$CreateLoanRequestCopyWithImpl<$Res, $Val extends CreateLoanRequest>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idLoan: freezed == idLoan
+          ? _value.idLoan
+          : idLoan // ignore: cast_nullable_to_non_nullable
               as String?,
       nama: freezed == nama
           ? _value.nama
@@ -110,10 +117,10 @@ class _$CreateLoanRequestCopyWithImpl<$Res, $Val extends CreateLoanRequest>
           ? _value.pekerjaan
           : pekerjaan // ignore: cast_nullable_to_non_nullable
               as PekerjaanEntity,
-      pasangan: null == pasangan
+      pasangan: freezed == pasangan
           ? _value.pasangan
           : pasangan // ignore: cast_nullable_to_non_nullable
-              as PasanganEntity,
+              as Map<String, dynamic>?,
       produkPembiayaan: null == produkPembiayaan
           ? _value.produkPembiayaan
           : produkPembiayaan // ignore: cast_nullable_to_non_nullable
@@ -143,14 +150,6 @@ class _$CreateLoanRequestCopyWithImpl<$Res, $Val extends CreateLoanRequest>
 
   @override
   @pragma('vm:prefer-inline')
-  $PasanganEntityCopyWith<$Res> get pasangan {
-    return $PasanganEntityCopyWith<$Res>(_value.pasangan, (value) {
-      return _then(_value.copyWith(pasangan: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $ProdukPembiayaanEntityCopyWith<$Res> get produkPembiayaan {
     return $ProdukPembiayaanEntityCopyWith<$Res>(_value.produkPembiayaan,
         (value) {
@@ -168,12 +167,13 @@ abstract class _$$CreateLoanRequestImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'cab') String? cabang,
+      {@JsonKey(name: 'cabang') String? cabang,
       @JsonKey(name: 'username') String? username,
+      @JsonKey(name: 'id_loan') String? idLoan,
       @JsonKey(name: 'nama') String? nama,
       @JsonKey(name: 'data_diri') DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') PekerjaanEntity pekerjaan,
-      @JsonKey(name: 'pasangan') PasanganEntity pasangan,
+      @JsonKey(name: 'pasangan') Map<String, dynamic>? pasangan,
       @JsonKey(name: 'produk_pembiayaan')
       ProdukPembiayaanEntity produkPembiayaan,
       @JsonKey(name: 'agunan') List<AgunanEntity> listAgunan});
@@ -182,8 +182,6 @@ abstract class _$$CreateLoanRequestImplCopyWith<$Res>
   $DataDiriEntityCopyWith<$Res> get dataDiri;
   @override
   $PekerjaanEntityCopyWith<$Res> get pekerjaan;
-  @override
-  $PasanganEntityCopyWith<$Res> get pasangan;
   @override
   $ProdukPembiayaanEntityCopyWith<$Res> get produkPembiayaan;
 }
@@ -201,10 +199,11 @@ class __$$CreateLoanRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? cabang = freezed,
     Object? username = freezed,
+    Object? idLoan = freezed,
     Object? nama = freezed,
     Object? dataDiri = null,
     Object? pekerjaan = null,
-    Object? pasangan = null,
+    Object? pasangan = freezed,
     Object? produkPembiayaan = null,
     Object? listAgunan = null,
   }) {
@@ -216,6 +215,10 @@ class __$$CreateLoanRequestImplCopyWithImpl<$Res>
       username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idLoan: freezed == idLoan
+          ? _value.idLoan
+          : idLoan // ignore: cast_nullable_to_non_nullable
               as String?,
       nama: freezed == nama
           ? _value.nama
@@ -229,10 +232,10 @@ class __$$CreateLoanRequestImplCopyWithImpl<$Res>
           ? _value.pekerjaan
           : pekerjaan // ignore: cast_nullable_to_non_nullable
               as PekerjaanEntity,
-      pasangan: null == pasangan
-          ? _value.pasangan
+      pasangan: freezed == pasangan
+          ? _value._pasangan
           : pasangan // ignore: cast_nullable_to_non_nullable
-              as PasanganEntity,
+              as Map<String, dynamic>?,
       produkPembiayaan: null == produkPembiayaan
           ? _value.produkPembiayaan
           : produkPembiayaan // ignore: cast_nullable_to_non_nullable
@@ -249,26 +252,32 @@ class __$$CreateLoanRequestImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateLoanRequestImpl extends _CreateLoanRequest {
   const _$CreateLoanRequestImpl(
-      {@JsonKey(name: 'cab') this.cabang = '',
+      {@JsonKey(name: 'cabang') this.cabang = '',
       @JsonKey(name: 'username') this.username = '',
+      @JsonKey(name: 'id_loan') this.idLoan = '',
       @JsonKey(name: 'nama') this.nama = '',
       @JsonKey(name: 'data_diri') required this.dataDiri,
       @JsonKey(name: 'pekerjaan') required this.pekerjaan,
-      @JsonKey(name: 'pasangan') required this.pasangan,
+      @JsonKey(name: 'pasangan')
+      final Map<String, dynamic>? pasangan = const {},
       @JsonKey(name: 'produk_pembiayaan') required this.produkPembiayaan,
       @JsonKey(name: 'agunan') required final List<AgunanEntity> listAgunan})
-      : _listAgunan = listAgunan,
+      : _pasangan = pasangan,
+        _listAgunan = listAgunan,
         super._();
 
   factory _$CreateLoanRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateLoanRequestImplFromJson(json);
 
   @override
-  @JsonKey(name: 'cab')
+  @JsonKey(name: 'cabang')
   final String? cabang;
   @override
   @JsonKey(name: 'username')
   final String? username;
+  @override
+  @JsonKey(name: 'id_loan')
+  final String? idLoan;
   @override
   @JsonKey(name: 'nama')
   final String? nama;
@@ -278,9 +287,17 @@ class _$CreateLoanRequestImpl extends _CreateLoanRequest {
   @override
   @JsonKey(name: 'pekerjaan')
   final PekerjaanEntity pekerjaan;
+  final Map<String, dynamic>? _pasangan;
   @override
   @JsonKey(name: 'pasangan')
-  final PasanganEntity pasangan;
+  Map<String, dynamic>? get pasangan {
+    final value = _pasangan;
+    if (value == null) return null;
+    if (_pasangan is EqualUnmodifiableMapView) return _pasangan;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @override
   @JsonKey(name: 'produk_pembiayaan')
   final ProdukPembiayaanEntity produkPembiayaan;
@@ -295,7 +312,7 @@ class _$CreateLoanRequestImpl extends _CreateLoanRequest {
 
   @override
   String toString() {
-    return 'CreateLoanRequest(cabang: $cabang, username: $username, nama: $nama, dataDiri: $dataDiri, pekerjaan: $pekerjaan, pasangan: $pasangan, produkPembiayaan: $produkPembiayaan, listAgunan: $listAgunan)';
+    return 'CreateLoanRequest(cabang: $cabang, username: $username, idLoan: $idLoan, nama: $nama, dataDiri: $dataDiri, pekerjaan: $pekerjaan, pasangan: $pasangan, produkPembiayaan: $produkPembiayaan, listAgunan: $listAgunan)';
   }
 
   @override
@@ -306,13 +323,13 @@ class _$CreateLoanRequestImpl extends _CreateLoanRequest {
             (identical(other.cabang, cabang) || other.cabang == cabang) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.idLoan, idLoan) || other.idLoan == idLoan) &&
             (identical(other.nama, nama) || other.nama == nama) &&
             (identical(other.dataDiri, dataDiri) ||
                 other.dataDiri == dataDiri) &&
             (identical(other.pekerjaan, pekerjaan) ||
                 other.pekerjaan == pekerjaan) &&
-            (identical(other.pasangan, pasangan) ||
-                other.pasangan == pasangan) &&
+            const DeepCollectionEquality().equals(other._pasangan, _pasangan) &&
             (identical(other.produkPembiayaan, produkPembiayaan) ||
                 other.produkPembiayaan == produkPembiayaan) &&
             const DeepCollectionEquality()
@@ -325,10 +342,11 @@ class _$CreateLoanRequestImpl extends _CreateLoanRequest {
       runtimeType,
       cabang,
       username,
+      idLoan,
       nama,
       dataDiri,
       pekerjaan,
-      pasangan,
+      const DeepCollectionEquality().hash(_pasangan),
       produkPembiayaan,
       const DeepCollectionEquality().hash(_listAgunan));
 
@@ -349,12 +367,13 @@ class _$CreateLoanRequestImpl extends _CreateLoanRequest {
 
 abstract class _CreateLoanRequest extends CreateLoanRequest {
   const factory _CreateLoanRequest(
-      {@JsonKey(name: 'cab') final String? cabang,
+      {@JsonKey(name: 'cabang') final String? cabang,
       @JsonKey(name: 'username') final String? username,
+      @JsonKey(name: 'id_loan') final String? idLoan,
       @JsonKey(name: 'nama') final String? nama,
       @JsonKey(name: 'data_diri') required final DataDiriEntity dataDiri,
       @JsonKey(name: 'pekerjaan') required final PekerjaanEntity pekerjaan,
-      @JsonKey(name: 'pasangan') required final PasanganEntity pasangan,
+      @JsonKey(name: 'pasangan') final Map<String, dynamic>? pasangan,
       @JsonKey(name: 'produk_pembiayaan')
       required final ProdukPembiayaanEntity produkPembiayaan,
       @JsonKey(name: 'agunan')
@@ -365,11 +384,14 @@ abstract class _CreateLoanRequest extends CreateLoanRequest {
       _$CreateLoanRequestImpl.fromJson;
 
   @override
-  @JsonKey(name: 'cab')
+  @JsonKey(name: 'cabang')
   String? get cabang;
   @override
   @JsonKey(name: 'username')
   String? get username;
+  @override
+  @JsonKey(name: 'id_loan')
+  String? get idLoan;
   @override
   @JsonKey(name: 'nama')
   String? get nama;
@@ -381,7 +403,7 @@ abstract class _CreateLoanRequest extends CreateLoanRequest {
   PekerjaanEntity get pekerjaan;
   @override
   @JsonKey(name: 'pasangan')
-  PasanganEntity get pasangan;
+  Map<String, dynamic>? get pasangan;
   @override
   @JsonKey(name: 'produk_pembiayaan')
   ProdukPembiayaanEntity get produkPembiayaan;

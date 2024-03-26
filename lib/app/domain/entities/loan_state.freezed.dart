@@ -30,6 +30,8 @@ mixin _$LoanState {
   bool? get showUpdate => throw _privateConstructorUsedError;
   bool? get canForward => throw _privateConstructorUsedError;
   bool? get showForward => throw _privateConstructorUsedError;
+  bool? get canReview => throw _privateConstructorUsedError;
+  bool? get showReview => throw _privateConstructorUsedError;
   bool? get canReject => throw _privateConstructorUsedError;
   bool? get showReject => throw _privateConstructorUsedError;
   String? get approveErrorMessage => throw _privateConstructorUsedError;
@@ -63,6 +65,8 @@ abstract class $LoanStateCopyWith<$Res> {
       bool? showUpdate,
       bool? canForward,
       bool? showForward,
+      bool? canReview,
+      bool? showReview,
       bool? canReject,
       bool? showReject,
       String? approveErrorMessage,
@@ -97,6 +101,8 @@ class _$LoanStateCopyWithImpl<$Res, $Val extends LoanState>
     Object? showUpdate = freezed,
     Object? canForward = freezed,
     Object? showForward = freezed,
+    Object? canReview = freezed,
+    Object? showReview = freezed,
     Object? canReject = freezed,
     Object? showReject = freezed,
     Object? approveErrorMessage = freezed,
@@ -147,6 +153,14 @@ class _$LoanStateCopyWithImpl<$Res, $Val extends LoanState>
       showForward: freezed == showForward
           ? _value.showForward
           : showForward // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReview: freezed == canReview
+          ? _value.canReview
+          : canReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showReview: freezed == showReview
+          ? _value.showReview
+          : showReview // ignore: cast_nullable_to_non_nullable
               as bool?,
       canReject: freezed == canReject
           ? _value.canReject
@@ -207,6 +221,8 @@ abstract class _$$LoanStateImplCopyWith<$Res>
       bool? showUpdate,
       bool? canForward,
       bool? showForward,
+      bool? canReview,
+      bool? showReview,
       bool? canReject,
       bool? showReject,
       String? approveErrorMessage,
@@ -239,6 +255,8 @@ class __$$LoanStateImplCopyWithImpl<$Res>
     Object? showUpdate = freezed,
     Object? canForward = freezed,
     Object? showForward = freezed,
+    Object? canReview = freezed,
+    Object? showReview = freezed,
     Object? canReject = freezed,
     Object? showReject = freezed,
     Object? approveErrorMessage = freezed,
@@ -289,6 +307,14 @@ class __$$LoanStateImplCopyWithImpl<$Res>
       showForward: freezed == showForward
           ? _value.showForward
           : showForward // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      canReview: freezed == canReview
+          ? _value.canReview
+          : canReview // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      showReview: freezed == showReview
+          ? _value.showReview
+          : showReview // ignore: cast_nullable_to_non_nullable
               as bool?,
       canReject: freezed == canReject
           ? _value.canReject
@@ -344,6 +370,8 @@ class _$LoanStateImpl extends _LoanState {
       this.showUpdate = false,
       this.canForward = false,
       this.showForward = false,
+      this.canReview = false,
+      this.showReview = false,
       this.canReject = false,
       this.showReject = false,
       this.approveErrorMessage = null,
@@ -386,6 +414,12 @@ class _$LoanStateImpl extends _LoanState {
   final bool? showForward;
   @override
   @JsonKey()
+  final bool? canReview;
+  @override
+  @JsonKey()
+  final bool? showReview;
+  @override
+  @JsonKey()
   final bool? canReject;
   @override
   @JsonKey()
@@ -413,7 +447,7 @@ class _$LoanStateImpl extends _LoanState {
 
   @override
   String toString() {
-    return 'LoanState(id: $id, kategoriProduk: $kategoriProduk, currentStatus: $currentStatus, statusDescription: $statusDescription, canApprove: $canApprove, showApprove: $showApprove, canUpdate: $canUpdate, showUpdate: $showUpdate, canForward: $canForward, showForward: $showForward, canReject: $canReject, showReject: $showReject, approveErrorMessage: $approveErrorMessage, rejectErrorMessage: $rejectErrorMessage, forwardErrorMessage: $forwardErrorMessage, identityValidation: $identityValidation, statusColor: $statusColor, approvalType: $approvalType, nextStatus: $nextStatus)';
+    return 'LoanState(id: $id, kategoriProduk: $kategoriProduk, currentStatus: $currentStatus, statusDescription: $statusDescription, canApprove: $canApprove, showApprove: $showApprove, canUpdate: $canUpdate, showUpdate: $showUpdate, canForward: $canForward, showForward: $showForward, canReview: $canReview, showReview: $showReview, canReject: $canReject, showReject: $showReject, approveErrorMessage: $approveErrorMessage, rejectErrorMessage: $rejectErrorMessage, forwardErrorMessage: $forwardErrorMessage, identityValidation: $identityValidation, statusColor: $statusColor, approvalType: $approvalType, nextStatus: $nextStatus)';
   }
 
   @override
@@ -440,6 +474,10 @@ class _$LoanStateImpl extends _LoanState {
                 other.canForward == canForward) &&
             (identical(other.showForward, showForward) ||
                 other.showForward == showForward) &&
+            (identical(other.canReview, canReview) ||
+                other.canReview == canReview) &&
+            (identical(other.showReview, showReview) ||
+                other.showReview == showReview) &&
             (identical(other.canReject, canReject) ||
                 other.canReject == canReject) &&
             (identical(other.showReject, showReject) ||
@@ -474,6 +512,8 @@ class _$LoanStateImpl extends _LoanState {
         showUpdate,
         canForward,
         showForward,
+        canReview,
+        showReview,
         canReject,
         showReject,
         approveErrorMessage,
@@ -511,6 +551,8 @@ abstract class _LoanState extends LoanState {
       final bool? showUpdate,
       final bool? canForward,
       final bool? showForward,
+      final bool? canReview,
+      final bool? showReview,
       final bool? canReject,
       final bool? showReject,
       final String? approveErrorMessage,
@@ -545,6 +587,10 @@ abstract class _LoanState extends LoanState {
   bool? get canForward;
   @override
   bool? get showForward;
+  @override
+  bool? get canReview;
+  @override
+  bool? get showReview;
   @override
   bool? get canReject;
   @override
