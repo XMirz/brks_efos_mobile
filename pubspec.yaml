@@ -13,6 +13,7 @@ dependencies:
   dartz: ^0.10.1
   device_info_plus: ^9.1.1
   dio: ^5.4.0
+  fl_chart: 0.64.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.4
@@ -64,52 +65,37 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
-    - assets/lottie/
-    - assets/svg/
-    # - assets/image/
+  - assets/lottie/
+  - assets/svg/
+  # - assets/image/
   fonts:
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Poppins-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Poppins-Thin.ttf
-          weight: 300
-        - asset: assets/fonts/Poppins-Italic.ttf
-          weight: 400
-          style: italic
-    - family: Nunito
-      fonts:
-        - asset: assets/fonts/Nunito-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/Nunito-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Nunito-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Nunito-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Nunito-Light.ttf
-          weight: 300
-        - asset: assets/fonts/Nunito-Italic.ttf
-          weight: 400
-          style: italic
-    # - family: NunitoSans
-    #   fonts:
-    #     - asset: assets/fonts/NunitoSans-Bold.ttf
-    #       weight: 700
-    #     - asset: assets/fonts/NunitoSans-SemiBold.ttf
-    #       weight: 600
-    #     - asset: assets/fonts/NunitoSans-Medium.ttf
-    #       weight: 500
-    #     - asset: assets/fonts/NunitoSans-Regular.ttf
-    #       weight: 400
-    #     - asset: assets/fonts/NunitoSans-Light.ttf
-    #       weight: 300
-    #     - asset: assets/fonts/NunitoSans-Italic.ttf
-    #       weight: 400
-    #       style: italic
+  - family: Poppins
+    fonts:
+    - asset: assets/fonts/Poppins-Bold.ttf
+      weight: 700
+    - asset: assets/fonts/Poppins-SemiBold.ttf
+      weight: 600
+    - asset: assets/fonts/Poppins-Medium.ttf
+      weight: 500
+    - asset: assets/fonts/Poppins-Regular.ttf
+      weight: 400
+    - asset: assets/fonts/Poppins-Thin.ttf
+      weight: 300
+    - asset: assets/fonts/Poppins-Italic.ttf
+      weight: 400
+      style: italic
+  - family: Nunito
+    fonts:
+    - asset: assets/fonts/Nunito-Bold.ttf
+      weight: 700
+    - asset: assets/fonts/Nunito-SemiBold.ttf
+      weight: 600
+    - asset: assets/fonts/Nunito-Medium.ttf
+      weight: 500
+    - asset: assets/fonts/Nunito-Regular.ttf
+      weight: 400
+    - asset: assets/fonts/Nunito-Light.ttf
+      weight: 300
+    - asset: assets/fonts/Nunito-Italic.ttf
+      weight: 400
+      style: italic

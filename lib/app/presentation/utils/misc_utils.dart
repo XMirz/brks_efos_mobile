@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
@@ -6,6 +7,10 @@ import 'dart:typed_data';
 import 'package:efosm/app/domain/entities/dropdown_item.dart';
 import 'package:efosm/app/domain/entities/parameters.dart';
 import 'package:efosm/core/constants/colors.dart';
+import 'package:efosm/core/constants/constants.dart';
+import 'package:efosm/core/constants/strings.dart';
+import 'package:efosm/features/auth/presentation/screens/splash_screen.dart';
+import 'package:efosm/features/home/presentations/data/entitiy/stat_item_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:path_provider/path_provider.dart';
@@ -83,4 +88,36 @@ Future<File> uint8ListToFile({required Uint8List bytes}) async {
     file.writeAsBytesSync(bytes);
     return file;
   });
+}
+
+// Color getStatsColor(StatsCategory category) {
+//   if (category == StatsCategory.Done) return AppColor.success;
+//   if (category == StatsCategory.Processing) return AppColor.info;
+//   if (category == StatsCategory.Rejected) return AppColor.error;
+//   return AppColor.dead;
+// }
+
+Color getStatsColor(ProductCategory category) {
+  if (category == ProductCategory.produktif) return AppColor.dead;
+  if (category == ProductCategory.konsumtif) return AppColor.info;
+  if (category == ProductCategory.komersil) return AppColor.warning;
+  return AppColor.dead;
+}
+
+int getStatsCount(StatsCategory category, StatItemEntity item) {
+  if (category == StatsCategory.Rejected) return item.totalReject;
+  if (category == StatsCategory.Processing) return item.totalProcess;
+  if (category == StatsCategory.Done) return item.totalDone;
+  return item.total;
+}
+
+List<DateTime> getStatsMonth() {
+  final dateTimes = <DateTime>[];
+  final current = DateTime.now().add(Duration(days: 1));
+  var currentLoop = DateTime(DateTime(2022, 1, 1).year, DateTime(2022, 1, 1).month, 1);
+  while (currentLoop.isBefore(current)) {
+    dateTimes.add(currentLoop);
+    currentLoop = currentLoop.add(Duration(days: DateUtils.getDaysInMonth(currentLoop.year, currentLoop.month)));
+  }
+  return dateTimes;
 }

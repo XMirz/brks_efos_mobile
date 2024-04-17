@@ -5,6 +5,8 @@ import 'package:efosm/app/data/repositories/auth_repository.dart';
 import 'package:efosm/app/domain/entities/session_entity.dart';
 import 'package:efosm/app/presentation/providers/user_provider.dart';
 import 'package:efosm/app/presentation/utils/auth_utils.dart';
+import 'package:efosm/core/constants/approval_type.dart';
+import 'package:efosm/core/constants/authorization_type.dart';
 import 'package:efosm/core/constants/permissions.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/auth/domain/entities/initial_request.dart';
@@ -67,6 +69,10 @@ AuthService authService(AuthServiceRef ref) => AuthService();
 final canProvider = Provider.family.autoDispose<bool, Permission>((ref, permission) {
   final userPermissions = ref.read(authenticatedUserProvider).user!.permissions;
   return can(userPermissions, permission);
+});
+final canAuthProvider = Provider.family.autoDispose<bool, ApprovalType>((ref, approval) {
+  final userAuths = ref.read(authenticatedUserProvider).user!.authorities;
+  return canAuthorize(userAuths, approval.typeName);
 });
 
 final canAllProvider = Provider.family.autoDispose<bool, List<Permission>>((ref, permissions) {

@@ -39,6 +39,13 @@ class AppTextStyle {
     fontWeight: FontWeight.w500,
     color: AppColor.textPrimary,
   );
+  static const TextStyle titleExtraSmall = TextStyle(
+    letterSpacing: 0.2,
+    fontFamily: Fonts.poppins,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: AppColor.textPrimary,
+  );
 
   // Subtitles
   static const TextStyle subtitleLarge = TextStyle(
@@ -70,7 +77,7 @@ class AppTextStyle {
   );
   static const TextStyle bodyMedium = TextStyle(
     fontFamily: Fonts.nunito,
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: FontWeight.w500,
     color: AppColor.textPrimary,
   );
@@ -98,6 +105,12 @@ class AppTextStyle {
     fontWeight: FontWeight.normal,
     color: AppColor.textSecondary,
     fontSize: 14,
+  );
+  static const TextStyle bodySuperSmall = TextStyle(
+    fontFamily: Fonts.nunito,
+    fontWeight: FontWeight.normal,
+    color: AppColor.textSecondary,
+    fontSize: 12,
   );
 
   static TextStyle errorText = bodySmall.copyWith(color: AppColor.error);

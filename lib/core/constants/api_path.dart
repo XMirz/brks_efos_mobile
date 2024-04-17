@@ -1,11 +1,16 @@
 class ApiPath {
   static const init = '/mobile/efos/init';
+  static const login = '/mobile/efos/login';
+  // Dashboard
+  static const dashboardContent = '/mobile/loan/dashboard';
+  static const dashboardStats = '/mobile/stats';
+  static const dashboardMakerUsers = '/mobile/users/maker';
 
   static const listPembiayaanProduktif = '/mobile/efos/listcalondebiturproduktif';
   static const listPembiayaanKonsumtif = '/mobile/efos/listcalondebitur';
   static const detailPembiayaanKonsumtif = '/mobile/konsumtif/detail';
   static const detailPembiayaanProduktif = '/mobile/produktif/detail';
-  static const dashboardContent = '/mobile/loan/dashboard';
+
   static const createLoan = '/mobile/efos/insertcalondebitur';
   static const editLoan = '/mobile/loan/edit';
   static const updateLoan = '/mobile/loan/update';

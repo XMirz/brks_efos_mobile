@@ -131,7 +131,7 @@ class OurFloatingActionButton extends ConsumerWidget {
                             backgroundColor: AppColor.successHighlight,
                             color: AppColor.success,
                             radius: 8,
-                            text: l10n.produktif,
+                            text: l10n.konsumtif,
                             onPressed: () {
                               context.pop();
                               continueAction = true;
@@ -147,7 +147,7 @@ class OurFloatingActionButton extends ConsumerWidget {
                             backgroundColor: AppColor.successHighlight,
                             color: AppColor.success,
                             radius: 8,
-                            text: l10n.konsumtif,
+                            text: l10n.produktif,
                             onPressed: () {
                               context.pop();
                               continueAction = true;

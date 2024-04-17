@@ -15,6 +15,7 @@ import 'package:efosm/app/presentation/widgets/dialogs.dart';
 import 'package:efosm/app/presentation/widgets/primary_button.dart';
 import 'package:efosm/core/constants/colors.dart';
 import 'package:efosm/core/constants/integer.dart';
+import 'package:efosm/features/home/presentations/providers/home_providers.dart';
 import 'package:efosm/features/pembiayaan/presentation/controllers/form_pembiayaan_controller.dart';
 import 'package:efosm/features/pembiayaan/presentation/widgets/detail_value.dart';
 import 'package:efosm/l10n/l10n.dart';
@@ -188,11 +189,22 @@ Future<void> handleLogout(BuildContext context, WidgetRef ref) async {
     showDialog<void>(
       context: context,
       builder: (context) {
+        ref.invalidate(deleteAuthenticationProvider(user));
+        context.pop('dialog');
         return OurAlertDialog(title: l10n.failed, description: l.message, onPressed: () => context.pop('dialog'));
       },
     );
   }, (r) {
     invalidateForms(ref);
+    // Dashboard
+    ref
+      ..invalidate(statsCategoryProvider)
+      ..invalidate(currentMonthStatProvider)
+      ..invalidate(currentUserStatProvider)
+      ..invalidate(currentCabangStatProvider)
+      ..invalidate(FetchBranchDashboardStatsProvider(ref.watch(currentCabangStatProvider)))
+      ..invalidate(fetchUserDashboardStatsProvider)
+      ..invalidate(fetchBranchDashboardMakerUsersProvider(ref.watch(currentCabangStatProvider)));
     while (context.canPop() == true) {
       context.pop();
     }

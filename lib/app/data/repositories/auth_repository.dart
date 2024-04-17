@@ -9,6 +9,7 @@ import 'package:efosm/core/data/network/dio_client.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/features/auth/domain/entities/initial_request.dart';
 import 'package:efosm/l10n/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class AuthRepository {
@@ -34,7 +35,7 @@ class AuthRepository {
     UserAuthenticationDto user,
   ) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
-      '/mobile/efos/login',
+      ApiPath.login,
       data: user.toJson(),
     );
     return response.fold(
@@ -42,7 +43,8 @@ class AuthRepository {
       (r) {
         try {
           return right(SessionEntity.fromJson(r));
-        } catch (e) {
+        } catch (e, stk) {
+          debugPrintStack(stackTrace: stk);
           return left(
             Failure.unprocessableEntity(
               message: l10n.somethingWrong,

@@ -1,14 +1,19 @@
+// ignore_for_file: constant_identifier_names
+
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
 class AppString {
   // PROD
-  // static const baseUrl = 'http://172.16.130.102:8040';
-  // static const baseUrlLogin = 'http://172.16.130.102:8049';
+  static const baseUrl = 'http://172.16.130.102:8049';
+  static const baseUrlLogin = 'http://172.16.130.102:8049';
 
   // DEV
-  static const baseUrl = 'http://202.152.22.233:8040';
-  static const baseUrlLogin = 'http://202.152.22.233:8049';
+  // static const baseUrl = 'http://202.152.22.233:8040';
+  // static const baseUrlLogin = 'http://202.152.22.233:8049';
+  // // DEV
+  // static const baseUrl = 'http://192.168.66.246:8049';
+  // static const baseUrlLogin = 'http://192.168.66.246:8049';
 
   static const isAgunanValue = '0';
   static const isJaminanValue = '1';
@@ -29,4 +34,11 @@ enum ProductCategory {
 
   const ProductCategory(this.typeName);
   final String typeName;
+}
+
+enum StatsCategory {
+  Rejected,
+  Processing,
+  Done,
+  Total,
 }

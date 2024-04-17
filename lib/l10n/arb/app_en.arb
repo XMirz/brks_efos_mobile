@@ -14,7 +14,26 @@
   "cancel": "Batal",
   "back": "Kembali",
   "search": "Cari",
+  "dailyStats": "Grafik Harian",
+  "monthlyStats": "Statistik Bulanan {str}",
+  "@monthlyStats": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlyRealisation": "Realisasi Bulanan {str}",
+  "@monthlyRealisation": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "month": "Bulan",
   "see": "Lihat",
+  "ao": "Account Officer",
   "exit": "Keluar",
   "npwp": "NPWP",
   "next": "Selanjutnya",
@@ -181,8 +200,8 @@
   "createPembiayaan": "Registrasi debitur",
   "debiturIdentity": "Identitas Debitur",
   "job": "Pekerjaan",
-  "konsumtif": "Produktif",
-  "produktif": "Konsumtif",
+  "konsumtif": "Konsumtif",
+  "produktif": "Produktif",
   "chooseCategory": "Jenis pembiayaan",
   "chooseCategoryDescription": "Pilih Jenis Pembiayaan",
   "partners": "Pasangan",
@@ -360,7 +379,6 @@
   "totalProspek": "Total Prospek",
   "prospekUnhandled": "Prospek Belum Diproses",
   "monthlyTarget": "Target Pembiayaan Bulanan",
-  "monthlyRealisation": "Target Realisasi Bulanan",
   "totalNoa": "Total NOA",
   "nominalNoa": "Nominal NOA",
   "cairNoa": "Nominal NOA Cair",
@@ -398,5 +416,9 @@
   "authenticationNotMatch": "Kata sandi/username yang anda masukkan tidak cocok!",
   "whoops": "Whoops, sesuatu telah terjadi mohon dicoba beberapa saat lagi!",
   "serviceInactive" : "Whoops, layanan EFOS saat ini sedang tidak tersedia. Silahkan coba beberapa saat lagi!.",
-  "a": "a"
+  "done": "Selesai",
+  "processing": "Diproses",
+  "rejected": "Ditolak",
+  "total": "Total",
+  "a": "Total"
 }

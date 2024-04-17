@@ -269,6 +269,7 @@ class SliverItems extends ConsumerWidget {
             role: user.idRole,
             levelCabang: user.levelApproveCabang,
             authorities: user.authorities,
+            userPermissions: user.permissions,
             limitKonsumtif: user.limitKonsumtifCabang,
             limitProduktif: user.limitProduktifCabang,
             plafon: double.parse(item.plafonPengajuan.toString()),

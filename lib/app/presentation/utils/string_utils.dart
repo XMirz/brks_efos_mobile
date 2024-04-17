@@ -1,4 +1,5 @@
 import 'package:efosm/app/presentation/widgets/text_field.dart';
+import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -52,4 +53,35 @@ String getLocalDate(BuildContext context, String tanggal) {
   } catch (e) {
     return '';
   }
+}
+
+String getLocalMonthName(BuildContext context, DateTime date) {
+  try {
+    return '${DateFormat.MMM(Localizations.localeOf(context).languageCode).format(date)} ${DateFormat.y(Localizations.localeOf(context).languageCode).format(date)}';
+  } catch (e) {
+    return '';
+  }
+}
+
+String formatDate(DateTime date) {
+  return DateFormat('yyyy-MM-dd').format(date);
+}
+
+bool isSameDay(String dateA, String dateB) {
+  return dateA == dateB;
+}
+
+bool isSameMonth(String dateA, String dateB) {
+  return dateA.padRight(8).substring(0, 7) == dateB.padRight(8).substring(0, 7);
+}
+
+bool isSameYear(String dateA, String dateB) {
+  return dateA.padRight(5).substring(0, 4) == dateB.padRight(7).substring(0, 4);
+}
+
+String getStatsStatus(StatsCategory category) {
+  if (category == StatsCategory.Rejected) return l10n.rejected;
+  if (category == StatsCategory.Processing) return l10n.processing;
+  if (category == StatsCategory.Done) return l10n.done;
+  return l10n.total;
 }
