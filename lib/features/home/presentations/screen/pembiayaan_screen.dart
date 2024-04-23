@@ -76,10 +76,10 @@ class PembiayaanSreen extends HookConsumerWidget {
                 padding: EdgeInsets.zero,
                 tabs: [
                   Tab(
-                    text: l10n.konsumtif,
+                    text: l10n.produktif,
                   ),
                   Tab(
-                    text: l10n.produktif,
+                    text: l10n.konsumtif,
                   ),
                 ],
               ),

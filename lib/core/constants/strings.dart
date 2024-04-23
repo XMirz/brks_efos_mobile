@@ -5,8 +5,8 @@ import 'package:crypto/crypto.dart';
 
 class AppString {
   // PROD
-  static const baseUrl = 'http://172.16.130.102:8049';
-  static const baseUrlLogin = 'http://172.16.130.102:8049';
+  static const baseUrl = 'https://pembiayaan-api.brksyariah.co.id/api/efosmobile'; // PROD
+  static const baseUrlLogin = 'https://pembiayaan-api.brksyariah.co.id/api/efosmobile'; // PROD
 
   // DEV
   // static const baseUrl = 'http://202.152.22.233:8040';

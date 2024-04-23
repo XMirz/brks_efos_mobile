@@ -3,41 +3,39 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/core/error/failures.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class DioClient {
-  DioClient() {
-    final baseOption = BaseOptions(
-      baseUrl: AppString.baseUrlLogin,
-      contentType: Headers.jsonContentType,
-      connectTimeout: const Duration(seconds: 60),
-      receiveTimeout: const Duration(seconds: 60),
-    );
-    dio = Dio(baseOption);
-    dio.interceptors.add(LoggingInterceptor());
-  }
-  DioClient._authenticated(String bearerToken) {
+  const DioClient({required this.dio});
+  final Dio dio;
+
+  static Future<DioClient> createClient(String? bearerToken) async {
     final baseOption = BaseOptions(
       baseUrl: AppString.baseUrl,
       contentType: Headers.jsonContentType,
       connectTimeout: const Duration(seconds: 60),
       receiveTimeout: const Duration(seconds: 60),
       headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $bearerToken',
+        HttpHeaders.authorizationHeader: bearerToken == null ? '' : 'Bearer $bearerToken',
       },
     );
-    dio = Dio(baseOption);
+    final dio = Dio(baseOption);
     dio.interceptors.add(LoggingInterceptor());
-  }
+    final certificate = await rootBundle.load('assets/ca/cert.pem');
+    (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
+      {
+        final securityContext = SecurityContext()..setTrustedCertificatesBytes(certificate.buffer.asUint8List());
+        return HttpClient(context: securityContext);
+      }
+    };
 
-  factory DioClient.authenticated(String bearerToken) {
-    return DioClient._authenticated(bearerToken);
+    return DioClient(dio: dio);
   }
-
-  late Dio dio;
 
   Future<Either<Failure, T>> post<T>(
     String path, {
@@ -67,6 +65,7 @@ class DioClient {
       return right(innerData);
     } on DioException catch (e) {
       debugPrint(e.toString());
+      debugPrint('Response : ${jsonEncode(e.response?.data)}');
       if (e.response?.statusCode == 401) {
         return left(
           Failure.authentication(message: l10n.failureAuth, code: '04'),

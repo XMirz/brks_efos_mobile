@@ -1,15 +1,14 @@
-import 'package:efosm/app/presentation/widgets/text_field.dart';
 import 'package:efosm/core/constants/strings.dart';
 import 'package:efosm/l10n/l10n.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_multi_formatter/formatters/formatter_utils.dart';
 import 'package:intl/intl.dart';
 
 String toRupiahString(String number) {
+  final str = number != '' && number != 'null' ? number : '0';
   return toCurrencyString(
-    number,
+    str,
     leadingSymbol: 'Rp.',
     useSymbolPadding: true,
   );

@@ -23,6 +23,14 @@
       }
     }
   },
+  "selectX": "Pilih {str}",
+  "@selectX": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
   "monthlyRealisation": "Realisasi Bulanan {str}",
   "@monthlyRealisation": {
     "placeholders": {
@@ -40,6 +48,14 @@
   "welcome": "Selamat datang",
   "welcomeStr": "Selamat datang, {str}",
   "@welcomeStr": {
+    "placeholders": {
+      "str": {
+        "type": "String"
+      }
+    }
+  },
+  "xNotMatch": "{str} tidak cocok",
+  "@xNotMatch": {
     "placeholders": {
       "str": {
         "type": "String"
@@ -207,7 +223,7 @@
   "partners": "Pasangan",
   "invalidInput": "Masukan tidak valid!",
   "invalidSuffix": " tidak valid!",
-  "failureAuth": "Autentikasi gagal. Harap masukkan kredensial yang valid.",
+  "failureAuth": "Sesi anda habis, silahkan login kembali.",
   "somethingWrong": "Mohon maaf, tidak dapat menproses permintaan anda. Silahkan coba beberapa saat lagi!.",
   "failureNetwork": "Gagal terhubung ke jaringan, mohon periksa koneksi internet anda!",
   "failureServer": "Gagal terhubung ke jaringan.",

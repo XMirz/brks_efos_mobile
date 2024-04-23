@@ -1,44 +1,47 @@
 class ApiPath {
-  static const init = '/mobile/efos/init';
-  static const login = '/mobile/efos/login';
+  // Authentication
+  static const init = '/auth/init';
+  static const login = '/auth/login';
+  static const logout = '/auth/logout';
+
   // Dashboard
-  static const dashboardContent = '/mobile/loan/dashboard';
-  static const dashboardStats = '/mobile/stats';
-  static const dashboardMakerUsers = '/mobile/users/maker';
+  static const dashboardContent = '/dashboard/target';
+  static const dashboardStats = '/dashboard/stats';
+  static const dashboardMakerUsers = '/users/maker';
 
-  static const listPembiayaanProduktif = '/mobile/efos/listcalondebiturproduktif';
-  static const listPembiayaanKonsumtif = '/mobile/efos/listcalondebitur';
-  static const detailPembiayaanKonsumtif = '/mobile/konsumtif/detail';
-  static const detailPembiayaanProduktif = '/mobile/produktif/detail';
+  static const listPembiayaanProduktif = '/efos/listcalondebiturproduktif';
+  static const listPembiayaanKonsumtif = '/efos/listcalondebitur';
+  static const detailPembiayaanKonsumtif = '/konsumtif/detail';
+  static const detailPembiayaanProduktif = '/produktif/detail';
 
-  static const createLoan = '/mobile/efos/insertcalondebitur';
-  static const editLoan = '/mobile/loan/edit';
-  static const updateLoan = '/mobile/loan/update';
-  static const insertAgunan = '/mobile/agunan/create';
-  static const updateAgunan = '/mobile/agunan/update';
-  static const deleteAgunan = '/mobile/agunan/delete';
+  static const createLoan = '/efos/insertcalondebitur';
+  static const editLoan = '/loan/edit';
+  static const updateLoan = '/loan/update';
+  static const insertAgunan = '/agunan/create';
+  static const updateAgunan = '/agunan/update';
+  static const deleteAgunan = '/agunan/delete';
 
 // Review Notisi
-  static const reviewKonsumtif = '/mobile/calondebitur/review';
-  static const reviewProduktif = '/mobile/pembiayaan/review';
+  static const reviewKonsumtif = '/calondebitur/review';
+  static const reviewProduktif = '/pembiayaan/review';
 
 // Reject Notisi
-  static const rejectKonsumtif = '/mobile/pembiayaan/cancel';
-  static const rejectProduktif = '/mobile/mkm/cancel';
+  static const rejectKonsumtif = '/loan/cancel';
+  static const rejectProduktif = '/mkm/cancel';
 
 // Review document
-  static const dokumenKonsumtif = '/mobile/ceklist/inquiry';
-  static const dokumenProduktif = '/mobile/pembiayaan/getdokumenpersyaratan';
+  static const dokumenKonsumtif = '/ceklist/inquiry';
+  static const dokumenProduktif = '/pembiayaan/getdokumenpersyaratan';
 
 // Approve Notisi
-  static const approvalOneKonsumtif = '/mobile/notisi/approve1';
-  static const approvalTwoKonsumtif = '/mobile/notisi/approve2';
-  static const approvalThreeKonsumtif = '/mobile/notisi/approve3mobile';
-  static const approvalOneProduktif = '/mobile/pembiayaan/approve1';
-  static const approvalTwoProduktif = '/mobile/pembiayaan/approve2';
-  static const approvalThreeProduktif = '/mobile/pembiayaan/approve3mobile';
+  static const approvalOneKonsumtif = '/notisi/approve1';
+  static const approvalTwoKonsumtif = '/notisi/approve2';
+  static const approvalThreeKonsumtif = '/notisi/approve3mobile';
+  static const approvalOneProduktif = '/pembiayaan/approve1';
+  static const approvalTwoProduktif = '/pembiayaan/approve2';
+  static const approvalThreeProduktif = '/pembiayaan/approve3mobile';
 
   // Usulan
-  static const listUsulanKonsumtif = '/mobile/usulan/konsumtif';
-  static const listUsulanProduktif = '/mobile/usulan/produktif';
+  static const listUsulanKonsumtif = '/usulan/konsumtif';
+  static const listUsulanProduktif = '/usulan/produktif';
 }

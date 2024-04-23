@@ -79,6 +79,7 @@ class ApprovalFormModal extends ConsumerWidget {
             error: formState.tanggalLahir.errorMessage,
             isRequired: formState.tanggalLahir.isRequired,
             disabled: formState.tanggalLahir.disabled,
+            initialDate: DateTime.tryParse(formState.tanggalLahir.value ?? DateTime.now().toString()),
             onChanged: formStateNotifier.setTanggalLahir,
           ),
           OurTextField(
@@ -165,12 +166,22 @@ class ApprovalFormModal extends ConsumerWidget {
                   (formState.nik.value != dataDiri.nik ||
                       formState.nama.value != dataDiri.nama ||
                       formState.tanggalLahir.value != dataDiri.tanggalLahir)) {
+                var message = l10n.identityNotMatch;
+                if (formState.nik.value != dataDiri.nik) {
+                  message = '${l10n.xNotMatch(l10n.nik)}, ${dataDiri.nik}.';
+                }
+                if (formState.nama.value != dataDiri.nama) {
+                  message = '${l10n.xNotMatch(l10n.nama)}, ${dataDiri.nama}.';
+                }
+                if (formState.tanggalLahir.value != dataDiri.tanggalLahir) {
+                  message = '${l10n.xNotMatch(l10n.tanggalLahir)}, ${dataDiri.tanggalLahir}.';
+                }
                 await showDialog<void>(
                   context: parentContext,
                   builder: (context) {
                     return OurAlertDialog(
                       title: l10n.failed,
-                      description: l10n.identityNotMatch,
+                      description: message,
                       onPressed: () => context.pop('dialog'),
                     );
                   },

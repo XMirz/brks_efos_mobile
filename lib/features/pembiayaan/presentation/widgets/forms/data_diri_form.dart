@@ -29,7 +29,7 @@ class DataDiriForm extends ConsumerWidget {
     return ListView(
       children: [
         spaceY(8),
-        FormHeader(title: l10n.pekerjaan),
+        FormHeader(title: l10n.dataDiri),
         spaceY(8),
         OurTextField(
           maxLength: 16,
@@ -92,6 +92,7 @@ class DataDiriForm extends ConsumerWidget {
                 error: formState.tanggalLahir.showError ? formState.tanggalLahir.errorMessage : null,
                 isRequired: formState.tanggalLahir.isRequired,
                 disabled: formState.tanggalLahir.disabled,
+                initialDate: DateTime.tryParse(formState.tanggalLahir.value ?? DateTime.now().toString()),
                 onChanged: formStateNotifier.setTanggalLahir,
               ),
             ),

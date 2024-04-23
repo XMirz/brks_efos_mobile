@@ -9,8 +9,8 @@ import 'package:path_provider/path_provider.dart';
 class Injector {
   static Future<void> registerInitializationDependency() async {
     // Unauthenticated Dio
-    GetIt.I.registerSingleton<DioClient>(
-      DioClient(),
+    GetIt.I.registerSingletonAsync<DioClient>(
+      () => DioClient.createClient(null),
     );
     // Init Hive
     final directory = await getApplicationDocumentsDirectory();
@@ -33,15 +33,15 @@ class Injector {
 
   static void registerAuthenticatedClient(String bearerToken) {
     GetIt.I.unregister<DioClient>();
-    GetIt.I.registerFactory<DioClient>(
-      () => DioClient.authenticated(bearerToken),
+    GetIt.I.registerSingletonAsync<DioClient>(
+      () => DioClient.createClient(bearerToken),
     );
   }
 
   static void unregisterAuthenticatedClient(String bearerToken) {
     GetIt.I.unregister<DioClient>();
-    GetIt.I.registerSingleton<DioClient>(
-      DioClient(),
+    GetIt.I.registerSingletonAsync<DioClient>(
+      () => DioClient.createClient(null),
     );
   }
 }

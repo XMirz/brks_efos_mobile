@@ -61,7 +61,7 @@ class AuthRepository {
     UserAuthenticationDto user,
   ) async {
     final response = await _dioClient.post<Map<String, dynamic>>(
-      '/mobile/efos/logout',
+      ApiPath.logout,
       data: user.toJson(),
     );
     return response.fold(

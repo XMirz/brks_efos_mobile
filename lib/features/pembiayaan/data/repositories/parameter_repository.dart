@@ -11,7 +11,9 @@ class ParameterRepository {
   final DioClient _dioClient = GetIt.I.get();
 
   Future<Either<Failure, LoanParameter>> fetchInitialParameter() async {
-    final response = await _dioClient.get<Map<String, dynamic>>('/mobile/parameter/inquiryall');
+    final response = await _dioClient.get<Map<String, dynamic>>(
+      '/parameter/inquiryall',
+    );
     return response.fold(
       left,
       (r) {
@@ -35,7 +37,7 @@ class ParameterRepository {
   ) async {
     final data = ParameterDto(id: kategoriId);
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/produk',
+      '/parameter/produk',
       data: data.toJson(),
     );
     return response.fold(
@@ -53,7 +55,7 @@ class ParameterRepository {
   ) async {
     final data = ParameterDto(id: id);
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/template',
+      '/parameter/template',
       data: data.toJson(),
     );
     return response.fold(
@@ -75,7 +77,7 @@ class ParameterRepository {
       'id_template_dokumen': idJenisPengajuan,
     };
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/subproduk',
+      '/parameter/subproduk',
       data: data,
     );
     return response.fold(
@@ -97,7 +99,7 @@ class ParameterRepository {
       'id_template_dokumen': idJenisPengajuan,
     };
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/plan',
+      '/parameter/plan',
       data: data,
     );
     return response.fold(
@@ -113,7 +115,7 @@ class ParameterRepository {
   Future<List<Parameter>> fetchKabupaten(String idProvinsi) async {
     final data = ParameterDto(id: idProvinsi);
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/dati',
+      '/parameter/dati',
       data: data.toJson(),
     );
     return response.fold(
@@ -129,7 +131,7 @@ class ParameterRepository {
   Future<List<Parameter>> fetchKecamatan(String idKabupaten) async {
     final data = ParameterDto(id: idKabupaten);
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/kec',
+      '/parameter/kec',
       data: data.toJson(),
     );
     return response.fold(
@@ -145,7 +147,7 @@ class ParameterRepository {
   Future<List<Parameter>> fetchKelurahan(String idKecamatan) async {
     final data = ParameterDto(id: idKecamatan);
     final response = await _dioClient.post<List<dynamic>>(
-      '/mobile/parameter/kel',
+      '/parameter/kel',
       data: data.toJson(),
     );
     return response.fold(

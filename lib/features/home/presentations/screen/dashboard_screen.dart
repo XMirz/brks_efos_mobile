@@ -31,7 +31,7 @@ class DashboardScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.read(authenticatedUserProvider).user!;
-    final dashboardContent = ref.watch(dashbordContentProvider);
+    // final dashboardContent = ref.watch(dashbordContentProvider);
     final currentUserStats = ref.read(currentUserStatProvider);
     final isMakerSupervisor = ref.read(canAuthProvider(ApprovalType.notisi1)) ||
         ref.read(canAuthProvider(ApprovalType.notisi2)) ||
@@ -61,11 +61,11 @@ class DashboardScreen extends HookConsumerWidget {
                   spaceY(12),
                   FormHeader(
                     title: l10n.dashboard,
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                   ),
                   spaceY(8),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Theme(
                       data: ThemeData(
                         highlightColor: Colors.transparent,
@@ -78,6 +78,55 @@ class DashboardScreen extends HookConsumerWidget {
                         alignment: WrapAlignment.spaceBetween,
                         spacing: 16,
                         children: [
+                          if (isMakerSupervisor)
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 12),
+                              child: ref
+                                  .watch(FetchBranchDashboardMakerUsersProvider(ref.watch(currentCabangStatProvider)))
+                                  .maybeWhen(
+                                    data: (data) => Row(
+                                      children: [
+                                        Text(
+                                          l10n.ao,
+                                          style: AppTextStyle.bodyExtraSmall,
+                                        ),
+                                        spaceX(12),
+                                        Expanded(
+                                          child: SizedBox(
+                                            height: 32,
+                                            child: DropdownButtonHideUnderline(
+                                              child: ButtonTheme(
+                                                alignedDropdown: true,
+                                                child: DropdownButton<UserSimpleEntity>(
+                                                  menuMaxHeight: 200,
+                                                  isDense: true,
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  style: AppTextStyle.bodySmall,
+                                                  hint: Text(l10n.selectX(l10n.ao)),
+                                                  isExpanded: true,
+                                                  items: data.users
+                                                      .map((e) => DropdownMenuItem(
+                                                            value: e,
+                                                            child: Text(
+                                                              '${capitalizeEachWord(e.nama)} - ${e.username}',
+                                                              overflow: TextOverflow.ellipsis,
+                                                            ),
+                                                          ))
+                                                      .toList(),
+                                                  value: ref.watch(currentUserStatProvider),
+                                                  onChanged: (value) => value != null
+                                                      ? ref.read(currentUserStatProvider.notifier).state = value
+                                                      : () {},
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    orElse: () => const SizedBox.shrink(),
+                                  ),
+                            ),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -153,53 +202,6 @@ class DashboardScreen extends HookConsumerWidget {
                               ),
                             ],
                           ),
-                          if (isMakerSupervisor)
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 4),
-                              child: ref
-                                  .watch(FetchBranchDashboardMakerUsersProvider(ref.watch(currentCabangStatProvider)))
-                                  .maybeWhen(
-                                    data: (data) => Row(
-                                      children: [
-                                        Text(
-                                          l10n.ao,
-                                          style: AppTextStyle.bodyExtraSmall,
-                                        ),
-                                        spaceX(12),
-                                        Expanded(
-                                          child: SizedBox(
-                                            height: 32,
-                                            child: DropdownButtonHideUnderline(
-                                              child: ButtonTheme(
-                                                alignedDropdown: true,
-                                                child: DropdownButton<UserSimpleEntity>(
-                                                  menuMaxHeight: 200,
-                                                  isDense: true,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  style: AppTextStyle.bodyExtraSmall,
-                                                  items: data.users
-                                                      .map((e) => DropdownMenuItem(
-                                                            value: e,
-                                                            child: Text(
-                                                              '${capitalizeEachWord(e.nama)} - ${e.username}',
-                                                              overflow: TextOverflow.ellipsis,
-                                                            ),
-                                                          ))
-                                                      .toList(),
-                                                  value: ref.watch(currentUserStatProvider),
-                                                  onChanged: (value) => value != null
-                                                      ? ref.read(currentUserStatProvider.notifier).state = value
-                                                      : () {},
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    orElse: () => const SizedBox.shrink(),
-                                  ),
-                            ),
                         ],
                       ),
                     ),
@@ -276,7 +278,7 @@ class DashboardScreen extends HookConsumerWidget {
                                           child: LineChart(
                                             LineChartData(
                                                 backgroundColor: AppColor.dead.withOpacity(0.1),
-                                                borderData: FlBorderData(show: false, border: Border()),
+                                                borderData: FlBorderData(show: false, border: const Border()),
                                                 lineBarsData: [
                                                   LineChartBarData(
                                                     spots: konsumtifSpots,
@@ -370,7 +372,8 @@ class DashboardScreen extends HookConsumerWidget {
                                                     tooltipMargin: 0,
                                                     fitInsideHorizontally: true,
                                                     fitInsideVertically: true,
-                                                    tooltipPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                                    tooltipPadding:
+                                                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                                     getTooltipItems: (touchedSpots) {
                                                       var first = true;
                                                       return touchedSpots.map((e) {
@@ -397,13 +400,13 @@ class DashboardScreen extends HookConsumerWidget {
                                                   getTouchedSpotIndicator: (barData, spotIndexes) {
                                                     return spotIndexes.map(
                                                       (int index) {
-                                                        final line = FlLine(
+                                                        const line = FlLine(
                                                             color: AppColor.textPrimary,
                                                             strokeWidth: 1,
                                                             dashArray: [5, 5]);
-                                                        return TouchedSpotIndicatorData(
+                                                        return const TouchedSpotIndicatorData(
                                                           line,
-                                                          const FlDotData(
+                                                          FlDotData(
                                                             show: false,
                                                           ),
                                                         );
@@ -412,6 +415,26 @@ class DashboardScreen extends HookConsumerWidget {
                                                   },
                                                 )),
                                           ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Container(
+                                              height: 8,
+                                              width: 8,
+                                              color: AppColor.info,
+                                            ),
+                                            spaceX(4),
+                                            Text(l10n.konsumtif),
+                                            spaceX(16),
+                                            Container(
+                                              height: 8,
+                                              width: 8,
+                                              color: AppColor.dead,
+                                            ),
+                                            spaceX(4),
+                                            Text(l10n.produktif),
+                                          ],
                                         ),
                                         spaceY(20),
                                         Text(
@@ -539,7 +562,7 @@ class DashboardScreen extends HookConsumerWidget {
                                               ],
                                             );
                                           },
-                                        )
+                                        ),
                                       ],
                                     );
                                   },
@@ -622,7 +645,7 @@ class DashboardScreen extends HookConsumerWidget {
                                     child: LineChart(
                                       LineChartData(
                                           backgroundColor: AppColor.dead.withOpacity(0.1),
-                                          borderData: FlBorderData(show: false, border: Border()),
+                                          borderData: FlBorderData(show: false, border: const Border()),
                                           lineBarsData: [
                                             LineChartBarData(
                                               spots: konsumtifSpots,
@@ -715,7 +738,7 @@ class DashboardScreen extends HookConsumerWidget {
                                               tooltipMargin: 0,
                                               fitInsideHorizontally: true,
                                               fitInsideVertically: true,
-                                              tooltipPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                              tooltipPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                                               getTooltipItems: (touchedSpots) {
                                                 var first = true;
                                                 return touchedSpots.map((e) {
@@ -742,11 +765,11 @@ class DashboardScreen extends HookConsumerWidget {
                                             getTouchedSpotIndicator: (barData, spotIndexes) {
                                               return spotIndexes.map(
                                                 (int index) {
-                                                  final line = FlLine(
+                                                  const line = FlLine(
                                                       color: AppColor.textPrimary, strokeWidth: 1, dashArray: [5, 5]);
-                                                  return TouchedSpotIndicatorData(
+                                                  return const TouchedSpotIndicatorData(
                                                     line,
-                                                    const FlDotData(
+                                                    FlDotData(
                                                       show: false,
                                                     ),
                                                   );
@@ -756,6 +779,26 @@ class DashboardScreen extends HookConsumerWidget {
                                           )),
                                     ),
                                   ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 8,
+                                        width: 8,
+                                        color: AppColor.info,
+                                      ),
+                                      spaceX(4),
+                                      Text(l10n.konsumtif),
+                                      spaceX(16),
+                                      Container(
+                                        height: 8,
+                                        width: 8,
+                                        color: AppColor.dead,
+                                      ),
+                                      spaceX(4),
+                                      Text(l10n.produktif),
+                                    ],
+                                  )
                                 ],
                               ),
                             );

@@ -10,27 +10,6 @@ import 'package:get_it/get_it.dart';
 class UsulanRepository {
   final DioClient _dioClient = GetIt.I.get();
 
-  // Future<Either<Failure, PembiayaanDetailEntity>> fetchDetail(
-  //   String endPoint,
-  //   PembiayaanRequest data,
-  // ) async {
-  //   final response = await _dioClient.post<Map<String, dynamic>>(
-  //     endPoint,
-  //     data: data.toJson(),
-  //   );
-  //   return response.fold(left, (r) {
-  //     try {
-  //       return right(PembiayaanDetailEntity.fromJson(r));
-  //     } catch (e, stk) {
-  //       debugPrint(e.toString());
-  //       debugPrint(stk.toString());
-  //       return left(
-  //         Failure.unknown(message: l10n.failedGetDataPembiayaan, code: '04'),
-  //       );
-  //     }
-  //   });
-  // }
-
   Future<Either<Failure, PaginatedUsulanEntity>> fetchPaginatedUsulan(
     String endpoint,
     PaginationRequest data,
@@ -56,24 +35,4 @@ class UsulanRepository {
       },
     );
   }
-
-  // Future<Either<Failure, PembiayaanEntity>> fetchEditPembiayaan(
-  //   OurRequest data,
-  // ) async {
-  //   final response = await _dioClient.post<Map<String, dynamic>>(
-  //     ApiPath.editLoan,
-  //     data: data.toJson(),
-  //   );
-  //   return response.fold(left, (r) {
-  //     try {
-  //       return right(PembiayaanEntity.fromJson(r));
-  //     } catch (e, stk) {
-  //       debugPrint(e.toString());
-  //       debugPrint(stk.toString());
-  //       return left(
-  //         Failure.unknown(message: l10n.failedGetDataPembiayaan, code: '04'),
-  //       );
-  //     }
-  //   });
-  // }
 }

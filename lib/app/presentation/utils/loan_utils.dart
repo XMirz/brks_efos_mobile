@@ -24,7 +24,6 @@ LoanState buildKonsumtifLoanState({
   required double plafon,
   bool isUsulan = false,
 }) {
-  final roleId = int.parse(role);
   final typeCabang = int.parse(levelCabang);
 
   var statusDescription = 'Buka aplikasi EFOS';
@@ -67,7 +66,7 @@ LoanState buildKonsumtifLoanState({
     showApprove = true;
     showReview = true;
     statusColor = AppColor.warning;
-
+    identityValidation = true;
     if (typeCabang == 1) {
       final canAuth = canAuthorizeAll(authorities, [
         ApprovalType.notisi1.typeName,
@@ -96,11 +95,11 @@ LoanState buildKonsumtifLoanState({
     canUpdate = can(userPermissions, Permission.editPembiayaanKonsumtif);
     statusDescription = 'Review Data Nasabah';
     statusColor = AppColor.info;
-    identityValidation = true;
   } else if (status == '6') {
     statusDescription = 'Menunggu Apv Manager Bisnis';
     canApprove = authorities.contains(ApprovalType.notisi2.typeName);
     canReview = authorities.contains(ApprovalType.review.typeName);
+    identityValidation = true;
     approvalType = ApprovalType.notisi2;
     statusColor = AppColor.warning;
     nextStatus = '7';
@@ -115,6 +114,7 @@ LoanState buildKonsumtifLoanState({
     showForward = true;
     showReject = true;
     approvalType = ApprovalType.notisi3;
+    identityValidation = true;
     statusColor = AppColor.warning;
     nextStatus = '13';
     if (typeCabang == 2) {
@@ -133,13 +133,13 @@ LoanState buildKonsumtifLoanState({
   } else if (status == '13') {
     statusColor = AppColor.success;
     if (typeCabang == 1) {
-      statusDescription = 'Disetujui Apv Pinkedai';
+      statusDescription = 'Disetujui Pinkedai';
     } else if (typeCabang == 2) {
-      statusDescription = 'Disetujui Apv Pincapem';
+      statusDescription = 'Disetujui Pincapem';
     } else if (typeCabang == 3) {
-      statusDescription = 'Disetujui Apv Branch Manager/ Pindiv';
+      statusDescription = 'Disetujui Branch Manager/ Pindiv';
     } else if (typeCabang == 4) {
-      statusDescription = 'Disetujui Apv General Manager/ Pindiv';
+      statusDescription = 'Disetujui General Manager/ Pindiv';
     }
   } else if (status == '15') {
     statusDescription = 'Validasi Dokumen Persyaratan';
@@ -214,7 +214,6 @@ LoanState buildProduktifLoanState({
   required double plafon,
   bool isUsulan = false,
 }) {
-  final roleId = int.parse(role);
   final typeCabang = int.parse(levelCabang);
 
   var statusDescription = 'Buka aplikasi EFOS';
@@ -301,6 +300,7 @@ LoanState buildProduktifLoanState({
     statusDescription = 'Menunggu Apv Manager Bisnis';
     canApprove = authorities.contains(ApprovalType.notisi2.typeName);
     canReview = authorities.contains(ApprovalType.review.typeName);
+    identityValidation = true;
     approvalType = ApprovalType.notisi2;
     nextStatus = '8';
     approveErrorMessage =
@@ -317,6 +317,7 @@ LoanState buildProduktifLoanState({
     ]);
     showForward = true;
     showReject = true;
+    identityValidation = true;
     approvalType = ApprovalType.notisi3;
     statusColor = AppColor.warning;
     nextStatus = '9';
@@ -332,7 +333,7 @@ LoanState buildProduktifLoanState({
     statusColor = AppColor.success;
     if (typeCabang == 1) {
       statusDescription = 'Disetujui Pinkedai';
-    } else if (typeCabang == 3) {
+    } else if (typeCabang == 2) {
       statusDescription = 'Disetujui Pincapem';
     } else if (typeCabang == 3) {
       statusDescription = 'Desetujui Branch Manager';

@@ -593,8 +593,13 @@ class DetailPembiayaanScreen extends ConsumerWidget {
       return;
     }
 
+    final identityValidation = (loanState.identityValidation ?? false) &&
+        (loanState.approvalType == ApprovalType.notisi1 ||
+            loanState.approvalType == ApprovalType.notisi2 ||
+            loanState.approvalType == ApprovalType.notisi3);
+
     formStateNotifier
-      ..setIdentityRequirement(isRequired: loanState.identityValidation ?? false)
+      ..setIdentityRequirement(isRequired: identityValidation)
       ..setAccountRequirement(isRequired: isAccountRequired);
 
     if (parentContext.mounted) {
