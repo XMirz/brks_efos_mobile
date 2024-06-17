@@ -8,13 +8,6 @@ class AppString {
   static const baseUrl = 'https://pembiayaan-api.brksyariah.co.id/api/efosmobile'; // PROD
   static const baseUrlLogin = 'https://pembiayaan-api.brksyariah.co.id/api/efosmobile'; // PROD
 
-  // DEV
-  // static const baseUrl = 'http://202.152.22.233:8040';
-  // static const baseUrlLogin = 'http://202.152.22.233:8049';
-  // // DEV
-  // static const baseUrl = 'http://192.168.66.246:8049';
-  // static const baseUrlLogin = 'http://192.168.66.246:8049';
-
   static const isAgunanValue = '0';
   static const isJaminanValue = '1';
   static const existValue = 'Ada';

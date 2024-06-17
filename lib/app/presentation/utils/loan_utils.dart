@@ -73,6 +73,10 @@ LoanState buildKonsumtifLoanState({
         ApprovalType.notisi2.typeName,
         ApprovalType.notisi3.typeName,
       ]);
+      canReject = canAuthorizeAll(authorities, [
+        ApprovalType.reject.typeName,
+        ApprovalType.notisi3.typeName,
+      ]);
       statusDescription = 'Menunggu Approval Pinkedai';
       canApprove = authorities.contains(ApprovalType.notisi3.typeName) && plafon <= limit;
       canForward = plafon > limit;
@@ -266,6 +270,10 @@ LoanState buildProduktifLoanState({
       final canAuth = canAuthorizeAll(authorities, [
         ApprovalType.notisi1.typeName,
         ApprovalType.notisi2.typeName,
+        ApprovalType.notisi3.typeName,
+      ]);
+      canReject = canAuthorizeAll(authorities, [
+        ApprovalType.reject.typeName,
         ApprovalType.notisi3.typeName,
       ]);
       statusDescription = 'Menunggu Approval Pinkedai';

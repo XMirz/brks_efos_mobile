@@ -202,7 +202,7 @@ class EditPembiayaanScreen extends HookConsumerWidget {
         builder: (context) {
           return OurConfirmDialog(
             title: l10n.confirmation,
-            description: 'Apakah ingin memperbarui pengajuan pemabiayaan?',
+            description: 'Apakah ingin memperbarui pengajuan pembiayaan?',
             onCancel: () {
               if (context.mounted) context.pop('dialog');
             },

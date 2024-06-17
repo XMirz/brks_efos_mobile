@@ -30,7 +30,8 @@ class DioClient {
     (dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       {
         final securityContext = SecurityContext()..setTrustedCertificatesBytes(certificate.buffer.asUint8List());
-        return HttpClient(context: securityContext);
+        final client = HttpClient(context: securityContext)..badCertificateCallback = (cert, host, port) => true;
+        return client;
       }
     };
 
